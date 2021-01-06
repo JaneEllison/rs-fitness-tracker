@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import foodSelector from './store/Selectors/foodSelector';
+import { getSearchDataFromAPI } from './store/foodReducer/foodReducer';
 
 function App() {
+  const [foodToSearch, setFoodToSearch] = useState('');
+  const data = useSelector(foodSelector);
+  const { foods } = data;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSearchDataFromAPI(foodToSearch));
+  }, [foodToSearch]);
+  console.log(data.foods);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        onChange={(event) => setFoodToSearch(event.target.value)}
+        type="text"
+        value={foodToSearch}
+      />
+      {
+        foods
+          ? foods.map(item => <div key={item.fdcId}>{item.description}</div>)
+          : null
+      }
     </div>
   );
 }
