@@ -1,0 +1,1 @@
+const FETCH_FOOD_DATA = 'FETCH_FOOD_DATA';
