@@ -24,7 +24,7 @@ export const fetchFoodDataAC = (data) => {
 export const getSearchDataFromAPI =  (query) => {
   return async (dispatch) => {
     const response = await makeQueryToSearchFood(query);
-    dispatch(fetchFoodDataAC(response));
+    response && dispatch(fetchFoodDataAC(response));
   }
 };
 
