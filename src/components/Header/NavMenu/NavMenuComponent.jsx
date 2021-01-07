@@ -2,7 +2,7 @@ import React from 'react';
 import routes from '../../../config/routes';
 import { NavLink } from 'react-router-dom';
 
-const NavMenu = () => {
+const NavMenuComponent = () => {
 
   return (
     <div>
@@ -13,4 +13,4 @@ const NavMenu = () => {
   );
 };
 
-export default NavMenu;
+export default NavMenuComponent;

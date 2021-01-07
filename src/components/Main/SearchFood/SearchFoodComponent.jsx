@@ -10,7 +10,7 @@ const SearchFood = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSearchDataFromAPI(foodToSearch));
+    foodToSearch && dispatch(getSearchDataFromAPI(foodToSearch));
   }, [foodToSearch]);
   console.log(data.foods);
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import SearchFood from './SearchFood/SearchFood';
+import SearchFood from './SearchFood/SearchFoodComponent';
 
-const Main = () => {
+const MainComponent = () => {
   return (
     <main>
       <Route exact path="/" render={() => <div>Default page</div>} />
@@ -12,4 +12,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainComponent;
