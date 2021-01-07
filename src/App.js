@@ -1,17 +1,19 @@
 import './App.css';
 import React from 'react';
-import Main from './components/Main/Main';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-
+import "antd/dist/antd.css";
+import { Layout } from 'antd';
+import MainComponent from './components/Main/MainComponent';
+import HeaderComponent from './components/Header/HeaderComponent';
+import FooterComponent from './components/Footer/FooterComponent';
 
 function App() {
+  const { Header, Footer, Content } = Layout;
   return (
-    <div>
-      <Header/>
-      <Main/>
-      <Footer/>
-    </div>
+    <Layout>
+      <Header><HeaderComponent/></Header>
+      <Content><MainComponent/></Content>
+      <Footer><FooterComponent/></Footer>
+    </Layout>
   )
 }
 
