@@ -1,24 +1,23 @@
 import React from 'react';
-import { List } from 'antd';
+import FoodStatChart from './FoodStatChart';
+import foodComponentConstants from '../../../../constants/foodComponentConstants';
 
-const FooDStats = ({foods}) => {
+const FooDStats = ({foodData}) => {
+
+  const {foodStatsTypes: {FOOD_STATS_PER_100_GR}} = foodComponentConstants;
+
   const {
     food_name,
     nf_calories,
     nf_total_fat,
     nf_total_carbohydrate,
-    nf_sugars,
     nf_protein
-    } = foods[0];
-  const foodData = [food_name, nf_calories, nf_total_fat, nf_total_carbohydrate, nf_sugars, nf_protein];
-  console.log(foods);
+    } = foodData;
+  const transformedFoodData = [nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein];
+  console.log(FOOD_STATS_PER_100_GR);
   return (
     <div>
-      <List
-        size="small"
-        dataSource={foodData}
-        renderItem={(item) => <List.Item>{item}</List.Item>}
-      />
+      <FoodStatChart stats={transformedFoodData} title={FOOD_STATS_PER_100_GR} />
     </div>
   );
 };

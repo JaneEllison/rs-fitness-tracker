@@ -6,16 +6,15 @@ import FooDStats from './FoodStats/FoodStats';
 
 const FoodComponent = () => {
 
-  const data = useSelector(foodSelector);
-  const { foods } = data;
+  const foodData = useSelector(foodSelector);
 
-  console.log(data.foods);
+  console.log(foodData);
   return (
     <div>
       <SearchFood />
       {
-        foods
-          ? <FooDStats foods={foods} />
+        foodData
+          ? <FooDStats foodData={foodData} />
           : null
       }
     </div>
