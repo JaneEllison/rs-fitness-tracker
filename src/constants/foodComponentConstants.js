@@ -1,4 +1,6 @@
 const foodComponentConstants = {
+  FOOD_COMPONENT_SPACING_DIRECTION: 'vertical',
+  FOOD_COMPONENT_SPACING_SIZE: 'large',
   SEARCH_FIELD_PLACEHOLDER: 'Type food name',
   foodStatsTypes: {
     FOOD_STATS_PER_100_GR: 'stats per 100 grams',
@@ -20,7 +22,10 @@ const foodComponentConstants = {
       API_VALUE: 'nf_protein',
       TEXT_VALUE: 'Proteins',
     },
-  ]
+  ],
+  foodMenuTableConstants: {
+
+  }
 };
 
 export default foodComponentConstants;

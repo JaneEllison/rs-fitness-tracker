@@ -4,7 +4,7 @@ import { getSearchDataFromAPI } from '../../../../store/foodReducer/foodReducer'
 import { Input } from 'antd';
 import foodComponentConstants from '../../../../constants/foodComponentConstants';
 
-const SearchFood = () => {
+const SearchFoodComponent = () => {
   const {SEARCH_FIELD_PLACEHOLDER} = foodComponentConstants;
   const {Search} = Input;
   const [foodToSearch, setFoodToSearch] = useState('');
@@ -26,4 +26,4 @@ const SearchFood = () => {
   );
 };
 
-export default SearchFood;
+export default SearchFoodComponent;

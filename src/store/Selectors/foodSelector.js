@@ -1,4 +1,3 @@
-
-const foodSelector = state => state.foodReducer.food;
+const foodSelector = (state) => state.foodReducer.food;
 
 export default foodSelector;
