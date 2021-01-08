@@ -5,16 +5,20 @@ import foodSelector from '../../../store/Selectors/foodSelector';
 import FoodStats from './FoodStats/FoodStats';
 import { Row, Col } from 'antd';
 import FoodTableComponent from './FoodTable/FoodTableComponent';
+import AddFoodToMenuComponent from './AddFoodToMenuComponent';
 
 const FoodComponent = () => {
   const foodData = useSelector(foodSelector);
-
   console.log(foodData);
+
   return (
       <div>
         <Row>
-          <Col>
+          <Col span={12}>
             <SearchFoodComponent />
+          </Col>
+          <Col span={10}>
+            <AddFoodToMenuComponent foodData={foodData} />
           </Col>
         </Row>
         {

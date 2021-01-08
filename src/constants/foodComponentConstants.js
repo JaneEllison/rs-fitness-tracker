@@ -2,6 +2,7 @@ const foodComponentConstants = {
   FOOD_COMPONENT_SPACING_DIRECTION: 'vertical',
   FOOD_COMPONENT_SPACING_SIZE: 'large',
   SEARCH_FIELD_PLACEHOLDER: 'Type food name',
+  ADD_FOOD_TO_MENU_INTAKE_LABEL: 'Intake (gramms)',
   foodStatsTypes: {
     FOOD_STATS_PER_100_GR: 'stats per 100 grams',
   },
@@ -23,9 +24,6 @@ const foodComponentConstants = {
       TEXT_VALUE: 'Proteins',
     },
   ],
-  foodMenuTableConstants: {
-
-  }
 };
 
 export default foodComponentConstants;

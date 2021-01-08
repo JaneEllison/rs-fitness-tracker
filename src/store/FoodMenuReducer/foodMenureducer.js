@@ -24,7 +24,7 @@ const initialState = {
 const foodMenuReducer = (state=initialState, action) => {
   switch(action.type){
     case FETCH_FOOD_TO_MENU:
-      return {...state, food: action.payload};
+      return {...state, foodMenu: [...state.foodMenu, action.payload]};
     default:
       return {...state};
   }
