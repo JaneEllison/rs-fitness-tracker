@@ -1,8 +1,10 @@
 import { FETCH_FOOD_TO_MENU } from './foodMenuReducerActionTypes';
+import setNewMenuItemId from '../../utils/setNewMenuItemId';
 
 const initialState = {
   foodMenu: [
     {
+      id: 0,
       food_name: 'Apple Pie',
       nf_calories: 296.25,
       nf_total_fat: 13.75,
@@ -11,6 +13,7 @@ const initialState = {
       weight: 100,
     },
     {
+      id: 1,
       food_name: 'Cherry',
       nf_calories: 5.17,
       nf_total_fat: 0.02,
@@ -24,7 +27,15 @@ const initialState = {
 const foodMenuReducer = (state=initialState, action) => {
   switch(action.type){
     case FETCH_FOOD_TO_MENU:
-      return {...state, foodMenu: [...state.foodMenu, action.payload]};
+      return {
+        ...state,
+        foodMenu: [
+          ...state.foodMenu,
+          {
+            ...setNewMenuItemId(state.foodMenu, action.payload)
+          },
+        ]
+      };
     default:
       return {...state};
   }
@@ -34,7 +45,7 @@ export const fetchFoodToMenuAC = (data) => {
   return {
     type: FETCH_FOOD_TO_MENU,
     payload: data,
-  }
+  };
 };
 
 export default foodMenuReducer;
