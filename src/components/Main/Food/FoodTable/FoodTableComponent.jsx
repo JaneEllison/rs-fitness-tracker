@@ -18,7 +18,7 @@ const FoodTableComponent = () => {
   console.log(foodTableData, columns);
 
   return (
-    <Table columns={columns} dataSource={foodTableData} />
+    <Table columns={columns} dataSource={foodTableData} scroll={{ x: 1200, y: 300 }} />
   );
 };
 

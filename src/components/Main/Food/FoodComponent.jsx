@@ -8,6 +8,7 @@ import FoodTableComponent from './FoodTable/FoodTableComponent';
 import AddFoodToMenuComponent from './AddFoodToMenuComponent';
 
 const FoodComponent = () => {
+
   const foodData = useSelector(foodSelector);
   console.log(foodData);
 
