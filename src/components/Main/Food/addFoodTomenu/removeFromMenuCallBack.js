@@ -1,4 +1,4 @@
-import { removeFoodFromMenuAC } from '../../../../store/FoodMenuReducer/foodMenureducer';
+import { removeFoodFromMenuAC } from '../../../../store/FoodMenuReducer/foodMenuActionCreators';
 
 const removeFromMenuCallBack = (foodId) => {
   removeFoodFromMenuAC(foodId);

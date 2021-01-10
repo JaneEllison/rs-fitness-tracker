@@ -1,6 +1,4 @@
 import React from 'react';
-import { Popconfirm } from 'antd';
-import { removeFoodFromMenuAC } from '../../../../../store/FoodMenuReducer/foodMenureducer';
 import RemoveFoodConfirm from './RemoveFoodConfirm';
 
 const foodMenuTableColumns = [
@@ -53,7 +51,6 @@ const foodMenuTableColumns = [
     key: 'remove',
     fixed: 'left',
     render: (action, record) => {
-      console.log(action, record);
       if(record.key < 0 ){
         return <div></div>
       } else {

@@ -6,7 +6,7 @@ import {
   totalNutrientsSelector
 } from '../../../../store/Selectors/foodMenuSelector';
 import foodMenuTableColumns from './foodMenuTableColumns/foodMenuTableColumns';
-import { calculateTotalNutrientsAC } from '../../../../store/FoodMenuReducer/foodMenureducer';
+import { calculateTotalNutrientsAC } from '../../../../store/FoodMenuReducer/foodMenuActionCreators';
 
 const FoodTableComponent = () => {
   const foodMenu = useSelector(foodMenuSelector);
@@ -25,7 +25,7 @@ const FoodTableComponent = () => {
       key: item.id,
     }
   });
-  console.log(foodTableData);
+
   return (
     <Table
       columns={columns}

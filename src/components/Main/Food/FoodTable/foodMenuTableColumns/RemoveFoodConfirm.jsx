@@ -1,7 +1,10 @@
 import React from 'react';
 import { Popconfirm } from 'antd';
-import { removeFoodFromMenuAC } from '../../../../../store/FoodMenuReducer/foodMenureducer';
 import { useDispatch } from 'react-redux';
+import {
+  calculateTotalNutrientsAC,
+  removeFoodFromMenuAC,
+} from '../../../../../store/FoodMenuReducer/foodMenuActionCreators';
 
 const RemoveFoodConfirm = ({tableRecord}) => {
   const dispatch = useDispatch();
@@ -9,7 +12,10 @@ const RemoveFoodConfirm = ({tableRecord}) => {
   return (
     <Popconfirm
       title="Sure to remove food from menu?"
-      onConfirm={() => dispatch(removeFoodFromMenuAC(key))}
+      onConfirm={() => {
+        dispatch(removeFoodFromMenuAC(key));
+        dispatch(calculateTotalNutrientsAC())
+      }}
     >
       <button>Remove</button>
     </Popconfirm>
