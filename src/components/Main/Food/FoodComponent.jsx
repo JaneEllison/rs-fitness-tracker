@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchFoodComponent from './SearchFood/SearchFoodComponent';
 import { useSelector } from 'react-redux';
 import foodSelector from '../../../store/Selectors/foodSelector';
-import FoodStats from './FoodStats/FoodStats';
+import FoodStatsComponent from './FoodStats/FoodStatsComponent';
 import { Row, Col } from 'antd';
 import FoodTableComponent from './FoodTable/FoodTableComponent';
 import AddFoodToMenuComponent from './addFoodTomenu/AddFoodToMenuComponent';
@@ -28,7 +28,7 @@ const FoodComponent = () => {
         </Row>
         {
           foodData
-            ? <FoodStats foodData={foodData} intakeWeight={intakeWeight} />
+            ? <FoodStatsComponent foodData={foodData} intakeWeight={intakeWeight} />
             : null
         }
         <FoodTableComponent />

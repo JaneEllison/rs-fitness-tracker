@@ -6,7 +6,7 @@ import {
   removeFoodFromMenuAC,
 } from '../../../../../store/FoodMenuReducer/foodMenuActionCreators';
 
-const RemoveFoodConfirm = ({tableRecord}) => {
+const RemoveFoodConfirmComponent = ({tableRecord}) => {
   const dispatch = useDispatch();
   const { key } = tableRecord;
   return (
@@ -22,4 +22,4 @@ const RemoveFoodConfirm = ({tableRecord}) => {
   )
 };
 
-export default RemoveFoodConfirm;
+export default RemoveFoodConfirmComponent;

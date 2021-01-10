@@ -1,5 +1,5 @@
 import React from 'react';
-import RemoveFoodConfirm from './RemoveFoodConfirm';
+import RemoveFoodConfirmComponent from './RemoveFoodConfirmComponent';
 
 const foodMenuTableColumns = [
   {
@@ -55,7 +55,7 @@ const foodMenuTableColumns = [
         return <div></div>
       } else {
         return (
-          <RemoveFoodConfirm tableRecord={record} />
+          <RemoveFoodConfirmComponent tableRecord={record} />
         )
       }
     }

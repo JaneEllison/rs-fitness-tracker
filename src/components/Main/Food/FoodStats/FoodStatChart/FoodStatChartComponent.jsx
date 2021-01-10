@@ -4,7 +4,7 @@ import { HorizontalBar } from 'react-chartjs-2';
 import getFoodChartConfig from './getFoodChartData';
 import getFoodChartOptions from './getFoodChartOptions';
 
-const FoodStatChart = ({stats, title, foodName}) => {
+const FoodStatChartComponent = ({stats, title, foodName}) => {
   const { foodStatsConstants } = foodComponentConstants;
   console.log(stats);
   const data = getFoodChartConfig(stats, foodName, title, foodStatsConstants);
@@ -23,4 +23,4 @@ const FoodStatChart = ({stats, title, foodName}) => {
   );
 };
 
-export default FoodStatChart;
+export default FoodStatChartComponent;
