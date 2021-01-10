@@ -1,4 +1,4 @@
-import { fetchFoodToMenuAC } from '../../../../store/FoodMenuReducer/foodMenureducer';
+import { fetchFoodToMenuAC, calculateTotalNutrientsAC } from '../../../../store/FoodMenuReducer/foodMenureducer';
 import calculateNutrientsByWeight from '../../../../utils/calculateNutrientsByWeight';
 
 const addToMenuCallback = (dispatch, foodData, weight) => {
@@ -18,7 +18,8 @@ const addToMenuCallback = (dispatch, foodData, weight) => {
       nf_total_carbohydrate,
       nf_protein}, weight),
     weight,
-  }))
+  }));
+  dispatch(calculateTotalNutrientsAC());
 };
 
 export default addToMenuCallback;

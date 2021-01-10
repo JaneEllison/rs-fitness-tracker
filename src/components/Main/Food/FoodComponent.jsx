@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchFoodComponent from './SearchFood/SearchFoodComponent';
 import { useSelector } from 'react-redux';
 import foodSelector from '../../../store/Selectors/foodSelector';
@@ -9,8 +9,8 @@ import AddFoodToMenuComponent from './addFoodTomenu/AddFoodToMenuComponent';
 
 const FoodComponent = () => {
 
+  const [intakeWeight, setIntakeWeight] = useState(100);
   const foodData = useSelector(foodSelector);
-  console.log(foodData);
 
   return (
       <div>
@@ -19,12 +19,16 @@ const FoodComponent = () => {
             <SearchFoodComponent />
           </Col>
           <Col span={10}>
-            <AddFoodToMenuComponent foodData={foodData} />
+            <AddFoodToMenuComponent
+              foodData={foodData}
+              intakeWeight={intakeWeight}
+              changeIntakeWeight={(value) => setIntakeWeight(value)}
+            />
           </Col>
         </Row>
         {
           foodData
-            ? <FoodStats foodData={foodData} />
+            ? <FoodStats foodData={foodData} intakeWeight={intakeWeight} />
             : null
         }
         <FoodTableComponent />

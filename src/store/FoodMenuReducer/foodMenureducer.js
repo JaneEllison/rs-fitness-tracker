@@ -1,5 +1,10 @@
-import { FETCH_FOOD_TO_MENU } from './foodMenuReducerActionTypes';
+import {
+  FETCH_FOOD_TO_MENU,
+  CALCULATE_TOTAL_NUTRIENTS,
+  REMOVE_FOOD_FROM_MENU,
+} from './foodMenuReducerActionTypes';
 import setNewMenuItemId from '../../utils/setNewMenuItemId';
+import calculateTotalNutrients from '../../utils/calculateTotalNutrients';
 
 const initialState = {
   foodMenu: [
@@ -22,30 +27,62 @@ const initialState = {
       weight: 100,
     },
   ],
+  totalNutrients: {
+    nf_calories: 0,
+    nf_total_fat: 0,
+    nf_total_carbohydrate: 0,
+    nf_protein: 0,
+    weight: 0,
+  }
 };
 
 const foodMenuReducer = (state=initialState, action) => {
-  switch(action.type){
+  const { foodMenu } = state;
+  const { payload, type } = action;
+
+  switch(type){
     case FETCH_FOOD_TO_MENU:
       return {
         ...state,
         foodMenu: [
-          ...state.foodMenu,
+          ...foodMenu,
           {
-            ...setNewMenuItemId(state.foodMenu, action.payload)
+            ...setNewMenuItemId(foodMenu, payload)
           },
         ]
+      };
+
+    case CALCULATE_TOTAL_NUTRIENTS:
+      return {
+        ...state,
+        totalNutrients: {
+          ...calculateTotalNutrients(foodMenu)
+        },
+      };
+
+    case REMOVE_FOOD_FROM_MENU:
+      return {
+        ...state,
+        foodMenu: [...foodMenu.filter((item) => item.id !== payload)],
       };
     default:
       return {...state};
   }
 };
 
-export const fetchFoodToMenuAC = (data) => {
-  return {
-    type: FETCH_FOOD_TO_MENU,
-    payload: data,
-  };
-};
+
+export const fetchFoodToMenuAC = (data) => ({
+  type: FETCH_FOOD_TO_MENU,
+  payload: data,
+});
+
+export const calculateTotalNutrientsAC = () => ({
+  type: CALCULATE_TOTAL_NUTRIENTS,
+});
+
+export const removeFoodFromMenuAC = (foodId) => ({
+  type: REMOVE_FOOD_FROM_MENU,
+  payload: foodId,
+});
 
 export default foodMenuReducer;

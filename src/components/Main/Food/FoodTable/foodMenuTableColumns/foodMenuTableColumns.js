@@ -1,7 +1,12 @@
+import React from 'react';
+import { Popconfirm } from 'antd';
+import { removeFoodFromMenuAC } from '../../../../../store/FoodMenuReducer/foodMenureducer';
+import RemoveFoodConfirm from './RemoveFoodConfirm';
+
 const foodMenuTableColumns = [
   {
     title: 'Food name',
-    width: 500,
+    width: 400,
     dataIndex: 'food_name',
     key: 'food_name',
     fixed: 'left',
@@ -40,6 +45,23 @@ const foodMenuTableColumns = [
     dataIndex: 'nf_protein',
     key: 'nf_protein',
     fixed: 'left',
+  },
+  {
+    title: '',
+    width: 100,
+    dataIndex: 'remove',
+    key: 'remove',
+    fixed: 'left',
+    render: (action, record) => {
+      console.log(action, record);
+      if(record.key < 0 ){
+        return <div></div>
+      } else {
+        return (
+          <RemoveFoodConfirm tableRecord={record} />
+        )
+      }
+    }
   },
 ];
 

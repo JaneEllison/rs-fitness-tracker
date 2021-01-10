@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Table } from 'antd';
-import { useSelector } from 'react-redux';
-import foodMenuSelector from '../../../../store/Selectors/foodMenuSelector';
-import foodMenuTableColumns from '../../../../config/foodMenuTableColumns';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  foodMenuSelector,
+  totalNutrientsSelector
+} from '../../../../store/Selectors/foodMenuSelector';
+import foodMenuTableColumns from './foodMenuTableColumns/foodMenuTableColumns';
+import { calculateTotalNutrientsAC } from '../../../../store/FoodMenuReducer/foodMenureducer';
 
 const FoodTableComponent = () => {
   const foodMenu = useSelector(foodMenuSelector);
+  const totalNutrients = useSelector(totalNutrientsSelector);
   const columns = foodMenuTableColumns;
 
-  const foodTableData = foodMenu.map((item, index) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+     dispatch(calculateTotalNutrientsAC())
+  }, []);
+
+  const foodTableData = foodMenu.map((item) => {
     return {
       ...item,
-      key: index,
+      key: item.id,
     }
   });
-
-  console.log(foodTableData, columns);
-
+  console.log(foodTableData);
   return (
-    <Table columns={columns} dataSource={foodTableData} scroll={{ x: 1200, y: 300 }} />
+    <Table
+      columns={columns}
+      dataSource={[...foodTableData, {...totalNutrients, food_name: "Total", key: -1}]}
+      scroll={{ x: 1200, y: 300 }}
+      pagination={false}
+    />
   );
 };
 

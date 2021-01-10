@@ -5,6 +5,7 @@ const foodComponentConstants = {
   ADD_FOOD_TO_MENU_INTAKE_LABEL: 'Intake (gramms)',
   foodStatsTypes: {
     FOOD_STATS_PER_100_GR: 'stats per 100 grams',
+    FOOD_STATS_FOR_INTAKE: 'stats for intake',
   },
   foodStatsConstants:[
     {
