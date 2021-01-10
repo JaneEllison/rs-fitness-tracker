@@ -3,7 +3,7 @@ import { Button, InputNumber , Row, Col } from 'antd';
 import foodComponentConstants from '../../../../constants/foodComponentConstants';
 import addToMenuCallback from './addToMenuCallback';
 import { useDispatch } from 'react-redux';
-import checkArrayForNullUndef from '../../../../utils/checkArrayForNullUndef';
+import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
 
 const AddFoodToMenuComponent = ({foodData, intakeWeight, changeIntakeWeight}) => {
   const [buttonDisabled, toggleButtonDisabled] = useState(true);
@@ -18,7 +18,7 @@ const AddFoodToMenuComponent = ({foodData, intakeWeight, changeIntakeWeight}) =>
     nf_protein,
   } = foodData;
   useEffect(() => {
-    if (checkArrayForNullUndef([
+    if (checkArrayForNullUndefNaN([
       food_name,
       nf_calories,
       nf_total_fat,

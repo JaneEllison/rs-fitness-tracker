@@ -3,6 +3,7 @@ import FoodStatChart from './FoodStatChart/FoodStatChart';
 import foodComponentConstants from '../../../../constants/foodComponentConstants';
 import { Row, Col } from 'antd';
 import {calculateNutrientsByWeightForArray} from '../../../../utils/calculateNutrientsByWeight';
+import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
 
 const FoodStats = ({foodData, intakeWeight}) => {
   const {foodStatsTypes: {
@@ -19,16 +20,16 @@ const FoodStats = ({foodData, intakeWeight}) => {
   const transformedFoodData = [nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein];
   const foodDataForIntake = calculateNutrientsByWeightForArray(transformedFoodData, intakeWeight);
   console.log(foodData);
-  return (
-    <Row>
-      <Col span={6}>
-        <FoodStatChart stats={transformedFoodData} title={FOOD_STATS_PER_100_GR} foodName={food_name} />
-      </Col>
-      <Col span={6}>
-        <FoodStatChart stats={foodDataForIntake} title={FOOD_STATS_FOR_INTAKE} foodName={food_name} />
-      </Col>
-    </Row>
-  );
+  return checkArrayForNullUndefNaN(transformedFoodData)
+    ? <Row>
+        <Col span={6}>
+          <FoodStatChart stats={transformedFoodData} title={FOOD_STATS_PER_100_GR} foodName={food_name} />
+        </Col>
+        <Col span={6}>
+          <FoodStatChart stats={foodDataForIntake} title={FOOD_STATS_FOR_INTAKE} foodName={food_name} />
+        </Col>
+      </Row>
+    : <div/>
 };
 
 export default FoodStats;
