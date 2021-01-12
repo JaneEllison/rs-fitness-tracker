@@ -4,7 +4,7 @@ import {
   fetchFoodToMenuAC,
 } from '../../../../store/FoodMenuReducer/foodMenuActionCreators';
 
-const addToMenuCallback = (dispatch, foodData, weight) => {
+const addToMenuCallback = (dispatch, foodData, weight, time) => {
 
   const {
     food_name,
@@ -22,6 +22,7 @@ const addToMenuCallback = (dispatch, foodData, weight) => {
       nf_total_carbohydrate,
       nf_protein}, weight),
     weight,
+    time,
   }));
   dispatch(calculateTotalNutrientsAC());
 };

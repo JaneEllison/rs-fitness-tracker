@@ -16,6 +16,7 @@ const initialState = {
       nf_total_carbohydrate: 42.5,
       nf_protein: 2.38,
       weight: 100,
+      time: "2021-01-12T18:00:00.193Z",
     },
     {
       id: 1,
@@ -25,6 +26,17 @@ const initialState = {
       nf_total_carbohydrate: 1.31,
       nf_protein: 0.09,
       weight: 100,
+      time: "2021-01-12T12:00:00.193Z",
+    },
+    {
+      id: 2,
+      food_name: 'Chicken',
+      nf_calories: 150,
+      nf_total_fat: 12,
+      nf_total_carbohydrate: 40,
+      nf_protein: 60,
+      weight: 100,
+      time: "2021-01-12T11:00:00.193Z",
     },
   ],
   totalNutrients: {

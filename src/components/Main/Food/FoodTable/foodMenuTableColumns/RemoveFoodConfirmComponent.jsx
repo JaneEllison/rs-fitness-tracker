@@ -17,7 +17,7 @@ const RemoveFoodConfirmComponent = ({tableRecord}) => {
         dispatch(calculateTotalNutrientsAC())
       }}
     >
-      <button>Remove</button>
+      <a>Remove</a>
     </Popconfirm>
   )
 };

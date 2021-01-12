@@ -4,52 +4,53 @@ import RemoveFoodConfirmComponent from './RemoveFoodConfirmComponent';
 const foodMenuTableColumns = [
   {
     title: 'Food name',
-    width: 400,
+    width: 300,
     dataIndex: 'food_name',
     key: 'food_name',
     fixed: 'left',
+  },
+  {
+    title: 'Eating time',
+    width: 100,
+    dataIndex: 'time',
+    key: 'time',
   },
   {
     title: 'Weight',
     width: 100,
     dataIndex: 'weight',
     key: 'weight',
-    fixed: 'left',
   },
   {
     title: 'kCal',
     width: 100,
     dataIndex: 'nf_calories',
     key: 'nf_calories',
-    fixed: 'left',
   },
   {
     title: 'Fats',
     width: 100,
     dataIndex: 'nf_total_fat',
     key: 'nf_total_fat',
-    fixed: 'left',
   },
   {
     title: 'Carbs',
     width: 100,
     dataIndex: 'nf_total_carbohydrate',
     key: 'nf_total_carbohydrate',
-    fixed: 'left',
   },
   {
     title: 'Proteins',
     width: 100,
     dataIndex: 'nf_protein',
     key: 'nf_protein',
-    fixed: 'left',
   },
   {
     title: '',
     width: 100,
     dataIndex: 'remove',
     key: 'remove',
-    fixed: 'left',
+    fixed: 'right',
     render: (action, record) => {
       if(record.key < 0 ){
         return <div></div>

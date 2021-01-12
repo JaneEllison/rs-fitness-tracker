@@ -1,24 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Table } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import {
   foodMenuSelector,
-  totalNutrientsSelector
 } from '../../../../store/Selectors/foodMenuSelector';
 import foodMenuTableColumns from './foodMenuTableColumns/foodMenuTableColumns';
-import { calculateTotalNutrientsAC } from '../../../../store/FoodMenuReducer/foodMenuActionCreators';
+import FoodTableSummaryComponent from './FoodTableSummaryComponent';
 
 const FoodTableComponent = () => {
   const foodMenu = useSelector(foodMenuSelector);
-  const totalNutrients = useSelector(totalNutrientsSelector);
   const columns = foodMenuTableColumns;
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-     dispatch(calculateTotalNutrientsAC())
-  }, []);
-
   const foodTableData = foodMenu.map((item) => {
     return {
       ...item,
@@ -29,9 +20,12 @@ const FoodTableComponent = () => {
   return (
     <Table
       columns={columns}
-      dataSource={[...foodTableData, {...totalNutrients, food_name: "Total", key: -1}]}
-      scroll={{ x: 1200, y: 300 }}
+      dataSource={[...foodTableData]}
+      summary={() => <FoodTableSummaryComponent />}
+      scroll={{ x: 1200, y: 400 }}
       pagination={false}
+      bordered={true}
+      size="middle"
     />
   );
 };
