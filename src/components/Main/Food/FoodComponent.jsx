@@ -17,33 +17,49 @@ const FoodComponent = () => {
   const foodData = useSelector(foodSelector);
   console.log(checkArrayForNullUndefNaN(foodData));
   return (
-      <div>
-        <Row className={style.searchBar}>
-          <Col span={12}>
-            <SearchFoodComponent />
-          </Col>
-          <Col span={10}>
-            <AddFoodToMenuComponent
-              foodData={foodData}
-              intakeWeight={intakeWeight}
-              intakeTime={intakeTime}
-              changeIntakeWeight={(value) => setIntakeWeight(value)}
-              changeIntakeTime={(value) => setIntakeTime(value)}
-            />
-          </Col>
-        </Row>
-        <div className={style.foodCharts}>
-          {
-            checkArrayForNullUndefNaN(foodData)
-              ? <FoodStatsComponent foodData={foodData} intakeWeight={intakeWeight} />
-              : <EmptyComponent
+      <Row
+        align="center"
+        justify="space-between"
+      >
+        <Col span={24}>
+          <Row
+            className={style.searchBar}
+            gutter={[40, 20]}
+            align="center"
+            justify="space-between"
+          >
+            <Col
+              span={22}
+              lg={{span: 12}}
+            >
+              <SearchFoodComponent />
+            </Col>
+            <Col
+              span={22}
+              lg={{span: 12}}
+            >
+              <AddFoodToMenuComponent
+                foodData={foodData}
+                intakeWeight={intakeWeight}
+                intakeTime={intakeTime}
+                changeIntakeWeight={(value) => setIntakeWeight(value)}
+                changeIntakeTime={(value) => setIntakeTime(value)}
+              />
+            </Col>
+          </Row>
+          <div className={style.foodCharts}>
+            {
+              checkArrayForNullUndefNaN(foodData)
+                ? <FoodStatsComponent foodData={foodData} intakeWeight={intakeWeight} />
+                : <EmptyComponent
                   image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
                   message="Search for food to see its nutrients!"
                 />
-          }
-        </div>
-        <FoodTableComponent />
-      </div>
+            }
+          </div>
+          <FoodTableComponent />
+        </Col>
+      </Row>
   );
 };
 

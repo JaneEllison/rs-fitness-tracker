@@ -16,13 +16,11 @@ const SearchFoodComponent = () => {
   }, [foodToSearch]);
 
   return (
-    <div>
-      <Search
-        onSearch={(value) => setFoodToSearch(value)}
-        type="text"
-        placeholder={SEARCH_FIELD_PLACEHOLDER}
-      />
-    </div>
+    <Search
+      onSearch={(value) => setFoodToSearch(value)}
+      type="text"
+      placeholder={SEARCH_FIELD_PLACEHOLDER}
+    />
   );
 };
 

@@ -4,6 +4,7 @@ import style from './FoodStatChart.module.css';
 import { HorizontalBar } from 'react-chartjs-2';
 import getFoodChartConfig from './getFoodChartData';
 import getFoodChartOptions from './getFoodChartOptions';
+import { Col, Row } from 'antd';
 
 const FoodStatChartComponent = ({stats, title, foodName}) => {
   const { foodStatsConstants } = foodComponentConstants;
@@ -12,14 +13,18 @@ const FoodStatChartComponent = ({stats, title, foodName}) => {
   const options = getFoodChartOptions();
 
   return (
-    <div
+    <Row
       className={style.foodChart}
+      align="center"
+      justify="center"
       >
-      <HorizontalBar
-        data={data}
-        options={options}
-      />
-    </div>
+      <Col>
+        <HorizontalBar
+          data={data}
+          options={options}
+        />
+      </Col>
+    </Row>
   );
 };
 

@@ -18,6 +18,7 @@ const FoodTableSummaryComponent = () => {
         <Table.Summary.Cell
           className={[style.summaryCellStickyLeft, "ant-table-cell-fix-left", "ant-table-cell-fix-left-last"]}
         >Total:</Table.Summary.Cell>
+        <Table.Summary.Cell/>
         {
           Object.keys(totalNutrients).map((item, index) => {
               return <Table.Summary.Cell

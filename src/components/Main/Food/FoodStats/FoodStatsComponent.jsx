@@ -21,11 +21,17 @@ const FoodStatsComponent = ({foodData, intakeWeight}) => {
   const foodDataForIntake = calculateNutrientsByWeightForArray(transformedFoodData, intakeWeight);
 
   return checkArrayForNullUndefNaN(transformedFoodData)
-    ? <Row gutter={50} >
-        <Col span={6}>
+    ? <Row gutter={50} align="center">
+        <Col
+          span={24}
+          md={{span: 12}}
+        >
           <FoodStatChartComponent stats={transformedFoodData} title={FOOD_STATS_PER_100_GR} foodName={food_name} />
         </Col>
-        <Col span={6} offset={2}>
+        <Col
+          span={24}
+          md={{span: 12}}
+        >
           <FoodStatChartComponent stats={foodDataForIntake} title={FOOD_STATS_FOR_INTAKE} foodName={food_name} />
         </Col>
       </Row>

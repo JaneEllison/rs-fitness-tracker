@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import style from './AddFoodToMenu.module.css';
 import { Button, InputNumber, Row, Col, TimePicker } from 'antd';
 import foodComponentConstants from '../../../../constants/foodComponentConstants';
 import addToMenuCallback from './addToMenuCallback';
@@ -15,6 +16,7 @@ const AddFoodToMenuComponent = ({
   const [buttonDisabled, toggleButtonDisabled] = useState(true);
   const {
     ADD_FOOD_TO_MENU_INTAKE_LABEL,
+    ADD_FOOD_TO_MENU_TIME_LABEL
   } = foodComponentConstants;
   const dispatch = useDispatch();
 
@@ -42,34 +44,73 @@ const AddFoodToMenuComponent = ({
   });
 
   return (
-    <div>
-      <Row>
-        <Col span={6}>
-          <span>{ADD_FOOD_TO_MENU_INTAKE_LABEL}</span>
-        </Col>
-        <Col span={4} offset={1}>
-          <InputNumber
-            defaultValue={100}
-            onChange={changeIntakeWeight}
-          />
-        </Col>
-        <Col span={5} offset={1}>
-          <TimePicker
-            format="HH:mm"
-            onChange={changeIntakeTime}
-          />
-        </Col>
-        <Col span={5} offset={1}>
-          <Button
-            type="primary"
-            onClick={() => addToMenuCallback(dispatch, foodData, intakeWeight, intakeTime)}
-            disabled={buttonDisabled}
+      <Row
+        align="center"
+        justify="center"
+        gutter={[0, 0]}
+        xl={{gutter:[0,0]}}
+      >
+        <Col
+          span={22}
+          md={{span: 10}}
+        >
+          <Row
+            align="center"
+            justify="center"
           >
-            Add to ration
-          </Button>
+            <Col span={12}>
+              <span className={style.dataTitle}>{ADD_FOOD_TO_MENU_INTAKE_LABEL}</span>
+            </Col>
+            <Col span={12}>
+              <InputNumber
+                className={style.stretchingElement}
+                defaultValue={100}
+                onChange={changeIntakeWeight}
+              />
+            </Col>
+          </Row>
+        </Col>
+        <Col
+          span={22}
+          md={{span:12}}
+        >
+          <Row
+            align="center"
+            gutter={[10, 40]}
+            xl={{gutter:[10,0]}}
+          >
+            <Col
+              span={12}
+              md={{span: 6}}
+            >
+              <span className={style.dataTitle}>{ADD_FOOD_TO_MENU_TIME_LABEL}</span>
+            </Col>
+            <Col
+              span={12}
+              md={{span: 8}}
+            >
+              <TimePicker
+                className={style.stretchingElement}
+                format="HH:mm"
+                onChange={changeIntakeTime}
+              />
+            </Col>
+            <Col
+              span={22}
+              md={{span: 8}}
+            >
+              <Button
+                className={style.stretchingElement}
+                type="primary"
+                onClick={() => addToMenuCallback(dispatch, foodData, intakeWeight, intakeTime)}
+                disabled={buttonDisabled}
+              >
+                Add to ration
+              </Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
-    </div>
   );
 };
 
