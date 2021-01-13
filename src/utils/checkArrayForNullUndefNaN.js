@@ -6,6 +6,7 @@ const checkArrayForNullUndefNaN = (container) => {
     : Object.keys(container).every(
       (item) => {
         return container[item] !== undefined
+          && container[item] !== ''
           && container[item] !== null
           && !Number.isNaN(container[item])
       }

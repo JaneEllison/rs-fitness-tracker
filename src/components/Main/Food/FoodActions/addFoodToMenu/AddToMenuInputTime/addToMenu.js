@@ -1,10 +1,10 @@
-import calculateNutrientsByWeight from '../../../../utils/calculateNutrientsByWeight';
+import calculateNutrientsByWeight from '../../../../../../utils/calculateNutrientsByWeight';
 import {
   calculateTotalNutrientsAC,
   fetchFoodToMenuAC,
-} from '../../../../store/FoodMenuReducer/foodMenuActionCreators';
+} from '../../../../../../store/FoodMenuReducer/foodMenuActionCreators';
 
-const addToMenuCallback = (dispatch, foodData, weight, time) => {
+const addToMenu = (dispatch, foodData, weight, time) => {
 
   const {
     food_name,
@@ -27,4 +27,4 @@ const addToMenuCallback = (dispatch, foodData, weight, time) => {
   dispatch(calculateTotalNutrientsAC());
 };
 
-export default addToMenuCallback;
+export default addToMenu;

@@ -1,8 +1,9 @@
 const foodComponentConstants = {
   FOOD_COMPONENT_SPACING_DIRECTION: 'vertical',
   FOOD_COMPONENT_SPACING_SIZE: 'large',
+  FOOD_COMPONENT_INITIAL_INTAKE_WEIGHT: 100,
   SEARCH_FIELD_PLACEHOLDER: 'Type food name',
-  ADD_FOOD_TO_MENU_INTAKE_LABEL: 'Intake (gramms)',
+  ADD_FOOD_TO_MENU_INTAKE_LABEL: 'Intake (grams)',
   ADD_FOOD_TO_MENU_TIME_LABEL: 'Time',
   foodStatsTypes: {
     FOOD_STATS_PER_100_GR: 'stats per 100 grams',
