@@ -1,17 +1,12 @@
 import React from 'react';
-import './Relax.css';
+import './Timer.module.css';
 import WeatherComponent from './Weather/WeatherComponent';
 import TimerCountComponent from './TimerCount/TimerCountComponent';
 import TimerInputComponent from './TimerCount/TimerInputComponent';
 
 const TimerComponent = () => {
-
-
-  
   const [ trainMinutesValue, setTrainMinutesValue ] = React.useState(0);
   const [ trainSecondsValue, setTrainSecondsValue ] = React.useState(0);
-  const [ BreakMinutes, setBreakMinutes ] = React.useState(0);
-  const [ BreakSeconds, setBreakSeconds ] = React.useState(0);
 
   const [ seconds, setSeconds ] = React.useState(trainSecondsValue);
   const [ minutes, setMinutes ] = React.useState(trainMinutesValue);
@@ -48,18 +43,13 @@ const TimerComponent = () => {
   });
 
   function onCreate (trainMinutes, trainSeconds) {
-    console.log(trainMinutes, trainSeconds)
-
     setTrainMinutesValue(trainMinutes)
     setTrainSecondsValue(trainSeconds)
 
     console.log(trainMinutes, trainSeconds)
 
-
     setMinutes(trainMinutes)
     setSeconds(trainSeconds)
-
-    // StartTimer()
   }
 
   return (

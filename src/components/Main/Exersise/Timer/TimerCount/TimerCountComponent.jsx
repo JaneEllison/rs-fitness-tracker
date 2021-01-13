@@ -24,7 +24,3 @@ const TimerCountComponent = ({minutes, seconds, lineTimer}) => {
 
 export default TimerCountComponent;
 
-
-//<CaretRightOutlined style = {{fontSize: '120px'}}/>
-//import { CaretRightOutlined } from '@ant-design/icons';
-

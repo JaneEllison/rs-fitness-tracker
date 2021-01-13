@@ -6,8 +6,6 @@ function TimerInputComponent({onCreate, trainMinutesValue, trainSecondsValue}) {
   let currentTrainMinutesValue = trainMinutesValue;
   let currentTrainSecondsValue = trainSecondsValue;
 
-  console.log(currentTrainSecondsValue)
-
   return (
     <div>
       <span>Set Train time</span> 
