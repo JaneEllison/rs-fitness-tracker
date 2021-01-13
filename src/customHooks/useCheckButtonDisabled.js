@@ -16,15 +16,6 @@ const useCheckButtonDisabled = ({
   } = foodData;
 
   useEffect(() => {
-    console.log(checkArrayForNullUndefNaN([
-      food_name,
-      nf_calories,
-      nf_total_fat,
-      nf_total_carbohydrate,
-      nf_protein,
-      intakeWeight,
-      intakeTime,
-    ]));
     if (checkArrayForNullUndefNaN([
       food_name,
       nf_calories,

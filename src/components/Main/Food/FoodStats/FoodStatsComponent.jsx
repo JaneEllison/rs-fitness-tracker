@@ -4,12 +4,17 @@ import foodComponentConstants from '../../../../constants/foodComponentConstants
 import { Row, Col } from 'antd';
 import {calculateNutrientsByWeightForArray} from '../../../../utils/calculateNutrientsByWeight';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
+import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 
 const FoodStatsComponent = ({foodData, intakeWeight}) => {
   const {foodStatsTypes: {
     FOOD_STATS_PER_100_GR,
     FOOD_STATS_FOR_INTAKE,
   }} = foodComponentConstants;
+  const {
+    rowAlignments: {
+      CENTER,
+    }} = foodComponentsConfig;
   const {
     food_name,
     nf_calories,
@@ -21,7 +26,7 @@ const FoodStatsComponent = ({foodData, intakeWeight}) => {
   const foodDataForIntake = calculateNutrientsByWeightForArray(transformedFoodData, intakeWeight);
 
   return checkArrayForNullUndefNaN(transformedFoodData)
-    ? <Row gutter={50} align="center">
+    ? <Row gutter={50} align={CENTER}>
         <Col
           span={24}
           md={{span: 12}}

@@ -4,24 +4,19 @@ import { useSelector} from 'react-redux';
 import {
   foodMenuSelector,
 } from '../../../../store/Selectors/foodMenuSelector';
-import foodMenuTableColumns from './foodMenuTableColumns/foodMenuTableColumns';
-import FoodTableSummaryComponent from './FoodTableSummaryComponent';
+import getFoodMenuTableColumns from './foodMenuTableColumns/getFoodMenuTableColumns';
+import FoodTableSummaryComponent from './FoodTableSummary/FoodTableSummaryComponent';
 import transformDate from '../../../../utils/transformDate';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
 import FoodTableMenuTitle from './FoodTableMenuTitle';
+import getTableConfig from './getTableConfig';
+import getFoodTableData from './getFoodTableData';
 
 const FoodTableComponent = () => {
   const [loading, toggleLoading] = useState(true);
   const foodMenu = useSelector(foodMenuSelector);
-  const columns = foodMenuTableColumns;
-  const foodTableData = foodMenu.map((item) => {
-    console.log(item.time);
-    return {
-      ...item,
-      time: transformDate(item.time),
-      key: item.id,
-    }
-  });
+  let columns = getFoodMenuTableColumns();
+  const foodTableData = getFoodTableData(foodMenu);
 
   useEffect(() => {
     if(checkArrayForNullUndefNaN(foodTableData)){
@@ -31,18 +26,12 @@ const FoodTableComponent = () => {
     }
   }, [foodTableData]);
 
+  const tableConfig = getTableConfig(loading, columns);
+
   return (
     <Table
-      title={() => <FoodTableMenuTitle />}
-      columns={columns}
       dataSource={[...foodTableData]}
-      summary={() => <FoodTableSummaryComponent />}
-      scroll={{ x: 1000, y: 400}}
-      pagination={false}
-      bordered={true}
-      size="middle"
-      sticky={true}
-      loading={loading}
+      {...tableConfig}
     />
   );
 };

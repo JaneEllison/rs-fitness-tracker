@@ -2,21 +2,25 @@ import { Table } from 'antd';
 import React, { useEffect } from 'react';
 import style from './SummaryCellFix.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalNutrientsSelector } from '../../../../store/Selectors/foodMenuSelector';
-import { calculateTotalNutrientsAC } from '../../../../store/FoodMenuReducer/foodMenuActionCreators';
+import { totalNutrientsSelector } from '../../../../../store/Selectors/foodMenuSelector';
+import { calculateTotalNutrientsAC } from '../../../../../store/FoodMenuReducer/foodMenuActionCreators';
+import foodComponentsConfig from '../../../../../config/foodComponentsConfig';
+import getAdaptiveClassNames from './getAdaptiveClassNames';
 
 const FoodTableSummaryComponent = () => {
+
   const totalNutrients = useSelector(totalNutrientsSelector);
   const dispatch = useDispatch();
+  const {classesLeft, classesRight} = getAdaptiveClassNames();
   useEffect(() => {
     dispatch(calculateTotalNutrientsAC())
   }, [dispatch]);
-  console.log(totalNutrients);
+
   return (
     <>
       <Table.Summary.Row>
         <Table.Summary.Cell
-          className={[style.summaryCellStickyLeft, "ant-table-cell-fix-left", "ant-table-cell-fix-left-last"]}
+          className={classesLeft}
         >Total:</Table.Summary.Cell>
         <Table.Summary.Cell/>
         {
@@ -30,7 +34,7 @@ const FoodTableSummaryComponent = () => {
           )
         }
         <Table.Summary.Cell
-          className={[style.summaryCellStickyRight, "ant-table-cell-fix-right", "ant-table-cell-fix-right-last"]}
+          className={classesRight}
         />
       </Table.Summary.Row>
     </>
