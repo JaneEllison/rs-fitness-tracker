@@ -5,7 +5,7 @@ const foodSelector = (state) => {
     nf_total_fat,
     nf_total_carbohydrate,
     nf_protein,
-  } = state.foodReducer.food;
+  } = {...state.foodReducer.food};
   return {
     food_name,
     nf_calories,

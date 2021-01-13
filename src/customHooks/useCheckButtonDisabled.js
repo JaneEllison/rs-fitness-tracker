@@ -34,9 +34,9 @@ const useCheckButtonDisabled = ({
       intakeWeight,
       intakeTime
     ])) {
-      toggleButtonDisabled(true);
-    } else {
       toggleButtonDisabled(false);
+    } else {
+      toggleButtonDisabled(true);
     }
   }, [
     foodData,

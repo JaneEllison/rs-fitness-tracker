@@ -21,6 +21,7 @@ const AddToMenuInputNumberComponent = ({changeIntakeWeight}) => {
       </Col>
       <Col span={12}>
         <InputNumber
+          min={1}
           className={style.stretchingElement}
           defaultValue={100}
           onChange={changeIntakeWeight}

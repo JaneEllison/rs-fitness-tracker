@@ -23,42 +23,7 @@ const AddFoodToMenuComponent = ({
   } = foodComponentsConfig;
   const dispatch = useDispatch();
 
-  const {
-    food_name,
-    nf_calories,
-    nf_total_fat,
-    nf_total_carbohydrate,
-    nf_protein,
-  } = foodData;
-
-  useEffect(() => {
-    console.log(checkArrayForNullUndefNaN([
-      food_name,
-      nf_calories,
-      nf_total_fat,
-      nf_total_carbohydrate,
-      nf_protein,
-      intakeWeight,
-      intakeTime,
-    ]));
-    if (checkArrayForNullUndefNaN([
-      food_name,
-      nf_calories,
-      nf_total_fat,
-      nf_total_carbohydrate,
-      nf_protein,
-      intakeWeight,
-      intakeTime
-    ])) {
-      toggleButtonDisabled(true);
-    } else {
-      toggleButtonDisabled(false);
-    }
-  }, [
-    foodData,
-    intakeWeight,
-    intakeTime
-  ]);
+  useCheckButtonDisabled({foodData, intakeWeight, intakeTime, toggleButtonDisabled});
 
   return (
       <Row
