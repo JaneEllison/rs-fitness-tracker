@@ -1,0 +1,51 @@
+.relax-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  /* background: url(bg1.jpg);
+  background-size: cover; */
+  padding: 20px 40px;
+}
+
+.timer-buttons_component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.timer-button {
+  padding: 6px 12px;
+  width: 100%;
+  border:none;
+}
+
+.timer-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-count {
+  font-size: 60px;
+}
+
+.play-icon {
+  width: 60px;
+}
+
+.music-player_component {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.checked {
+  background-color: rgb(212, 143, 197);
+}
