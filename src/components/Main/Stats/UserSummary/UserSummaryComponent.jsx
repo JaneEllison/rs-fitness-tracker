@@ -1,21 +1,33 @@
 import React from 'react';
 
-export default function (props) {
-  const {
+function UserSummaryComponent ({
+  summary: {
     age,
     sex,
     height,
     weight,
-    goalWeight
-  } = props.userData;
-  
+  },
+  goalWeight
+}) {  
   return (
     <ul>
-      <li>Age: { age }</li>
-      <li>Sex: { sex }</li>
-      <li>Height: { height }</li>
-      <li>Weight: { weight }</li>
-      <li>Goal Weight: { goalWeight }</li>
+      <li key={'userSummaryAge'}>
+        Age: { age } years
+      </li>
+      <li key={'userSummarySex'}>
+        Sex: { sex }
+      </li>
+      <li key={'userSummaryHeight'}>
+        Height: { height } cm
+      </li>
+      <li key={'userSummaryWeight'}>
+        Weight: { weight } kg
+      </li>
+      <li key={'userSummaryGoal'}>
+        Goal: { goalWeight ? `${goalWeight} kg` : "none" }
+      </li>
     </ul>
   )
 }
+
+export default UserSummaryComponent;

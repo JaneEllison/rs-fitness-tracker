@@ -1,30 +1,45 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import chartCheckedSelector from './../../../../store/Selectors/chartCheckedSelector';
 import { Checkbox } from 'antd';
-import { setParams } from '../../../../store/chartReducer/chartReducer';
 
-const checkboxFields = [
-  { label: 'Your Weight', value: 'weightHistory' },
-  { label: 'Calories Consumed', value: 'caloriesHistory' },
-  { label: 'Workout Time', value: 'workoutHistory' }
-  // { label: 'Goal Weight', value: 'goalWeight' },
-  // { label: 'Goal Calories', value: 'goalCalories' },
-];
-
-export default function() {
-  const dispatch = useDispatch();
-  const flags = useSelector(chartCheckedSelector);
+function ChartControlsComponent({
+  selectedFields, 
+  onChange,
+  isGoalMissing
+}) {
+  const controlsGroups = [
+    { 
+      label: 'Your weight', 
+      value: 'weight' 
+    },
+    { 
+      label: 'Goal weight', 
+      value: 'goalWeight', 
+      disabled: !isGoalMissing,
+    },
+    { 
+      label: 'Consumed calories', 
+      value: 'calories'
+    },
+    { 
+      label: 'Required calories', 
+      value: 'goalCalories',
+      disabled: !isGoalMissing,
+    },
+    { 
+      label: 'Workout time', 
+      value: 'workouts'
+    }
+  ];
 
   return (
-    <div style={{ display: 'block' }}>
+    <div>
       <Checkbox.Group 
-        options={checkboxFields}
-        onChange={(newFlags) => {
-          dispatch( setParams(newFlags) );
-        }}
-        defaultValue={flags} 
+        options={controlsGroups}
+        defaultValue={selectedFields}
+        onChange={onChange}
         />
     </div>
   )
 }
+
+export default ChartControlsComponent;
