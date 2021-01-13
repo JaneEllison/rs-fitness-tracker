@@ -8,7 +8,7 @@ import getFoodMenuTableColumns from './foodMenuTableColumns/getFoodMenuTableColu
 import FoodTableSummaryComponent from './FoodTableSummary/FoodTableSummaryComponent';
 import transformDate from '../../../../utils/transformDate';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
-import FoodTableMenuTitle from './FoodTableMenuTitle';
+import FoodTableMenuTitleComponent from './FoodTableMenuTitleComponent';
 import getTableConfig from './getTableConfig';
 import getFoodTableData from './getFoodTableData';
 
@@ -26,11 +26,10 @@ const FoodTableComponent = () => {
     }
   }, [foodTableData]);
 
-  const tableConfig = getTableConfig(loading, columns);
+  const tableConfig = getTableConfig(foodTableData, loading, columns);
 
   return (
     <Table
-      dataSource={[...foodTableData]}
       {...tableConfig}
     />
   );

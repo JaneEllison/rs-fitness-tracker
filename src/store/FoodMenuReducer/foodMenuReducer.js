@@ -40,11 +40,11 @@ const initialState = {
     },
   ],
   totalNutrients: {
+    weight: 0,
     nf_calories: 0,
     nf_total_fat: 0,
     nf_total_carbohydrate: 0,
     nf_protein: 0,
-    weight: 0,
   }
 };
 

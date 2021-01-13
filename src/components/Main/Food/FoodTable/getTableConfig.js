@@ -1,9 +1,9 @@
-import FoodTableMenuTitle from './FoodTableMenuTitle';
+import FoodTableMenuTitleComponent from './FoodTableMenuTitleComponent';
 import FoodTableSummaryComponent from './FoodTableSummary/FoodTableSummaryComponent';
 import React from 'react';
 import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 
-const getTableConfig = (loading, columns) => {
+const getTableConfig = (foodTableData, loading, columns) => {
   const {foodTableComponent: {
     FOOD_TABLE_SIZE,
     FOOD_TABLE_SCROLL,
@@ -12,8 +12,9 @@ const getTableConfig = (loading, columns) => {
     FOOD_TABLE_STICKY,
   }} = foodComponentsConfig;
   return {
-    title: () => <FoodTableMenuTitle />,
+    title: () => <FoodTableMenuTitleComponent />,
     columns: columns,
+    dataSource:[...foodTableData],
     summary: () => <FoodTableSummaryComponent />,
     scroll: FOOD_TABLE_SCROLL,
     pagination: FOOD_TABLE_PAGINATION,

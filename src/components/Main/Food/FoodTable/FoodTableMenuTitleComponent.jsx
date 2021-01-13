@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FoodTableMenuTitle = () => {
+const FoodTableMenuTitleComponent = () => {
   return (
     <div>
       Food menu table
@@ -8,4 +8,4 @@ const FoodTableMenuTitle = () => {
   );
 };
 
-export default FoodTableMenuTitle;
+export default FoodTableMenuTitleComponent;
