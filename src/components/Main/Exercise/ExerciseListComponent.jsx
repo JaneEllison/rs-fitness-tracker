@@ -1,57 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ExerciseActionComponent from './ExerciseActionComponent';
 import ExerciseFormComponent from './ExerciseFormComponent';
 import { useDispatch } from 'react-redux';
-import { exerciseAction, exerciseRemoveAction } from '../../../store/exerciseReducer/exerciseReducer';
+import {
+  exerciseAddAction,
+  exerciseRemoveAction,
+  exerciseCompleteAction,
+  selectDayAction,
+} from "../../../store/exerciseReducer/exerciseReducer";
 
-const ExerciseListComponent = ({ day, exercises }) => {
-  // const [exercises, setExercise] = useState([]);
-  console.log(day);
+const ExerciseListComponent = ({ day, exercises, selectedDay }) => {
   const dispatch = useDispatch();
-  
+  console.log(selectedDay);
   const addExercise = (exercise) => {
     if (!exercise.text || /^\s*$/.test(exercise.text)) {
       return;
     }
-
-    dispatch(exerciseAction(exercise.id, exercise.text, day))
+    
+    dispatch(exerciseAddAction(exercise.id, exercise.text, day, exercise.isComplete))
   };
 
-  const updateExercise = (idExercise, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      return;
-    }
-
-    // setExercise(prev => prev.map((item) => (item.id === idExercise ? newValue : item)));
-    
-  }
-
   const removeExercise = (id) => {
-    // const removeArr = [...exercises].filter(exercise => exercise.id !== id);
-
     dispatch(exerciseRemoveAction(id, day))
   }
 
   const completeExercise = (id) => {
-    let updatedExercise = exercises.map((el) => {
-      if (el.id === id) {
-        el.isComplete = !el.isComplete;
-      }
-      return el
-    });
+    dispatch(exerciseCompleteAction(id, day))
+  }
 
-    // setExercise(updatedExercise);
+  const selectDay = () => {
+    dispatch(selectDayAction(day));
   }
 
   return (
-    <div>
+    <div className={day === selectedDay ? 'selected' : ''} onClick={() => selectDay()}>
         <h1> { day } Exercise schedule</h1>
         <ExerciseFormComponent onSubmit={addExercise} />
         <ExerciseActionComponent
+          day={day}
           exercises={exercises}
           completeExercise={completeExercise}
           removeExercise={removeExercise}
-          updateExercise={updateExercise}
         />
     </div>
   );

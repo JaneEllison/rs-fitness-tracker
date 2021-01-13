@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 
 const ExerciseComp = () => {
   const exerciseData = useSelector((state) => state.exerciseReducer);
+  const selectedDay = useSelector((state) => state.selectedDayReducer);
 
-  const components = Object.entries(exerciseData).map(([day, data]) => {
-    return <ExerciseListComponent day={day} exercises={data.exercises} />
+  const components = Object.entries(exerciseData).map(([day, data], index) => {
+    return <ExerciseListComponent selectedDay={selectedDay} key={index} day={day} exercises={data.exercises} />
   })
 
   return (

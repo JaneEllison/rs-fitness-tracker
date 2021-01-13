@@ -1,26 +1,18 @@
-import { ADD_EXERCISE, REMOVE_EXERCISE } from './exerciseReducerConstant';
+import {
+  ADD_EXERCISE,
+  REMOVE_EXERCISE,
+  COMPLETE_EXERCISE,
+  UPDATE_EXERCISE,
+  SELECT_DAY
+} from "./exerciseReducerConstant";
 
-// const initialState = {
-//   exercises: {
-//     name: 'jumps',
-//   },
-// };
-
-// const initialState = [
-//   {
-//     day: 'Day one',
-//     exercises: [{
-//       id: 11,
-//       text: 'jumps',
-//     }],
-//   }
-// ];
 const initialState = {
   "Day one": {
     exercises: [
       {
         id: 11,
         text: "jumps",
+        isComplete: false,
       },
     ],
   },
@@ -29,14 +21,16 @@ const initialState = {
       {
         id: 12,
         text: "swim",
+        isComplete: false,
       },
     ],
   },
 };
 
-const exerciseReducer = (state=initialState, { id, text, type, day }) => {
+const exerciseReducer = (state=initialState, { id, text, type, day, isComplete }) => {
   console.log(type, 'type');
   let oldData, oldExercises, newExercises;
+  
   switch(type) {
     case ADD_EXERCISE:
       oldData = state[day] || {};
@@ -44,43 +38,53 @@ const exerciseReducer = (state=initialState, { id, text, type, day }) => {
       newExercises = {...oldData, exercises: [...oldExercises, {
         id,
         text,
+        isComplete
       }]}
       return {...state, [day]: newExercises}
     case REMOVE_EXERCISE:
       oldData = state[day] || {};
       oldExercises = oldData.exercises || [];
       newExercises = {...oldData, exercises: oldExercises.filter(exercise => {
-
         return exercise.id !== id;
       })};
-      console.log(oldData, newExercises, day);
       return {...state, [day]: newExercises}
+    case COMPLETE_EXERCISE:
+      oldData = state[day] || {};
+      oldExercises = oldData.exercises || [];
+      newExercises = {...oldData, exercises: oldExercises.map(exercise => {
+        return exercise.id === id ?  {...exercise, isComplete: !exercise.isComplete} : exercise;
+      })};
+      return {...state, [day]: newExercises}
+    case UPDATE_EXERCISE:
+      oldData = state[day] || {};
+      oldExercises = oldData.exercises || [];
+      newExercises = {...oldData, exercises: oldExercises.map(exercise => {
+        return exercise.id === id ? text : exercise;
+      })};
+      return {...state, [day]: newExercises}
+    
     default:
       return state;
   }
 };
 
-// const exerciseReducer = (state=initialState, action) => {
-//   switch(action.type){
-//     case ADD_EXERCISE:
-//       return {...state, exercises: [...state.exercises, action.payload]};
-//     case REMOVE_EXERCISE:
-//       return [...state].filter(exercise => exercise.id !== id);
-//     default:
-//       return {...state};
-//   }
-// };
+export const selectedDayReducer = (state=null, { day, type }) => {
+  console.log(type, 'type');
+  
+  switch(type) {
+    case SELECT_DAY:
+      return day;
+    default:
+      return state;
+  }
+}
 
-// export const exerciseAction = (data) => ({
-//   type: ADD_EXERCISE,
-//   payload: data
-// })
-
-export const exerciseAction = (id, text, day) => ({
+export const exerciseAddAction = (id, text, day, isComplete) => ({
   type: ADD_EXERCISE,
   day,
   id,
   text,
+  isComplete
 })
 
 export const exerciseRemoveAction = (id, day) => ({
@@ -89,10 +93,22 @@ export const exerciseRemoveAction = (id, day) => ({
   id
 })
 
-// export const exerciseUpdateAction = (id) => ({
-//   type: UPDATE_EXERCISE,
-//   id
-// })
+export const exerciseCompleteAction = (id, day) => ({
+  type: COMPLETE_EXERCISE,
+  id,
+  day,
+})
 
+export const exerciseUpdateAction = (id, text, day) => ({
+  type: UPDATE_EXERCISE,
+  day,
+  id,
+  text,
+})
+
+export const selectDayAction = (day) => ({
+  type: SELECT_DAY,
+  day,
+})
 
 export default exerciseReducer;

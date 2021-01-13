@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import ExerciseFormComponent from './ExerciseFormComponent';
 import { DeleteOutlined } from '@ant-design/icons'
 import { FormOutlined } from '@ant-design/icons'
-import { useSelector } from 'react-redux';
+import { CheckCircleOutlined } from '@ant-design/icons'
+import { useDispatch } from 'react-redux';
+import { exerciseUpdateAction } from "../../../store/exerciseReducer/exerciseReducer";
+import style from './Style.css';
 
-function ExerciseActionComponent({ exercises, completeExercise, removeExercise, updateExercise }) {
+function ExerciseActionComponent({ exercises, removeExercise, completeExercise, day }) {
   const [edit, setEdit] = useState({
     id: null,
     value: ''
   });
+  const dispatch = useDispatch();
 
   const submitUpdate = (value) => {
-    updateExercise(edit.id, value)
+    dispatch(exerciseUpdateAction(edit.id, value, day))
 
     setEdit({
       id: null,
@@ -19,21 +23,26 @@ function ExerciseActionComponent({ exercises, completeExercise, removeExercise, 
     })
   }
 
-  // if (edit.id) {
-  //   return <ExerciseFormComponent edit={edit} onSubmit={submitUpdate} />
-  // }
+  if (edit.id) {
+    return <ExerciseFormComponent edit={edit} onSubmit={submitUpdate} />
+  }
   
   return exercises.map((exercise, index) => (
     <div
       className={exercise.isComplete ? "exercise-row complete" : "exercise-row"}
-      key={index}>
-      <div key={exercise.id} onClick={() => completeExercise(exercise.id)}>
+      key={index}
+      >
+      <span style={style.complete} onClick={() => completeExercise(exercise.id)}>
         {exercise.text}
-      </div>
+      </span>
       <div>
-        <DeleteOutlined 
+        <DeleteOutlined
           onClick={() => removeExercise(exercise.id)}
           className='delete-icon'
+        />
+        <CheckCircleOutlined 
+          onClick={() => completeExercise(exercise.id)}
+          className='complete-icon'
         />
         <FormOutlined 
           onClick={() => setEdit({ id: exercise.id, value: exercise.text })}

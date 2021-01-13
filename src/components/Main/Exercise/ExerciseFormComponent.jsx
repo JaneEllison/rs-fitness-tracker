@@ -12,7 +12,8 @@ const ExerciseFormComponent = (props) => {
     
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
-      text: input
+      text: input,
+      isComplete: false,
     });
 
     setInput('');
