@@ -5,6 +5,7 @@ import {
 } from './foodMenuReducerActionTypes';
 import setNewMenuItemId from '../../utils/setNewMenuItemId';
 import calculateTotalNutrients from '../../utils/calculateTotalNutrients';
+import filterMenuItemsForDate from '../../utils/filterMenuItemsForDate';
 
 const initialState = {
   foodMenu: [
@@ -68,7 +69,7 @@ const foodMenuReducer = (state=initialState, action) => {
       return {
         ...state,
         totalNutrients: {
-          ...calculateTotalNutrients(foodMenu)
+          ...calculateTotalNutrients(filterMenuItemsForDate(new Date(Date.now()), foodMenu))
         },
       };
 
