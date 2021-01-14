@@ -1,9 +1,9 @@
 import React from 'react';
-import TimerComponent from './Timer/TimerComponent';
+import TimeComponent from './Time/TimeComponent';
 
 const ExersiseComponent = () => {
   return(
-    <TimerComponent />
+    <TimeComponent />
   )
 }
 

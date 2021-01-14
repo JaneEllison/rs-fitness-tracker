@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Switch } from 'antd';
-
-import './Timer.css';
-import WeatherComponent from './Weather/WeatherComponent';
 import TimerCountComponent from './TimerCount/TimerCountComponent';
-import TimerInputComponent from './TimerCount/TimerInputComponent';
-
-import StopwatchComponent from './Stopwatch/StopwatchComponent';
+import TimerInputComponent from './TimerInput/TimerInputComponent';
 
 
 const TimerComponent = () => {
+
   const [ trainMinutesValue, setTrainMinutesValue ] = useState(0);
   const [ trainSecondsValue, setTrainSecondsValue ] = useState(0);
 
@@ -56,7 +52,7 @@ const TimerComponent = () => {
   }
 
   return (
-    <div className = 'container'>
+    <div>
       <Switch checkedChildren="Timer" unCheckedChildren="Stopwatch" defaultChecked />
       <div className = 'timer-container'>
         <TimerInputComponent 
@@ -69,13 +65,9 @@ const TimerComponent = () => {
           seconds = {seconds}
          lineTimer = {lineTimer}
         />
-        {/* <WeatherComponent /> */}
-      </div>
-      <div className = 'stopwatch-container'>
-      <StopwatchComponent />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default TimerComponent;
