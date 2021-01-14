@@ -1,0 +1,15 @@
+.appLayout{
+    min-height: 100vh;
+}
+
+.appLayoutSpace{
+    height: 100%;
+}
+
+.appContent{
+    min-height: calc( 100vh - 166px);
+}
+.appFooter{
+    background: #001529;
+    color: white;
+}

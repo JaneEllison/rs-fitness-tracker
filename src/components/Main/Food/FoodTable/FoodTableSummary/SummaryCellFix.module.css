@@ -1,0 +1,8 @@
+.summaryCellStickyLeft{
+    position: sticky;
+    left: 0;
+}
+.summaryCellStickyRight{
+    position: sticky;
+    right: 0;
+}
