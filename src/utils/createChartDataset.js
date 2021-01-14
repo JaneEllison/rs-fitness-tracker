@@ -21,7 +21,9 @@ function createChartDataset(source, selection) {
         label: chartLabels[selection].label,
         yAxisID: /weight/i.test(selection)
           ? 'weight' 
-          : 'calories',
+          : /calories/i.test(selection)
+            ? 'calories'
+            : 'workout',
 
         spanGaps: true,
         radius: 3,

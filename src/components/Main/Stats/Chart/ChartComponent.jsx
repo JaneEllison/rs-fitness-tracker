@@ -19,6 +19,12 @@ const options = {
         id: 'calories',
         type: 'linear',
         position: 'right',
+      },
+      {
+        display: false,
+        id: 'workout',
+        type: 'linear',
+        position: 'right',
       }
     ]
   }

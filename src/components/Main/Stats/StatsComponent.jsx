@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  userSummarySelector,
+  userTimelineSelector
+} from './../../../store/Selectors/userSelector';
 import { Row, Col } from 'antd';
+
 import UserSummaryComponent from './UserSummary/UserSummaryComponent';
 import ChartControlsComponent from './ChartControls/ChartControlsComponent';
 import ChartComponent from './Chart/ChartComponent';
 
 
-function StatsComponent({
-  summary,
-  timelineData: {
-    goalWeight,
-    dataset,
-  }
-}) {
+function StatsComponent() {
   const [ selectedFields, setSelectedFields ] = useState(['weight', 'calories']);
+
+  const summary = useSelector(userSummarySelector);
+  const {
+    goalWeight,
+    dataset
+  } = useSelector(userTimelineSelector);
   
   return (
     <Row>
