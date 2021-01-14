@@ -1,39 +1,37 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import createChartDatasets from './../../../../helpers/createChartDatasets';
+import createChartDataset from '../../../../utils/createChartDataset';
 
 const options = {
   responsive: true,
-  maintainAspectRatio: false,
+  // maintainAspectRatio: false,
   legend: {
     onClick: (event) => event.stopPropagation(),
+  },
+  scales: {
+    yAxes: [
+      {
+        id: 'weight',
+        type: 'linear',
+        position: 'left',
+      }, 
+      {
+        id: 'calories',
+        type: 'linear',
+        position: 'right',
+      }
+    ]
   }
-}
+};
 
 function ChartComponent({
   selectedFields,
-  goalDates,
-  goalWeight,
-  goalCalories,
-  dates,
-  weight,
-  calories,
-  workouts
+  dataset,
 }) {
-  const data = [
-    weight,
-    calories,
-    workouts,
-  ];
-
-  const goalData = [
-    goalWeight,
-    goalCalories,
-  ]
+  const data = createChartDataset(dataset, selectedFields);
 
   return (
-    // <Bar data={data} options={options} />
-    <div>{selectedFields}</div>
+    <Bar data={data} options={options} />
   )
 }
 

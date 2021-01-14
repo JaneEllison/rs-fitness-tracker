@@ -1,40 +1,23 @@
 import React from 'react';
 import { Checkbox } from 'antd';
+import statsChartLabels from './../../../../constants/statsChartLabels'; 
 
 function ChartControlsComponent({
   selectedFields, 
   onChange,
-  isGoalMissing
+  goalWeight
 }) {
-  const controlsGroups = [
-    { 
-      label: 'Your weight', 
-      value: 'weight' 
-    },
-    { 
-      label: 'Goal weight', 
-      value: 'goalWeight', 
-      disabled: !isGoalMissing,
-    },
-    { 
-      label: 'Consumed calories', 
-      value: 'calories'
-    },
-    { 
-      label: 'Required calories', 
-      value: 'goalCalories',
-      disabled: !isGoalMissing,
-    },
-    { 
-      label: 'Workout time', 
-      value: 'workouts'
-    }
-  ];
+  const checkboxOptions = statsChartLabels.map((obj) => {
+    return {
+      ...obj,
+      disabled: obj.isGoal && goalWeight === false
+    };
+  });
 
   return (
     <div>
       <Checkbox.Group 
-        options={controlsGroups}
+        options={checkboxOptions}
         defaultValue={selectedFields}
         onChange={onChange}
         />

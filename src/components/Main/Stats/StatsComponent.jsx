@@ -7,47 +7,30 @@ import ChartComponent from './Chart/ChartComponent';
 
 function StatsComponent({
   summary,
-  goal: {
-    startDate,
-    endDate,
-    startWeight,
-    endWeight,
-    dailyCalories,
-    plan: {
-      dates,
-      weight
-    }
-  },
-  dateHistory,
-  weightHistory,
-  caloriesHistory,
-  workoutsTime,
+  timelineData: {
+    goalWeight,
+    dataset,
+  }
 }) {
   const [ selectedFields, setSelectedFields ] = useState(['weight', 'calories']);
-
+  
   return (
     <Row>
       <Col span={6}>
         <UserSummaryComponent 
           summary={summary} 
-          goalWeight={endWeight} 
+          goalWeight={goalWeight}
           />
         <ChartControlsComponent
-          isGoalMissing={endWeight}
           selectedFields={selectedFields}
           onChange={setSelectedFields} 
+          goalWeight={goalWeight}
           />
       </Col>
       <Col span={18}>
-        <ChartComponent 
+        <ChartComponent
           selectedFields={selectedFields}
-          goalDates={dates}
-          goalWeight={weight}
-          goalCalories={dailyCalories}
-          dates={dateHistory} 
-          weight={weightHistory}
-          calories={caloriesHistory}
-          workouts={workoutsTime}
+          dataset={dataset}
           />
       </Col>
     </Row>

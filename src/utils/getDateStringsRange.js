@@ -3,8 +3,10 @@ function getDateStringsRange(startDateString, endDateString) {
   const endDate = new Date(endDateString);
   const result = [];
 
+  endDate.setDate(endDate.getDate() + 1);
+
   while (startDate < endDate) {
-    result.push(startDate.toLocaleDateString('ru-RU'));
+    result.push(startDate.toLocaleDateString('en-US'));
     startDate.setDate(startDate.getDate() + 1);
   }
 

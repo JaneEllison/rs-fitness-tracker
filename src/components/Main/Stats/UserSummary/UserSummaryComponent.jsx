@@ -24,7 +24,7 @@ function UserSummaryComponent ({
         Weight: { weight } kg
       </li>
       <li key={'userSummaryGoal'}>
-        Goal: { goalWeight ? `${goalWeight} kg` : "none" }
+        Goal: { goalWeight === false ? "none" : `${goalWeight} kg` }
       </li>
     </ul>
   )
