@@ -19,7 +19,7 @@ const FoodTableSummaryComponent = () => {
     nf_total_fat,
     weight,
   } = totalNutrients;
-  console.log(totalNutrients);
+
   const summaryRow = [weight, nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein];
   return (
     <>
