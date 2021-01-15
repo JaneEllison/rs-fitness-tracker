@@ -35,7 +35,7 @@ const List = () => {
   return (
     <div>
       <h1>TEST</h1>
-      {selectedDay !== null ? <ExerciseAddComponent onSubmit={globalAddExercise} /> : null}
+      {selectedDay !== null ? <ExerciseAddComponent selectedDay={selectedDay} onSubmit={globalAddExercise} /> : null}
     </div>
   );
 };
