@@ -11,12 +11,12 @@ import {
 
 const ExerciseListComponent = ({ day, exercises, selectedDay }) => {
   const dispatch = useDispatch();
-  console.log(selectedDay);
+
   const addExercise = (exercise) => {
     if (!exercise.text || /^\s*$/.test(exercise.text)) {
       return;
     }
-    
+    console.log(exercise, 'form,');
     dispatch(exerciseAddAction(exercise.id, exercise.text, day, exercise.isComplete))
   };
 

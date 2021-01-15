@@ -1,4 +1,5 @@
 import {
+  GLOBAL_ADD_EXERCISE,
   ADD_EXERCISE,
   REMOVE_EXERCISE,
   COMPLETE_EXERCISE,
@@ -79,7 +80,27 @@ export const selectedDayReducer = (state=null, { day, type }) => {
   }
 }
 
-export const exerciseAddAction = (id, text, day, isComplete) => ({
+// export const globalAddReducer = (state=initialState, { id, text, day, type, isComplete }) => {
+//   console.log(type, 'type', day);
+//   let oldData, oldExercises, newExercises;
+  
+//   switch(type) {
+//     case GLOBAL_ADD_EXERCISE:
+//       oldData = state[day] || {};
+//       oldExercises = oldData.exercises || [];
+//       newExercises = {...oldData, exercises: [...oldExercises, {
+//         id,
+//         text,
+//         isComplete
+//       }]}
+//       return {...state, [day]: newExercises}
+
+//     default:
+//       return state;
+//   }
+// }
+
+export const exerciseAddAction = (id, text, isComplete, day) => ({
   type: ADD_EXERCISE,
   day,
   id,
@@ -110,5 +131,13 @@ export const selectDayAction = (day) => ({
   type: SELECT_DAY,
   day,
 })
+
+// export const exerciseGlobalAddAction = (id, text, isComplete, day) => ({
+//   type: GLOBAL_ADD_EXERCISE,
+//   id,
+//   text,
+//   isComplete,
+//   day,
+// })
 
 export default exerciseReducer;
