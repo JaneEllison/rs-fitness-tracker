@@ -1,10 +1,11 @@
 import React from 'react';
+import style from './../StatsComponent.module.css';
 import { Bar } from 'react-chartjs-2';
 import createChartDataset from '../../../../utils/createChartDataset';
 
 const options = {
   responsive: true,
-  // maintainAspectRatio: false,
+  maintainAspectRatio: false,
   legend: {
     onClick: (event) => event.stopPropagation(),
   },
@@ -37,7 +38,9 @@ function ChartComponent({
   const data = createChartDataset(dataset, selectedFields);
 
   return (
-    <Bar data={data} options={options} />
+    <article className={style.statsCanvasContainer}>
+      <Bar data={data} options={options} />
+    </article>
   )
 }
 

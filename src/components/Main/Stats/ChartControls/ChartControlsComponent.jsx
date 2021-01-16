@@ -1,6 +1,7 @@
 import React from 'react';
 import { Checkbox } from 'antd';
-import statsChartLabels from './../../../../constants/statsChartLabels'; 
+import statsChartLabels from './../../../../constants/statsChartLabels';
+import style from './../StatsComponent.module.css';
 
 function ChartControlsComponent({
   selectedFields, 
@@ -20,6 +21,7 @@ function ChartControlsComponent({
         options={checkboxOptions}
         defaultValue={selectedFields}
         onChange={onChange}
+        className={style.statsControlsComponent}
         />
     </div>
   )
