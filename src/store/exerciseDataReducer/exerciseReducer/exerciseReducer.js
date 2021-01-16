@@ -1,10 +1,8 @@
 import {
-  GLOBAL_ADD_EXERCISE,
   ADD_EXERCISE,
   REMOVE_EXERCISE,
   COMPLETE_EXERCISE,
   UPDATE_EXERCISE,
-  SELECT_DAY
 } from "./exerciseReducerConstant";
 
 const initialState = {
@@ -29,7 +27,6 @@ const initialState = {
 };
 
 const exerciseReducer = (state=initialState, { id, text, type, day, isComplete }) => {
-  console.log(type, 'type');
   let oldData, oldExercises, newExercises;
   
   switch(type) {
@@ -68,76 +65,5 @@ const exerciseReducer = (state=initialState, { id, text, type, day, isComplete }
       return state;
   }
 };
-
-export const selectedDayReducer = (state=null, { day, type }) => {
-  console.log(type, 'type');
-  
-  switch(type) {
-    case SELECT_DAY:
-      return day;
-    default:
-      return state;
-  }
-}
-
-// export const globalAddReducer = (state=initialState, { id, text, day, type, isComplete }) => {
-//   console.log(type, 'type', day);
-//   let oldData, oldExercises, newExercises;
-  
-//   switch(type) {
-//     case GLOBAL_ADD_EXERCISE:
-//       oldData = state[day] || {};
-//       oldExercises = oldData.exercises || [];
-//       newExercises = {...oldData, exercises: [...oldExercises, {
-//         id,
-//         text,
-//         isComplete
-//       }]}
-//       return {...state, [day]: newExercises}
-
-//     default:
-//       return state;
-//   }
-// }
-
-export const exerciseAddAction = (id, text, isComplete, day) => ({
-  type: ADD_EXERCISE,
-  day,
-  id,
-  text,
-  isComplete
-})
-
-export const exerciseRemoveAction = (id, day) => ({
-  type: REMOVE_EXERCISE,
-  day,
-  id
-})
-
-export const exerciseCompleteAction = (id, day) => ({
-  type: COMPLETE_EXERCISE,
-  id,
-  day,
-})
-
-export const exerciseUpdateAction = (id, text, day) => ({
-  type: UPDATE_EXERCISE,
-  day,
-  id,
-  text,
-})
-
-export const selectDayAction = (day) => ({
-  type: SELECT_DAY,
-  day,
-})
-
-// export const exerciseGlobalAddAction = (id, text, isComplete, day) => ({
-//   type: GLOBAL_ADD_EXERCISE,
-//   id,
-//   text,
-//   isComplete,
-//   day,
-// })
 
 export default exerciseReducer;

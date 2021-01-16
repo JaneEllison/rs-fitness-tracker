@@ -1,23 +1,30 @@
-import React from 'react'
-import ExerciseListComponent from './ExerciseListComponent';
-// import ExerciseAddComponent from './ExerciseAddComponent';
+import React from 'react';
+import ExerciseControlComponent from './ExerciseSchedule/ExerciseControlComponent';
 import { useSelector } from 'react-redux';
-import List from './List';
+import ExerciseListComponent from './ExerciseSchedule/ExerciseListComponent';
 
-const ExerciseComp = () => {
+const ExerciseComponent = () => {
   const exerciseData = useSelector((state) => state.exerciseReducer);
   const selectedDay = useSelector((state) => state.selectedDayReducer);
 
   const components = Object.entries(exerciseData).map(([day, data], index) => {
-    return <ExerciseListComponent selectedDay={selectedDay} key={index} day={day} exercises={data.exercises} />
-  })
+    return (
+      <ExerciseControlComponent
+        selectedDay={selectedDay}
+        key={index}
+        day={day}
+        exercises={data.exercises}
+      />
+    );
+  });
 
   return (
-    <div className='exercise-wrapper'>
+    <div className="exercise-wrapper">
+      <h1>Exercise schedule</h1>
       {components}
-      <List />
+      <ExerciseListComponent />
     </div>
   );
-}
+};
 
-export default ExerciseComp;
+export default ExerciseComponent;
