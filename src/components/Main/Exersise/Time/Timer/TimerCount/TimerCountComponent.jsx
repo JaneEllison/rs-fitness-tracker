@@ -1,6 +1,9 @@
 import { Progress } from 'antd';
 
-const TimerCountComponent = ({minutes, seconds, lineTimer}) => {
+const TimerCountComponent = ({seconds, lineTimer}) => {
+  let currentMinutes = Math.floor(seconds / 60);
+  let currentSeconds = Math.floor(seconds % 60);
+
   return (
     <div className='timer-component'>
       <Progress type="circle" percent={lineTimer}></Progress>
@@ -8,13 +11,13 @@ const TimerCountComponent = ({minutes, seconds, lineTimer}) => {
       <div className="timer-count">
         <span>
           {
-            (minutes<10 && seconds<10)
-              ? `0${minutes}:0${seconds}` :
-            (minutes<10)
-              ? `0${minutes}:${seconds}` :
-            (seconds<10)
-              ? `${minutes}:0${seconds}`
-              : `${minutes}:${seconds}`
+            (currentMinutes<10 && currentSeconds<10)
+              ? `0${currentMinutes}:0${currentSeconds}` :
+            (currentMinutes<10)
+              ? `0${currentMinutes}:${currentSeconds}` :
+            (currentSeconds<10)
+              ? `${currentMinutes}:0${currentSeconds}`
+              : `${currentMinutes}:${currentSeconds}`
           }
         </span>
       </div>

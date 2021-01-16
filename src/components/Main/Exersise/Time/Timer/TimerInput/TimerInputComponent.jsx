@@ -1,60 +1,94 @@
 // import React from 'react';
 import { InputNumber, Tooltip, Button } from 'antd';
-import { CheckOutlined, UndoOutlined, PauseOutlined, CaretRightOutlined, StopOutlined, SoundOutlined } from '@ant-design/icons';
+import { CheckOutlined, UndoOutlined, PauseOutlined, CaretRightOutlined, PoweroffOutlined, SoundOutlined } from '@ant-design/icons';
 
-function TimerInputComponent({onCreate, trainMinutesValue, trainSecondsValue}) {
-  let currentTrainMinutesValue = trainMinutesValue;
-  let currentTrainSecondsValue = trainSecondsValue;
-
+function TimerInputComponent(props) {
+  let {setTimer, setCurrentMinutes, setCurrentSeconds, currentMinutes, currentSeconds, setIsRunningTimer, isRunningTimer} = props;
+  
   return (
     <div>
       <span>Set Train time</span> 
       <form>
-        <InputNumber 
+      <InputNumber 
           onChange={(newValue) => {
-            currentTrainMinutesValue = newValue
+            setCurrentMinutes(newValue)
           }}
-          defaultValue={currentTrainMinutesValue}
+          value={currentMinutes}
+          defaultValue={0}
           size="small"
           min={0}
           max={59}
         />
         <InputNumber 
           onChange={(newValue) => {
-            currentTrainSecondsValue = newValue
+            setCurrentSeconds(newValue)
           }}
-          defaultValue={currentTrainSecondsValue}
+          value={currentSeconds}
+          defaultValue={0}
           size="small"
           min={0}
           max={59}
         />
       </form>
-    
     <div>
       <Button 
-        type="primary" 
-        icon={<CheckOutlined />}
-        onClick={ () => {
-          onCreate(currentTrainMinutesValue, currentTrainSecondsValue) 
-        }}
-      >
-        Set timer
-      </Button>
-    </div>
-
-    
+          type="primary" 
+          icon={<CheckOutlined />}
+          onClick={() => {
+            setTimer(currentMinutes, currentSeconds);
+            setIsRunningTimer(true);
+          }}
+        >
+          Set timer
+        </Button>
+    </div>    
 
     <Tooltip title="Repeat timer">
-      <Button type="primary" shape="circle" icon={<UndoOutlined />} />
+      <Button 
+        type="primary" 
+        shape="circle" 
+        icon={<UndoOutlined />}
+        onClick={() => {
+          setTimer(currentMinutes, currentSeconds);
+          setIsRunningTimer(true);
+        }}
+      />
     </Tooltip>
-    <Tooltip title="Pause timer">
-      <Button type="primary" shape="circle" icon={<PauseOutlined />} />
-    </Tooltip>
-    {/* <Tooltip title="Play timer">
-      <Button type="primary" shape="circle" icon={<CaretRightOutlined />} />
-    </Tooltip> */}
+    {
+      (isRunningTimer)
+      ? <Tooltip title="Pause timer">
+          <Button 
+            type="primary" 
+            shape="circle" 
+            icon={<PauseOutlined />}
+            onClick={() => {
+              setIsRunningTimer(false);
+            }}
+          />
+        </Tooltip>
+      : <Tooltip title="Play timer">
+          <Button 
+            type="primary" 
+            shape="circle" 
+            icon={<CaretRightOutlined />}
+            onClick={() => {
+              setIsRunningTimer(true);
+            }}
+          />
+        </Tooltip>
+    }
     <Tooltip title="Stop timer">
-      <Button type="primary" shape="circle" icon={<StopOutlined />} />
+      <Button 
+        type="primary" 
+        shape="circle" 
+        icon={<PoweroffOutlined />}
+        onClick={() => {
+          setCurrentMinutes(0)
+          setCurrentSeconds(0)
+          setTimer(0, 0);
+          setIsRunningTimer(false);
+        }}
+      />
     </Tooltip>
     <Tooltip title="Sound on">
       <Button type="primary" shape="circle" icon={<SoundOutlined />} />
