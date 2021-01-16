@@ -8,8 +8,11 @@ function UserSummaryComponent ({
     height,
     weight,
   },
-  goalWeight
-}) {  
+  goal: {
+    goalWeight,
+    goalCalories
+  }
+}) {
   return (
     <ul className={style.statsUserSummaryComponent}>
       <li key={'userSummaryAge'}>
@@ -28,9 +31,13 @@ function UserSummaryComponent ({
         <h3>Weight:</h3>
         <h3>{ weight } kg</h3>
       </li>
-      <li key={'userSummaryGoal'}>
-        <h3>Goal:</h3>
+      <li key={'userSummaryGoalWeight'}>
+        <h3>Goal weight:</h3>
         <h3>{ goalWeight === false ? "none" : `${goalWeight} kg` }</h3>
+      </li>
+      <li key={'userSummaryGoalCalories'}>
+        <h3>Goal calories</h3>
+        <h3>{ goalCalories === false ? "none" : `${goalCalories} per day` }</h3>
       </li>
     </ul>
   )

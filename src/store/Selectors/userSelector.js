@@ -14,12 +14,16 @@ export const userSummarySelector = createSelector(getUserSummary, (summary) => {
   };
 });
 
-export const userTimelineSelector = createSelector(
+export const userGoalSelector = createSelector(getUserGoal, (goal) => {
+  return {
+    goalWeight: goal?.endWeight || false,
+    goalCalories: goal?.calories || false,
+  }
+});
+
+export const userDatasetSelector = createSelector(
   getUserGoal, 
   getUserHistory, 
   (goal, history) => {
-    return {
-      goalWeight: goal?.endWeight || false,
-      dataset: getUserDataset(goal, history),
-    }
+    return {}
 });
