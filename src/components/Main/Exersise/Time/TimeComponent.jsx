@@ -12,7 +12,7 @@ const TimeComponent = () => {
       <Switch 
         checkedChildren="Timer" 
         unCheckedChildren="Stopwatch" 
-        defaultChecked 
+        defaultChecked
         onChange={() => setIsTimerMode(!isTimerMode)}
       />
       {

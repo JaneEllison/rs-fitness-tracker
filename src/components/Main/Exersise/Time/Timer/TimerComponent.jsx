@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {  Modal  } from 'antd';
 import TimerCountComponent from './TimerCount/TimerCountComponent';
 import TimerInputComponent from './TimerInput/TimerInputComponent';
 
@@ -18,7 +19,7 @@ const TimerComponent = () => {
 
       return () => {
         window.clearInterval(TimerInterval);
-        alert('End')
+        showModal();
       }
     }
     return undefined
@@ -39,9 +40,42 @@ const TimerComponent = () => {
     setAllTimeSeconds(allTime);
   }
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    setTimerSeconds(allTimeSeconds)
+    setIsRunningTimer(true);
+
+    console.log(allTimeSeconds);
+  };
+
   return (
     <div>
       <div className = 'timer-container'>
+      <>
+        <Modal title="Well done!" 
+          visible={isModalVisible} 
+          onOk={handleOk} 
+          onCancel={handleCancel}
+          centered={true}
+          okText={'Set new Timer'}
+          cancelText={'Start new Timer with previous value'}
+        >
+          <img 
+            src="./timer-popup-img.svg" 
+            width="300px"
+            alt="img"
+          />
+          <p>Time is up!</p>
+        </Modal>
+        </>
         <TimerInputComponent
           setTimer = {setTimer}
           setCurrentMinutes = {setCurrentMinutes}
