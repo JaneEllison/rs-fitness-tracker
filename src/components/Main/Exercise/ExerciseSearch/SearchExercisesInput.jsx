@@ -10,13 +10,13 @@ const SearchExercises = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    props.onSubmit(input)
-  }
+    props.onSearch(input);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
-        id='video-search'
+        id="video-search"
         onChange={handleChange}
         value={input}
         type="text"

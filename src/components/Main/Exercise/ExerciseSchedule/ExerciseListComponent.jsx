@@ -1,41 +1,56 @@
-import React from 'react';
-import ExerciseAddComponent from './ExerciseAddComponent';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { exerciseAddAction } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
 import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
 
-const List = () => {
-  const dispatch = useDispatch();
-  const selectedDay = useSelector((state) => state.selectedDayReducer);
-  const days = useSelector((state) => state.exerciseReducer);
-  const defaultDay = Object.keys(days)[0];
+const ExerciseAddComponent = (props) => {
+  const [input, setInput] = useState('');
 
-  if (selectedDay === null) {
-    dispatch(selectDayAction(defaultDay));
+  const dispatch = useDispatch();
+  const days = useSelector((state) => Object.keys(state.exerciseReducer));
+
+  let currentSelectDay = props.selectedDay || days;
+
+  const handleChange = (event) => {
+    setInput(event.target.value);
   };
 
-  const globalAddExercise = (exercise) => {
-    dispatch(
-      exerciseAddAction(
-        exercise.id,
-        exercise.title,
-        exercise.isComplete,
-        selectedDay
-      )
-    );
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    props.onSubmit({
+      id: Math.floor(Math.random() * 10000),
+      title: input,
+      isComplete: false,
+    });
+
+    setInput('');
+  };
+
+  const currentDropdownDay = (e) => {
+    dispatch(selectDayAction(e.target.value));
   };
 
   return (
     <div>
-      <h2>Add exercise for the day</h2>
-      {selectedDay !== null ? (
-        <ExerciseAddComponent
-          selectedDay={selectedDay}
-          onSubmit={globalAddExercise}
+      <form action="" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={input}
+          placeholder="Add exercise"
+          name="text"
+          onChange={handleChange}
         />
-      ) : null}
+        <button>ADD</button>
+      </form>
+      <select value={currentSelectDay} onChange={currentDropdownDay}>
+        {days.map((day, index) => (
+          <option value={day} key={index}>
+            {day}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
 
-export default List;
+export default ExerciseAddComponent;
