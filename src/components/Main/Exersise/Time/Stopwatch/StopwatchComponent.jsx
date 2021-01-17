@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Tooltip, Button } from 'antd';
+import { Tooltip, Button, Space, Card } from 'antd';
 import { CaretRightOutlined, PauseOutlined, PoweroffOutlined } from '@ant-design/icons';
 
 
 const StopwatchComponent = () => {
   const [stopwatchSeconds, setStopwatchSeconds] = useState(0);
   const [isRunningStopwatch, setIsRunningStopwatch] = useState(false);
+  const [memoryOfValues, setMemoryOfValues] = useState([])
+
+  let minutes = Math.floor(stopwatchSeconds / 60);
+  let seconds = Math.floor(stopwatchSeconds % 60);
 
   useEffect(()=> {
     if(isRunningStopwatch) {
@@ -17,8 +21,25 @@ const StopwatchComponent = () => {
     return undefined;
   }, [isRunningStopwatch]);
 
-  let minutes = Math.floor(stopwatchSeconds / 60);
-  let seconds = Math.floor(stopwatchSeconds % 60);
+  const addValuesOfSeconds = (secondsValue) => {
+    setMemoryOfValues(memoryOfValues.concat([{
+      secondsValue,
+      id: Date.now(),
+    }]))
+  };
+
+  const isStopwatchStarted = (state) => {
+    setIsRunningStopwatch(state);
+  }
+
+  const deletePreviousValue = () => {
+    if(memoryOfValues.length >= 3) {
+      memoryOfValues.shift();
+      setMemoryOfValues(memoryOfValues);
+    }
+    return memoryOfValues;
+  }
+
 
   return (
     <div className="stopwatch-wrapper">
@@ -43,7 +64,7 @@ const StopwatchComponent = () => {
                   type="primary" 
                   shape="circle" 
                   icon={<PauseOutlined />} 
-                  onClick={() => setIsRunningStopwatch(false)}
+                  onClick={() => isStopwatchStarted(false)}
                 />
               </Tooltip> 
             : <Tooltip title="Start">
@@ -51,7 +72,7 @@ const StopwatchComponent = () => {
                   type="primary" 
                   shape="circle" 
                   icon={<CaretRightOutlined />}
-                  onClick={() => setIsRunningStopwatch(true)}
+                  onClick={() => isStopwatchStarted(true)}
                 />
               </Tooltip>
         }
@@ -60,16 +81,36 @@ const StopwatchComponent = () => {
             type="primary" 
             shape="circle" 
             icon={<PoweroffOutlined />}
-            // disabled={!isRunningStopwatch}
             onClick={() => {
-              setIsRunningStopwatch(false);
-              console.log(stopwatchSeconds)
-              setStopwatchSeconds(0)
+              isStopwatchStarted(false);
+              deletePreviousValue();
+              addValuesOfSeconds(stopwatchSeconds);
+              setStopwatchSeconds(0);
             }}
           />
         </Tooltip>
         
       </div>
+      <Space direction="vertical">
+        <Card title="Time" style={{ width: 200, height:215 }}>
+          <div>
+            {memoryOfValues.map((value) => {
+            let min = Math.floor(value.secondsValue / 60);
+            let sec = Math.floor(value.secondsValue % 60);
+
+            return <p key={value.id}>{
+              (min<10 && sec<10)
+                ? `0${min}:0${sec}` :
+              (min<10)
+                ? `0${min}:${sec}` :
+              (sec<10)
+                ? `${min}:0${sec}`
+                : `${min}:${sec}`
+            }</p>
+            })}
+          </div>
+        </Card>
+        </Space>
     </div>
   )
 }

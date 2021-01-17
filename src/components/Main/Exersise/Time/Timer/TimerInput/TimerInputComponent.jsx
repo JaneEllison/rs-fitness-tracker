@@ -3,15 +3,15 @@ import { InputNumber, Tooltip, Button } from 'antd';
 import { CheckOutlined, UndoOutlined, PauseOutlined, CaretRightOutlined, PoweroffOutlined, SoundOutlined } from '@ant-design/icons';
 
 function TimerInputComponent(props) {
-  let {setTimer, setCurrentMinutes, setCurrentSeconds, currentMinutes, currentSeconds, setIsRunningTimer, isRunningTimer} = props;
-  
+  let {startTimer, changeCurrentTime, currentMinutes, currentSeconds, isTimerStarted, isRunningTimer} = props;
+
   return (
     <div>
       <span>Set Train time</span> 
       <form>
       <InputNumber 
           onChange={(newValue) => {
-            setCurrentMinutes(newValue)
+            changeCurrentTime(newValue, currentSeconds)
           }}
           value={currentMinutes}
           defaultValue={0}
@@ -21,7 +21,7 @@ function TimerInputComponent(props) {
         />
         <InputNumber 
           onChange={(newValue) => {
-            setCurrentSeconds(newValue)
+            changeCurrentTime(currentMinutes, newValue)
           }}
           value={currentSeconds}
           defaultValue={0}
@@ -35,8 +35,8 @@ function TimerInputComponent(props) {
           type="primary" 
           icon={<CheckOutlined />}
           onClick={() => {
-            setTimer(currentMinutes, currentSeconds);
-            setIsRunningTimer(true);
+            startTimer(currentMinutes, currentSeconds);
+            isTimerStarted(true);
           }}
         >
           Set timer
@@ -49,8 +49,8 @@ function TimerInputComponent(props) {
         shape="circle" 
         icon={<UndoOutlined />}
         onClick={() => {
-          setTimer(currentMinutes, currentSeconds);
-          setIsRunningTimer(true);
+          startTimer(currentMinutes, currentSeconds);
+          isTimerStarted(true);
         }}
       />
     </Tooltip>
@@ -62,7 +62,7 @@ function TimerInputComponent(props) {
           shape="circle" 
           icon={<PauseOutlined />}
           onClick={() => {
-            setIsRunningTimer(false);
+            isTimerStarted(false);
           }}
         />
       </Tooltip>
@@ -72,7 +72,7 @@ function TimerInputComponent(props) {
           shape="circle" 
           icon={<CaretRightOutlined />}
           onClick={() => {
-            setIsRunningTimer(true);
+            isTimerStarted(true);
           }}
         />
       </Tooltip>
@@ -83,10 +83,9 @@ function TimerInputComponent(props) {
         shape="circle" 
         icon={<PoweroffOutlined />}
         onClick={() => {
-          setCurrentMinutes(0)
-          setCurrentSeconds(0)
-          setTimer(0, 0);
-          setIsRunningTimer(false);
+          changeCurrentTime(0, 0)
+          startTimer(0, 0);
+          isTimerStarted(false);
         }}
       />
     </Tooltip>

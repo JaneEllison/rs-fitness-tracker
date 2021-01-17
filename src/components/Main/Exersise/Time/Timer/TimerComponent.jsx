@@ -10,6 +10,11 @@ const TimerComponent = () => {
   const [ currentMinutes, setCurrentMinutes ] = useState(0);
   const [ timerSeconds, setTimerSeconds ] = useState(allTimeSeconds);
   const [ isRunningTimer, setIsRunningTimer ] = useState(false);
+  const [ isModalVisible, setIsModalVisible ] = useState(false);
+
+  let duringSeconds = allTimeSeconds - timerSeconds;
+  let procent = duringSeconds / allTimeSeconds * 100;
+  let lineTimer = Math.ceil(procent);
 
   useEffect(()=> {
     if(isRunningTimer) {
@@ -24,17 +29,12 @@ const TimerComponent = () => {
     return undefined
   }, [isRunningTimer])
 
-  let duringSeconds = allTimeSeconds - timerSeconds;
-  let procent = duringSeconds / allTimeSeconds * 100;
-  let lineTimer = Math.ceil(procent);
-
-  const setTimer = (minutes, seconds) => {
+  const startTimer = (minutes, seconds) => {
     const allTime = minutes * 60 + seconds;
     setTimerSeconds(allTime);
     setAllTimeSeconds(allTime);
   }
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -52,6 +52,15 @@ const TimerComponent = () => {
     setIsRunningTimer(false);
     setTimerSeconds(0);
     showModal();
+  }
+
+  const changeCurrentTime = (minutes, seconds) => {
+    setCurrentMinutes(minutes);
+    setCurrentSeconds(seconds);
+  }
+
+  const isTimerStarted = (state) => {
+    setIsRunningTimer(state);
   }
 
   return (
@@ -76,12 +85,11 @@ const TimerComponent = () => {
         </Modal>
         </>
         <TimerInputComponent
-          setTimer = {setTimer}
-          setCurrentMinutes = {setCurrentMinutes}
-          setCurrentSeconds = {setCurrentSeconds}
+          startTimer = {startTimer}
+          changeCurrentTime = {changeCurrentTime}
           currentMinutes = {currentMinutes}
           currentSeconds = {currentSeconds}
-          setIsRunningTimer = {setIsRunningTimer}
+          isTimerStarted = {isTimerStarted}
           isRunningTimer = {isRunningTimer}
         />
         <TimerCountComponent 
