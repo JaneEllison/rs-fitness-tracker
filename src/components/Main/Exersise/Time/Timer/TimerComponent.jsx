@@ -19,7 +19,6 @@ const TimerComponent = () => {
 
       return () => {
         window.clearInterval(TimerInterval);
-        showModal();
       }
     }
     return undefined
@@ -28,11 +27,6 @@ const TimerComponent = () => {
   let duringSeconds = allTimeSeconds - timerSeconds;
   let procent = duringSeconds / allTimeSeconds * 100;
   let lineTimer = Math.ceil(procent);
-
-  if(timerSeconds < 0) {
-    setIsRunningTimer(false);
-    setTimerSeconds(0);
-  }
 
   const setTimer = (minutes, seconds) => {
     const allTime = minutes * 60 + seconds;
@@ -47,26 +41,31 @@ const TimerComponent = () => {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    setTimerSeconds(allTimeSeconds)
+    setIsRunningTimer(true);
   };
   const handleCancel = () => {
     setIsModalVisible(false);
-    setTimerSeconds(allTimeSeconds)
-    setIsRunningTimer(true);
-
-    console.log(allTimeSeconds);
   };
+
+  if(timerSeconds < 0) {
+    setIsRunningTimer(false);
+    setTimerSeconds(0);
+    showModal();
+  }
 
   return (
     <div>
       <div className = 'timer-container'>
       <>
-        <Modal title="Well done!" 
+        <Modal 
+          title="Well done!" 
           visible={isModalVisible} 
           onOk={handleOk} 
           onCancel={handleCancel}
           centered={true}
-          okText={'Set new Timer'}
-          cancelText={'Start new Timer with previous value'}
+          okText={'Start new Timer with previous value'}
+          cancelText={'Set new Timer'}
         >
           <img 
             src="./timer-popup-img.svg" 

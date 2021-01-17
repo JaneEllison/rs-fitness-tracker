@@ -63,6 +63,7 @@ const StopwatchComponent = () => {
             // disabled={!isRunningStopwatch}
             onClick={() => {
               setIsRunningStopwatch(false);
+              console.log(stopwatchSeconds)
               setStopwatchSeconds(0)
             }}
           />

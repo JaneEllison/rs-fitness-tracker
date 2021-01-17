@@ -57,25 +57,25 @@ function TimerInputComponent(props) {
     {
       (isRunningTimer)
       ? <Tooltip title="Pause timer">
-          <Button 
-            type="primary" 
-            shape="circle" 
-            icon={<PauseOutlined />}
-            onClick={() => {
-              setIsRunningTimer(false);
-            }}
-          />
-        </Tooltip>
+        <Button 
+          type="primary" 
+          shape="circle" 
+          icon={<PauseOutlined />}
+          onClick={() => {
+            setIsRunningTimer(false);
+          }}
+        />
+      </Tooltip>
       : <Tooltip title="Play timer">
-          <Button 
-            type="primary" 
-            shape="circle" 
-            icon={<CaretRightOutlined />}
-            onClick={() => {
-              setIsRunningTimer(true);
-            }}
-          />
-        </Tooltip>
+        <Button 
+          type="primary" 
+          shape="circle" 
+          icon={<CaretRightOutlined />}
+          onClick={() => {
+            setIsRunningTimer(true);
+          }}
+        />
+      </Tooltip>
     }
     <Tooltip title="Stop timer">
       <Button 
