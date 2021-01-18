@@ -3,7 +3,7 @@ import { Tooltip, Button, Space, Card } from 'antd';
 import { CaretRightOutlined, PauseOutlined, PoweroffOutlined } from '@ant-design/icons';
 
 
-const StopwatchComponent = () => {
+const StopwatchComponent = ({playAudio}) => {
   const [stopwatchSeconds, setStopwatchSeconds] = useState(0);
   const [isRunningStopwatch, setIsRunningStopwatch] = useState(false);
   const [memoryOfValues, setMemoryOfValues] = useState([])
@@ -85,6 +85,7 @@ const StopwatchComponent = () => {
               isStopwatchStarted(false);
               deletePreviousValue();
               addValuesOfSeconds(stopwatchSeconds);
+              // playAudio('./done.mp3');
               setStopwatchSeconds(0);
             }}
           />
@@ -110,7 +111,7 @@ const StopwatchComponent = () => {
             })}
           </div>
         </Card>
-        </Space>
+      </Space>
     </div>
   )
 }

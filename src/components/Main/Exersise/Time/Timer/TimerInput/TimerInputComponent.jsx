@@ -9,7 +9,7 @@ function TimerInputComponent(props) {
     <div>
       <span>Set Train time</span> 
       <form>
-      <InputNumber 
+        <InputNumber 
           onChange={(newValue) => {
             changeCurrentTime(newValue, currentSeconds)
           }}

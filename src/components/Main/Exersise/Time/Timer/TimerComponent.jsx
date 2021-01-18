@@ -4,7 +4,7 @@ import TimerCountComponent from './TimerCount/TimerCountComponent';
 import TimerInputComponent from './TimerInput/TimerInputComponent';
 
 
-const TimerComponent = () => {
+const TimerComponent = ({playAydio}) => {
   const [ allTimeSeconds, setAllTimeSeconds ] = useState(0)
   const [ currentSeconds, setCurrentSeconds ] = useState(0);
   const [ currentMinutes, setCurrentMinutes ] = useState(0);
@@ -52,6 +52,7 @@ const TimerComponent = () => {
     setIsRunningTimer(false);
     setTimerSeconds(0);
     showModal();
+    playAydio('./done.mp3');
   }
 
   const changeCurrentTime = (minutes, seconds) => {
