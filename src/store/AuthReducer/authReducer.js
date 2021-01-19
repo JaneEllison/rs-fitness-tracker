@@ -29,8 +29,5 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const createUser = () => {
-
-};
 
 export default authReducer;

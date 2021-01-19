@@ -19,6 +19,10 @@ const routes = [
     path: '/register',
     textName: 'Register',
   },
+  {
+    path: '/account',
+    textName: 'Account',
+  },
 ];
 
 export default routes;

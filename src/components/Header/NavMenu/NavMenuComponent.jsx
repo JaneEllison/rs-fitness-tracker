@@ -1,18 +1,21 @@
 import React from 'react';
 import routes from '../../../config/routes';
 import { NavLink } from 'react-router-dom';
+import { Menu } from 'antd';
 
 const NavMenuComponent = () => {
   return (
-    <div>
+    <Menu mode="horizontal" theme="dark">
       {
         routes.map((route, index)=> (
-            <NavLink key={`${index}`} to={route.path}>
+          <Menu.Item key={`${index}`}>
+            <NavLink  to={route.path}>
               {route.textName}
             </NavLink>
+          </Menu.Item>
         ))
       }
-    </div>
+    </Menu>
   );
 };
 
