@@ -6,9 +6,8 @@ const SignInWithGoogleComponent = () => {
 
   const firebase = useFirebase();
   const history = useHistory();
-
+  console.log(firebase);
   const signInWithGoogle = () => {
-
     firebase
       .login({
         provider: "google",

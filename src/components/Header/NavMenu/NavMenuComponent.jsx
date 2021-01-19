@@ -4,10 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { Menu } from 'antd';
 
 const NavMenuComponent = () => {
+  const { menuRoutes } = routes;
   return (
     <Menu mode="horizontal" theme="dark">
       {
-        routes.map((route, index)=> (
+        menuRoutes.map((route, index)=> (
           <Menu.Item key={`${index}`}>
             <NavLink  to={route.path}>
               {route.textName}

@@ -7,6 +7,7 @@ import { Row, Col } from 'antd';
 import SignUpComponent from './Authentification/SignUpComponent';
 import AccountComponent from './Account/AccountComponent';
 import PrivateRoute from '../commonComponents/PrivateRoute';
+import SignOut from './Authentification/SignOut';
 
 const MainComponent = () => {
   return (
@@ -20,10 +21,13 @@ const MainComponent = () => {
             <Route exact path="/" render={() => <div>Default page</div>} />
             <Route path="/search_food" render={() => <FoodComponent/>} />
             <Route path="/todo" render={() => <div>Todo</div>} />
-            <Route path="/register" render={() => <SignUpComponent/>} />
+            <Route path="/signup" render={() => <SignUpComponent/>} />
             <Route path="/stats" render={() => <StatsComponent />} />
             <PrivateRoute path="/account" >
               <AccountComponent/>
+            </PrivateRoute>
+            <PrivateRoute path="/logout">
+              <SignOut/>
             </PrivateRoute>
           </Switch>
         </Col>

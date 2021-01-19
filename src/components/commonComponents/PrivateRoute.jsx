@@ -6,7 +6,7 @@ import authSelector from '../../store/Selectors/authSelector';
 
 const PrivateRoute = ({ children, ...remainingProps }) => {
   const auth = useSelector(authSelector);
-  console.log(auth);
+
   return (
     <Route
       {...remainingProps}
