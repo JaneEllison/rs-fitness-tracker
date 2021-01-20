@@ -6,6 +6,7 @@ import { CheckCircleOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { exerciseUpdateAction } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
 import style from '../Style.css';
+import { Card } from 'antd';
 
 function ExerciseActionComponent({ exercises, removeExercise, completeExercise, day }) {
   const [edit, setEdit] = useState({
@@ -32,26 +33,30 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
       className={exercise.isComplete ? 'exercise-row complete' : 'exercise-row'}
       key={index}
     >
-      <span
-        style={style.complete}
-        onClick={() => completeExercise(exercise.id)}
+      <Card
+        size={'small'}
+        actions={[
+          <DeleteOutlined
+            onClick={() => removeExercise(exercise.id)}
+            className="delete-icon"
+          />,
+          <CheckCircleOutlined
+            onClick={() => completeExercise(exercise.id)}
+            className="complete-icon"
+          />,
+          <FormOutlined
+            onClick={() => setEdit({ id: exercise.id, value: exercise.text })}
+            className="edit-icon"
+          />,
+        ]}
       >
-        {exercise.text}
-      </span>
-      <div>
-        <DeleteOutlined
-          onClick={() => removeExercise(exercise.id)}
-          className="delete-icon"
-        />
-        <CheckCircleOutlined
+        <span
+          style={style.complete}
           onClick={() => completeExercise(exercise.id)}
-          className="complete-icon"
-        />
-        <FormOutlined
-          onClick={() => setEdit({ id: exercise.id, value: exercise.text })}
-          className="edit-icon"
-        />
-      </div>
+        >
+          {exercise.text}
+        </span>
+      </Card>
     </div>
   ));
 }

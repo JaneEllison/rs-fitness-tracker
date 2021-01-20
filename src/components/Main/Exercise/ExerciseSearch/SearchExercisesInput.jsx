@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
+import { Input } from 'antd';
 
 const SearchExercises = (props) => {
   const [input, setInput] = useState('');
+
+  const { Search } = Input;
 
   const handleChange = (event) => {
     setInput(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleSubmit = () => {
     props.onSearch(input);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        id="video-search"
-        onChange={handleChange}
-        value={input}
+    <div className="search-input">
+      <Search
         type="text"
+        value={input}
         placeholder="Search exercise"
+        onChange={handleChange}
+        enterButton="SEARCH"
+        onSearch={handleSubmit}
       />
-      <button>SEARCH</button>
-    </form>
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ import {
   exerciseCompleteAction,
 } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
 import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
+import { Card } from 'antd';
 
 const ExerciseControlComponent = ({ day, exercises, selectedDay }) => {
   const dispatch = useDispatch();
@@ -23,17 +24,22 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay }) => {
   };
 
   return (
-    <div
-      className={day === selectedDay ? 'selected' : ''}
-      onClick={() => selectDay()}
-    >
-      <h2> {day} </h2>
-      <ExerciseActionComponent
-        day={day}
-        exercises={exercises}
-        completeExercise={completeExercise}
-        removeExercise={removeExercise}
-      />
+    <div onClick={() => selectDay()} style={{ padding: 3 }}>
+      <Card
+        className={
+          day === selectedDay ? 'exercise-content selected' : 'exercise-content'
+        }
+        size={'small'}
+        title={day}
+        style={{ width: 155, cursor: 'pointer', height: 260 }}
+      >
+        <ExerciseActionComponent
+          day={day}
+          exercises={exercises}
+          completeExercise={completeExercise}
+          removeExercise={removeExercise}
+        />
+      </Card>
     </div>
   );
 };

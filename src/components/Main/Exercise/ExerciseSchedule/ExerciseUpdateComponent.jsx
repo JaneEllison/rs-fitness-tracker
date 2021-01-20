@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Input } from 'antd';
 
 const ExerciseUpdateComponent = (props) => {
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
@@ -23,14 +24,15 @@ const ExerciseUpdateComponent = (props) => {
     <form action="" onSubmit={handleSubmit}>
       {props.edit ? (
         <>
-          <input
+          <Input
+            maxLength={40}
             type="text"
             placeholder="Update your exercise"
             value={input}
             name="text"
             onChange={handleChange}
           />
-          <button>Update</button>
+          <button className="button-update">Update</button>
         </>
       ) : (
         <></>

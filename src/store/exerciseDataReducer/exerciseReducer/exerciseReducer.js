@@ -6,7 +6,7 @@ import {
 } from "./exerciseReducerConstant";
 
 const initialState = {
-  "Day one": {
+  "Monday": {
     exercises: [
       {
         id: 11,
@@ -15,7 +15,52 @@ const initialState = {
       },
     ],
   },
-  "Day two": {
+  "Tuesday": {
+    exercises: [
+      {
+        id: 12,
+        text: "swim",
+        isComplete: false,
+      },
+    ],
+  },
+  "Wednesday": {
+    exercises: [
+      {
+        id: 12,
+        text: "swim",
+        isComplete: false,
+      },
+    ],
+  },
+  "Thursday": {
+    exercises: [
+      {
+        id: 12,
+        text: "swim",
+        isComplete: false,
+      },
+    ],
+  },
+  "Friday": {
+    exercises: [
+      {
+        id: 12,
+        text: "swim",
+        isComplete: false,
+      },
+    ],
+  },
+  "Saturday": {
+    exercises: [
+      {
+        id: 12,
+        text: "swim",
+        isComplete: false,
+      },
+    ],
+  },
+  "Sunday": {
     exercises: [
       {
         id: 12,
