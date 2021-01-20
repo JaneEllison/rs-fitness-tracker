@@ -8,6 +8,7 @@ import SignUpComponent from './Authentification/SignUpComponent';
 import AccountComponent from './Account/AccountComponent';
 import PrivateRoute from '../commonComponents/PrivateRoute';
 import SignOut from './Authentification/SignOut';
+import SignInComponent from './Authentification/SignInComponent';
 
 const MainComponent = () => {
   return (
@@ -22,6 +23,7 @@ const MainComponent = () => {
             <Route path="/search_food" render={() => <FoodComponent/>} />
             <Route path="/todo" render={() => <div>Todo</div>} />
             <Route path="/signup" render={() => <SignUpComponent/>} />
+            <Route path="/signin" render={() => <SignInComponent/>} />
             <Route path="/stats" render={() => <StatsComponent />} />
             <PrivateRoute path="/account" >
               <AccountComponent/>

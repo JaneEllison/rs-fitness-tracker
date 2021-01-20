@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from "react-router-dom";
+import {GoogleOutlined} from '@ant-design/icons';
 
 const SignInWithGoogleComponent = () => {
 
@@ -27,7 +28,7 @@ const SignInWithGoogleComponent = () => {
           signInWithGoogle();
         }}
       >
-        Sign In with Google
+        Sign In with Google <GoogleOutlined />
       </button>
     </div>
   )

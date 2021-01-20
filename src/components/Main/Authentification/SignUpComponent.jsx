@@ -2,18 +2,28 @@ import { Form, Input, Button } from 'antd';
 import React from 'react';
 import signUpComponentLayout from '../../../config/signUpComponentLayout';
 import SignInWithGoogleComponent from './SignInWithGoogleComponent';
-import { useFirestore } from "react-redux-firebase";
+import { useFirebase } from "react-redux-firebase";
 import { useSelector } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 const SignUpComponent = () => {
   const {layout, tailLayout} = signUpComponentLayout;
 
-  const firestore = useFirestore();
+  const firebase = useFirebase();
+  const history = useHistory();
 
   const firebaseData = useSelector((state) => state);
   console.log(firebaseData);
   const onFinish = (values) => {
     console.log('Success:', values);
+    const {email, password} = values;
+    firebase.createUser(
+      {
+        email, password
+      },
+      {
+        email, displayName: '', avatarURL: '',
+      }).then(history.push('/account'))
   };
     return (
       <div>
