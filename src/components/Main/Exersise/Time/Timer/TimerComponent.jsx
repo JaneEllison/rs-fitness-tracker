@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {  Modal  } from 'antd';
 import TimerCountComponent from './TimerCount/TimerCountComponent';
 import TimerInputComponent from './TimerInput/TimerInputComponent';
+import TimerButtonsComponent from './TimerButtons/TimerButtonsComponent';
 
+const TimerComponent = ({ playAudio, setAudio }) => {
 
-const TimerComponent = ({playAydio}) => {
   const [ allTimeSeconds, setAllTimeSeconds ] = useState(0)
   const [ currentSeconds, setCurrentSeconds ] = useState(0);
   const [ currentMinutes, setCurrentMinutes ] = useState(0);
@@ -41,9 +42,12 @@ const TimerComponent = ({playAydio}) => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    setTimerSeconds(allTimeSeconds)
+    setTimerSeconds(allTimeSeconds);
     setIsRunningTimer(true);
+    setAudio('./example.mp3');
+    playAudio();
   };
+
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -52,7 +56,8 @@ const TimerComponent = ({playAydio}) => {
     setIsRunningTimer(false);
     setTimerSeconds(0);
     showModal();
-    playAydio('./done.mp3');
+    setAudio('./done.mp3', false);
+    playAudio();
   }
 
   const changeCurrentTime = (minutes, seconds) => {
@@ -60,8 +65,12 @@ const TimerComponent = ({playAydio}) => {
     setCurrentSeconds(seconds);
   }
 
-  const isTimerStarted = (state) => {
-    setIsRunningTimer(state);
+  const timerStarted = () => {
+    setIsRunningTimer(true);
+  }
+
+  const timerStoped = () => {
+    setIsRunningTimer(false);
   }
 
   return (
@@ -84,20 +93,33 @@ const TimerComponent = ({playAydio}) => {
           />
           <p>Time is up!</p>
         </Modal>
-        </>
+      </>
         <TimerInputComponent
           startTimer = {startTimer}
           changeCurrentTime = {changeCurrentTime}
           currentMinutes = {currentMinutes}
           currentSeconds = {currentSeconds}
-          isTimerStarted = {isTimerStarted}
-          isRunningTimer = {isRunningTimer}
+          timerStarted = {timerStarted}
+          setAudio = {setAudio}
+          playAudio = {playAudio}
         />
         <TimerCountComponent 
           seconds = {timerSeconds}
           lineTimer = {lineTimer}
         />
       </div>
+      <TimerButtonsComponent
+          startTimer = {startTimer}
+          changeCurrentTime = {changeCurrentTime}
+          currentMinutes = {currentMinutes}
+          currentSeconds = {currentSeconds}
+          timerStarted = {timerStarted}
+          timerStoped = {timerStoped}
+          isRunningTimer = {isRunningTimer}
+          setAudio = {setAudio}
+          playAudio = {playAudio}
+          allTimeSeconds = {allTimeSeconds}
+        />
     </div>
   )
 }

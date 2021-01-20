@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Tooltip, Button, Space, Card } from 'antd';
-import { CaretRightOutlined, PauseOutlined, PoweroffOutlined } from '@ant-design/icons';
+import { CaretRightOutlined, PauseOutlined, PoweroffOutlined, SoundOutlined } from '@ant-design/icons';
 
 
-const StopwatchComponent = ({playAudio}) => {
+const StopwatchComponent = ({setAudio, playAudio}) => {
   const [stopwatchSeconds, setStopwatchSeconds] = useState(0);
   const [isRunningStopwatch, setIsRunningStopwatch] = useState(false);
-  const [memoryOfValues, setMemoryOfValues] = useState([])
+  const [memoryOfValues, setMemoryOfValues] = useState([]);
 
   let minutes = Math.floor(stopwatchSeconds / 60);
   let seconds = Math.floor(stopwatchSeconds % 60);
@@ -28,10 +28,6 @@ const StopwatchComponent = ({playAudio}) => {
     }]))
   };
 
-  const isStopwatchStarted = (state) => {
-    setIsRunningStopwatch(state);
-  }
-
   const deletePreviousValue = () => {
     if(memoryOfValues.length >= 3) {
       memoryOfValues.shift();
@@ -40,6 +36,20 @@ const StopwatchComponent = ({playAudio}) => {
     return memoryOfValues;
   }
 
+  const stopStopwatch = () => {
+    setIsRunningStopwatch(false);
+    deletePreviousValue();
+    addValuesOfSeconds(stopwatchSeconds);
+    setAudio('./done.mp3', false);
+    playAudio();
+    setStopwatchSeconds(0);
+  }
+
+  const [ sound, setSound ] = useState(true);
+
+  const toggleButtons = () => {
+    setSound(!sound)
+  }
 
   return (
     <div className="stopwatch-wrapper">
@@ -64,7 +74,10 @@ const StopwatchComponent = ({playAudio}) => {
                   type="primary" 
                   shape="circle" 
                   icon={<PauseOutlined />} 
-                  onClick={() => isStopwatchStarted(false)}
+                  onClick={() => {
+                    setIsRunningStopwatch(false)
+                    playAudio()
+                  }}
                 />
               </Tooltip> 
             : <Tooltip title="Start">
@@ -72,7 +85,11 @@ const StopwatchComponent = ({playAudio}) => {
                   type="primary" 
                   shape="circle" 
                   icon={<CaretRightOutlined />}
-                  onClick={() => isStopwatchStarted(true)}
+                  onClick={() => {
+                    setIsRunningStopwatch(true)
+                    setAudio('./example2.mp3')
+                    playAudio()
+                  }}
                 />
               </Tooltip>
         }
@@ -81,16 +98,34 @@ const StopwatchComponent = ({playAudio}) => {
             type="primary" 
             shape="circle" 
             icon={<PoweroffOutlined />}
-            onClick={() => {
-              isStopwatchStarted(false);
-              deletePreviousValue();
-              addValuesOfSeconds(stopwatchSeconds);
-              // playAudio('./done.mp3');
-              setStopwatchSeconds(0);
-            }}
+            onClick={stopStopwatch}
           />
         </Tooltip>
-        
+        {
+        (sound)
+          ? <Tooltip title="Sound off">
+              <Button 
+                type="primary"
+                shape="circle"
+                icon={<SoundOutlined />}
+                onClick={() => {
+                  playAudio()
+                  toggleButtons();
+                }}
+              />
+            </Tooltip>
+          : <Tooltip title="Sound on">
+              <Button 
+                type="primary"
+                shape="circle"
+                icon={<SoundOutlined />}
+                onClick={() => {
+                  playAudio()
+                  toggleButtons();
+                }}
+              />
+            </Tooltip>
+        }
       </div>
       <Space direction="vertical">
         <Card title="Time" style={{ width: 200, height:215 }}>
