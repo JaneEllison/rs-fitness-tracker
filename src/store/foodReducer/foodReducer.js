@@ -8,7 +8,7 @@ const initialState = {
 const foodReducer = (state=initialState, action) => {
   switch(action.type){
     case FETCH_FOOD_DATA:
-      return {...state, food: action.payload};
+      return {...state, food: action.payload.foods[0]};
     default:
       return {...state};
   }
@@ -24,7 +24,7 @@ export const fetchFoodDataAC = (data) => {
 export const getSearchDataFromAPI =  (query) => {
   return async (dispatch) => {
     const response = await makeQueryToSearchFood(query);
-    dispatch(fetchFoodDataAC(response));
+    response && dispatch(fetchFoodDataAC(response));
   }
 };
 

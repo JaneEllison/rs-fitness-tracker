@@ -8,6 +8,10 @@ const routes = [
     textName: 'Exercise',
   },
   {
+    path: '/stats',
+    textName: 'Stats',
+  },
+  {
     path: '/',
     textName: 'Default',
   },
