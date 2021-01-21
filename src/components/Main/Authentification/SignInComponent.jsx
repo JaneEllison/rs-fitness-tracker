@@ -15,7 +15,11 @@ const SignInComponent = () => {
     firebase.login(
       {
         email, password
-      }).then(history.push('/account'))
+      }).then(
+        history.push('/account')
+    ).catch(() => {
+      alert('There is no user with such credentials');
+    })
   };
 
   return (
