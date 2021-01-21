@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Tooltip, Button } from 'antd';
 import { CaretRightOutlined, PauseOutlined, PoweroffOutlined, SoundOutlined } from '@ant-design/icons';
-import { PlaylistContext } from './PlayList';
 
 
-const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, changeSeconds, addValuesOfSeconds }) => {
+const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, changeSeconds, 
+  deletePreviousValue, addValuesOfSeconds }) => {
   let audioPlayer;
 
   const [ isPlaying, setIsPlaying] = useState(false);
@@ -48,6 +48,7 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
   };
   
   const stopStopwatch = () => {
+    deletePreviousValue();
     addValuesOfSeconds();
     setIsRunningStopwatch(false);
     changeSeconds(0);
@@ -68,7 +69,6 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
         preload="metadata"
       >
         <source src='example2.mp3' type="audio/ogg" />
-        Ooops, your browser is sooo old.
       </audio>
       {
         (isRunningStopwatch && isPlaying)

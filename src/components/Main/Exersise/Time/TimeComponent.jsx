@@ -46,8 +46,7 @@ const TimeComponent = () => {
               setAudio={setAudio}
               playAudio={playAudio}
             />
-          : <StopwatchComponent
-            />
+          : <StopwatchComponent />
           }
         </Row>
       </Col>

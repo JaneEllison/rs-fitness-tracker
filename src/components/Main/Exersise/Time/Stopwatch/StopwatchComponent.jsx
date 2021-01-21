@@ -19,13 +19,13 @@ const StopwatchComponent = () => {
     }]))
   };
 
-  // const deletePreviousValue = () => {
-  //   if(memoryOfValues.length >= 3) {
-  //     memoryOfValues.shift();
-  //     setMemoryOfValues(memoryOfValues);
-  //   }
-  //   return memoryOfValues;
-  // }
+  const deletePreviousValue = () => {
+    if(memoryOfValues.length >= 3) {
+      memoryOfValues.shift();
+      setMemoryOfValues(memoryOfValues);
+    }
+    return memoryOfValues;
+  }
 
   return (
     <div className="stopwatch-wrapper">
@@ -39,6 +39,7 @@ const StopwatchComponent = () => {
         setIsRunningStopwatch={setIsRunningStopwatch}
         changeSeconds={changeSeconds}
         addValuesOfSeconds={addValuesOfSeconds}
+        deletePreviousValue={deletePreviousValue}
       />
       <Space direction="vertical">
         <Card title="Time" style={{ width: 200, height:215 }}>
