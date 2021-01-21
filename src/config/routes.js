@@ -5,8 +5,8 @@ const routes = {
       textName: 'Search food',
     },
     {
-      path: '/todo',
-      textName: 'Todo list',
+      path: '/exercise',
+      textName: 'Exercise',
     },
     {
       path: '/stats',
@@ -40,6 +40,5 @@ const routes = {
     },
   ],
 };
-
 
 export default routes;
