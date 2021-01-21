@@ -6,7 +6,7 @@ import TimerComponent from './Timer/TimerComponent';
 
 const TimeComponent = () => {
   const [ isTimerMode, setIsTimerMode ] = useState(true);
-  
+
   let audio;
 
   const setAudio = (url, loop) => {
@@ -23,30 +23,33 @@ const TimeComponent = () => {
   }
 
   return (
-    <div className = {style.container}>
-      <Col span={20}
-      >
-        <Switch 
-          checkedChildren="Timer" 
-          unCheckedChildren="Stopwatch" 
-          defaultChecked
-          onChange={() => setIsTimerMode(!isTimerMode)}
-        />
+    <div>
+      <Col>
+        <Row
+          justify='center'
+          align='center'
+        >
+          <Switch className = {style.switch}
+            checkedChildren="Timer" 
+            unCheckedChildren="Stopwatch" 
+            defaultChecked
+            onChange={() => setIsTimerMode(!isTimerMode)}
+          />
+        </Row>
+        <Row
+          justify='center'
+          align='center'
+        >
         {
           (isTimerMode)
-          ? <div className = 'timer-container'>
-              <TimerComponent
-                setAudio={setAudio}
-                playAudio={playAudio}
-              />
-            </div>
-          : <div className = 'stopwatch-container'>
-              <StopwatchComponent 
-                setAudio={setAudio}
-                playAudio={playAudio}
-              />
-            </div>
-        }
+          ? <TimerComponent
+              setAudio={setAudio}
+              playAudio={playAudio}
+            />
+          : <StopwatchComponent
+            />
+          }
+        </Row>
       </Col>
     </div>
   );

@@ -1,24 +1,18 @@
-/* .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
-.timer-container, .stopwatch-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  /* background: url(bg1.jpg);
-  background-size: cover; */
-  padding: 20px 40px;
+.switch {
+  width: 10%;
 }
 
-/* .timer-container {
-  display: none;
-} */
+.stopwatchTime {
+  font-size: 60px;
+}
+
+
+
+
+
+
+
+
 
 .timer-buttons_component {
   display: flex;
@@ -59,8 +53,4 @@
 
 .checked {
   background-color: rgb(212, 143, 197);
-}
-
-.time {
-  font-size: 60px;
 }
