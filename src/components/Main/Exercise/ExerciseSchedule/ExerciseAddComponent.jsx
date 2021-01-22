@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ExerciseListComponent from './ExerciseListComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { exerciseAddAction } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
@@ -11,9 +11,9 @@ const List = () => {
   const days = useSelector((state) => state.exerciseReducer);
   const defaultDay = Object.keys(days)[0];
 
-  if (selectedDay === null) {
-    dispatch(selectDayAction(defaultDay));
-  }
+  useEffect(() => {
+    dispatch(selectDayAction(defaultDay))
+  }, [dispatch, defaultDay]);
 
   const globalAddExercise = (exercise) => {
     dispatch(
@@ -35,7 +35,7 @@ const List = () => {
       {selectedDay !== null ? (
         <ExerciseListComponent
           selectedDay={selectedDay}
-          onSubmit={globalAddExercise}
+          globalSetExercise={globalAddExercise}
         />
       ) : null}
     </Row>

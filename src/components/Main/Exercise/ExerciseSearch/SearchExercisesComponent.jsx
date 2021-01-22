@@ -1,41 +1,31 @@
 import { Row } from 'antd';
-import React, { useState } from 'react';
-import youtubeApi from '../../../../api/makeQueryToSearchYoutube';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSearchDataYoutubeAPI, selectVideoAction } from '../../../../store/exerciseDataReducer/exerciseSearchReducer/exerciseSearchReducer';
 import SearchExercisesInput from './SearchExercisesInput';
 import SearchExercisesList from './SearchExercisesList';
 import SearchExercisesPlayer from './SearchExercisesPlayer';
 
 const SearchExercisesComponent = () => {
-  const [search, setSearch] = useState({
-    videoMetaInfo: [],
-    selectedVideoId: null,
-  });
+  const dispatch = useDispatch();
+  const youtubeData = useSelector((state) => state.exerciseSearchReducer)
 
   const onVideoSelected = (videoId) => {
-    setSearch({ ...search, selectedVideoId: videoId });
+    dispatch(selectVideoAction(videoId));
   };
 
-  const onSearch = async (keyword) => {
-    const response = await youtubeApi.get('/search', {
-      params: {
-        q: keyword,
-      },
-    });
-
-    setSearch({
-      videoMetaInfo: response.data.items,
-      selectedVideoId: response.data.items[0].id.videoId,
-    });
+  const onSearch = (keyword) => {
+    dispatch(getSearchDataYoutubeAPI(keyword))
   };
 
   return (
     <div>
       <SearchExercisesInput onSearch={onSearch} />
       <Row justify="space-between">
-        <SearchExercisesPlayer videoId={search.selectedVideoId} />
+        <SearchExercisesPlayer videoId={youtubeData.selectedVideoId} />
         <SearchExercisesList
           onVideoSelected={onVideoSelected}
-          data={search.videoMetaInfo}
+          data={youtubeData.videoMetaInfo}
         />
       </Row>
     </div>

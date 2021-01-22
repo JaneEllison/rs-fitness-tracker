@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
 import { Row, Col, Select, Input } from 'antd';
 
-const ExerciseAddComponent = (props) => {
+const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
   const [input, setInput] = useState('');
 
   const dispatch = useDispatch();
   const days = useSelector((state) => Object.keys(state.exerciseReducer));
 
-  let currentSelectDay = props.selectedDay || days;
+  let currentSelectDay = selectedDay || days;
 
   const { Option } = Select;
   const { Search } = Input;
@@ -18,8 +18,8 @@ const ExerciseAddComponent = (props) => {
     setInput(event.target.value);
   };
 
-  const handleSubmit = () => {
-    props.onSubmit({
+  const handleSubmitExercise = () => {
+    globalSetExercise({
       id: Math.floor(Math.random() * 10000),
       title: input,
       isComplete: false,
@@ -45,7 +45,7 @@ const ExerciseAddComponent = (props) => {
           </Option>
         ))}
       </Select>
-      <Row onSubmit={handleSubmit}>
+      <Row>
         <Col>
           <Search
             type="text"
@@ -54,7 +54,7 @@ const ExerciseAddComponent = (props) => {
             name="text"
             onChange={handleChange}
             enterButton="ADD"
-            onSearch={handleSubmit}
+            onSearch={handleSubmitExercise}
           />
         </Col>
       </Row>

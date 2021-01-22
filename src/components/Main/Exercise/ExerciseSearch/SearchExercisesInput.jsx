@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
 
-const SearchExercises = (props) => {
+const SearchExercises = ({ onSearch }) => {
   const [input, setInput] = useState('');
 
   const { Search } = Input;
@@ -10,8 +10,8 @@ const SearchExercises = (props) => {
     setInput(event.target.value);
   };
 
-  const handleSubmit = () => {
-    props.onSearch(input);
+  const handleSubmitKeyword = () => {
+    onSearch(input);
   };
 
   return (
@@ -22,7 +22,7 @@ const SearchExercises = (props) => {
         placeholder="Search exercise"
         onChange={handleChange}
         enterButton="SEARCH"
-        onSearch={handleSubmit}
+        onSearch={handleSubmitKeyword}
       />
     </div>
   );

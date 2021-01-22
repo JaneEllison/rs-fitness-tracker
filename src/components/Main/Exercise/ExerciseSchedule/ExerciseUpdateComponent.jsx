@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
 
-const ExerciseUpdateComponent = (props) => {
-  const [input, setInput] = useState(props.edit ? props.edit.value : '');
-
+const ExerciseUpdateComponent = ({ edit, onSubmit }) => {
+  const [input, setInput] = useState(edit ? edit.value : '');
   const handleChange = (event) => {
     setInput(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const submitExerciseUpdate = (event) => {
     event.preventDefault();
 
-    props.onSubmit({
+    onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
       isComplete: false,
@@ -21,8 +20,8 @@ const ExerciseUpdateComponent = (props) => {
   };
 
   return (
-    <form action="" onSubmit={handleSubmit}>
-      {props.edit ? (
+    <form action="" onSubmit={submitExerciseUpdate}>
+      {edit ? (
         <>
           <Input
             maxLength={40}
