@@ -19,9 +19,11 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
   };
 
   const handleSubmitExercise = () => {
+    if (input.trim() === '') return;
+
     globalSetExercise({
       id: Math.floor(Math.random() * 10000),
-      title: input,
+      title: input.trim(),
       isComplete: false,
     });
 

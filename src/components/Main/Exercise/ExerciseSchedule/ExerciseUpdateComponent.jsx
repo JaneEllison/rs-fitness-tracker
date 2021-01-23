@@ -24,7 +24,6 @@ const ExerciseUpdateComponent = ({ edit, onSubmit }) => {
       {edit ? (
         <>
           <Input
-            maxLength={40}
             type="text"
             placeholder="Update your exercise"
             value={input}

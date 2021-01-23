@@ -44,3 +44,19 @@
 .search-video_empty {
   margin-left: 100px;
 }
+
+.exercise-text {
+  word-wrap: break-word;
+}
+
+.exercise-content{
+  overflow: auto;
+}
+
+.exercise-content::-webkit-scrollbar{
+  width: 1px;
+}
+
+.exercise-row {
+  margin-bottom: 1px;
+}

@@ -51,6 +51,7 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
         ]}
       >
         <span
+          className='exercise-text'
           style={style.complete}
           onClick={() => completeExercise(exercise.id)}
         >
