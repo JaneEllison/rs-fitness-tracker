@@ -10,27 +10,27 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
   const [ isPlaying, setIsPlaying] = useState(false);
   const [ isSoundOn, setIsSoundOn ] = useState(true);
 
-  // const [ sound, setSound ] = useState('');
+  const [ sound, setSound ] = useState('./example2.mp3');
+// useRef
+
 
   const initPlayer = () => {
     audioPlayer = document.getElementById('audioPlayer');
   };
   const handlePlayAudio = () => {
     if (audioPlayer.paused || audioPlayer.ended) {
-      audioPlayer.play();
       setIsPlaying(true);
+      setTimeout(function () {      
+        audioPlayer.play();
+     }, 150);
+      // audioPlayer.play();
     } else {
-      audioPlayer.pause();
       setIsPlaying(false);
+      setTimeout(function () {      
+        audioPlayer.pause();
+      }, 150);
     }
   };
-
-    // useEffect(
-    //   () => {
-    //     handlePlayAudio();
-    //   },
-    //   [sound]
-    // );
   
   useLayoutEffect(() => {
     initPlayer();
@@ -38,14 +38,21 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
 
 
   const startStopwatch = () => {
-    setIsRunningStopwatch(true);
+    if(isPlaying) {
+      setSound('./example2.mp3');
+    }
     handlePlayAudio()
+    setIsRunningStopwatch(true);
+    setIsPlaying(true)
   };
 
   const pauseStopwatch = () => {
     setIsRunningStopwatch(false);
     handlePlayAudio()
   };
+
+  // initPlayer();
+  // console.log(audioPlayer, sound);
   
   const stopStopwatch = () => {
     deletePreviousValue();
@@ -54,7 +61,18 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
     changeSeconds(0);
     audioPlayer.pause();
     audioPlayer.currentTime = 0.0;
+    if(isPlaying) {
+      setSound('./done.mp3');
+    }
+    initPlayer();
+    handlePlayAudio()
     setIsPlaying(false);
+
+  //   setTimeout(function () {      
+  //     audioPlayer.play();
+  //  }, 150);
+
+    // handlePlayAudio();
   };
 
   const mutedSound = () => {
@@ -67,11 +85,10 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
       <audio
         id="audioPlayer"
         preload="metadata"
-      >
-        <source src='example2.mp3' type="audio/ogg" />
-      </audio>
+        src={sound} 
+        type="audio/ogg" />
       {
-        (isRunningStopwatch && isPlaying)
+        (isPlaying)
           ? <Tooltip title="Pause">
               <Button
                 type="primary" 

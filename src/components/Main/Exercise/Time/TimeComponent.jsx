@@ -26,7 +26,7 @@ const TimeComponent = () => {
     <div>
       <Col>
         <Row
-          justify='center'
+          justify='start'
           align='center'
         >
           <Switch className = {style.switch}
@@ -37,8 +37,8 @@ const TimeComponent = () => {
           />
         </Row>
         <Row
-          justify='center'
-          align='center'
+          justify='start'
+          align='left'
         >
         {
           (isTimerMode)

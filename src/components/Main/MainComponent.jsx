@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 import ExerciseComponent from './Exercise/ExerciseComponent'
 import StatsComponent from './Stats/StatsComponent';
 import FoodComponent from './Food/FoodComponent';
-import ExersiseComponent from './Exersice/ExersiseComponent';
 import { Row, Col } from 'antd';
 
 const MainComponent = () => {

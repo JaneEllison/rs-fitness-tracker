@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Space, Card } from 'antd';
 import StopwatchCountComponent from './StopwatchCount/StopwatchCountComponent';
 import StopwatchButtonsComponent from './StopwatchButtons/StopwatchButtonsComponent';
+import StopwatchListComponent from './StopwatchList/StopwatchListComponent';
 
 const StopwatchComponent = () => {
   const [isRunningStopwatch, setIsRunningStopwatch] = useState(false);
@@ -41,26 +41,9 @@ const StopwatchComponent = () => {
         addValuesOfSeconds={addValuesOfSeconds}
         deletePreviousValue={deletePreviousValue}
       />
-      <Space direction="vertical">
-        <Card title="Time" style={{ width: 200, height:215 }}>
-          <div>
-            {memoryOfValues.map((value) => {
-            let min = Math.floor(value.secondsValue / 60);
-            let sec = Math.floor(value.secondsValue % 60);
-
-            return <p key={value.id}>{
-              (min<10 && sec<10)
-                ? `0${min}:0${sec}` :
-              (min<10)
-                ? `0${min}:${sec}` :
-              (sec<10)
-                ? `${min}:0${sec}`
-                : `${min}:${sec}`
-            }</p>
-            })}
-          </div>
-        </Card>
-      </Space>
+      <StopwatchListComponent
+        memoryOfValues={memoryOfValues}
+      />
     </div>
   )
 }
