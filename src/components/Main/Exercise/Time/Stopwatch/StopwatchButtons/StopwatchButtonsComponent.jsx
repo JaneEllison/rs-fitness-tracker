@@ -11,7 +11,6 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
   const [ isSoundOn, setIsSoundOn ] = useState(true);
 
   const [ sound, setSound ] = useState('./example2.mp3');
-// useRef
 
 
   const initPlayer = () => {
@@ -20,15 +19,14 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
   const handlePlayAudio = () => {
     if (audioPlayer.paused || audioPlayer.ended) {
       setIsPlaying(true);
-      setTimeout(function () {      
-        audioPlayer.play();
-     }, 150);
-      // audioPlayer.play();
+      setTimeout(function () {
+      audioPlayer.play();
+    }, 0);
     } else {
       setIsPlaying(false);
       setTimeout(function () {      
         audioPlayer.pause();
-      }, 150);
+      }, 0);
     }
   };
   
@@ -38,41 +36,28 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
 
 
   const startStopwatch = () => {
-    if(isPlaying) {
-      setSound('./example2.mp3');
-    }
-    handlePlayAudio()
     setIsRunningStopwatch(true);
     setIsPlaying(true)
+    setSound('./example2.mp3');
+    handlePlayAudio()
   };
 
   const pauseStopwatch = () => {
-    setIsRunningStopwatch(false);
     handlePlayAudio()
+    setIsRunningStopwatch(false);
   };
 
-  // initPlayer();
-  // console.log(audioPlayer, sound);
-  
   const stopStopwatch = () => {
     deletePreviousValue();
     addValuesOfSeconds();
     setIsRunningStopwatch(false);
     changeSeconds(0);
-    audioPlayer.pause();
-    audioPlayer.currentTime = 0.0;
-    if(isPlaying) {
-      setSound('./done.mp3');
-    }
+    setSound('./done.mp3');
     initPlayer();
-    handlePlayAudio()
+    setTimeout(function () {      
+      audioPlayer.play();
+    }, 0);
     setIsPlaying(false);
-
-  //   setTimeout(function () {      
-  //     audioPlayer.play();
-  //  }, 150);
-
-    // handlePlayAudio();
   };
 
   const mutedSound = () => {
