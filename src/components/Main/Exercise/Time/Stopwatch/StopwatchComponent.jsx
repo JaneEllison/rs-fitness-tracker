@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import style from '../Time.module.css';
 import StopwatchCountComponent from './StopwatchCount/StopwatchCountComponent';
 import StopwatchButtonsComponent from './StopwatchButtons/StopwatchButtonsComponent';
 import StopwatchListComponent from './StopwatchList/StopwatchListComponent';
@@ -30,7 +29,7 @@ const StopwatchComponent = () => {
   }
 
   return (
-    <Row gutter={[0, 20]} align="bottom">
+    <Row gutter={[0, 16]} align="bottom">
       <Col>
         <StopwatchListComponent
           memoryOfValues={memoryOfValues}
@@ -38,7 +37,9 @@ const StopwatchComponent = () => {
       </Col>
       <Col push="2">
         <Row className='col-sm-2'>
-          <div className='sp sp-wave'>
+          <div className={
+            isRunningStopwatch ? 'sp sp-wave' : 'sp'
+          }>
             <StopwatchCountComponent
             isRunningStopwatch={isRunningStopwatch}
             changeSeconds={changeSeconds}

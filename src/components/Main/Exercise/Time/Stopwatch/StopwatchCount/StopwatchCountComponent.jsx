@@ -19,7 +19,7 @@ const StopwatchCountComponent = ({changeSeconds, stopwatchSeconds, isRunningStop
 
   return (
     <div className="time-count">
-      <Title>
+      <Title level={2}>
         {
           (minutes<10 && seconds<10)
             ? `0${minutes}:0${seconds}` :

@@ -5,7 +5,6 @@ import TimerInputComponent from './TimerInput/TimerInputComponent';
 import TimerButtonsComponent from './TimerButtons/TimerButtonsComponent';
 
 const TimerComponent = ({ playAudio, setAudio }) => {
-
   const [ allTimeSeconds, setAllTimeSeconds ] = useState(0)
   const [ currentSeconds, setCurrentSeconds ] = useState(0);
   const [ currentMinutes, setCurrentMinutes ] = useState(0);

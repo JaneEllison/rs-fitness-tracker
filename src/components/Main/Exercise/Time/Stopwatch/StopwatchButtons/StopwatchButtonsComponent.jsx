@@ -34,7 +34,6 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
     initPlayer();
   });
 
-
   const startStopwatch = () => {
     setIsRunningStopwatch(true);
     setIsPlaying(true)
