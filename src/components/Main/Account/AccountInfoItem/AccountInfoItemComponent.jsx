@@ -1,28 +1,37 @@
 import React, {useState} from 'react';
-import { Button, Descriptions, Input } from 'antd';
+import { Button, Input } from 'antd';
 import { useFirebase } from 'react-redux-firebase';
 import {EditOutlined} from '@ant-design/icons';
 
-const AccountInfoItemComponent = ({label, info, paramName}) => {
+const AccountInfoItemComponent = ({info, paramName, updateCallBack}) => {
+  const [newData, changeNewData] = useState(info);
   const [inputOpen, toggleInputOpen] = useState(false);
+
   const firebase = useFirebase();
-
-  const changeData = (value) => {
-    firebase.push('users', {[paramName]: value});
+  const changeData = (event) => {
+    updateCallBack(paramName, event.target.value, firebase);
+    toggleInputOpen(!inputOpen);
   };
+
   return (
-    <Descriptions.Item label={label}>
+    <div>
       {
-        toggleInputOpen
-        ? <Input  />
-        : <Button onClick={changeData}>
+        inputOpen
+        ? <Input
+            defaultValue={newData}
+            onChange={(value)=>changeNewData(value)}
+            onPressEnter={changeData}
+            onBlur={changeData}
+          />
+        :
+          <span>
             {info}
-            <EditOutlined onClick={toggleInputOpen} />
-          </Button>
+            <Button onClick={()=>toggleInputOpen(!inputOpen)} >
+              <EditOutlined />
+            </Button>
+          </span>
       }
-
-
-    </Descriptions.Item>
+    </div>
   );
 };
 

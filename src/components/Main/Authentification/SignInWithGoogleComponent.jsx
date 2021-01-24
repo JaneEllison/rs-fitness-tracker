@@ -1,20 +1,24 @@
 import React from 'react';
-import { useFirebase } from 'react-redux-firebase';
+import { useFirebase, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 import { useHistory } from "react-router-dom";
 import {GoogleOutlined} from '@ant-design/icons';
+import { useSelector } from 'react-redux';
+import authSelector from '../../../store/Selectors/authSelector';
 
 const SignInWithGoogleComponent = () => {
-
+  useFirestoreConnect(['physicsChars']);
   const firebase = useFirebase();
   const history = useHistory();
-  console.log(firebase);
+  const firestore = useFirestore();
+
+  const {uid} = useSelector(authSelector);
+
   const signInWithGoogle = () => {
     firebase
       .login({
         provider: "google",
         type: "popup",
-      })
-      .then(() => {
+      }).then(() => {
         history.push("/account");
       });
   };

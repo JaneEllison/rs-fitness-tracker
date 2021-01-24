@@ -16,6 +16,21 @@ const firebaseConfig = {
 export const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true,
+  profileFactory: (userData, profileData, firebase) => { // how profiles are stored in database
+    const { displayName, email, avatarUrl } = profileData;
+    console.log(userData, profileData, firebase);
+    return {
+      displayName,
+      email,
+      avatarUrl,
+      userPhysics: {
+        age: "",
+        gender: "",
+        height: "",
+        weight: "",
+      },
+    }
+  },
   createFirestoreInstance,
 };
 

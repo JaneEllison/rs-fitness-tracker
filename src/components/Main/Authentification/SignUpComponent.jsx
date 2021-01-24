@@ -13,16 +13,16 @@ const SignUpComponent = () => {
   const history = useHistory();
 
   const firebaseData = useSelector((state) => state);
-  console.log(firebaseData);
-  const onFinish = (values) => {
-    console.log('Success:', values);
-    const {email, password} = values;
+
+  const createUser = (values) => {
+
+    const {email, password, displayName} = values;
     firebase.createUser(
       {
         email, password
       },
       {
-        email, displayName: '', avatarURL: '',
+        displayName, email, avatarUrl: '',
       }).then(history.push('/account'))
   };
     return (
@@ -33,7 +33,7 @@ const SignUpComponent = () => {
           initialValues={{
             remember: true,
           }}
-          onFinish={onFinish}
+          onFinish={createUser}
         >
           <Form.Item
             label="E-mail"
@@ -51,7 +51,18 @@ const SignUpComponent = () => {
           >
             <Input />
           </Form.Item>
-
+          <Form.Item
+            label="Username"
+            name="displayName"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter your username!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
           <Form.Item
             label="Password"
             name="password"

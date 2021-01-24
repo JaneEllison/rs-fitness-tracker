@@ -10,7 +10,7 @@ const SignInComponent = () => {
   const firebase = useFirebase();
   const history = useHistory();
 
-  const onFinish = (values) => {
+  const authenticateUser = (values) => {
     const {email, password} = values;
     firebase.login(
       {
@@ -30,7 +30,7 @@ const SignInComponent = () => {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
+        onFinish={authenticateUser}
       >
         <Form.Item
           label="E-mail"
@@ -48,7 +48,6 @@ const SignInComponent = () => {
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           label="Password"
           name="password"
@@ -61,7 +60,6 @@ const SignInComponent = () => {
         >
           <Input.Password />
         </Form.Item>
-
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
             Sign In
