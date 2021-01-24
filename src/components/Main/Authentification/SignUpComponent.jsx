@@ -1,21 +1,36 @@
 import { Form, Input, Button } from 'antd';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import signUpComponentLayout from '../../../config/signUpComponentLayout';
 import SignInWithGoogleComponent from './SignInWithGoogleComponent';
 import { useFirebase } from "react-redux-firebase";
-import { useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import AuthErrorModalComponent from '../Account/AuthErrorModal/AuthErrorModalComponent';
+import { useSelector } from 'react-redux';
+import authErrorSelector from '../../../store/Selectors/authErrorSelector';
 
 const SignUpComponent = () => {
+  const [modalErrorMessage, setModalErrorMessage] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
   const {layout, tailLayout} = signUpComponentLayout;
+  const authError = useSelector(authErrorSelector);
 
   const firebase = useFirebase();
   const history = useHistory();
 
-  const firebaseData = useSelector((state) => state);
+  useEffect(() => {
+    if (authError) {
+      setModalErrorMessage(authError.message);
+      setModalVisible(true);
+    } else {
+      setModalVisible(false);
+    }
+  }, [authError]);
+
+  const showModal = () => {
+    setModalVisible(true);
+  };
 
   const createUser = (values) => {
-
     const {email, password, displayName} = values;
     firebase.createUser(
       {
@@ -23,10 +38,20 @@ const SignUpComponent = () => {
       },
       {
         displayName, email, avatarUrl: '',
-      }).then(history.push('/account'))
+      })
+      .then((response)=>{
+        console.log(response);
+        history.push('/account')
+      });
   };
-    return (
+
+  return (
       <div>
+        <AuthErrorModalComponent
+          errorMessage={modalErrorMessage}
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
         <Form
           {...layout}
           name="basic"

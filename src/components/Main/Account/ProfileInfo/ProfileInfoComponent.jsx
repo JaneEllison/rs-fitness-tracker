@@ -13,13 +13,12 @@ const ProfileInfoComponent = () => {
   return (
     <Descriptions title="User Info" column={1} bordered>
       {
-        authData.map((item, index) => {
+        authData.map((item) => {
           const { label, paramName } = item;
           const info = profile[paramName];
           return (
-            <Descriptions.Item key={index} label={label}>
+            <Descriptions.Item key={paramName} label={label}>
               <AccountInfoItemComponent
-                key={`${item}`}
                 label={label}
                 info={info}
                 paramName={paramName}

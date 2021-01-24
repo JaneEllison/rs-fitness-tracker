@@ -19,9 +19,8 @@ const UserPhysicsComponent = () => {
           const { label, paramName } = item;
           const info = userPhysics[paramName];
           return (
-            <Descriptions.Item label={label}>
+            <Descriptions.Item key={paramName} label={label}>
               <AccountInfoItemComponent
-                key={item}
                 label={label}
                 info={info}
                 paramName={paramName}
