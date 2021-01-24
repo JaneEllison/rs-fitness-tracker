@@ -4,9 +4,9 @@ import { useFirebase } from 'react-redux-firebase';
 import {EditOutlined} from '@ant-design/icons';
 
 const AccountInfoItemComponent = ({info, paramName, updateCallBack}) => {
+
   const [newData, changeNewData] = useState(info);
   const [inputOpen, toggleInputOpen] = useState(false);
-
   const firebase = useFirebase();
   const changeData = (event) => {
     updateCallBack(paramName, event.target.value, firebase);
@@ -19,7 +19,7 @@ const AccountInfoItemComponent = ({info, paramName, updateCallBack}) => {
         inputOpen
         ? <Input
             defaultValue={newData}
-            onChange={(value)=>changeNewData(value)}
+            onChange={(event)=>changeNewData(event.target.value)}
             onPressEnter={changeData}
             onBlur={changeData}
           />

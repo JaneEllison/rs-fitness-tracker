@@ -1,5 +1,5 @@
 const updateProfileData = (paramName, newValue, firebase) => {
-  firebase.updateProfile({userPhysics:{[paramName]: newValue}});
+  firebase.updateProfile({[paramName]: newValue});
 };
 
 export const updateUserPhysicsData = (paramName, newValue, firebase) => {
