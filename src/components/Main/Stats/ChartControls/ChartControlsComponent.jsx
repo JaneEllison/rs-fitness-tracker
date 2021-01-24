@@ -1,26 +1,37 @@
 import React from 'react';
-import { Checkbox } from 'antd';
-import statsChartLabels from './../../../../constants/statsChartLabels'; 
+import { Radio } from 'antd';
+import { VALUES, LABELS } from '../../../../config/statsRadioConfig';
 
 function ChartControlsComponent({
-  selectedFields, 
+  selectedField, 
   onChange,
-  goalWeight
+  goal: {
+    goalWeight,
+    goalCalories,
+  }
 }) {
-  const checkboxOptions = statsChartLabels.map((obj) => {
-    return {
-      ...obj,
-      disabled: obj.isGoal && goalWeight === false
-    };
-  });
-
-  return (
+  return (  
     <div>
-      <Checkbox.Group 
-        options={checkboxOptions}
-        defaultValue={selectedFields}
-        onChange={onChange}
-        />
+      <Radio.Group defaultValue={selectedField} onChange={(event) => onChange(event.target.value)}>
+        <Radio value={VALUES.WEIGHT}>
+          {LABELS.WEIGHT}
+        </Radio>
+        <Radio value={VALUES.WEIGHT_WITH_GOAL} disabled={!goalWeight}>
+          {LABELS.WEIGHT_WITH_GOAL}
+        </Radio>
+        <Radio value={VALUES.WEIGHT_WITH_CALORIES}>
+          {LABELS.WEIGHT_WITH_CALORIES}
+        </Radio>
+        <Radio value={VALUES.CALORIES}>
+          {LABELS.CALORIES}
+        </Radio>
+        <Radio value={VALUES.CALORIES_WITH_GOAL} disabled={!goalCalories}>
+          {LABELS.CALORIES_WITH_GOAL}
+        </Radio>
+        <Radio value={VALUES.WORKOUT_TIME}>
+          {LABELS.WORKOUT_TIME}
+        </Radio>
+      </Radio.Group>
     </div>
   )
 }
