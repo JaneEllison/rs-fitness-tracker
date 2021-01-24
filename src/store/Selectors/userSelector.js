@@ -22,8 +22,7 @@ export const userGoalSelector = createSelector(getUserGoal, (goal) => {
 });
 
 export const userDatasetSelector = createSelector(
-  getUserGoal, 
-  getUserHistory, 
-  (goal, history) => {
-    return {}
-});
+  getUserGoal,
+  getUserHistory,
+  (goal, history) => getUserDataset(goal, history),
+);
