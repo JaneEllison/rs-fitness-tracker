@@ -16,12 +16,12 @@ const UserPhysicsComponent = () => {
     <Descriptions title="User physics" column={1} bordered>
       {
         physicsData.map((item) => {
-          const { label, paramName, id } = item;
+          const { label, paramName } = item;
           const info = userPhysics[paramName];
           return (
             <Descriptions.Item label={label}>
               <AccountInfoItemComponent
-                key={id}
+                key={item}
                 label={label}
                 info={info}
                 paramName={paramName}

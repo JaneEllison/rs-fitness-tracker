@@ -19,7 +19,7 @@ const ProfileInfoComponent = () => {
           return (
             <Descriptions.Item key={index} label={label}>
               <AccountInfoItemComponent
-                key={`${index}`}
+                key={`${item}`}
                 label={label}
                 info={info}
                 paramName={paramName}
