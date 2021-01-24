@@ -6,14 +6,11 @@
   font-size: 60px;
 }
 
+.stapwatchValues:last-child {
+  font-size: 30px;
+}
 
-
-
-
-
-
-
-
+/* 
 .timer-buttons_component {
   display: flex;
   flex-direction: column;
@@ -53,4 +50,4 @@
 
 .checked {
   background-color: rgb(212, 143, 197);
-}
+} */

@@ -17,25 +17,13 @@ const TimeComponent = () => {
   };
 
   const playAudio = () => {
-    if(audio) {
+    if(audio){
       (audio.paused) ? audio.play() : audio.pause()
     }
   }
-
   return (
     <div>
       <Col>
-        <Row
-          justify='start'
-          align='center'
-        >
-          <Switch className = {style.switch}
-            checkedChildren="Timer" 
-            unCheckedChildren="Stopwatch" 
-            defaultChecked
-            onChange={() => setIsTimerMode(!isTimerMode)}
-          />
-        </Row>
         <Row
           justify='start'
           align='left'
@@ -48,6 +36,17 @@ const TimeComponent = () => {
             />
           : <StopwatchComponent />
           }
+        </Row>
+        <Row
+          justify='start'
+          align='left'
+        >
+          <Switch className = {style.switch}
+            checkedChildren="Timer"
+            unCheckedChildren="Stopwatch"
+            defaultChecked
+            onChange={() => setIsTimerMode(!isTimerMode)}
+          />
         </Row>
       </Col>
     </div>
