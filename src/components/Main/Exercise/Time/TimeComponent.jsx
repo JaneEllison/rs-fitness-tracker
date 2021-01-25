@@ -22,7 +22,7 @@ const TimeComponent = () => {
         </Row>
         <Row
           justify='start'
-          align='left'
+          align='center'
         >
           <Switch className = {style.switch}
             checkedChildren="Timer"

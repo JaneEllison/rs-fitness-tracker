@@ -29,24 +29,18 @@ const StopwatchComponent = () => {
   }
 
   return (
-    <Row gutter={[0, 16]} align="bottom">
+    <Row gutter={[0, 10]} align="bottom">
       <Col>
         <StopwatchListComponent
           memoryOfValues={memoryOfValues}
         />
       </Col>
-      <Col push="2">
-        <Row className='col-sm-2'>
-          <div className={
-            isRunningStopwatch ? 'sp sp-wave' : 'sp'
-          }>
-            <StopwatchCountComponent
-            isRunningStopwatch={isRunningStopwatch}
-            changeSeconds={changeSeconds}
-            stopwatchSeconds={stopwatchSeconds}
-          />
-          </div>
-        </Row>
+      <Col push="4">
+        <StopwatchCountComponent
+          isRunningStopwatch={isRunningStopwatch}
+          changeSeconds={changeSeconds}
+          stopwatchSeconds={stopwatchSeconds}
+        />
         <Row align="center">        
           <StopwatchButtonsComponent
             setIsRunningStopwatch={setIsRunningStopwatch}

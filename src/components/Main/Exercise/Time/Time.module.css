@@ -3,53 +3,19 @@
 }
 
 .stopwatchTime {
-  font-size: 60px;
+  padding-top: 10px;
 }
 
 .stopwatchValue:last-child {
   font-size: 28px;
 }
 
-.buttonStopwatch {
+.timeBtn {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 
-.timer-buttons_component {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 20px;
+.stopwatchCount {
+  margin-bottom: 40px;
 }
-
-.timer-button {
-  padding: 6px 12px;
-  width: 100%;
-  border:none;
-}
-
-.timer-component {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.play-icon {
-  width: 60px;
-}
-
-.music-player_component {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  padding: 40px 20px;
-}
-
-.checked {
-  background-color: rgb(212, 143, 197);
-} */

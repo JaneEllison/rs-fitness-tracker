@@ -1,13 +1,17 @@
-import { InputNumber, Button } from 'antd';
 import { CheckOutlined} from '@ant-design/icons';
+import { Typography, Row, Col, InputNumber, Button } from 'antd';
+const { Title } = Typography;
+
 
 function TimerInputComponent(props) {
   let { startTimer, changeCurrentTime, currentMinutes, currentSeconds, 
     timerStarted, setAudio, playAudio } = props;
 
   return (
-    <div>
-      <span>Set Train time</span> 
+    <Col>
+      <Row justify="center">
+        <Title level={5}> Set Train time</Title> 
+      </Row>
       <form>
         <InputNumber 
           onChange={(newValue) => {
@@ -30,10 +34,10 @@ function TimerInputComponent(props) {
           max={59}
         />
       </form>
-    <div>
       <Button 
           type="primary" 
           icon={<CheckOutlined />}
+          block={true}
           onClick={() => {
             startTimer(currentMinutes, currentSeconds);
             timerStarted();
@@ -43,8 +47,7 @@ function TimerInputComponent(props) {
         >
           Set timer
         </Button>
-    </div>    
-  </div>
+  </Col>
   )
 }
 

@@ -1,8 +1,8 @@
 import React, { useState, useLayoutEffect } from 'react';
 import style from '../../Time.module.css';
-import { Tooltip, Button } from 'antd';
+import { Row, Tooltip, Button } from 'antd';
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
-import { IoMdPower, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
+import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 
 const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds, 
   deletePreviousValue, addValuesOfSeconds }) => {
@@ -18,12 +18,12 @@ const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds,
   const handlePlayAudio = () => {
     if (audioPlayer.paused || audioPlayer.ended) {
       setIsPlaying(true);
-      setTimeout(function () {
+      setTimeout(() => {
       audioPlayer.play();
     }, 0);
     } else {
       setIsPlaying(false);
-      setTimeout(function () {      
+      setTimeout(() => {
         audioPlayer.pause();
       }, 0);
     }
@@ -64,7 +64,7 @@ const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds,
   }
 
   return (
-    <div className="buttons">
+    <Row justify="center">
       <audio
         id="audioPlayer"
         preload="metadata"
@@ -89,17 +89,17 @@ const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds,
               />
             </Tooltip>
       }
-      <Tooltip title="Stop">
+      <Tooltip title="Stop" className={style.timeBtn}>
         <Button
           type="primary" 
           shape="circle" 
-          icon={<IoMdPower />}
+          icon={<IoIosSquare />}
           onClick={stopStopwatch}
         />
       </Tooltip>
       {
         (isSoundOn)
-          ? <Tooltip title="Sound on">
+          ? <Tooltip title="Sound on" className={style.timeBtn}>
               <Button
                 type="primary"
                 shape="circle"
@@ -107,7 +107,7 @@ const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds,
                 onClick={mutedSound}
               />
             </Tooltip>
-          : <Tooltip title="Sound off">
+          : <Tooltip title="Sound off" className={style.timeBtn}>
               <Button 
                 type="primary"
                 shape="circle"
@@ -116,7 +116,7 @@ const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds,
               />
             </Tooltip>
       }
-    </div>
+    </Row>
   )
 }
 

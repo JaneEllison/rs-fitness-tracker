@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Tooltip, Button } from 'antd';
-import { UndoOutlined, PauseOutlined, CaretRightOutlined, PoweroffOutlined, SoundOutlined } from '@ant-design/icons';
+import { Row, Tooltip, Button } from 'antd';
+import style from '../../Time.module.css';
+import { UndoOutlined, PauseOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 
 function TimerButtonsComponent(props) {
   let {startTimer, changeCurrentTime, currentMinutes, currentSeconds, timerStarted, 
@@ -45,7 +47,7 @@ function TimerButtonsComponent(props) {
   }
 
   return (
-    <div>
+    <Row justify="center">
       <Tooltip title="Repeat timer">
         <Button 
           type="primary" 
@@ -73,35 +75,35 @@ function TimerButtonsComponent(props) {
           />
         </Tooltip>
       }
-      <Tooltip title="Stop timer">
+      <Tooltip title="Stop timer" className={style.timeBtn}>
         <Button 
           type="primary" 
           shape="circle" 
-          icon={<PoweroffOutlined />}
+          icon={<IoIosSquare />}
           onClick={stopTimer}
           disabled={isRunningTimer ? false : true}
         />
       </Tooltip>
       {
         (sound)
-          ? <Tooltip title="Sound off">
+          ? <Tooltip title="Sound on" className={style.timeBtn}>
               <Button 
                 type="primary"
                 shape="circle"
-                icon={<SoundOutlined />}
+                icon={<IoMdVolumeHigh />}
                 onClick={mutedAudio}
               />
             </Tooltip>
-          : <Tooltip title="Sound on">
+          : <Tooltip title="Sound off" className={style.timeBtn}>
               <Button 
                 type="primary"
                 shape="circle"
-                icon={<SoundOutlined />}
+                icon={<IoMdVolumeOff />}
                 onClick={mutedAudio}
               />
             </Tooltip>
       }
-  </div>
+  </Row>
   )
 }
 

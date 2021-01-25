@@ -1,5 +1,7 @@
-import React, {  useEffect } from 'react';
-import { Progress } from 'antd';
+import React, { useEffect } from 'react';
+import { Row, Progress, Typography } from 'antd';
+
+const { Title } = Typography;
 
 const TimerCountComponent = ({isRunningTimer, setTimerSeconds, timerSeconds, allTimeSeconds}) => {
   let currentMinutes = Math.floor(timerSeconds / 60);
@@ -23,11 +25,14 @@ const TimerCountComponent = ({isRunningTimer, setTimerSeconds, timerSeconds, all
   let lineTimer = Math.ceil(procent);
 
   return (
-    <div className='timer-component'>
-      <Progress type="circle" percent={lineTimer}></Progress>
-
-      <div className="timer-count">
-        <span>
+    <div>
+      <Progress 
+        percent={lineTimer}
+        strokeColor="blue"
+        type="dashboard"
+      />
+      <Row justify="center">
+        <Title level={2}>
           {
             (currentMinutes<10 && currentSeconds<10)
               ? `0${currentMinutes}:0${currentSeconds}` :
@@ -37,8 +42,8 @@ const TimerCountComponent = ({isRunningTimer, setTimerSeconds, timerSeconds, all
               ? `${currentMinutes}:0${currentSeconds}`
               : `${currentMinutes}:${currentSeconds}`
           }
-        </span>
-      </div>
+        </Title>
+      </Row>
     </div>
   )
 }
