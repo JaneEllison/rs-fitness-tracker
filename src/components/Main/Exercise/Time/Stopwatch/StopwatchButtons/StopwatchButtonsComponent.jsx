@@ -1,17 +1,16 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
+import style from '../../Time.module.css';
 import { Tooltip, Button } from 'antd';
-import { CaretRightOutlined, PauseOutlined, PoweroffOutlined, SoundOutlined } from '@ant-design/icons';
+import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
+import { IoMdPower, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 
-
-const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, changeSeconds, 
+const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds, 
   deletePreviousValue, addValuesOfSeconds }) => {
   let audioPlayer;
 
   const [ isPlaying, setIsPlaying] = useState(false);
   const [ isSoundOn, setIsSoundOn ] = useState(true);
-
   const [ sound, setSound ] = useState('./example2.mp3');
-
 
   const initPlayer = () => {
     audioPlayer = document.getElementById('audioPlayer');
@@ -82,7 +81,7 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
               />
             </Tooltip> 
           : <Tooltip title="Start">
-              <Button 
+              <Button
                 type="primary" 
                 shape="circle" 
                 icon={<CaretRightOutlined />}
@@ -91,28 +90,28 @@ const StopwatchButtonsComponent = ({ isRunningStopwatch, setIsRunningStopwatch, 
             </Tooltip>
       }
       <Tooltip title="Stop">
-        <Button 
+        <Button
           type="primary" 
           shape="circle" 
-          icon={<PoweroffOutlined />}
+          icon={<IoMdPower />}
           onClick={stopStopwatch}
         />
       </Tooltip>
       {
         (isSoundOn)
-          ? <Tooltip title="Sound off">
-              <Button 
+          ? <Tooltip title="Sound on">
+              <Button
                 type="primary"
                 shape="circle"
-                icon={<SoundOutlined />}
+                icon={<IoMdVolumeHigh />}
                 onClick={mutedSound}
               />
             </Tooltip>
-          : <Tooltip title="Sound on">
+          : <Tooltip title="Sound off">
               <Button 
                 type="primary"
                 shape="circle"
-                icon={<SoundOutlined />}
+                icon={<IoMdVolumeOff />}
                 onClick={mutedSound}
               />
             </Tooltip>

@@ -10,12 +10,12 @@ const StopwatchListComponent = ({memoryOfValues}) => {
         size={'small'}
         style={{ width: 155, height:220, textAlign: 'center'}
       }>
-        <div className={style.stapwatchValues}>
+        <div >
           {memoryOfValues.map((value) => {
             let min = Math.floor(value.secondsValue / 60);
             let sec = Math.floor(value.secondsValue % 60);
 
-            return <p key={value.id}>{
+            return <p key={value.id} className={style.stopwatchValue}>{
               (min<10 && sec<10)
                 ? `0${min}:0${sec}` :
               (min<10)

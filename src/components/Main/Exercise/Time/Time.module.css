@@ -6,8 +6,14 @@
   font-size: 60px;
 }
 
-.stapwatchValue:last-child {
-  font-size: 30px;
+.stopwatchValue:last-child {
+  font-size: 28px;
+}
+
+.buttonStopwatch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 
