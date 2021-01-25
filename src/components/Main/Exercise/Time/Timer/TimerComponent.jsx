@@ -1,33 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import {  Modal  } from 'antd';
+import React, { useState } from 'react';
 import TimerCountComponent from './TimerCount/TimerCountComponent';
 import TimerInputComponent from './TimerInput/TimerInputComponent';
 import TimerButtonsComponent from './TimerButtons/TimerButtonsComponent';
+import TimerEndedModalComponent from './TimerEndedModal/TimerEndedModalComponent';
 
-const TimerComponent = ({ playAudio, setAudio }) => {
+const TimerComponent = () => {
   const [ allTimeSeconds, setAllTimeSeconds ] = useState(0)
   const [ currentSeconds, setCurrentSeconds ] = useState(0);
   const [ currentMinutes, setCurrentMinutes ] = useState(0);
   const [ timerSeconds, setTimerSeconds ] = useState(allTimeSeconds);
   const [ isRunningTimer, setIsRunningTimer ] = useState(false);
   const [ isModalVisible, setIsModalVisible ] = useState(false);
-
-  let duringSeconds = allTimeSeconds - timerSeconds;
-  let procent = duringSeconds / allTimeSeconds * 100;
-  let lineTimer = Math.ceil(procent);
-
-  useEffect(()=> {
-    if(isRunningTimer) {
-      const TimerInterval = window.setInterval(() => {
-        setTimerSeconds((timerSeconds) => timerSeconds - 1);
-      }, 1000);
-
-      return () => {
-        window.clearInterval(TimerInterval);
-      }
-    }
-    return undefined
-  }, [isRunningTimer])
+  let audio;
 
   const startTimer = (minutes, seconds) => {
     const allTime = minutes * 60 + seconds;
@@ -35,8 +19,8 @@ const TimerComponent = ({ playAudio, setAudio }) => {
     setAllTimeSeconds(allTime);
   }
 
-  const showModal = () => {
-    setIsModalVisible(true);
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
   const handleOk = () => {
@@ -47,8 +31,8 @@ const TimerComponent = ({ playAudio, setAudio }) => {
     playAudio();
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  const showModal = () => {
+    setIsModalVisible(true);
   };
 
   if(timerSeconds < 0) {
@@ -72,26 +56,28 @@ const TimerComponent = ({ playAudio, setAudio }) => {
     setIsRunningTimer(false);
   }
 
+  const setAudio = (url, loop) => {
+    if (!audio) audio = new Audio();
+    audio.src = url;
+    audio.loop = loop;
+    audio.load();
+  };
+
+  const playAudio = () => {
+    if(audio){
+      (audio.paused) ? audio.play() : audio.pause()
+    }
+  }
+
   return (
     <div>
       <div className = 'timer-container'>
       <>
-        <Modal 
-          title="Well done!" 
-          visible={isModalVisible} 
-          onOk={handleOk} 
-          onCancel={handleCancel}
-          centered={true}
-          okText={'Start new Timer with previous value'}
-          cancelText={'Set new Timer'}
-        >
-          <img 
-            src="./timer-popup-img.svg" 
-            width="300px"
-            alt="img"
-          />
-          <p>Time is up!</p>
-        </Modal>
+        <TimerEndedModalComponent 
+          isModalVisible={isModalVisible}
+          handleCancel={handleCancel}
+          handleOk={handleOk}
+        />
       </>
         <TimerInputComponent
           startTimer = {startTimer}
@@ -102,14 +88,17 @@ const TimerComponent = ({ playAudio, setAudio }) => {
           setAudio = {setAudio}
           playAudio = {playAudio}
         />
-        <TimerCountComponent 
-          seconds = {timerSeconds}
-          lineTimer = {lineTimer}
+        <TimerCountComponent
+          isRunningTimer={isRunningTimer}
+          setTimerSeconds={setTimerSeconds}
+          timerSeconds={timerSeconds}
+          allTimeSeconds = {allTimeSeconds}
         />
       </div>
       <TimerButtonsComponent
           startTimer = {startTimer}
           changeCurrentTime = {changeCurrentTime}
+          setTimerSeconds={setTimerSeconds}
           currentMinutes = {currentMinutes}
           currentSeconds = {currentSeconds}
           timerStarted = {timerStarted}

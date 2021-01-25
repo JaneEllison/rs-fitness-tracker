@@ -8,7 +8,6 @@ function TimerButtonsComponent(props) {
 
   const [ sound, setSound ] = useState(true);
 
-
   const repeatTimer = () => {
     startTimer(currentMinutes, currentSeconds);
     setAudio('./example.mp3', true);

@@ -2,7 +2,8 @@ import { InputNumber, Button } from 'antd';
 import { CheckOutlined} from '@ant-design/icons';
 
 function TimerInputComponent(props) {
-  let {startTimer, changeCurrentTime, currentMinutes, currentSeconds, timerStarted, setAudio, playAudio} = props;
+  let { startTimer, changeCurrentTime, currentMinutes, currentSeconds, 
+    timerStarted, setAudio, playAudio } = props;
 
   return (
     <div>

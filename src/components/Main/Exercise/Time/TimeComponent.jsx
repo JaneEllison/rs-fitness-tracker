@@ -7,20 +7,6 @@ import TimerComponent from './Timer/TimerComponent';
 const TimeComponent = () => {
   const [ isTimerMode, setIsTimerMode ] = useState(true);
 
-  let audio;
-
-  const setAudio = (url, loop) => {
-    if (!audio) audio = new Audio();
-    audio.src = url;
-    audio.loop = loop;
-    audio.load();
-  };
-
-  const playAudio = () => {
-    if(audio){
-      (audio.paused) ? audio.play() : audio.pause()
-    }
-  }
   return (
     <div>
       <Col>
@@ -30,10 +16,7 @@ const TimeComponent = () => {
         >
         {
           (isTimerMode)
-          ? <TimerComponent
-              setAudio={setAudio}
-              playAudio={playAudio}
-            />
+          ? <TimerComponent />
           : <StopwatchComponent />
           }
         </Row>
