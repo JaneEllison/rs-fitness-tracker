@@ -26,10 +26,6 @@ const SignUpComponent = () => {
     }
   }, [authError]);
 
-  const showModal = () => {
-    setModalVisible(true);
-  };
-
   const createUser = (values) => {
     const {email, password, displayName} = values;
     firebase.createUser(

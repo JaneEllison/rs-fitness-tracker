@@ -28,6 +28,8 @@ export const rrfConfig = {
         height: "",
         weight: "",
       },
+      userMenus:{},
+      usersExercises:{},
     }
   },
   createFirestoreInstance,
