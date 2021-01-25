@@ -20,6 +20,17 @@
 
 .button-update {
   width: 100%;
+  background:#1b90fd;
+  border-radius: 2px;
+  border: 1px solid #d9d9d9;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  margin-top: 2px;
+}
+
+.button-update:hover {
+  background: #40a9ff;
+  cursor: pointer;
 }
 
 .search-input {

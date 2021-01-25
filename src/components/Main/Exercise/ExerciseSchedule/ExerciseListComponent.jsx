@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
 import { Row, Col, Select, Input } from 'antd';
@@ -10,6 +10,8 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
   const days = useSelector((state) => Object.keys(state.exerciseReducer));
 
   let currentSelectDay = selectedDay || days;
+
+  const myRef = React.createRef();
 
   const { Option } = Select;
   const { Search } = Input;
@@ -34,6 +36,10 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
     dispatch(selectDayAction(value));
   };
 
+  useEffect(() => {
+    myRef.current.focus();
+  }, [selectedDay])
+
   return (
     <div>
       <Select
@@ -50,6 +56,8 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
       <Row>
         <Col>
           <Search
+            ref={myRef}
+            autoFocus={true}
             type="text"
             value={input}
             placeholder="Add exercise"
