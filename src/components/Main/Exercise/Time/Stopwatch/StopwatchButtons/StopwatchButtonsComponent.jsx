@@ -4,7 +4,7 @@ import { Row, Tooltip, Button } from 'antd';
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 
-const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds, 
+const StopwatchButtonsComponent = ({ stopwatchSeconds, setIsRunningStopwatch, changeSeconds, 
   deletePreviousValue, addValuesOfSeconds }) => {
   let audioPlayer;
 
@@ -13,7 +13,7 @@ const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds,
   const [ sound, setSound ] = useState('./example2.mp3');
 
   const initPlayer = () => {
-    audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer = document.getElementById('audioPlayerStopwatch');
   };
   const handlePlayAudio = () => {
     if (audioPlayer.paused || audioPlayer.ended) {
@@ -66,7 +66,7 @@ const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds,
   return (
     <Row justify="center">
       <audio
-        id="audioPlayer"
+        id="audioPlayerStopwatch"
         preload="metadata"
         src={sound} 
         type="audio/ogg" />
@@ -95,6 +95,7 @@ const StopwatchButtonsComponent = ({ setIsRunningStopwatch, changeSeconds,
           shape="circle" 
           icon={<IoIosSquare />}
           onClick={stopStopwatch}
+          disabled={stopwatchSeconds ? false : true}
         />
       </Tooltip>
       {

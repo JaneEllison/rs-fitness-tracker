@@ -43,6 +43,7 @@ const StopwatchComponent = () => {
         />
         <Row align="center">        
           <StopwatchButtonsComponent
+            stopwatchSeconds={stopwatchSeconds}
             setIsRunningStopwatch={setIsRunningStopwatch}
             changeSeconds={changeSeconds}
             addValuesOfSeconds={addValuesOfSeconds}

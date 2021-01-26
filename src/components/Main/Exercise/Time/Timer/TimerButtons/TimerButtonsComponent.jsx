@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Row, Tooltip, Button } from 'antd';
 import style from '../../Time.module.css';
 import { UndoOutlined, PauseOutlined, CaretRightOutlined } from '@ant-design/icons';
@@ -6,45 +5,31 @@ import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 
 function TimerButtonsComponent(props) {
   let {startTimer, changeCurrentTime, currentMinutes, currentSeconds, timerStarted, 
-    timerStoped, isRunningTimer, setAudio, playAudio } = props;
-
-  const [ sound, setSound ] = useState(true);
+    timerStoped, isRunningTimer, setIsRunningTimer,
+    handlePlayAudio, initPlayer, mutedSound, isSoundOn
+    } = props;
 
   const repeatTimer = () => {
+    setIsRunningTimer(true);
     startTimer(currentMinutes, currentSeconds);
-    setAudio('./example.mp3', true);
-    playAudio();
     timerStarted();
+    initPlayer()
   };
 
   const runTimer = () => {
-    timerStarted()
-    toggleButtons();
-    playAudio();
-  };
+    setIsRunningTimer(true);
+    handlePlayAudio()
+  }
 
   const pauseTimer = () => {
     timerStoped()
-    toggleButtons();
-    playAudio();
   };
 
   const stopTimer = () => {
     changeCurrentTime(0, 0)
     startTimer(0, 0);
     timerStoped();
-    toggleButtons();
-    playAudio();
   };
-
-  const toggleButtons = () => {
-    setSound(!sound)
-  };
-
-  const mutedAudio = () => {
-    playAudio()
-    toggleButtons();
-  }
 
   return (
     <Row justify="center">
@@ -85,13 +70,13 @@ function TimerButtonsComponent(props) {
         />
       </Tooltip>
       {
-        (sound)
+        (isSoundOn)
           ? <Tooltip title="Sound on" className={style.timeBtn}>
               <Button 
                 type="primary"
                 shape="circle"
                 icon={<IoMdVolumeHigh />}
-                onClick={mutedAudio}
+                onClick={mutedSound}
               />
             </Tooltip>
           : <Tooltip title="Sound off" className={style.timeBtn}>
@@ -99,7 +84,7 @@ function TimerButtonsComponent(props) {
                 type="primary"
                 shape="circle"
                 icon={<IoMdVolumeOff />}
-                onClick={mutedAudio}
+                onClick={mutedSound}
               />
             </Tooltip>
       }

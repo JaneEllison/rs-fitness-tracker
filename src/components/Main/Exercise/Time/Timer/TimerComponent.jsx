@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { Row, Col } from 'antd';
 import TimerCountComponent from './TimerCount/TimerCountComponent';
 import TimerInputComponent from './TimerInput/TimerInputComponent';
@@ -12,20 +12,30 @@ const TimerComponent = () => {
   const [ timerSeconds, setTimerSeconds ] = useState(allTimeSeconds);
   const [ isRunningTimer, setIsRunningTimer ] = useState(false);
   const [ isModalVisible, setIsModalVisible ] = useState(false);
-  let audio;
+  
+  let audioPlayer;
 
-  const setAudio = (url, loop) => {
-    if (!audio) audio = new Audio();
-    audio.src = url;
-    audio.loop = loop;
-    audio.load();
+  const [ isSoundOn, setIsSoundOn ] = useState(true);
+  const [ sound, setSound ] = useState('./example.mp3');
+
+  const initPlayer = () => {
+    audioPlayer = document.getElementById('audioPlayerTimer');
   };
-
-  const playAudio = () => {
-    if(audio){
-      (audio.paused) ? audio.play() : audio.pause()
+  const handlePlayAudio = () => {
+    if (audioPlayer.paused || audioPlayer.ended) {
+      setTimeout(() => {
+      audioPlayer.play();
+    }, 0);
+    } else {
+      setTimeout(() => {
+        audioPlayer.pause();
+      }, 0);
     }
-  }
+  };
+  
+  useLayoutEffect(() => {
+    initPlayer();
+  });
 
   const startTimer = (minutes, seconds) => {
     const allTime = minutes * 60 + seconds;
@@ -40,9 +50,10 @@ const TimerComponent = () => {
   const handleOk = () => {
     setIsModalVisible(false);
     setTimerSeconds(allTimeSeconds);
-    setIsRunningTimer(true);
-    setAudio('./example.mp3');
-    playAudio();
+    setIsRunningTimer(true)
+    console.log(allTimeSeconds)
+    setSound('./example.mp3');
+    handlePlayAudio()
   };
 
   const showModal = () => {
@@ -53,8 +64,13 @@ const TimerComponent = () => {
     setIsRunningTimer(false);
     setTimerSeconds(0);
     showModal();
-    setAudio('./done.mp3', false);
-    playAudio();
+
+    setSound('./done.mp3');
+    initPlayer();
+    setTimeout(()=> {
+      audioPlayer.play();
+    }, 10)
+    handlePlayAudio()
   }
 
   const changeCurrentTime = (minutes, seconds) => {
@@ -64,10 +80,19 @@ const TimerComponent = () => {
 
   const timerStarted = () => {
     setIsRunningTimer(true);
+    setSound('./example.mp3');
+    audioPlayer.currentTime = 0;
+    handlePlayAudio()
   }
 
   const timerStoped = () => {
     setIsRunningTimer(false);
+    handlePlayAudio()
+  }
+
+  const mutedSound = () => {
+    (isSoundOn) ? audioPlayer.muted=true : audioPlayer.muted=false
+    setIsSoundOn(!isSoundOn)
   }
 
   return (
@@ -80,14 +105,19 @@ const TimerComponent = () => {
             handleOk={handleOk}
           />
         </>
+        <audio
+            id="audioPlayerTimer"
+            preload="metadata"
+            src={sound} 
+            type="audio/ogg" 
+          />
         <TimerInputComponent
           startTimer = {startTimer}
           changeCurrentTime = {changeCurrentTime}
           currentMinutes = {currentMinutes}
           currentSeconds = {currentSeconds}
           timerStarted = {timerStarted}
-          setAudio = {setAudio}
-          playAudio = {playAudio}
+          setSound={setSound}
         />
         <TimerButtonsComponent
           startTimer = {startTimer}
@@ -98,9 +128,13 @@ const TimerComponent = () => {
           timerStarted = {timerStarted}
           timerStoped = {timerStoped}
           isRunningTimer = {isRunningTimer}
-          setAudio = {setAudio}
-          playAudio = {playAudio}
           allTimeSeconds = {allTimeSeconds}
+          setSound={setSound}
+          setIsRunningTimer={setIsRunningTimer}
+          handlePlayAudio={handlePlayAudio}
+          initPlayer={initPlayer}
+          mutedSound={mutedSound}
+          isSoundOn={isSoundOn}
         />
       </Col>
       <Col push={3}>

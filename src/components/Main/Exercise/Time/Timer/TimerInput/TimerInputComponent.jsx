@@ -5,7 +5,7 @@ const { Title } = Typography;
 
 function TimerInputComponent(props) {
   let { startTimer, changeCurrentTime, currentMinutes, currentSeconds, 
-    timerStarted, setAudio, playAudio } = props;
+    timerStarted, setSound } = props;
 
   return (
     <Col>
@@ -40,9 +40,8 @@ function TimerInputComponent(props) {
           block={true}
           onClick={() => {
             startTimer(currentMinutes, currentSeconds);
+            setSound('./example2.mp3', true);
             timerStarted();
-            setAudio('./example.mp3', true);
-            playAudio();
           }}
         >
           Set timer
