@@ -11,6 +11,8 @@ const SearchExercises = ({ onSearch }) => {
   };
 
   const handleSubmitKeyword = () => {
+    if (input.trim() === '') return;
+
     onSearch(input);
   };
 
