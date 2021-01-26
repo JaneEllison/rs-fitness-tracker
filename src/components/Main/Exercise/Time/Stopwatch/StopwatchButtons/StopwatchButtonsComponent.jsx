@@ -35,9 +35,11 @@ const StopwatchButtonsComponent = ({ stopwatchSeconds, setIsRunningStopwatch, ch
 
   const startStopwatch = () => {
     setIsRunningStopwatch(true);
-    setIsPlaying(true)
-    setSound('./example2.mp3');
-    handlePlayAudio()
+    setTimeout(()=>{
+      setIsPlaying(true)
+      setSound('./example2.mp3');
+      handlePlayAudio();
+    }, 0);
   };
 
   const pauseStopwatch = () => {

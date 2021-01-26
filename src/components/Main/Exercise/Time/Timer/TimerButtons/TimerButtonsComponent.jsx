@@ -5,9 +5,13 @@ import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 
 function TimerButtonsComponent(props) {
   let {startTimer, changeCurrentTime, currentMinutes, currentSeconds, timerStarted, 
-    timerStoped, isRunningTimer, setIsRunningTimer,
-    handlePlayAudio, initPlayer, mutedSound, isSoundOn
+    isRunningTimer, setIsRunningTimer, handlePlayAudio, initPlayer, mutedSound, isSoundOn
     } = props;
+
+  const timerStoped = () => {
+    setIsRunningTimer(false);
+    handlePlayAudio()
+  }
 
   const repeatTimer = () => {
     setIsRunningTimer(true);
@@ -56,7 +60,7 @@ function TimerButtonsComponent(props) {
             type="primary" 
             shape="circle" 
             icon={<CaretRightOutlined />}
-            onClick={runTimer}            
+            onClick={runTimer}           
           />
         </Tooltip>
       }

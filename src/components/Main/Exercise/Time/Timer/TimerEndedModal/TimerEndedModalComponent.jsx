@@ -1,11 +1,10 @@
 import {  Modal  } from 'antd';
 
 const TimerEndedModalComponent = ({ handleCancel, isModalVisible, handleOk }) => {
-
   return(
     <Modal 
       title="Well done!" 
-      visible={isModalVisible} 
+      visible={isModalVisible}
       onOk={handleOk} 
       onCancel={handleCancel}
       centered={true}

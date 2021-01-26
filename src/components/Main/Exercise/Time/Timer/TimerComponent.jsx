@@ -48,12 +48,13 @@ const TimerComponent = () => {
   };
 
   const handleOk = () => {
-    setIsModalVisible(false);
     setTimerSeconds(allTimeSeconds);
-    setIsRunningTimer(true)
-    console.log(allTimeSeconds)
-    setSound('./example.mp3');
-    handlePlayAudio()
+    setIsModalVisible(false);
+    setTimeout(()=>{
+      setIsRunningTimer(true)
+      setSound('./example.mp3');
+      handlePlayAudio()  
+    }, 0);
   };
 
   const showModal = () => {
@@ -69,8 +70,7 @@ const TimerComponent = () => {
     initPlayer();
     setTimeout(()=> {
       audioPlayer.play();
-    }, 10)
-    handlePlayAudio()
+    }, 0)
   }
 
   const changeCurrentTime = (minutes, seconds) => {
@@ -80,14 +80,12 @@ const TimerComponent = () => {
 
   const timerStarted = () => {
     setIsRunningTimer(true);
+    audioPlayer.pause();
     setSound('./example.mp3');
-    audioPlayer.currentTime = 0;
-    handlePlayAudio()
-  }
-
-  const timerStoped = () => {
-    setIsRunningTimer(false);
-    handlePlayAudio()
+    initPlayer();
+    setTimeout(()=> {
+      audioPlayer.play();
+    }, 0)
   }
 
   const mutedSound = () => {
@@ -105,31 +103,26 @@ const TimerComponent = () => {
             handleOk={handleOk}
           />
         </>
-        <audio
-            id="audioPlayerTimer"
-            preload="metadata"
-            src={sound} 
-            type="audio/ogg" 
-          />
+        <audio 
+          id="audioPlayerTimer"
+          preload="metadata"
+          src={sound} 
+          type="audio/ogg" 
+        />
         <TimerInputComponent
           startTimer = {startTimer}
           changeCurrentTime = {changeCurrentTime}
           currentMinutes = {currentMinutes}
           currentSeconds = {currentSeconds}
           timerStarted = {timerStarted}
-          setSound={setSound}
         />
         <TimerButtonsComponent
           startTimer = {startTimer}
           changeCurrentTime = {changeCurrentTime}
-          setTimerSeconds={setTimerSeconds}
           currentMinutes = {currentMinutes}
           currentSeconds = {currentSeconds}
           timerStarted = {timerStarted}
-          timerStoped = {timerStoped}
           isRunningTimer = {isRunningTimer}
-          allTimeSeconds = {allTimeSeconds}
-          setSound={setSound}
           setIsRunningTimer={setIsRunningTimer}
           handlePlayAudio={handlePlayAudio}
           initPlayer={initPlayer}
