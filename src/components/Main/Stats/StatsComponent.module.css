@@ -1,6 +1,6 @@
 .statsCanvasContainer {
-  position: relative;
   height: 80vh;
+  width: 100%;
 }
 
 .statsUserSummaryComponent {
@@ -18,6 +18,25 @@
 .statsUserSummaryComponent li {
   display: flex;
   justify-content: space-between;
+}
+
+.styleChartControlsComponent {
+  margin: 0;
+  padding: 1rem;
+}
+
+.statsChartControlsRadioComponent {
+  display: block;
+  margin: 0;
+  padding: 0.2rem;
+  margin: 0 0 0.5rem;
+  background-color:#d9d9d966;
+  border-radius: 1rem;
+}
+
+.statsChartControlsRadioComponent:hover,
+.statsChartControlsRadioComponent:focus {
+  background-color: transparent;
 }
 
 @media (max-width: 768px) {

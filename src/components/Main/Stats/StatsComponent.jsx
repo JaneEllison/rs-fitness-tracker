@@ -19,22 +19,22 @@ function StatsComponent() {
   const dataset = useSelector(userDatasetSelector);
 
   return (
-    <Row gutter={{ xs: 8, md: 32, }}>
-      <Col xs={24} md={{ push: 6, span: 18, }}>
+    <Row gutter={8}>
+      <Col md={24} lg={{ span: 18, push: 6, }}>
         <ChartComponent
           selectedFields={selectedField}
           dataset={dataset}
           />
       </Col>
-      <Col xs={24} md={{ span:6, pull: 18, }}>
+      <Col xs={24} lg={{ span: 6, pull: 18, }}>
         <Row>
-          <Col xs={24} sm={12} md={24}>
+          <Col md={12} lg={24}>
             <UserSummaryComponent 
               summary={summary} 
               goal={goal}
               />
           </Col>
-          <Col xs={24} sm={12} md={24}>
+          <Col md={12} lg={24}>
             <ChartControlsComponent
               selectedField={selectedField}
               onChange={setSelectedField}

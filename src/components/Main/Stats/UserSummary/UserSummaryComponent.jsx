@@ -36,8 +36,8 @@ function UserSummaryComponent ({
         <h3>{ goalWeight === false ? "none" : `${goalWeight} kg` }</h3>
       </li>
       <li key={'userSummaryGoalCalories'}>
-        <h3>Goal calories</h3>
-        <h3>{ goalCalories === false ? "none" : `${goalCalories} per day` }</h3>
+        <h3>Goal kcal:</h3>
+        <h3>{ goalCalories === false ? "none" : `${goalCalories} / day` }</h3>
       </li>
     </ul>
   )

@@ -108,9 +108,7 @@ const DATASETS =  {
 
       fill: false,
       radius: 0,
-      pointBackgroundColor: '#45B39D',
-      pointBorderColor: '#0E6655',
-      borderColor: '#0E6655',
+      borderColor: '#5c0011',
     },
 
     WORKOUT_TIME: {
@@ -125,7 +123,7 @@ const DATASETS =  {
 };
 
 const BASE_OPTIONS = {
-  preserveAspectRatio: false,
+  maintainAspectRatio: false,
   legend: {
     onClick: (event) => event.stopPropagation(),
   },
