@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Table } from 'antd';
 import { useSelector} from 'react-redux';
-import {
-  foodMenuSelector,
-} from '../../../../store/Selectors/foodMenuSelector';
 import getFoodMenuTableColumns from './foodMenuTableColumns/getFoodMenuTableColumns';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
 import getTableConfig from './getTableConfig';
@@ -12,10 +9,9 @@ import profileSelector from '../../../../store/Selectors/profileSelector';
 
 const FoodTableComponent = () => {
   const [loading, toggleLoading] = useState(true);
-  // const foodMenu = useSelector(foodMenuSelector);
   const profile = useSelector(profileSelector);
   const timeKey = new Date(Date.now()).toLocaleDateString('ru-RU');
-  console.log(profile);
+
 
   const foodMenu = profile.userMenus[timeKey] ? profile.userMenus[timeKey] : [];
 
