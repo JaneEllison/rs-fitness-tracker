@@ -5,7 +5,6 @@ import {
 } from '../../../../../../store/FoodMenuReducer/foodMenuActionCreators';
 
 const addToMenu = (dispatch, foodData, weight, time) => {
-
   const {
     food_name,
     nf_calories,
