@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './../StatsComponent.module.css';
 
 function UserSummaryComponent ({
   summary: {
@@ -7,24 +8,36 @@ function UserSummaryComponent ({
     height,
     weight,
   },
-  goalWeight
-}) {  
+  goal: {
+    goalWeight,
+    goalCalories
+  }
+}) {
   return (
-    <ul>
+    <ul className={style.statsUserSummaryComponent}>
       <li key={'userSummaryAge'}>
-        Age: { age } years
+        <h3>Age:</h3>
+        <h3>{ age } years</h3>
       </li>
       <li key={'userSummarySex'}>
-        Sex: { sex }
+        <h3>Sex:</h3>
+        <h3>{ sex }</h3>
       </li>
       <li key={'userSummaryHeight'}>
-        Height: { height } cm
+        <h3>Height:</h3>
+        <h3>{ height } cm</h3>
       </li>
       <li key={'userSummaryWeight'}>
-        Weight: { weight } kg
+        <h3>Weight:</h3>
+        <h3>{ weight } kg</h3>
       </li>
-      <li key={'userSummaryGoal'}>
-        Goal: { goalWeight === false ? "none" : `${goalWeight} kg` }
+      <li key={'userSummaryGoalWeight'}>
+        <h3>Goal weight:</h3>
+        <h3>{ goalWeight === false ? "none" : `${goalWeight} kg` }</h3>
+      </li>
+      <li key={'userSummaryGoalCalories'}>
+        <h3>Goal kcal:</h3>
+        <h3>{ goalCalories === false ? "none" : `${goalCalories} / day` }</h3>
       </li>
     </ul>
   )
