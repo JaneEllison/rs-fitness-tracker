@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import { Table } from 'antd';
 import { useSelector} from 'react-redux';
-import {
-  foodMenuSelector,
-} from '../../../../store/Selectors/foodMenuSelector';
 import getFoodMenuTableColumns from './foodMenuTableColumns/getFoodMenuTableColumns';
-import FoodTableSummaryComponent from './FoodTableSummary/FoodTableSummaryComponent';
-import transformDate from '../../../../utils/transformDate';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
-import FoodTableMenuTitleComponent from './FoodTableMenuTitleComponent';
 import getTableConfig from './getTableConfig';
 import getFoodTableData from './getFoodTableData';
+import profileSelector from '../../../../store/Selectors/profileSelector';
 
 const FoodTableComponent = () => {
   const [loading, toggleLoading] = useState(true);
-  const foodMenu = useSelector(foodMenuSelector);
+  const profile = useSelector(profileSelector);
+  const timeKey = new Date(Date.now()).toLocaleDateString('ru-RU');
+
+
+  const foodMenu = profile.userMenus[timeKey] ? profile.userMenus[timeKey] : [];
+
   let columns = getFoodMenuTableColumns();
   const foodTableData = getFoodTableData(foodMenu);
 
