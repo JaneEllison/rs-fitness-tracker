@@ -7,6 +7,8 @@ import foodComponentConstants from '../../../constants/foodComponentConstants';
 import foodComponentsConfig from '../../../config/foodComponentsConfig';
 import FoodActionsComponent from './FoodActions/FoodActionsComponent';
 import FoodInfoComponent from './FoodInfo/FoodInfoComponent';
+import profileSelector from '../../../store/Selectors/profileSelector';
+import { isLoaded, isEmpty } from 'react-redux-firebase'
 
 const FoodComponent = () => {
   const {
@@ -17,6 +19,7 @@ const FoodComponent = () => {
   const [intakeWeight, setIntakeWeight] = useState(FOOD_COMPONENT_INITIAL_INTAKE_WEIGHT);
   const [intakeTime, setIntakeTime] = useState('');
   const foodData = useSelector(foodSelector);
+  const profile = useSelector(profileSelector);
 
   return (
       <Row
@@ -35,7 +38,15 @@ const FoodComponent = () => {
             foodData={foodData}
             intakeWeight={intakeWeight}
           />
-          <FoodTableComponent />
+          {
+            !isLoaded(profile) && <div>Loading...</div>
+          }
+          {
+            isEmpty(profile) && <div>You have to register or log in to manage your food table</div>
+          }
+          {
+            isLoaded(profile) && !isEmpty(profile) && <FoodTableComponent />
+          }
         </Col>
       </Row>
   );
