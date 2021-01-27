@@ -1,59 +1,47 @@
-const ACTIVITIES = {
-  'basal': {
-    MET: 1,
-    WEEKLY_MINUTES: 1440,
-  },
-  'sedentary': {
-    MET: 1.5,
-    WEEKLY_MINUTES: 1440,
-  },
-  'light': {
-    MET: 2,
-    WEEKLY_MINUTES: 45,
-  },
-  'moderate': {
-    MET: 3,
-    WEEKLY_MINUTES: 150,
-  },
-  'active': {
-    MET: 4,
-    WEEKLY_MINUTES: 300,
-  },
-  'veryActive': {
-    MET: 5.5,
-    WEEKLY_MINUTES: 700,
-  },
-  'extraActive': {
-    MET: 7.5,
-    WEEKLY_MINUTES: 850,
-  },
+const ACTIVITY_FACTORS = {
+  'basal': 1,
+  'sedentary': 1.2,
+  'light': 1.36,
+  'moderate': 1.47,
+  'active': 1.55,
+  'veryActive': 1.7,
+  'extraActive': 1.9,
 };
 
-function getHarrisBenedictRMR({age, sex, height, weight}) {
-  return sex === 'male'
-    ? 66.4730 + (5.0033 * height) + (13.7516 * weight) - (6.7550 * age)
-    : 655.0955 + (1.8496 * height) + (9.5634 * weight) - (4.6756 * age);
-}
+const MINIMUM_CALORIES = {
+  'male': 1500,
+  'female': 1200,
+};
 
-function getCorrectedMET(summary, activity) {
-  const RMR = getHarrisBenedictRMR(summary);
-  const convertedRMR = (RMR * 1000) / (1440 * 5 * summary.weight);
-  const MET = ACTIVITIES[activity].MET;
-  return MET * (3.5 / convertedRMR);
-}
-
-function getNormativeDailyCaloricIntake(summary, activity) {
-  const MET = getCorrectedMET(summary, activity);
-  const time = ACTIVITIES[activity].WEEKLY_MINUTES;
-  
-  return (MET * time);
-}
+const CALORIES_IN_LB = 3500;
 
 const summary = {
-  age: 25,
-  height: 188,
-  weight: 100,
-  sex: 'male',
+  age: 35,
+  height: 168,
+  weight: 60,
+  sex: 'female',
+};
+
+const getHarrisBenedictBMR = ({age, sex, height, weight}) => sex === 'male'
+  ? 88.362 + (4.799 * height) + (13.397 * weight) - (5.667 * age)
+  : 447.593 + (3.098 * height) + (9.247 * weight) - (4.330 * age);
+
+const getDailyMaintenanceCalories = (summary, activity) => {
+  const BMR = getHarrisBenedictBMR(summary);
+  return BMR * ACTIVITY_FACTORS[activity];
+};
+
+const getWeightChangeParameters = (summary, activity) => {
+  const dailyMaintenanceCalories = getDailyMaintenanceCalories(summary, activity)
+  return ({
+    maintain: dailyMaintenanceCalories,
+    mildLoss: dailyMaintenanceCalories - (CALORIES_IN_LB / (2 * 7)),
+    normalLoss: dailyMaintenanceCalories - (CALORIES_IN_LB / 7),
+    extremeLoss: dailyMaintenanceCalories - (2 * CALORIES_IN_LB / 7),
+    mildGain: dailyMaintenanceCalories + (CALORIES_IN_LB / (2 * 7)),
+    normalGain: dailyMaintenanceCalories + (CALORIES_IN_LB / 7),
+    fastGain: dailyMaintenanceCalories + (2 * CALORIES_IN_LB / 7),  
+  });
 };
 
 export default getDailyGoalCaloricIntake;
