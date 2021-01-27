@@ -1,4 +1,5 @@
 const setNewMenuItemId = (container, item, idToAdd) => {
+  if (!container) return {...item, id: 0};
   if (container.length === 0 ) return {...item, id: 0};
 
   idToAdd = container[container.length - 1].id + 1;
