@@ -10,6 +10,12 @@ const TimerEndedModalComponent = ({ handleCancel, isModalVisible, handleOk }) =>
       centered={true}
       okText={'Start new Timer with previous value'}
       cancelText={'Set new Timer'}
+      bodyStyle = {{
+        fontSize: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems:'center'
+      }}
     >
       <img 
         src="./timer-popup-img.svg" 

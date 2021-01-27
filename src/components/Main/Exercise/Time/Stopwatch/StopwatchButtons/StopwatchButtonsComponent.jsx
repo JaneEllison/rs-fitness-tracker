@@ -5,24 +5,22 @@ import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 
 const StopwatchButtonsComponent = ({ stopwatchSeconds, setIsRunningStopwatch, changeSeconds, 
-  deletePreviousValue, addValuesOfSeconds }) => {
+  deletePreviousValue, addValuesOfSeconds, isRunningStopwatch, currentTrack, setCurrentTrack, 
+  getRandomAudio }) => {
   let audioPlayer;
 
-  const [ isPlaying, setIsPlaying] = useState(false);
   const [ isSoundOn, setIsSoundOn ] = useState(true);
-  const [ sound, setSound ] = useState('./example2.mp3');
 
   const initPlayer = () => {
     audioPlayer = document.getElementById('audioPlayerStopwatch');
   };
+  
   const handlePlayAudio = () => {
     if (audioPlayer.paused || audioPlayer.ended) {
-      setIsPlaying(true);
       setTimeout(() => {
       audioPlayer.play();
     }, 0);
     } else {
-      setIsPlaying(false);
       setTimeout(() => {
         audioPlayer.pause();
       }, 0);
@@ -36,8 +34,7 @@ const StopwatchButtonsComponent = ({ stopwatchSeconds, setIsRunningStopwatch, ch
   const startStopwatch = () => {
     setIsRunningStopwatch(true);
     setTimeout(()=>{
-      setIsPlaying(true)
-      setSound('./example2.mp3');
+      getRandomAudio();
       handlePlayAudio();
     }, 0);
   };
@@ -52,12 +49,11 @@ const StopwatchButtonsComponent = ({ stopwatchSeconds, setIsRunningStopwatch, ch
     addValuesOfSeconds();
     setIsRunningStopwatch(false);
     changeSeconds(0);
-    setSound('./done.mp3');
+    setCurrentTrack('./music/done.mp3');
     initPlayer();
     setTimeout(function () {      
       audioPlayer.play();
     }, 0);
-    setIsPlaying(false);
   };
 
   const mutedSound = () => {
@@ -70,10 +66,10 @@ const StopwatchButtonsComponent = ({ stopwatchSeconds, setIsRunningStopwatch, ch
       <audio
         id="audioPlayerStopwatch"
         preload="metadata"
-        src={sound} 
+        src={currentTrack} 
         type="audio/ogg" />
       {
-        (isPlaying)
+        (isRunningStopwatch)
           ? <Tooltip title="Pause">
               <Button
                 type="primary" 

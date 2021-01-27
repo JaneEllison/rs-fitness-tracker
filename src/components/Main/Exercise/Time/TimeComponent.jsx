@@ -3,9 +3,16 @@ import style from './Time.module.css';
 import { Switch, Row, Col } from 'antd';
 import StopwatchComponent from './Stopwatch/StopwatchComponent';
 import TimerComponent from './Timer/TimerComponent';
+import timerMusic from '../../../../config/timerMusic'
 
 const TimeComponent = () => {
   const [ isTimerMode, setIsTimerMode ] = useState(true);
+
+  let [currentTrack, setCurrentTrack] = useState({});
+
+  const getRandomAudio = () => {
+    return setCurrentTrack(timerMusic[Math.floor(Math.random()*timerMusic.length)])
+  };
 
   return (
     <div>
@@ -16,8 +23,16 @@ const TimeComponent = () => {
         >
         {
           (isTimerMode)
-          ? <TimerComponent />
-          : <StopwatchComponent />
+          ? <TimerComponent 
+              currentTrack={currentTrack}
+              setCurrentTrack={setCurrentTrack}
+              getRandomAudio={getRandomAudio}
+            />
+          : <StopwatchComponent
+            currentTrack={currentTrack}
+            setCurrentTrack={setCurrentTrack}
+            getRandomAudio={getRandomAudio}
+          />
           }
         </Row>
         <Row

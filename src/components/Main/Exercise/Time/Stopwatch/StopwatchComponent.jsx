@@ -4,7 +4,7 @@ import StopwatchButtonsComponent from './StopwatchButtons/StopwatchButtonsCompon
 import StopwatchListComponent from './StopwatchList/StopwatchListComponent';
 import { Row, Col } from 'antd';
 
-const StopwatchComponent = () => {
+const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
   const [isRunningStopwatch, setIsRunningStopwatch] = useState(false);
   const [stopwatchSeconds, setStopwatchSeconds] = useState(0);
   const [memoryOfValues, setMemoryOfValues] = useState([]);
@@ -41,13 +41,17 @@ const StopwatchComponent = () => {
           changeSeconds={changeSeconds}
           stopwatchSeconds={stopwatchSeconds}
         />
-        <Row align="center">        
+        <Row align="center">
           <StopwatchButtonsComponent
             stopwatchSeconds={stopwatchSeconds}
+            isRunningStopwatch={isRunningStopwatch}
             setIsRunningStopwatch={setIsRunningStopwatch}
             changeSeconds={changeSeconds}
             addValuesOfSeconds={addValuesOfSeconds}
             deletePreviousValue={deletePreviousValue}
+            currentTrack={currentTrack}
+            setCurrentTrack={setCurrentTrack}
+            getRandomAudio={getRandomAudio}
           />
         </Row>
       </Col>

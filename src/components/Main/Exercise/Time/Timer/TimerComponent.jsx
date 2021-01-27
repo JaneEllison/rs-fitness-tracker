@@ -5,7 +5,7 @@ import TimerInputComponent from './TimerInput/TimerInputComponent';
 import TimerButtonsComponent from './TimerButtons/TimerButtonsComponent';
 import TimerEndedModalComponent from './TimerEndedModal/TimerEndedModalComponent';
 
-const TimerComponent = () => {
+const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
   const [ allTimeSeconds, setAllTimeSeconds ] = useState(0)
   const [ currentSeconds, setCurrentSeconds ] = useState(0);
   const [ currentMinutes, setCurrentMinutes ] = useState(0);
@@ -16,11 +16,11 @@ const TimerComponent = () => {
   let audioPlayer;
 
   const [ isSoundOn, setIsSoundOn ] = useState(true);
-  const [ sound, setSound ] = useState('./example.mp3');
 
   const initPlayer = () => {
     audioPlayer = document.getElementById('audioPlayerTimer');
   };
+
   const handlePlayAudio = () => {
     if (audioPlayer.paused || audioPlayer.ended) {
       setTimeout(() => {
@@ -41,7 +41,7 @@ const TimerComponent = () => {
     const allTime = minutes * 60 + seconds;
     setTimerSeconds(allTime);
     setAllTimeSeconds(allTime);
-  }
+  };
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -50,9 +50,9 @@ const TimerComponent = () => {
   const handleOk = () => {
     setTimerSeconds(allTimeSeconds);
     setIsModalVisible(false);
+    getRandomAudio();
     setTimeout(()=>{
       setIsRunningTimer(true)
-      setSound('./example.mp3');
       handlePlayAudio()  
     }, 0);
   };
@@ -65,8 +65,7 @@ const TimerComponent = () => {
     setIsRunningTimer(false);
     setTimerSeconds(0);
     showModal();
-
-    setSound('./done.mp3');
+    setCurrentTrack('./music/done.mp3')
     initPlayer();
     setTimeout(()=> {
       audioPlayer.play();
@@ -76,22 +75,22 @@ const TimerComponent = () => {
   const changeCurrentTime = (minutes, seconds) => {
     setCurrentMinutes(minutes);
     setCurrentSeconds(seconds);
-  }
+  };
 
   const timerStarted = () => {
+    getRandomAudio();
     setIsRunningTimer(true);
     audioPlayer.pause();
-    setSound('./example.mp3');
     initPlayer();
     setTimeout(()=> {
       audioPlayer.play();
     }, 0)
-  }
+  };
 
   const mutedSound = () => {
     (isSoundOn) ? audioPlayer.muted=true : audioPlayer.muted=false
     setIsSoundOn(!isSoundOn)
-  }
+  };
 
   return (
     <Row align="middle">
@@ -106,7 +105,7 @@ const TimerComponent = () => {
         <audio 
           id="audioPlayerTimer"
           preload="metadata"
-          src={sound} 
+          src={currentTrack} 
           type="audio/ogg" 
         />
         <TimerInputComponent
