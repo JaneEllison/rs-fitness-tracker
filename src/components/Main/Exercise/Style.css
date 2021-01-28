@@ -1,3 +1,7 @@
+.ant-switch-inner {
+  font-size: 16px;
+}
+
 .exercise-title {
   text-align: center;
 }
@@ -37,10 +41,6 @@
   width: 502px;
   margin: auto;
   margin-bottom: 3px;
-}
-
-.exercise-add_wrapper {
-  margin-right: 200px;
 }
 
 .exercise-select {
