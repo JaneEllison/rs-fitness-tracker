@@ -1,0 +1,21 @@
+.switch {
+  width: 40%;
+}
+
+.stopwatchTime {
+  padding-top: 10px;
+}
+
+.stopwatchValue:last-child {
+  font-size: 28px;
+}
+
+.timeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stopwatchCount {
+  margin-bottom: 40px;
+}
