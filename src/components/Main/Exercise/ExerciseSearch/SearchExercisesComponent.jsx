@@ -2,9 +2,9 @@ import { Row } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchDataYoutubeAPI, selectVideoAction } from '../../../../store/exerciseDataReducer/exerciseSearchReducer/exerciseSearchReducer';
-import SearchExercisesInput from './SearchExercisesInput';
-import SearchExercisesList from './SearchExercisesList';
-import SearchExercisesPlayer from './SearchExercisesPlayer';
+import SearchExercisesInput from './SearchExercisesInput/SearchExercisesInputComponent';
+import SearchExercisesList from './SearchExercisesVideo/SearchExercisesListComponent';
+import SearchExercisesPlayer from './SearchExercisesVideo/SearchExercisesPlayerComponent';
 
 const SearchExercisesComponent = () => {
   const dispatch = useDispatch();

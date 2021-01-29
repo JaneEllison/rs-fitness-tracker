@@ -1,0 +1,35 @@
+.complete {
+  text-decoration: line-through;
+}
+
+.content {
+  overflow: auto;
+  width: 155px; 
+  cursor: pointer; 
+  height: 260px;
+}
+
+.content::-webkit-scrollbar{
+  width: 1px;
+}
+
+.selected {
+  border: 1.5px solid darkblue;
+}
+
+.input_update {
+  margin-bottom: 3px;
+}
+
+.select_title {
+  margin-right: 70px;
+}
+
+.dropdown {
+  width: 237px;
+  margin-bottom: 3px;
+}
+
+.text {
+  word-wrap: break-word;
+}

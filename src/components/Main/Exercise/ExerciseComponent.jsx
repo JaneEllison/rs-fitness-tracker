@@ -1,10 +1,11 @@
 import React from 'react';
-import ExerciseControlComponent from './ExerciseSchedule/ExerciseControlComponent';
+import ExerciseControlComponent from './ExerciseSchedule/ExerciseScheduleComponent';
 import { useSelector } from 'react-redux';
-import ExerciseAddComponent from './ExerciseSchedule/ExerciseAddComponent';
+import ExerciseAddComponent from './ExerciseSchedule/ExerciseAddForm/ExerciseAddComponent';
 import SearchExercisesComponent from './ExerciseSearch/SearchExercisesComponent';
 import TimeComponent from './Time/TimeComponent';
 import { Row, Col } from 'antd';
+import style from './ExerciseComponent.module.css'
 
 const ExerciseComponent = () => {
   const exerciseData = useSelector((state) => state.exerciseReducer);
@@ -23,7 +24,7 @@ const ExerciseComponent = () => {
 
   return (
     <div className="exercise-wrapper">
-      <h1 className="exercise-title">Exercise schedule</h1>
+      <h1 className={style.title}>Exercise schedule</h1>
       <Row justify="space-between" gutter={16} className="exercise-cards">
         {components}
       </Row>

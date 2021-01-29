@@ -1,0 +1,18 @@
+.input {
+  width: 502px;
+  margin: auto;
+  margin-bottom: 3px;
+}
+
+.video_empty {
+  margin-left: 100px;
+}
+
+.video_iframe {
+  width: 400px; 
+  height: 230px;
+}
+
+.video_list {
+  cursor: pointer;
+}

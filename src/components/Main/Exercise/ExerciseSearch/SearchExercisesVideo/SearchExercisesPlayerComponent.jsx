@@ -1,17 +1,17 @@
 import React from 'react';
 import { Empty } from 'antd';
+import style from '../ExerciseSearch.module.css';
 
 const SearchExercisesPlayer = ({ videoId }) => {
   if (!videoId) {
-    return <Empty className="search-video_empty" />;
+    return <Empty className={style.video_empty} />;
   }
 
   return (
     <div>
       <iframe
-        style={{ width: 400, height: 230 }}
         title={videoId}
-        className="video-iframe"
+        className={style.video_iframe}
         src={`https://www.youtube.com/embed/${videoId}`}
       />
     </div>

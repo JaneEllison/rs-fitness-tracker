@@ -1,5 +1,5 @@
 import React from 'react';
-import ExerciseActionComponent from './ExerciseActionComponent';
+import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
 import { useDispatch } from 'react-redux';
 import {
   exerciseRemoveAction,
@@ -7,6 +7,8 @@ import {
 } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
 import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
 import { Card } from 'antd';
+import style from './ExerciseSchedule.module.css'
+import moduleName from './ExerciseAnt.css'
 
 const ExerciseControlComponent = ({ day, exercises, selectedDay }) => {
   const dispatch = useDispatch();
@@ -27,11 +29,10 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay }) => {
     <div onClick={() => selectDay()} style={{ padding: 3 }}>
       <Card
         className={
-          day === selectedDay ? 'exercise-content selected' : 'exercise-content'
+          day === selectedDay ? [style.content, style.selected] : style.content
         }
         size={'small'}
         title={day}
-        style={{ width: 155, cursor: 'pointer', height: 260 }}
       >
         <ExerciseActionComponent
           day={day}

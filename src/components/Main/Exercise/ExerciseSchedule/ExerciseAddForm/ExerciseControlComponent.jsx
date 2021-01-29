@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
+import { selectDayAction } from '../../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
 import { Row, Col, Select, Input } from 'antd';
+import style from '../ExerciseSchedule.module.css';
 
 const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
   const [input, setInput] = useState('');
@@ -43,7 +44,7 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
   return (
     <div>
       <Select
-        className="exercise-dropdown"
+        className={style.dropdown}
         value={currentSelectDay}
         onChange={currentDropdownDay}
       >
@@ -57,7 +58,6 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
         <Col>
           <Search
             ref={myRef}
-            autoFocus={true}
             type="text"
             value={input}
             placeholder="Add exercise"

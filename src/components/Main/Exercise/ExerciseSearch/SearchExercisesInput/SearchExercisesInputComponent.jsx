@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
+import style from '../ExerciseSearch.module.css';
 
-const SearchExercises = ({ onSearch }) => {
+const SearchExercisesInput = ({ onSearch }) => {
   const [input, setInput] = useState('');
 
   const { Search } = Input;
@@ -17,7 +18,7 @@ const SearchExercises = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-input">
+    <div className={style.input}>
       <Search
         type="text"
         value={input}
@@ -30,4 +31,4 @@ const SearchExercises = ({ onSearch }) => {
   );
 };
 
-export default SearchExercises;
+export default SearchExercisesInput;
