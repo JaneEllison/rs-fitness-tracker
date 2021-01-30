@@ -11,11 +11,6 @@
   margin-bottom: 20px;
 }
 
-.left_content {
-  /* margin-right: 14rem; */
-  /* margin-right: 221px; */
-}
-
 @media only screen and (max-width: 1230px) {
   .cards {
     max-width: 71%;

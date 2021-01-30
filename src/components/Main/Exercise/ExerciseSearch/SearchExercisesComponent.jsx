@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd';
+import { Row } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchDataYoutubeAPI, selectVideoAction } from '../../../../store/exerciseDataReducer/exerciseSearchReducer/exerciseSearchReducer';
@@ -29,18 +29,6 @@ const SearchExercisesComponent = () => {
         />
       </Row>
     </div>
-    // <Row justify="center">
-    //   <Col>
-    //   <SearchExercisesInput onSearch={onSearch} />
-    //   </Col>
-    //   <Col justify="space-between">
-    //     <SearchExercisesPlayer videoId={youtubeData.selectedVideoId} />
-    //     <SearchExercisesList
-    //       onVideoSelected={onVideoSelected}
-    //       data={youtubeData.videoMetaInfo}
-    //     />
-    //   </Col>
-    // </Row>
   );
 };
 
