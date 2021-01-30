@@ -8,13 +8,11 @@ const SearchExercisesPlayer = ({ videoId }) => {
   }
 
   return (
-    <div>
-      <iframe
-        title={videoId}
-        className={style.video_iframe}
-        src={`https://www.youtube.com/embed/${videoId}`}
-      />
-    </div>
+    <iframe
+      title={videoId}
+      className={style.video_iframe}
+      src={`https://www.youtube.com/embed/${videoId}`}
+    />
   );
 };
 

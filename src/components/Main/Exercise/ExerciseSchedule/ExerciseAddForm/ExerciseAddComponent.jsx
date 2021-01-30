@@ -28,7 +28,7 @@ const List = () => {
   };
 
   return (
-    <Row className="exercise-add_wrapper">
+    <Row className={style.add_wrapper}>
       <Col className={style.select_title}>
         <h3>Select day: </h3>
         <h3>Exercise: </h3>

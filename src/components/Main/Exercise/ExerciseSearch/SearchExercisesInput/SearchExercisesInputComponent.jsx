@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input } from 'antd';
+import { Input, Row } from 'antd';
 import style from '../ExerciseSearch.module.css';
 
 const SearchExercisesInput = ({ onSearch }) => {

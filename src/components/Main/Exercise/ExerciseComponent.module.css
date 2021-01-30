@@ -1,3 +1,44 @@
+.wrapper {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
 .title {
   text-align: center;
+}
+
+.cards {
+  margin-bottom: 20px;
+}
+
+.left_content {
+  /* margin-right: 14rem; */
+  /* margin-right: 221px; */
+}
+
+@media only screen and (max-width: 1230px) {
+  .cards {
+    max-width: 71%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .cards {
+    max-width: 87%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .main_content {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 505px) {
+  .cards {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
 }

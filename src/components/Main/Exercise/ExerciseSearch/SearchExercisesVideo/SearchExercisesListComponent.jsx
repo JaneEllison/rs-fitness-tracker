@@ -4,7 +4,7 @@ import SearchExercisesVideo from './SearchExercisesVideoComponent';
 const SearchExercisesList = ({ data, onVideoSelected }) => {
   return (
     <div>
-      <div className='asf'>
+      <div>
         <SearchExercisesVideo data={data} onVideoSelected={onVideoSelected} />
       </div>
     </div>

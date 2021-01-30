@@ -35,6 +35,7 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
     >
       <Card
         size={'small'}
+        style={{fontSize: 12}}
         actions={[
           <DeleteOutlined
             onClick={() => removeExercise(exercise.id)}

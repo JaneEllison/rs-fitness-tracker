@@ -6,7 +6,7 @@ import {
   exerciseCompleteAction,
 } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
 import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
-import { Card } from 'antd';
+import { Card, Col } from 'antd';
 import style from './ExerciseSchedule.module.css'
 import moduleName from './ExerciseAnt.css'
 
@@ -26,7 +26,7 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay }) => {
   };
 
   return (
-    <div onClick={() => selectDay()} style={{ padding: 3 }}>
+    <Col className={style.content_wrapper}onClick={() => selectDay()}>
       <Card
         className={
           day === selectedDay ? [style.content, style.selected] : style.content
@@ -41,7 +41,7 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay }) => {
           removeExercise={removeExercise}
         />
       </Card>
-    </div>
+    </Col>
   );
 };
 

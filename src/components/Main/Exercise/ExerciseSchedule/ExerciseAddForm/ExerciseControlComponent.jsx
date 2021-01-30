@@ -54,7 +54,7 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
           </Option>
         ))}
       </Select>
-      <Row>
+      <Row className={style.add_form_wrapper}>
         <Col>
           <Search
             ref={myRef}
