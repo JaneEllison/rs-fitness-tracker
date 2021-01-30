@@ -6,6 +6,7 @@ import TimerButtonsComponent from './TimerButtons/TimerButtonsComponent';
 import TimerEndedModalComponent from './TimerEndedModal/TimerEndedModalComponent';
 
 const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
+  const [ isTimerOn, setIsTimerOn ] = useState(false);
   const [ allTimeSeconds, setAllTimeSeconds ] = useState(0)
   const [ currentSeconds, setCurrentSeconds ] = useState(0);
   const [ currentMinutes, setCurrentMinutes ] = useState(0);
@@ -45,6 +46,10 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    setAllTimeSeconds(0);
+    setCurrentSeconds(0)
+    setCurrentMinutes(0)
+    setIsTimerOn(false);
   };
 
   const handleOk = () => {
@@ -70,7 +75,7 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
     setTimeout(()=> {
       audioPlayer.play();
     }, 0)
-  }
+  };
 
   const changeCurrentTime = (minutes, seconds) => {
     setCurrentMinutes(minutes);
@@ -114,6 +119,7 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
           currentMinutes = {currentMinutes}
           currentSeconds = {currentSeconds}
           timerStarted = {timerStarted}
+          setIsTimerOn={setIsTimerOn}
         />
         <TimerButtonsComponent
           startTimer = {startTimer}
@@ -127,6 +133,8 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
           initPlayer={initPlayer}
           mutedSound={mutedSound}
           isSoundOn={isSoundOn}
+          isTimerOn={isTimerOn}
+          setIsTimerOn={setIsTimerOn}
         />
       </Col>
       <Col push={3}>
