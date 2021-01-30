@@ -1,42 +1,55 @@
+import React from 'react';
+import StockOutlined from '@ant-design/icons/lib/icons/StockOutlined';
+import UnorderedListOutlined from '@ant-design/icons/lib/icons/UnorderedListOutlined';
+
 const routes = {
   menuRoutes: [
     {
       path: '/search_food',
-      textName: 'Search food',
+      value: 'Search food',
     },
     {
       path: '/exercise',
-      textName: 'Exercise',
-    },
-    {
-      path: '/stats',
-      textName: 'Stats',
+      value: 'Exercise',
     },
     {
       path: '/',
-      textName: 'Default',
+      value: 'Default',
     },
   ],
   authRoutes: [
     {
       path: '/signup',
-      textName: 'Sign up',
+      value: 'Sign up',
       type: 'nonAuthenticated'
     },
     {
       path: '/signin',
-      textName: 'Sign in',
+      value: 'Sign In',
       type: 'nonAuthenticated'
     },
     {
       path: '/logout',
-      textName: 'Log out',
+      value: 'Log out',
       type: 'authenticated'
     },
     {
-      path: '/account',
-      textName: 'Account',
+      value: 'accountButton',
       type: 'authenticated'
+    },
+  ],
+  accountMenuRoutes: [
+    {
+      path: '/account',
+      value: 'User info',
+      type: 'authenticated',
+      icon: <UnorderedListOutlined />,
+    },
+    {
+      path: '/stats',
+      value: 'User statistics',
+      type: 'authenticated',
+      icon: <StockOutlined />,
     },
   ],
 };
