@@ -22,18 +22,18 @@ const WeatherModalComponent = ({ weatherInfo, setIsModalVisible, isModalVisible 
         centered={true}
         footer={null}
         >
-        <Row gutter={15}>
-          <Col span={12}>
+        <Row gutter={15} align="middle" justify="space-around">
+          <Col sm={{span: 12}} xs={{span: 17}}>
             <img 
               src={weatherInfo.icon}
               alt="weather-icon"
               className={style.weatherModalImg}
             />
           </Col>
-          <Col span={12}>
+          <Col sm={{span: 12}} xs={{span: 17}}>
             <Row justify="center">
               <Title 
-                level={1} 
+                level={1}
                 style={{ marginBottom: '3px' }}
               >
                 {`${weatherInfo.temperature} °C`}
