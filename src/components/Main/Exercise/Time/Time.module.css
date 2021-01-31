@@ -32,19 +32,10 @@
 
 .stopwatchCount {
   margin-bottom: 27px;
-  margin-left: 40px;
 }
 
-.stopwatchButtons {
-  margin-left: 40px;
-}
-
-@media only screen and (max-width: 504px) {
+@media only screen and (max-width: 576px) {
   .stopwatchCount {
     margin-top: 20px;
-    margin-left: 0;
-  }
-  .stopwatchButtons {
-    margin-left: 0;
   }
 }

@@ -30,12 +30,12 @@ const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) =
 
   return (
     <Row gutter={[0, 10]} align="bottom" justify="center" style={{width: '80%'}} >
-      <Col>
+      <Col sm={{span:12}} xs={{span:24}}>
         <StopwatchListComponent
           memoryOfValues={memoryOfValues}
         />
       </Col>
-      <Col>
+      <Col sm={{span:12}} xs={{span:24}}>
         <StopwatchCountComponent
           isRunningStopwatch={isRunningStopwatch}
           changeSeconds={changeSeconds}
