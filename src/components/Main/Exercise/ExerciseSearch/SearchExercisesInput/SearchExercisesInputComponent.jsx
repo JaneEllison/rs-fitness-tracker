@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
+import style from '../ExerciseSearch.module.css';
 
-const SearchExercises = (props) => {
+const SearchExercisesInput = ({ onSearch }) => {
   const [input, setInput] = useState('');
 
   const { Search } = Input;
@@ -10,22 +11,24 @@ const SearchExercises = (props) => {
     setInput(event.target.value);
   };
 
-  const handleSubmit = () => {
-    props.onSearch(input);
+  const handleSubmitKeyword = () => {
+    if (input.trim() === '') return;
+
+    onSearch(input);
   };
 
   return (
-    <div className="search-input">
+    <div className={style.input}>
       <Search
         type="text"
         value={input}
         placeholder="Search exercise"
         onChange={handleChange}
         enterButton="SEARCH"
-        onSearch={handleSubmit}
+        onSearch={handleSubmitKeyword}
       />
     </div>
   );
 };
 
-export default SearchExercises;
+export default SearchExercisesInput;

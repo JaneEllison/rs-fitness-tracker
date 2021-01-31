@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
+import { selectDayAction } from '../../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
 import { Row, Col, Select, Input } from 'antd';
+import style from '../ExerciseSchedule.module.css';
 
-const ExerciseAddComponent = (props) => {
+const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
   const [input, setInput] = useState('');
 
   const dispatch = useDispatch();
   const days = useSelector((state) => Object.keys(state.exerciseReducer));
 
-  let currentSelectDay = props.selectedDay || days;
+  let currentSelectDay = selectedDay || days;
+
+  const myRef = React.createRef();
 
   const { Option } = Select;
   const { Search } = Input;
@@ -18,10 +21,12 @@ const ExerciseAddComponent = (props) => {
     setInput(event.target.value);
   };
 
-  const handleSubmit = () => {
-    props.onSubmit({
+  const handleSubmitExercise = () => {
+    if (input.trim() === '') return;
+
+    globalSetExercise({
       id: Math.floor(Math.random() * 10000),
-      title: input,
+      title: input.trim(),
       isComplete: false,
     });
 
@@ -32,10 +37,14 @@ const ExerciseAddComponent = (props) => {
     dispatch(selectDayAction(value));
   };
 
+  useEffect(() => {
+    myRef.current.focus();
+  }, [selectedDay])
+
   return (
     <div>
       <Select
-        className="exercise-dropdown"
+        className={style.dropdown}
         value={currentSelectDay}
         onChange={currentDropdownDay}
       >
@@ -45,16 +54,17 @@ const ExerciseAddComponent = (props) => {
           </Option>
         ))}
       </Select>
-      <Row onSubmit={handleSubmit}>
+      <Row className={style.add_form_wrapper}>
         <Col>
           <Search
+            ref={myRef}
             type="text"
             value={input}
             placeholder="Add exercise"
             name="text"
             onChange={handleChange}
             enterButton="ADD"
-            onSearch={handleSubmit}
+            onSearch={handleSubmitExercise}
           />
         </Col>
       </Row>

@@ -1,0 +1,11 @@
+.ant-card-actions > li {
+  margin: 3px 0;
+}
+
+.ant-card-small > .ant-card-body {
+  padding: 5px;
+}
+
+.ant-switch-inner {
+  font-size: 16px;
+}

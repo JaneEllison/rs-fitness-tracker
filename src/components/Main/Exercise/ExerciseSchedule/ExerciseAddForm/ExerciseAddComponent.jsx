@@ -1,9 +1,10 @@
-import React from 'react';
-import ExerciseListComponent from './ExerciseListComponent';
+import React, { useEffect } from 'react';
+import ExerciseListComponent from './ExerciseControlComponent';
 import { useDispatch, useSelector } from 'react-redux';
-import { exerciseAddAction } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
-import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
+import { exerciseAddAction } from '../../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
+import { selectDayAction } from '../../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
 import { Row, Col } from 'antd';
+import style from '../ExerciseSchedule.module.css';
 
 const List = () => {
   const dispatch = useDispatch();
@@ -11,9 +12,9 @@ const List = () => {
   const days = useSelector((state) => state.exerciseReducer);
   const defaultDay = Object.keys(days)[0];
 
-  if (selectedDay === null) {
-    dispatch(selectDayAction(defaultDay));
-  }
+  useEffect(() => {
+    dispatch(selectDayAction(defaultDay))
+  }, [dispatch, defaultDay]);
 
   const globalAddExercise = (exercise) => {
     dispatch(
@@ -27,15 +28,15 @@ const List = () => {
   };
 
   return (
-    <Row className="exercise-add_wrapper">
-      <Col className="exercise-select">
+    <Row className={style.add_wrapper}>
+      <Col className={style.select_title}>
         <h3>Select day: </h3>
         <h3>Exercise: </h3>
       </Col>
       {selectedDay !== null ? (
         <ExerciseListComponent
           selectedDay={selectedDay}
-          onSubmit={globalAddExercise}
+          globalSetExercise={globalAddExercise}
         />
       ) : null}
     </Row>

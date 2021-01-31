@@ -4,9 +4,9 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { FormOutlined } from '@ant-design/icons';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import { exerciseUpdateAction } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
-import style from '../Style.css';
+import { exerciseUpdateAction } from '../../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
 import { Card } from 'antd';
+import style from '../ExerciseSchedule.module.css';
 
 function ExerciseActionComponent({ exercises, removeExercise, completeExercise, day }) {
   const [edit, setEdit] = useState({
@@ -30,11 +30,12 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
 
   return exercises.map((exercise, index) => (
     <div
-      className={exercise.isComplete ? 'exercise-row complete' : 'exercise-row'}
+      className={exercise.isComplete ? style.complete : 'exercise-row'}
       key={index}
     >
       <Card
         size={'small'}
+        style={{fontSize: 12}}
         actions={[
           <DeleteOutlined
             onClick={() => removeExercise(exercise.id)}
@@ -51,7 +52,7 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
         ]}
       >
         <span
-          style={style.complete}
+          className={style.text}
           onClick={() => completeExercise(exercise.id)}
         >
           {exercise.text}

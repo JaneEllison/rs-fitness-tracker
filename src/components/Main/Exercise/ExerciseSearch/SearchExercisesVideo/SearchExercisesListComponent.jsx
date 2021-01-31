@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchExercisesVideo from './SearchExercisesVideo';
+import SearchExercisesVideo from './SearchExercisesVideoComponent';
 
 const SearchExercisesList = ({ data, onVideoSelected }) => {
   return (
