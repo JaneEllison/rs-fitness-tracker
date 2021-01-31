@@ -1,5 +1,6 @@
 import React from 'react';
 import NavMenuComponent from './NavMenu/NavMenuComponent';
+import WeatherComponent from './Weather/WeatherComponent';
 import { useFirebase } from 'react-redux-firebase';
 
 const HeaderComponent = () => {
@@ -9,6 +10,7 @@ const HeaderComponent = () => {
   return (
     <header>
         <NavMenuComponent/>
+        <WeatherComponent/>
     </header>
   );
 };

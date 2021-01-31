@@ -1,0 +1,23 @@
+.weatherContainer {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  color: #fff;
+  line-height: normal;
+}
+
+.weatherIcon {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.4rem;
+}
+
+.weatherTitle {
+  color: #fff;
+  margin-right: 0.4rem;
+}
+
+.weatherSubtitle {
+  color:rgba(255, 255, 255, 0.65);
+  font-size: 0.7rem;
+}
