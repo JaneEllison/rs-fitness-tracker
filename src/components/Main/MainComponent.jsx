@@ -10,6 +10,7 @@ import AccountComponent from './Account/AccountComponent';
 import PrivateRoute from '../commonComponents/PrivateRoute';
 import SignOut from './Authentification/SignOut';
 import SignInComponent from './Authentification/SignInComponent';
+import GoalComponent from './Goal/GoalComponent';
 
 const MainComponent = () => {
   return (
@@ -26,6 +27,7 @@ const MainComponent = () => {
             <Route path="/signup" render={() => <SignUpComponent/>} />
             <Route path="/signin" render={() => <SignInComponent/>} />
             <Route path="/stats" render={() => <StatsComponent />} />
+            <Route path='/goal' render={() => <GoalComponent />} />
             <PrivateRoute path="/account" >
               <AccountComponent/>
             </PrivateRoute>

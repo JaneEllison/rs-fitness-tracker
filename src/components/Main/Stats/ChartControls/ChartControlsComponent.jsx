@@ -8,8 +8,8 @@ function ChartControlsComponent({
   onChange,
   goal: {
     goalWeight,
-    goalCalories,
-  }
+    goalCalories
+  },
 }) {
   return (  
     <div className={style.styleChartControlsComponent}>
