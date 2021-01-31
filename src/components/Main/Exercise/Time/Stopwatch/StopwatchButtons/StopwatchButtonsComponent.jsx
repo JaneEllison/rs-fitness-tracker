@@ -62,7 +62,7 @@ const StopwatchButtonsComponent = ({ stopwatchSeconds, setIsRunningStopwatch, ch
   }
 
   return (
-    <Row justify="center">
+    <Row justify="center" className={style.stopwatchButtons}>
       <audio
         id="audioPlayerStopwatch"
         preload="metadata"

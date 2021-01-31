@@ -98,8 +98,8 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
   };
 
   return (
-    <Row align="middle">
-      <Col >
+    <Row align="middle" style={{width: '100%'}} justify='center'>
+      <Col span={12} >
         <>
           <TimerEndedModalComponent 
             isModalVisible={isModalVisible}
@@ -137,7 +137,7 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
           setIsTimerOn={setIsTimerOn}
         />
       </Col>
-      <Col push={3}>
+      <Col span={12}>
         <TimerCountComponent
             isRunningTimer={isRunningTimer}
             setTimerSeconds={setTimerSeconds}

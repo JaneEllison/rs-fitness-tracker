@@ -5,10 +5,9 @@ const StopwatchListComponent = ({memoryOfValues}) => {
   return (
     <Space direction="vertical">
       <Card 
-        className="TimeCard"
         title="Time"
         size={'small'}
-        style={{ width: 155, height:180, textAlign: 'center'}
+        style={{ width: 155, height:160}
       }>
         <div >
           {memoryOfValues.map((value) => {

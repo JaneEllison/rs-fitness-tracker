@@ -40,7 +40,7 @@ function TimerButtonsComponent(props) {
   };
 
   return (
-    <Row justify="center">
+    <Row justify="center" className={style.timerButtons}>
       <Tooltip title="Repeat timer">
         <Button 
           type="primary" 
