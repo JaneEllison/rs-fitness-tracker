@@ -10,7 +10,8 @@ import { Card, Col } from 'antd';
 import style from './ExerciseSchedule.module.css'
 import moduleName from './ExerciseAnt.css'
 
-const ExerciseControlComponent = ({ day, exercises, selectedDay }) => {
+const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay }) => {
+  console.log(day, exercises, selectedDay);
   const dispatch = useDispatch();
 
   const removeExercise = (id) => {
@@ -22,7 +23,7 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay }) => {
   };
 
   const selectDay = () => {
-    dispatch(selectDayAction(day));
+    setSelectedDay(day);
   };
 
   return (

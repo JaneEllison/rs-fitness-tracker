@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ExerciseControlComponent from './ExerciseSchedule/ExerciseScheduleComponent';
 import { useSelector } from 'react-redux';
 import ExerciseAddComponent from './ExerciseSchedule/ExerciseAddForm/ExerciseAddComponent';
@@ -6,11 +6,14 @@ import SearchExercisesComponent from './ExerciseSearch/SearchExercisesComponent'
 import TimeComponent from './Time/TimeComponent';
 import { Row, Col } from 'antd';
 import style from './ExerciseComponent.module.css';
+import daysList from '../../../constants/daysList';
 
 const ExerciseComponent = () => {
-  const exerciseData = useSelector((state) => state.exerciseReducer);
-  const selectedDay = useSelector((state) => state.selectedDayReducer);
 
+  const exerciseData = useSelector((state) => state.exerciseReducer);
+  // const selectedDay = useSelector((state) => state.selectedDayReducer);
+  const [selectedDay, setSelectedDay] = useState(daysList[new Date(Date.now()).getDay()].name);
+  console.log(selectedDay);
   const components = Object.entries(exerciseData).map(([day, data], index) => {
     return (
       // <Col  sm={{ span: 3, offset: 0}} lg={{ span: 5, offset: 0}} xl={{span: 3, offset: 0,}}>
@@ -19,6 +22,7 @@ const ExerciseComponent = () => {
         selectedDay={selectedDay}
         key={index}
         day={day}
+        setSelectedDay={setSelectedDay}
         exercises={data.exercises}
       />
       // </Col>

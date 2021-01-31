@@ -8,7 +8,7 @@ const FoodStatCardComponent = ({foodPhoto, title, foodData, foodName}) => {
   const { Meta } = Card;
   const food = Object.keys(foodData);
   return (
-    <Card style={{ width: 300, marginTop: 16 }} >
+    <Card style={{ width: 300}} >
       <Meta
         avatar={
           <Avatar src={foodPhoto} />
