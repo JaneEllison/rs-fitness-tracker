@@ -13,7 +13,6 @@ const FoodTableComponent = () => {
   const timeKey = new Date(Date.now()).toLocaleDateString('ru-RU');
 
   const foodMenu = profile.userMenus[timeKey] ? profile.userMenus[timeKey] : [];
-  console.log(foodMenu);
   let columns = getFoodMenuTableColumns();
   const foodTableData = getFoodTableData(foodMenu);
 
