@@ -1,0 +1,37 @@
+.wrapper {
+  position: relative;
+  animation: colors 6s linear infinite;
+}
+
+.spinerIcon {
+  position: absolute;
+  width: 290px;
+}
+
+.spinner {
+  fill: transparent;
+  stroke: rgb(14, 0, 48);
+  stroke-width: 18px;
+  stroke-dasharray: 650px;
+  stroke-dashoffset: 0;
+  animation: spin 3s linear infinite;
+}
+.spinner-track {
+  fill: transparent;
+  stroke: rgba(0,0,0,0.2);
+  stroke-width: 18px;
+}
+
+@keyframes spin {
+  0% {
+    stroke-dashoffset: 650px;
+    stroke: rgba(136, 231, 255, 0.87);
+  }
+  50% {
+    stroke-dashoffset: 0;
+    stroke: rgba(0, 145, 212, 0.993);
+  }
+  100% {
+    stroke-dashoffset: -650px;
+  }
+}

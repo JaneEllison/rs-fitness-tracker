@@ -5,6 +5,10 @@ import {
   UPDATE_EXERCISE,
 } from "./exerciseReducerConstant";
 
+import removeExercise from '../../../utils/removeExercise';
+import setCompleteExercise from '../../../utils/setCompleteExercise';
+import setUpdateExercise from '../../../utils/setUpdateExercise';
+
 const initialState = {
   "Monday": {
     exercises: [
@@ -87,23 +91,17 @@ const exerciseReducer = (state=initialState, { id, text, type, day, isComplete }
     case REMOVE_EXERCISE:
       oldData = state[day] || {};
       oldExercises = oldData.exercises || [];
-      newExercises = {...oldData, exercises: oldExercises.filter(exercise => {
-        return exercise.id !== id;
-      })};
+      newExercises = {...oldData, exercises: removeExercise(oldExercises, id)};
       return {...state, [day]: newExercises}
     case COMPLETE_EXERCISE:
       oldData = state[day] || {};
       oldExercises = oldData.exercises || [];
-      newExercises = {...oldData, exercises: oldExercises.map(exercise => {
-        return exercise.id === id ?  {...exercise, isComplete: !exercise.isComplete} : exercise;
-      })};
+      newExercises = {...oldData, exercises: setCompleteExercise(oldExercises, id)};
       return {...state, [day]: newExercises}
     case UPDATE_EXERCISE:
       oldData = state[day] || {};
       oldExercises = oldData.exercises || [];
-      newExercises = {...oldData, exercises: oldExercises.map(exercise => {
-        return exercise.id === id ? text : exercise;
-      })};
+      newExercises = {...oldData, exercises: setUpdateExercise(oldExercises, id, text)};
       return {...state, [day]: newExercises}
     
     default:

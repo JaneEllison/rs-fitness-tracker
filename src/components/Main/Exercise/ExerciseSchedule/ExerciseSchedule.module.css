@@ -1,0 +1,82 @@
+.complete {
+  text-decoration: line-through;
+}
+
+.content {
+  overflow: auto;
+  width: 10rem;
+  cursor: pointer; 
+  height: 15rem;
+}
+
+@media only screen and (max-width: 805px) {
+  .content {
+    width: 18rem;
+    display: none;
+  }
+}
+
+.content::-webkit-scrollbar{
+  width: 1px;
+}
+
+@media only screen and (max-width: 805px) {
+  .content_wrapper {
+    width: 100%;
+    min-height: 0px;
+  }
+}
+
+.selected {
+  margin: 0 auto;
+  border: 1.5px solid darkblue;
+}
+
+@media only screen and (max-width: 805px) {
+  .selected {
+    display: block;
+  }
+
+  .add_wrapper {
+    margin-top: 10px;
+  }
+}
+
+.input_update {
+  margin-bottom: 3px;
+}
+
+.add_wrapper {
+  margin-bottom: 10px;
+}
+
+.select_title {
+  margin-right: 7rem;
+}
+
+.dropdown {
+  width: 14.8rem;
+  margin-bottom: 3px;
+}
+
+.text {
+  word-wrap: break-word;
+}
+
+@media only screen and (max-width: 505px) {
+  .select_title {
+    margin-right: 2rem;
+  }
+
+  .add_form_wrapper {
+    width: 11rem;
+  }
+
+  .dropdown {
+    width: 11rem;
+  }
+
+  .add_wrapper {
+    justify-content: center;
+  }
+}

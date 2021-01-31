@@ -1,9 +1,11 @@
 import React from 'react';
-import ExerciseControlComponent from './ExerciseSchedule/ExerciseControlComponent';
+import ExerciseControlComponent from './ExerciseSchedule/ExerciseScheduleComponent';
 import { useSelector } from 'react-redux';
-import ExerciseAddComponent from './ExerciseSchedule/ExerciseAddComponent';
+import ExerciseAddComponent from './ExerciseSchedule/ExerciseAddForm/ExerciseAddComponent';
 import SearchExercisesComponent from './ExerciseSearch/SearchExercisesComponent';
-import { Row } from 'antd';
+import TimeComponent from './Time/TimeComponent';
+import { Row, Col } from 'antd';
+import style from './ExerciseComponent.module.css';
 
 const ExerciseComponent = () => {
   const exerciseData = useSelector((state) => state.exerciseReducer);
@@ -11,24 +13,32 @@ const ExerciseComponent = () => {
 
   const components = Object.entries(exerciseData).map(([day, data], index) => {
     return (
+      // <Col  sm={{ span: 3, offset: 0}} lg={{ span: 5, offset: 0}} xl={{span: 3, offset: 0,}}>
+      // <Col span={3}>
       <ExerciseControlComponent
         selectedDay={selectedDay}
         key={index}
         day={day}
         exercises={data.exercises}
       />
+      // </Col>
     );
   });
 
   return (
-    <div className="exercise-wrapper">
-      <h1 className="exercise-title">Exercise schedule</h1>
-      <Row justify="center" gutter={16} className="exercise-cards">
+    <div className={style.wrapper}>
+      <h1 className={style.title}>Exercise schedule</h1>
+      <Row align="middle" justify="space-between" className={style.cards}>
         {components}
       </Row>
-      <Row justify="center">
-        <ExerciseAddComponent />
-        <SearchExercisesComponent />
+      <Row className={style.main_content} justify="space-between">
+        <Col className={style.left_content}>
+          <ExerciseAddComponent />
+          <TimeComponent />
+        </Col>
+        <Col>
+          <SearchExercisesComponent />
+        </Col>
       </Row>
     </div>
   );
