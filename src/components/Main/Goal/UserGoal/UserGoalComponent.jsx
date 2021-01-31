@@ -35,7 +35,7 @@ function UserGoalComponent({
       title: 'New goal parameters',
       content: (
         <div>
-          nigger
+          test
         </div>
       ),
     })
