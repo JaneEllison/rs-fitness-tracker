@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { List, Drawer, Button } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
+import style from '../ExerciseSearch.module.css';
 
 const SearchExercisesVideo = ({ data, onVideoSelected }) => {
   const [visible, setVisible] = useState(false);
@@ -23,15 +25,16 @@ const SearchExercisesVideo = ({ data, onVideoSelected }) => {
           VIDEO LIST
         </Button>
         <Drawer
+          closeIcon={<CloseCircleOutlined />}
           placement="right"
-          closable={false}
           onClose={onClose}
           visible={visible}
         >
           <List
-            style={{ width: 200, marginLeft: -15 }}
+            className={style.video_list}
             itemLayout="horizontal"
             size="small"
+            onClick={onClose}
             dataSource={videosData}
             renderItem={({ snippet, id }, index) => (
               <List.Item
@@ -39,9 +42,9 @@ const SearchExercisesVideo = ({ data, onVideoSelected }) => {
                 key={index}
                 extra={
                   <img
-                    width={200}
+                    width={155}
                     alt="logo"
-                    src={snippet.thumbnails.medium.url}
+                    src={snippet.thumbnails.default.url}
                   />
                 }
               >
