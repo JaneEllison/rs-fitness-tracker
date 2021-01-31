@@ -12,9 +12,8 @@ const FoodTableComponent = () => {
   const profile = useSelector(profileSelector);
   const timeKey = new Date(Date.now()).toLocaleDateString('ru-RU');
 
-
   const foodMenu = profile.userMenus[timeKey] ? profile.userMenus[timeKey] : [];
-
+  console.log(foodMenu);
   let columns = getFoodMenuTableColumns();
   const foodTableData = getFoodTableData(foodMenu);
 
@@ -26,7 +25,7 @@ const FoodTableComponent = () => {
     }
   }, [foodTableData]);
 
-  const tableConfig = getTableConfig(foodTableData, loading, columns);
+  const tableConfig = getTableConfig(foodTableData, foodMenu, loading, columns);
 
   return (
     <Table

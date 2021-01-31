@@ -1,10 +1,9 @@
 import calculateNutrientsByWeight from '../../../../../../utils/calculateNutrientsByWeight';
-import {
-  calculateTotalNutrientsAC,
-  fetchFoodToMenuAC,
-} from '../../../../../../store/FoodMenuReducer/foodMenuActionCreators';
+import setNewMenuItemId from '../../../../../../utils/setNewMenuItemId';
 
-const addToMenu = (dispatch, foodData, weight, time) => {
+const addToMenu = (firebase, foodData, weight, time, profile) => {
+  const timeKey = new Date(time).toLocaleDateString('ru-RU');
+  time = new Date(time).toLocaleTimeString('ru-RU');
   const {
     food_name,
     nf_calories,
@@ -13,7 +12,7 @@ const addToMenu = (dispatch, foodData, weight, time) => {
     nf_protein,
   } = foodData;
 
-  dispatch(fetchFoodToMenuAC({
+  const foodItemToAdd = {
     food_name,
     ...calculateNutrientsByWeight({
       nf_calories,
@@ -22,8 +21,21 @@ const addToMenu = (dispatch, foodData, weight, time) => {
       nf_protein}, weight),
     weight,
     time,
-  }));
-  dispatch(calculateTotalNutrientsAC());
+  };
+
+  if (profile.userMenus[timeKey]) {
+    firebase.updateProfile({userMenus: {[timeKey]: [
+          ...profile.userMenus[timeKey],
+          setNewMenuItemId(profile.userMenus[timeKey], foodItemToAdd)
+        ]}});
+  } else {
+    firebase.updateProfile({userMenus: {[timeKey]: [
+          {...foodItemToAdd, id: 0}
+        ]}});
+  }
+
+
+
 };
 
 export default addToMenu;

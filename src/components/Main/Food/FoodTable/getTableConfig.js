@@ -3,7 +3,7 @@ import FoodTableSummaryComponent from './FoodTableSummary/FoodTableSummaryCompon
 import React from 'react';
 import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 
-const getTableConfig = (foodTableData, loading, columns) => {
+const getTableConfig = (foodTableData, foodMenu, loading, columns) => {
   const {foodTableComponent: {
     FOOD_TABLE_SIZE,
     FOOD_TABLE_SCROLL,
@@ -15,7 +15,7 @@ const getTableConfig = (foodTableData, loading, columns) => {
     title: () => <FoodTableMenuTitleComponent />,
     columns: columns,
     dataSource:[...foodTableData],
-    summary: () => <FoodTableSummaryComponent />,
+    summary: () => <FoodTableSummaryComponent foodMenu={foodMenu} />,
     scroll: FOOD_TABLE_SCROLL,
     pagination: FOOD_TABLE_PAGINATION,
     bordered: FOOD_TABLE_BORDERED,
