@@ -8,27 +8,29 @@ import DropDownMenuComponent from './DropDownMenuComponent';
 
 const AuthMenuComponent = () => {
   const { authRoutes } = routes;
-  const [routesList, setRoutesList] = useState(authRoutes);
+  const [routesList, setRoutesList] = useState([]);
   const auth = useSelector(authSelector);
   const {isEmpty, isLoaded} = auth;
 
   useEffect(() => {
-    isEmpty
-      ? setRoutesList(
-      [
-        ...authRoutes.filter((item) => item.type === 'nonAuthenticated'),
-      ])
-      : setRoutesList(
-      [
-        ...authRoutes.filter((item) => item.type === 'authenticated'),
-      ])
+    if(isLoaded) {
+      isEmpty
+        ? setRoutesList(
+        [
+          ...authRoutes.filter((item) => item.type === 'nonAuthenticated'),
+        ])
+        : setRoutesList(
+        [
+          ...authRoutes.filter((item) => item.type === 'authenticated'),
+        ]);
+    }
+
   }, [isEmpty, isLoaded]);
 
   return (
     <Menu mode="horizontal" theme="dark">
       {
-        isLoaded && !isEmpty
-        ? routesList.map((route, index)=> (
+        routesList.map((route, index)=> (
           <Menu.Item key={`${index}`}>
             {
               route.path ? (
@@ -38,7 +40,6 @@ const AuthMenuComponent = () => {
             }
           </Menu.Item>
         ))
-        : <div />
       }
     </Menu>
   );
