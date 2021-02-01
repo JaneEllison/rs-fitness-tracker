@@ -4,7 +4,6 @@ import getUserDataset from './../../utils/getUserDataset';
 
 const getUser = (state) => state.userReducer.user;
 const getUserSummary = (state) => getUser(state).summary;
-const getUserGoal = (state) => getUser(state).goal;
 const getUserHistory= (state) => getUser(state).history;
 
 export const userSummarySelector = createSelector(getUserSummary, (summary) => {
@@ -14,15 +13,8 @@ export const userSummarySelector = createSelector(getUserSummary, (summary) => {
   };
 });
 
-export const userGoalSelector = createSelector(getUserGoal, (goal) => {
-  return {
-    goalWeight: goal?.endWeight || false,
-    goalCalories: goal?.calories || false,
-  }
-});
-
 export const userDatasetSelector = createSelector(
-  getUserGoal,
+  getUserSummary,
   getUserHistory,
-  (goal, history) => getUserDataset(goal, history),
+  (summary, history) => getUserDataset(summary, history),
 );

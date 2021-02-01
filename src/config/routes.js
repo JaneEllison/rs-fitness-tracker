@@ -16,6 +16,10 @@ const routes = {
       path: '/',
       textName: 'Default',
     },
+    {
+      path: '/goal',
+      textName: 'Goal',
+    }
   ],
   authRoutes: [
     {

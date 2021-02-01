@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   userSummarySelector,
-  userGoalSelector,
   userDatasetSelector
 } from './../../../store/Selectors/userSelector';
 import { Row, Col } from 'antd';
@@ -15,7 +14,6 @@ import ChartComponent from './Chart/ChartComponent';
 function StatsComponent() {
   const [ selectedField, setSelectedField ] = useState(VALUES.CALORIES);
   const summary = useSelector(userSummarySelector);
-  const goal = useSelector(userGoalSelector);
   const dataset = useSelector(userDatasetSelector);
 
   return (
@@ -31,14 +29,13 @@ function StatsComponent() {
           <Col md={12} lg={24}>
             <UserSummaryComponent 
               summary={summary} 
-              goal={goal}
               />
           </Col>
           <Col md={12} lg={24}>
             <ChartControlsComponent
               selectedField={selectedField}
               onChange={setSelectedField}
-              goal={goal}
+              summary={summary}
               />
           </Col>
         </Row>
