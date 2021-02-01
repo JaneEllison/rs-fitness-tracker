@@ -1,5 +1,5 @@
-const dispatchCompleteExercise = (exerciseId, day, firebase, profile) => {
-
+const dispatchChangeExerciseName = (exerciseId, newName, day, profile, firebase) => {
+  console.log(exerciseId, newName, day);
   const selectedExerciseIndex = profile.usersExercises[day]
     .findIndex((item) => {
       return item.id === exerciseId
@@ -8,7 +8,7 @@ const dispatchCompleteExercise = (exerciseId, day, firebase, profile) => {
   const newArrayOfExercises = profile.usersExercises[day];
   newArrayOfExercises[selectedExerciseIndex] = {
     ...profile.usersExercises[day][selectedExerciseIndex],
-    isComplete: !profile.usersExercises[day][selectedExerciseIndex].isComplete,
+    title: newName,
   };
   firebase.updateProfile(
     {usersExercises:
@@ -19,4 +19,4 @@ const dispatchCompleteExercise = (exerciseId, day, firebase, profile) => {
   );
 };
 
-export default dispatchCompleteExercise;
+export default dispatchChangeExerciseName;

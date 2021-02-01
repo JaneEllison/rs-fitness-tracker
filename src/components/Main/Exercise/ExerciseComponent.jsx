@@ -19,7 +19,6 @@ const ExerciseComponent = () => {
 
   useEffect(() => {
     setDaysExercises(getExercisesForDay(daysList, profile.usersExercises));
-    console.log(daysExercises);
   }, [profile.usersExercises]);
 
   const components = daysExercises.map((day) => {

@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ExerciseUpdateComponent from './ExerciseUpdateComponent';
 import { DeleteOutlined } from '@ant-design/icons';
 import { FormOutlined } from '@ant-design/icons';
 import { CheckCircleOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
-import { exerciseUpdateAction } from '../../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
 import { Card } from 'antd';
 import style from '../ExerciseSchedule.module.css';
+import dispatchChangeExerciseName from '../ExerciseActions/dispatchChangeExerciseName';
+import { useSelector } from 'react-redux';
+import profileSelector from '../../../../../store/Selectors/profileSelector';
+import { useFirebase } from 'react-redux-firebase';
 
 function ExerciseActionComponent({ exercises, removeExercise, completeExercise, day }) {
+  const profile = useSelector(profileSelector);
+  const firebase = useFirebase();
+
   const [edit, setEdit] = useState({
     id: null,
     value: '',
   });
-  const dispatch = useDispatch();
 
   const submitUpdate = (value) => {
+    console.log(value);
     setEdit({
       id: null,
       value: '',
     });
-
-    dispatch(exerciseUpdateAction(edit.id, value, day));
+    dispatchChangeExerciseName(edit.id, value.text, day, profile, firebase);
   };
 
-  if (edit.id) {
+  if (edit.id !== null) {
     return <ExerciseUpdateComponent edit={edit} onSubmit={submitUpdate} />;
   }
 
@@ -46,7 +50,7 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
             className="complete-icon"
           />,
           <FormOutlined
-            onClick={() => setEdit({ id: exercise.id, value: exercise.text })}
+            onClick={() => setEdit({ id: exercise.id, value: exercise.title })}
             className="edit-icon"
           />,
         ]}
