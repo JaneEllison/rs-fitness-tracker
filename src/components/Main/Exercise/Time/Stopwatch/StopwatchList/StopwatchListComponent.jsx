@@ -1,15 +1,16 @@
 import style from '../../Time.module.css';
-import { Space, Card } from 'antd';
+import { Row, Space, Card } from 'antd';
+
 
 const StopwatchListComponent = ({memoryOfValues}) => {
   return (
-    <Space direction="vertical">
-      <Card 
-        className="TimeCard"
-        title="Time"
-        size={'small'}
-        style={{ width: 155, height:180, textAlign: 'center'}
-      }>
+    <Row justify='center'>
+      <Space direction="vertical">
+        <Card 
+          title="Time"
+          size={'small'}
+          style={{ width: 155, height:160}
+        }>
         <div >
           {memoryOfValues.map((value) => {
             let min = Math.floor(value.secondsValue / 60);
@@ -28,6 +29,8 @@ const StopwatchListComponent = ({memoryOfValues}) => {
           </div>
         </Card>
       </Space>
+    </Row>
+    
   )
 }
 

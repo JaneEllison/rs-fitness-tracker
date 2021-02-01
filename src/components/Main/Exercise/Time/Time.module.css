@@ -2,12 +2,8 @@
   width: 40%;
 }
 
-.stopwatchTime {
-  padding-top: 10px;
-}
-
-.stopwatchValue:last-child {
-  font-size: 28px;
+.inputTimer {
+  width: 50%;
 }
 
 .timeBtn {
@@ -16,6 +12,30 @@
   justify-content: center;
 }
 
+.timerButtons{
+  margin-top: 15px;
+}
+
+.stopwatchTime {
+  padding-top: 10px;
+}
+
+.stopwatchValue {
+  font-size: 12px;
+  text-align: center;
+}
+
+.stopwatchValue:last-child {
+  font-size: 28px;
+  text-align: center;
+}
+
 .stopwatchCount {
-  margin-bottom: 40px;
+  margin-bottom: 27px;
+}
+
+@media only screen and (max-width: 576px) {
+  .stopwatchCount {
+    margin-top: 20px;
+  }
 }

@@ -4,9 +4,11 @@ import { UndoOutlined, PauseOutlined, CaretRightOutlined } from '@ant-design/ico
 import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 
 function TimerButtonsComponent(props) {
-  let {startTimer, changeCurrentTime, currentMinutes, currentSeconds, timerStarted, 
-    isRunningTimer, setIsRunningTimer, handlePlayAudio, initPlayer, mutedSound, isSoundOn
+  let {startTimer, changeCurrentTime, currentMinutes, currentSeconds, timerStarted,isRunningTimer, 
+    setIsRunningTimer, handlePlayAudio, initPlayer, mutedSound, isSoundOn, isTimerOn, setIsTimerOn
     } = props;
+
+  const allTimeIsZero = currentSeconds + currentMinutes;
 
   const timerStoped = () => {
     setIsRunningTimer(false);
@@ -17,7 +19,8 @@ function TimerButtonsComponent(props) {
     setIsRunningTimer(true);
     startTimer(currentMinutes, currentSeconds);
     timerStarted();
-    initPlayer()
+    initPlayer();
+    setIsTimerOn(true);
   };
 
   const runTimer = () => {
@@ -33,21 +36,23 @@ function TimerButtonsComponent(props) {
     changeCurrentTime(0, 0)
     startTimer(0, 0);
     timerStoped();
+    setIsTimerOn(false)
   };
 
   return (
-    <Row justify="center">
+    <Row justify="center" className={style.timerButtons}>
       <Tooltip title="Repeat timer">
         <Button 
           type="primary" 
           shape="circle" 
           icon={<UndoOutlined />}
           onClick={repeatTimer}
+          disabled={allTimeIsZero ? false : true}
         />
       </Tooltip>
       {
         (isRunningTimer)
-        ? <Tooltip title="Pause timer">
+        ? <Tooltip title="Pause">
           <Button 
             type="primary" 
             shape="circle" 
@@ -55,16 +60,17 @@ function TimerButtonsComponent(props) {
             onClick={pauseTimer}
           />
         </Tooltip>
-        : <Tooltip title="Start timer">
+        : <Tooltip title="Play">
           <Button 
             type="primary" 
             shape="circle" 
             icon={<CaretRightOutlined />}
-            onClick={runTimer}           
+            onClick={runTimer}
+            disabled={isTimerOn ? false : true}
           />
         </Tooltip>
       }
-      <Tooltip title="Stop timer" className={style.timeBtn}>
+      <Tooltip title="Stop" className={style.timeBtn}>
         <Button 
           type="primary" 
           shape="circle" 
