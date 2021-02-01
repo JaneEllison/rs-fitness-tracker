@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row, Progress, Typography } from 'antd';
+import { Col, Row, Progress, Typography } from 'antd';
 
 const { Title } = Typography;
 
@@ -25,12 +25,14 @@ const TimerCountComponent = ({isRunningTimer, setTimerSeconds, timerSeconds, all
   let lineTimer = Math.ceil(procent);
 
   return (
-    <div>
-      <Progress 
-        percent={lineTimer}
-        strokeColor="blue"
-        type="dashboard"
-      />
+    <Col>
+      <Row justify="center">
+        <Progress 
+          percent={lineTimer}
+          strokeColor="blue"
+          type="dashboard"
+        />
+      </Row>
       <Row justify="center">
         <Title level={2}>
           {
@@ -44,7 +46,7 @@ const TimerCountComponent = ({isRunningTimer, setTimerSeconds, timerSeconds, all
           }
         </Title>
       </Row>
-    </div>
+    </Col>
   )
 }
 
