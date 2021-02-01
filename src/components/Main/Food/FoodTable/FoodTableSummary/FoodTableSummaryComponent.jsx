@@ -1,17 +1,18 @@
 import { Table } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalNutrientsSelector } from '../../../../../store/Selectors/foodMenuSelector';
+import { totalNutrientsSelector } from '../../../../../store/Selectors/totalNutrientsSelector';
 import { calculateTotalNutrientsAC } from '../../../../../store/FoodMenuReducer/foodMenuActionCreators';
 import getAdaptiveClassNames from './getAdaptiveClassNames';
 
-const FoodTableSummaryComponent = () => {
+const FoodTableSummaryComponent = ({foodMenu}) => {
   const totalNutrients = useSelector(totalNutrientsSelector);
   const dispatch = useDispatch();
   const {classesLeft, classesRight} = getAdaptiveClassNames();
   useEffect(() => {
-    dispatch(calculateTotalNutrientsAC())
-  }, [dispatch]);
+    foodMenu.length > 0
+    && dispatch(calculateTotalNutrientsAC(foodMenu))
+  }, [foodMenu]);
   const {
     nf_calories,
     nf_protein,

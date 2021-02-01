@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Row, Col } from 'antd';
-import addToMenu from './AddToMenuInputTime/addToMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import useCheckButtonDisabled from '../../../../../customHooks/useCheckButtonDisabled';
 import foodComponentsConfig from '../../../../../config/foodComponentsConfig';
 import AddToMenuInputNumberComponent from './AddToMenuInputNumber/AddToMenuInputNumberComponent';
 import AddToMenuInputTimeComponent from './AddToMenuInputTime/AddToMenuInputTimeComponent';
-import checkArrayForNullUndefNaN from '../../../../../utils/checkArrayForNullUndefNaN';
-import addToMenuFB from './AddToMenuInputTime/addToMenuFB';
+import addToMenu from './AddToMenuInputTime/addToMenu';
 import { useFirebase } from 'react-redux-firebase';
 import profileSelector from '../../../../../store/Selectors/profileSelector';
 
@@ -25,7 +23,6 @@ const AddFoodToMenuComponent = ({
     },
   } = foodComponentsConfig;
   const profile = useSelector(profileSelector);
-  const dispatch = useDispatch();
   const firebase = useFirebase();
   useCheckButtonDisabled({foodData, intakeWeight, intakeTime, toggleButtonDisabled});
 
@@ -49,7 +46,7 @@ const AddFoodToMenuComponent = ({
           <AddToMenuInputTimeComponent
             buttonDisabled={buttonDisabled}
             changeIntakeTime={changeIntakeTime}
-            addToMenuCallback={() => addToMenuFB(firebase, foodData, intakeWeight, intakeTime, profile)}
+            addToMenuCallback={() => addToMenu(firebase, foodData, intakeWeight, intakeTime, profile)}
           />
         </Col>
       </Row>

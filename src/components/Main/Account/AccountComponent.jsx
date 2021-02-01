@@ -5,6 +5,7 @@ import profileSelector from '../../../store/Selectors/profileSelector';
 import { useSelector } from 'react-redux';
 import ProfileInfoComponent from './ProfileInfo/ProfileInfoComponent';
 import UserPhysicsComponent from './userPhysics/UserPhysicsComponent';
+import AccountMenuComponent from './AccountMenu/AccountMenuComponent';
 
 const AccountComponent = () => {
   const profile = useSelector(profileSelector);
@@ -13,11 +14,11 @@ const AccountComponent = () => {
 
   return (
     <Row>
-      <Col span={12}>
+      <Col span={16}>
           <ProfileInfoComponent />
           <UserPhysicsComponent/>
       </Col>
-      <Col span={12}>
+      <Col span={8}>
         <Image width={200} src={avatarUrl} fallback={placeholderPicture}/>
       </Col>
     </Row>
