@@ -18,7 +18,7 @@ const routes = {
     },
     {
       path: '/goal',
-      value: 'Goal',
+      textName: 'Goal',
     }
   ],
   authRoutes: [
