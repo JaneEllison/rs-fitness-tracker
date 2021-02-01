@@ -9,7 +9,7 @@ import { useFirebase } from 'react-redux-firebase';
 import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise';
 
 const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay }) => {
-
+  console.log(day, exercises);
   const profile = useSelector(profileSelector);
   const firebase = useFirebase();
 
@@ -42,7 +42,7 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay 
                 completeExercise={completeExercise}
                 removeExercise={removeExercise}
               />
-            : <div>1</div>
+            : <div />
         }
 
       </Card>

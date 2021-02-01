@@ -32,7 +32,7 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
     return <ExerciseUpdateComponent edit={edit} onSubmit={submitUpdate} />;
   }
 
-  return exercises.map((exercise, index) => (
+  return exercises ? exercises.map((exercise, index) => (
     <div
       className={exercise.isComplete ? style.complete : 'exercise-row'}
       key={index}
@@ -63,7 +63,8 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
         </span>
       </Card>
     </div>
-  ));
+  ))
+  : <div />
 }
 
 export default ExerciseActionComponent;
