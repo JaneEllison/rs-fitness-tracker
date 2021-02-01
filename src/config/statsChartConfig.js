@@ -79,6 +79,16 @@ const DATASETS =  {
       pointBorderColor: '#D84315',
       borderColor: '#D84315',
     },
+
+    GOAL_CALORIES: {
+      type: DATASET_TYPES.LINE,
+      yAxisID: AXES.CALORIES.id,
+      label: 'Goal calories',
+
+      fill: false,
+      radius: 0,
+      borderColor: '#5c0011',
+    },
 };
 
 const BASE_OPTIONS = {

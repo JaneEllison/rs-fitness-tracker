@@ -1,4 +1,3 @@
-import mergeHistoryWithGoal from './mergeHistoryWithGoal';
 import { VALUES } from '../config/statsRadioConfig';
 import { AXES, DATASETS, BASE_OPTIONS, POSITIONS } from '../config/statsChartConfig';
 
@@ -100,13 +99,17 @@ const userDatasetCreator = {
     },
   }),
 
-  [CALORIES_WITH_GOAL]: (dates, calories) => ({
+  [CALORIES_WITH_GOAL]: (dates, calories, goal) => ({
     data: {
       labels: dates,
       datasets: [
         {
           data: calories,
           ...DATASETS.CALORIES,
+        },
+        {
+          data: goal,
+          ...DATASETS.GOAL_CALORIES,
         },
       ],
     },
@@ -149,7 +152,8 @@ function getUserDataset({ goal }, history) {
   };
 
   if (goal) {
-    result[CALORIES_WITH_GOAL] = userDatasetCreator[CALORIES_WITH_GOAL](dates, calories);
+    const goalCalories = dates.map(i => goal);
+    result[CALORIES_WITH_GOAL] = userDatasetCreator[CALORIES_WITH_GOAL](dates, calories, goalCalories);
   }
 
   return result;
