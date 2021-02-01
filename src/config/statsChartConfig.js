@@ -33,15 +33,6 @@ const AXES = {
     },
   },
 
-  MINUTES: {
-    id: 'minutes',
-    type: AXES_TYPES.LINEAR,
-    scaleLabel: {
-      display: true,
-      labelString: 'Minutes',
-    },
-  },
-
   DATES: {
     type: AXES_TYPES.TIME,
     time: {
@@ -75,18 +66,6 @@ const DATASETS =  {
       borderColor: '#4A235A',
     },
 
-    GOAL_WEIGHT: {
-      type: DATASET_TYPES.LINE,
-      yAxisID: AXES.KILOGRAMS.id,
-      label: 'Goal weight',
-
-      fill: false,
-      radius: 0,
-      pointBackgroundColor: '#45B39D',
-      pointBorderColor: '#0E6655',
-      borderColor: '#0E6655',
-    },
-
     CALORIES: {
       type: DATASET_TYPES.LINE,
       yAxisID: AXES.CALORIES.id,
@@ -100,26 +79,6 @@ const DATASETS =  {
       pointBorderColor: '#D84315',
       borderColor: '#D84315',
     },
-
-    GOAL_CALORIES: {
-      type: DATASET_TYPES.LINE,
-      yAxisID: AXES.CALORIES.id,
-      label: 'Goal calories',
-
-      fill: false,
-      radius: 0,
-      borderColor: '#5c0011',
-    },
-
-    WORKOUT_TIME: {
-      type: DATASET_TYPES.BAR,
-      yAxisID: AXES.MINUTES.id,
-      label: 'Workout time',
-
-      backgroundColor: '#4FC3F799',
-      borderColor: '#0288D1',
-      borderWidth: 3,
-    }
 };
 
 const BASE_OPTIONS = {

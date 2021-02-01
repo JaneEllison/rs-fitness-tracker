@@ -9,203 +9,165 @@
     "birthday": "1/1/1995",
     "height": 160,
     "weight": 65,
-    "sex": "female"
-  },
-
-  "goal": {
-    "startDate": "12/30/2020",
-    "endDate": "2/25/2021",
-    "startWeight": 62.6,
-    "endWeight": 55,
-    "calories": 1350
+    "sex": "female",
+    "goal": 1350
   },
 
   "history": [
     {
       "date": "12/10/2020",
       "weight": 63.2,
-      "calories": 1712,
-      "workoutTime": 30
+      "calories": 1712
     },
     {
       "date": "12/11/2020",
       "weight": 63.3,
-      "calories": 1648,
-      "workoutTime": null
+      "calories": 1648
     },
     {
       "date": "12/12/2020",
       "weight": 63.7,
-      "calories": 1650,
-      "workoutTime": 30
+      "calories": 1650
     }, 
     {
       "date": "12/13/2020",
       "weight": 63.9,
-      "calories": 1730,
-      "workoutTime": 50
+      "calories": 1730
     }, 
     {
       "date": "12/14/2020",
       "weight": 63.5,
-      "calories": null,
-      "workoutTime": null
+      "calories": null
     }, 
     {
       "date": "12/15/2020",
       "weight": 63.2,
-      "calories": 1711,
-      "workoutTime": 20
+      "calories": 1711
     }, 
     {
       "date": "12/16/2020",
       "weight": 63,
-      "calories": 1642,
-      "workoutTime": null
+      "calories": 1642
     }, 
     {
       "date": "12/17/2020",
       "weight": 63.1,
-      "calories": 1655,
-      "workoutTime": 30
+      "calories": 1655
     }, 
     {
       "date": "12/18/2020",
       "weight": 62.9,
-      "calories": 1731,
-      "workoutTime": null
+      "calories": 1731
     }, 
     {
       "date": "12/19/2020",
       "weight": 63.1,
-      "calories": 1518,
-      "workoutTime": 30
+      "calories": 1518
     }, 
     {
       "date": "12/20/2020",
       "weight": 63,
-      "calories": 1799,
-      "workoutTime": 50
+      "calories": 1799
     }, 
     {
       "date": "12/21/2020",
       "weight": 63.1,
-      "calories": null,
-      "workoutTime": null
+      "calories": null
     }, 
     {
       "date": "12/22/2020",
       "weight": 63,
-      "calories": 1712,
-      "workoutTime": 20
+      "calories": 1712
     }, 
     {
       "date": "12/23/2020",
       "weight": 62.7,
-      "calories": 1648,
-      "workoutTime": null
+      "calories": 1648
     }, 
     {
       "date": "12/24/2020",
       "weight": 62.6,
-      "calories": 1650,
-      "workoutTime": 30
+      "calories": 1650
     }, 
     {
       "date": "12/25/2020",
       "weight": 62.8,
-      "calories": 1730,
-      "workoutTime": null
+      "calories": 1730
     }, 
     {
       "date": "12/26/2020",
       "weight": 62.5,
-      "calories": 1815,
-      "workoutTime": 30
+      "calories": 1815
     }, 
     {
       "date": "12/27/2020",
       "weight": 62.3,
-      "calories": 1846,
-      "workoutTime": 50
+      "calories": 1846
     }, 
     {
       "date": "12/28/2020",
       "weight": 62.5,
-      "calories": 1811,
-      "workoutTime": null
+      "calories": 1811
     }, 
     {
       "date": "12/29/2020",
       "weight": 62.4,
-      "calories": 1801,
-      "workoutTime": 20
+      "calories": 1801
     }, 
     {
       "date": "12/30/2020",
       "weight": 62.6,
-      "calories": 1705,
-      "workoutTime": null
+      "calories": 1705
     }, 
     {
       "date": "12/31/2020",
       "weight": 62.2,
-      "calories": 1650,
-      "workoutTime": null
+      "calories": 1650
     }, 
     {
       "date": "1/1/2021",
       "weight": null,
-      "calories": null,
-      "workoutTime": null
+      "calories": null
     }, 
     {
       "date": "1/2/2021",
       "weight": null,
-      "calories": null,
-      "workoutTime": null
+      "calories": null
     }, 
     {
       "date": "1/3/2021",
       "weight": null,
-      "calories": null,
-      "workoutTime": null
+      "calories": null
     }, 
     {
       "date": "1/4/2021",
       "weight": null,
-      "calories": null,
-      "workoutTime": null
+      "calories": null
     }, 
     {
       "date": "1/5/2021",
       "weight": null,
-      "calories": null,
-      "workoutTime": null
+      "calories": null
     }, 
     {
       "date": "1/6/2021",
       "weight": null,
-      "calories": null,
-      "workoutTime": null
+      "calories": null
     }, 
     {
       "date": "1/7/2021",
       "weight": null,
-      "calories": 1315,
-      "workoutTime": null
+      "calories": 1315
     }, 
     {
       "date": "1/8/2021",
       "weight": 65.3,
-      "calories": 1295,
-      "workoutTime": 20
+      "calories": 1295
     }, 
     {
       "date": "1/9/2021",
       "weight": 65,
-      "calories": 1515,
-      "workoutTime": 20
+      "calories": 1515
     }
   ]
 }

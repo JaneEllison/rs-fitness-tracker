@@ -18,62 +18,33 @@ import { updateUserSummaryAC } from './../../../../store/userReducer/userReducer
 const { Option } = Select;
 
 function UserGoalComponent({
-  goal: { 
-    goalWeight,
-    goalCalories,
-    goalEndDate,
-  },
   summary: { 
     weight,
     sex,
     height,
     age,
-    maxSafeWeight,
-    minSafeWeight
+    goal,
   },
 }) {
   const dispatch = useDispatch();
-  const [goalEndWeight, setGoalEndWeight] = useState(goalWeight);
   const [activityLevel, setActivityLevel] = useState('sedentary');
   const [intensityLevel, setIntensityLevel] = useState('normal');
-  const [weightGoal, setWeightGoal] = useState('maintain');
-  const [newGoalEnd, setNewGoalEnd] = useState(moment());
+  const [weightPlan, setWeightPlan] = useState('maintain');
 
   return (
     <Col>
       <Row>
-        Current goal weight: {goalWeight} kg
-      </Row>
-      <Row>
-        Current goal calories: {goalCalories} kcal
-      </Row>
-      <Row>
-        Current goal end date: {goalEndDate}
+        Current goal calories: {goal} kcal
       </Row>
       <Row>
         <h3>I want to:</h3>
       </Row>
       <Row>
-        <Radio.Group value={weightGoal} onChange={(event) => setWeightGoal(event.target.value)}>
+        <Radio.Group value={weightPlan} onChange={(event) => setWeightPlan(event.target.value)}>
           <Radio value='maintain'>Maintain weight</Radio>
           <Radio value='Loss'>Lose weight</Radio>
           <Radio value='Gain'>Gain weight</Radio>
         </Radio.Group>
-      </Row>
-      <Row>
-        <Col span={12}>
-          Until: 
-        </Col>
-        <Col span={12}>
-          <DatePicker
-            disabled={weightGoal !== 'maintain'} 
-            defaultValue={newGoalEnd} 
-            onChange={setNewGoalEnd}
-            className={style.goalInputField}
-            disabledDate={(current) => current
-              && (current < moment()
-              || current >= moment().add(1, 'years')) } />
-        </Col>
       </Row>
       <Row>
         <Col span={12}>
@@ -95,7 +66,7 @@ function UserGoalComponent({
       </Row>
       <Row>
         <Select 
-          disabled={weightGoal === 'maintain'}
+          disabled={weightPlan === 'maintain'}
           value={intensityLevel} 
           onChange={setIntensityLevel} 
           className={style.goalInputField}>
@@ -106,25 +77,11 @@ function UserGoalComponent({
       </Row>
       <Row>
         <Col span={12}>
-          My goal weight:
-        </Col>
-        <Col span={12}>
-          <InputNumber
-            disabled={weightGoal === 'maintain'}
-            value={goalEndWeight} 
-            onChange={setGoalEndWeight} 
-            min={weightGoal === 'Gain' ? weight : minSafeWeight}
-            max={weightGoal === 'Loss' ? weight : maxSafeWeight}
-            className={style.goalInputField} />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={12}>
           Required daily calories: 
         </Col>
         <Col>
           {(() => {
-            const key = weightGoal === 'maintain' ? weightGoal : `${intensityLevel}${weightGoal}`;
+            const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
             return getWeightChangeParameters({
               weight,
               sex,

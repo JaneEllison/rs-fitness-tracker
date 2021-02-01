@@ -6,14 +6,12 @@ import {
 } from 'antd';
 import { 
   userSummarySelector,
-  userGoalSelector
 } from './../../../store/Selectors/userSelector';
 import UserPhysicsComponent from './UserPhysics/UserPhysicsComponent'
 import UserGoalComponent from './UserGoal/UserGoalComponent';
 
 function GoalComponent() {
   const summary = useSelector(userSummarySelector);
-  const goal = useSelector(userGoalSelector);
 
   return (
     <Row gutter={8}>
@@ -21,7 +19,7 @@ function GoalComponent() {
         <UserPhysicsComponent summary={summary} />
       </Col>
       <Col span={8}>
-        <UserGoalComponent goal={goal} summary={summary} />
+        <UserGoalComponent summary={summary} />
       </Col>
     </Row>
   );
