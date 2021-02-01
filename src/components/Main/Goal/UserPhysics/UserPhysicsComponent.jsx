@@ -84,7 +84,7 @@ function UserPhysicsComponent({
             defaultValue={userBirthday} 
             onChange={setUserBirthday}
             className={style.goalInputField}
-            disabledDate={(current) => moment().subtract(13, 'years') <= current } />
+            disabledDate={(current) => current >= moment().subtract(13, 'years') } />
         </Col>
       </Row>
       <Row>

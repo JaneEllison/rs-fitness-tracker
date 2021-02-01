@@ -3,12 +3,15 @@ import { useDispatch } from 'react-redux';
 import { 
   Row, 
   Col,   
+  Radio,
   InputNumber, 
   Select,
-  Button,
+  DatePicker,
   Modal
 } from 'antd';
 import style from './../GoalComponent.module.css';
+import getWeightChangeParameters from './../../../../utils/getWeightChangeParameters';
+import getGoalEndDate from './../../../../utils/getGoalEndDate';
 import moment from 'moment';
 import { updateUserSummaryAC } from './../../../../store/userReducer/userReducerActionCreators';
 
@@ -22,33 +25,22 @@ function UserGoalComponent({
   },
   summary: { 
     weight,
+    sex,
+    height,
+    age,
     maxSafeWeight,
-    minSafeWeight,
-   },
+    minSafeWeight
+  },
 }) {
   const dispatch = useDispatch();
   const [goalEndWeight, setGoalEndWeight] = useState(goalWeight);
   const [activityLevel, setActivityLevel] = useState('sedentary');
-
-  const showModal = () => {
-    Modal.confirm({
-      title: 'New goal parameters',
-      content: (
-        <div>
-          test
-        </div>
-      ),
-    })
-  }
+  const [intensityLevel, setIntensityLevel] = useState('normal');
+  const [weightGoal, setWeightGoal] = useState('maintain');
+  const [newGoalEnd, setNewGoalEnd] = useState(moment());
 
   return (
     <Col>
-      <Row>
-        <h3>Set goal weight:</h3>
-      </Row>
-      <Row>
-        Current weight: {weight} kg
-      </Row>
       <Row>
         Current goal weight: {goalWeight} kg
       </Row>
@@ -59,21 +51,33 @@ function UserGoalComponent({
         Current goal end date: {goalEndDate}
       </Row>
       <Row>
+        <h3>I want to:</h3>
+      </Row>
+      <Row>
+        <Radio.Group value={weightGoal} onChange={(event) => setWeightGoal(event.target.value)}>
+          <Radio value='maintain'>Maintain weight</Radio>
+          <Radio value='Loss'>Lose weight</Radio>
+          <Radio value='Gain'>Gain weight</Radio>
+        </Radio.Group>
+      </Row>
+      <Row>
         <Col span={12}>
-          New goal weight:
+          Until: 
         </Col>
         <Col span={12}>
-          <InputNumber 
-            value={goalEndWeight} 
-            onChange={setGoalEndWeight} 
-            min={minSafeWeight}
-            max={maxSafeWeight}
-            className={style.goalInputField} />
+          <DatePicker
+            disabled={weightGoal !== 'maintain'} 
+            defaultValue={newGoalEnd} 
+            onChange={setNewGoalEnd}
+            className={style.goalInputField}
+            disabledDate={(current) => current
+              && (current < moment()
+              || current >= moment().add(1, 'years')) } />
         </Col>
       </Row>
       <Row>
         <Col span={12}>
-          Activity level: 
+          My activity level: 
         </Col>
         <Col span={12}>
           <Select 
@@ -90,19 +94,45 @@ function UserGoalComponent({
         </Col>
       </Row>
       <Row>
-        <Button
-          type='primary'
-          onClick={showModal}>
-            Calculate goal
-        </Button>
-        <Button  
-          danger={true}
-          onClick={() => {
-            setGoalEndWeight(weight);
-            setActivityLevel('sedentary');
-          }}>
-            Reset
-        </Button>
+        <Select 
+          disabled={weightGoal === 'maintain'}
+          value={intensityLevel} 
+          onChange={setIntensityLevel} 
+          className={style.goalInputField}>
+          <Option value='mild'>Slowly</Option>
+          <Option value='normal'>Normally</Option>
+          <Option value='extreme'>Fast</Option>
+        </Select>
+      </Row>
+      <Row>
+        <Col span={12}>
+          My goal weight:
+        </Col>
+        <Col span={12}>
+          <InputNumber
+            disabled={weightGoal === 'maintain'}
+            value={goalEndWeight} 
+            onChange={setGoalEndWeight} 
+            min={weightGoal === 'Gain' ? weight : minSafeWeight}
+            max={weightGoal === 'Loss' ? weight : maxSafeWeight}
+            className={style.goalInputField} />
+        </Col>
+      </Row>
+      <Row>
+        <Col span={12}>
+          Required daily calories: 
+        </Col>
+        <Col>
+          {(() => {
+            const key = weightGoal === 'maintain' ? weightGoal : `${intensityLevel}${weightGoal}`;
+            return getWeightChangeParameters({
+              weight,
+              sex,
+              height,
+              age
+            }, activityLevel)[key]
+          })()} kcal
+        </Col>
       </Row>
     </Col>
   )

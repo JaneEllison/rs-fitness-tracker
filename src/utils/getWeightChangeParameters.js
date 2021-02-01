@@ -32,16 +32,16 @@ const getDailyMaintenanceCalories = (summary, activity) => {
 };
 
 const getWeightChangeParameters = (summary, activity) => {
-  const dailyMaintenanceCalories = getDailyMaintenanceCalories(summary, activity)
+  const dailyMaintenanceCalories = Math.round(getDailyMaintenanceCalories(summary, activity));
   return ({
     maintain: dailyMaintenanceCalories,
-    mildLoss: dailyMaintenanceCalories - (CALORIES_IN_LB / (2 * 7)),
-    normalLoss: dailyMaintenanceCalories - (CALORIES_IN_LB / 7),
-    extremeLoss: dailyMaintenanceCalories - (2 * CALORIES_IN_LB / 7),
-    mildGain: dailyMaintenanceCalories + (CALORIES_IN_LB / (2 * 7)),
-    normalGain: dailyMaintenanceCalories + (CALORIES_IN_LB / 7),
-    fastGain: dailyMaintenanceCalories + (2 * CALORIES_IN_LB / 7),  
+    mildLoss: dailyMaintenanceCalories - Math.round((CALORIES_IN_LB / (2 * 7))),
+    normalLoss: dailyMaintenanceCalories - Math.round((CALORIES_IN_LB / 7)),
+    extremeLoss: dailyMaintenanceCalories - (Math.round(2 * CALORIES_IN_LB / 7)),
+    mildGain: dailyMaintenanceCalories + Math.round((CALORIES_IN_LB / (2 * 7))),
+    normalGain: dailyMaintenanceCalories + Math.round((CALORIES_IN_LB / 7)),
+    extremeGain: dailyMaintenanceCalories + Math.round((2 * CALORIES_IN_LB / 7)),  
   });
 };
 
-export default getDailyGoalCaloricIntake;
+export default getWeightChangeParameters;
