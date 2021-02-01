@@ -10,7 +10,8 @@ const FoodTableSummaryComponent = ({foodMenu}) => {
   const dispatch = useDispatch();
   const {classesLeft, classesRight} = getAdaptiveClassNames();
   useEffect(() => {
-    dispatch(calculateTotalNutrientsAC(foodMenu))
+    foodMenu.length > 0
+    && dispatch(calculateTotalNutrientsAC(foodMenu))
   }, [foodMenu]);
   const {
     nf_calories,
