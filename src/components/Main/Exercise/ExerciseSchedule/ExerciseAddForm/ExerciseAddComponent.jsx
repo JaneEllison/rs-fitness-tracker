@@ -3,7 +3,7 @@ import ExerciseControlComponent from './ExerciseControlComponent';
 import { Row, Col } from 'antd';
 import style from '../ExerciseSchedule.module.css';
 
-const ExerciseAddComponent = ({selectedDay, setSelectedDay, profile}) => {
+const ExerciseAddComponent = ({selectedDay, setSelectedDay}) => {
 
   return (
     <Row className={style.add_wrapper}>
@@ -13,7 +13,6 @@ const ExerciseAddComponent = ({selectedDay, setSelectedDay, profile}) => {
       </Col>
       {selectedDay !== null ? (
         <ExerciseControlComponent
-          profile={profile}
           selectedDay={selectedDay}
           setSelectedDay={setSelectedDay}
         />

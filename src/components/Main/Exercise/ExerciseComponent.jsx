@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ExerciseControlComponent from './ExerciseSchedule/ExerciseControlComponent';
 import { useSelector } from 'react-redux';
 import ExerciseAddComponent from './ExerciseSchedule/ExerciseAddForm/ExerciseAddComponent';
@@ -9,12 +9,20 @@ import { isEmpty, isLoaded } from 'react-redux-firebase';
 import style from './ExerciseComponent.module.css';
 import daysList from '../../../constants/daysList';
 import profileSelector from '../../../store/Selectors/profileSelector';
+import getExercisesForDay from './ExerciseSearch/getExercisesForDay';
 
 const ExerciseComponent = () => {
 
   const profile = useSelector(profileSelector);
   const [selectedDay, setSelectedDay] = useState(daysList[new Date(Date.now()).getDay()].name);
-  const components = daysList.map((day) => {
+  const [daysExercises, setDaysExercises] = useState(daysList);
+
+  useEffect(() => {
+    setDaysExercises(getExercisesForDay(daysList, profile.usersExercises));
+    console.log(daysExercises);
+  }, [profile.usersExercises]);
+
+  const components = daysExercises.map((day) => {
     return (
       // <Col  sm={{ span: 3, offset: 0}} lg={{ span: 5, offset: 0}} xl={{span: 3, offset: 0,}}>
       // <Col span={3}>
@@ -41,15 +49,11 @@ const ExerciseComponent = () => {
       </Row>
       <Row className={style.main_content} justify="space-between">
         <Col className={style.left_content}>
-          {
-            !isEmpty(profile) && isLoaded(profile)
-              ? <ExerciseAddComponent
-                  selectedDay={selectedDay}
-                  setSelectedDay={setSelectedDay}
-                  profile={profile}
-                />
-              : <div>...Loading</div>
-          }
+          <ExerciseAddComponent
+            selectedDay={selectedDay}
+            setSelectedDay={setSelectedDay}
+            profile={profile}
+          />
           <TimeComponent />
         </Col>
         <Col>

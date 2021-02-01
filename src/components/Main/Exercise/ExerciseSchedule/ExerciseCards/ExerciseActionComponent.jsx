@@ -55,7 +55,7 @@ function ExerciseActionComponent({ exercises, removeExercise, completeExercise, 
           className={style.text}
           onClick={() => completeExercise(exercise.id)}
         >
-          {exercise.text}
+          {exercise.title}
         </span>
       </Card>
     </div>

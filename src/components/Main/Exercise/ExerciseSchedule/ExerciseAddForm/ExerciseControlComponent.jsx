@@ -8,9 +8,10 @@ import daysList from '../../../../../constants/daysList';
 import { useFirebase } from 'react-redux-firebase';
 import { isEmpty, isLoaded } from 'react-redux-firebase';
 
-const ExerciseAddComponent = ({ selectedDay, setSelectedDay, profile }) => {
+const ExerciseAddComponent = ({ selectedDay, setSelectedDay }) => {
   const firebase = useFirebase();
   const [input, setInput] = useState('');
+  const profile = useSelector(profileSelector);
 
   let currentSelectDay = selectedDay || daysList;
 

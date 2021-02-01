@@ -1,24 +1,24 @@
 import React from 'react';
 import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
-import { useDispatch } from 'react-redux';
-import {
-  exerciseRemoveAction,
-  exerciseCompleteAction,
-} from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
 import { Card, Col } from 'antd';
 import style from './ExerciseSchedule.module.css';
-import moduleName from './ExerciseAnt.css'
+import dispatchDeleteExercise from './ExerciseActions/dispatchDeleteExercise';
+import { useSelector } from 'react-redux';
+import profileSelector from '../../../../store/Selectors/profileSelector';
+import { useFirebase } from 'react-redux-firebase';
+import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise';
 
 const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay }) => {
-  console.log(day, exercises, selectedDay);
-  const dispatch = useDispatch();
+
+  const profile = useSelector(profileSelector);
+  const firebase = useFirebase();
 
   const removeExercise = (id) => {
-    dispatch(exerciseRemoveAction(id, day));
+    dispatchDeleteExercise(id, day, firebase, profile);
   };
 
   const completeExercise = (id) => {
-    dispatch(exerciseCompleteAction(id, day));
+    dispatchCompleteExercise(id, day, firebase, profile);
   };
 
   const selectDay = () => {
@@ -26,7 +26,7 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay 
   };
 
   return (
-    <Col className={style.content_wrapper}onClick={() => selectDay()}>
+    <Col className={style.content_wrapper} onClick={() => selectDay()}>
       <Card
         className={
           day === selectedDay ? [style.content, style.selected] : style.content
@@ -42,7 +42,7 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay 
                 completeExercise={completeExercise}
                 removeExercise={removeExercise}
               />
-            : null
+            : <div>1</div>
         }
 
       </Card>
