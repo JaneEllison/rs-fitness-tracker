@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './Header.module.css';
 import NavMenuComponent from './NavMenu/NavMenuComponent';
 import WeatherComponent from './Weather/WeatherComponent';
 import { useFirebase } from 'react-redux-firebase';
@@ -11,16 +12,20 @@ const HeaderComponent = () => {
   console.log(firebase);
   return (
     <header>
-        <Row align="space-between">
-          <Col >
-            <NavMenuComponent/>
-            <WeatherComponent/>
-          </Col>
-          <Col >
-            <AuthMenuComponent/>
-          </Col>
-        </Row>
-        <NavMenuComponent/>
+      <Row justify="space-between">
+        <Col span={11}>
+          <NavMenuComponent/>
+        </Col>
+        <Col
+          span={10}
+          className={style.authData}
+        >
+          <AuthMenuComponent/>
+        </Col>
+        <Col span={3}>
+          <WeatherComponent/>
+        </Col>
+      </Row>
     </header>
   );
 };

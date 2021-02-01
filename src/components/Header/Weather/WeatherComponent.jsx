@@ -18,7 +18,7 @@ const WeatherComponent = () => {
     (ipData)
     ? city = ipData.data.city.name_en
     : city = 'Minsk'
-    
+
     //у апи есть ограничение на запросы, поэтому пока так
 
     // weatherData = await weatherApi.get('', {
@@ -34,7 +34,7 @@ const WeatherComponent = () => {
         countryName: ipData.data.country.name_en,
         discription: weatherData.data.current.weather_descriptions[0],
         icon: weatherData.data.current.weather_icons[0],
-        temperatureFeelsLike: weatherData.data.current.feelslike, 
+        temperatureFeelsLike: weatherData.data.current.feelslike,
         wind: weatherData.data.current.wind_speed,
         precip: weatherData.data.current.precip,
         humidity: weatherData.data.current.humidity,
@@ -46,7 +46,7 @@ const WeatherComponent = () => {
         countryName: "Belarus",
         discription: 'Mostly cloudy',
         icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6Eqcl15XoN3eM922kfnx7ftuuENq5kTCrg&usqp=CAU',
-        temperatureFeelsLike: '-5', 
+        temperatureFeelsLike: '-5',
         wind: '11',
         precip: '3',
         humidity: '88',
@@ -68,25 +68,24 @@ const WeatherComponent = () => {
 
   return (
     <Row
-      align="middle"
       className={style.weatherContainer}
     >
-      <WeatherModalComponent 
+      <WeatherModalComponent
         weatherInfo={weatherInfo}
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
       />
-      <Col 
+      <Col
         onClick={showModal}
         style={{ cursor:"pointer" }}
       >
-        <img 
+        <img
           src={weatherInfo.icon}
           className={style.weatherIcon}
           alt="weather-icon"
         />
       </Col>
-      <Col 
+      <Col
         onClick={showModal}
         style={{ cursor:"pointer" }}
       >

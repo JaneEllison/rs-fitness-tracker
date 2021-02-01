@@ -10,7 +10,7 @@ const AuthMenuComponent = () => {
   const { authRoutes } = routes;
   const [routesList, setRoutesList] = useState(authRoutes);
   const auth = useSelector(authSelector);
-  const {isEmpty} = auth;
+  const {isEmpty, isLoaded} = auth;
 
   useEffect(() => {
     isEmpty
@@ -22,12 +22,13 @@ const AuthMenuComponent = () => {
       [
         ...authRoutes.filter((item) => item.type === 'authenticated'),
       ])
-  }, [isEmpty]);
+  }, [isEmpty, isLoaded]);
 
   return (
     <Menu mode="horizontal" theme="dark">
       {
-        routesList.map((route, index)=> (
+        isLoaded && !isEmpty
+        ? routesList.map((route, index)=> (
           <Menu.Item key={`${index}`}>
             {
               route.path ? (
@@ -37,6 +38,7 @@ const AuthMenuComponent = () => {
             }
           </Menu.Item>
         ))
+        : <div />
       }
     </Menu>
   );

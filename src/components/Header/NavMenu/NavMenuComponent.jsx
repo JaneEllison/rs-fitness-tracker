@@ -2,6 +2,7 @@ import React from 'react';
 import routes from '../../../config/routes';
 import { Menu } from 'antd';
 import NavLinkComponent from '../../commonComponents/NavLinkComponent';
+import WeatherComponent from '../Weather/WeatherComponent';
 
 const NavMenuComponent = () => {
   const { menuRoutes } = routes;
@@ -15,6 +16,7 @@ const NavMenuComponent = () => {
           </Menu.Item>
         ))
       }
+
     </Menu>
   );
 };
