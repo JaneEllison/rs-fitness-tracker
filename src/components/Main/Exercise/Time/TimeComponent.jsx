@@ -19,7 +19,7 @@ const TimeComponent = () => {
       <Col>
         <Row
           justify='start'
-          align='left'
+          align='center'
         >
         {
           (isTimerMode)
@@ -38,6 +38,7 @@ const TimeComponent = () => {
         <Row
           justify='start'
           align='center'
+          style={{ marginBottom: "10px" }}
         >
           <Switch className = {style.switch}
             checkedChildren="Timer"

@@ -25,11 +25,10 @@
 @keyframes spin {
   0% {
     stroke-dashoffset: 650px;
-    stroke: rgba(136, 231, 255, 0.87);
+    stroke: #188fff;
   }
   50% {
     stroke-dashoffset: 0;
-    stroke: rgba(0, 145, 212, 0.993);
   }
   100% {
     stroke-dashoffset: -650px;
