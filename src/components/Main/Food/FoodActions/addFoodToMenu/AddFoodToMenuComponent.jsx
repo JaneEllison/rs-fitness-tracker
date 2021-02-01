@@ -23,7 +23,6 @@ const AddFoodToMenuComponent = ({
     },
   } = foodComponentsConfig;
   const profile = useSelector(profileSelector);
-  const dispatch = useDispatch();
   const firebase = useFirebase();
   useCheckButtonDisabled({foodData, intakeWeight, intakeTime, toggleButtonDisabled});
 

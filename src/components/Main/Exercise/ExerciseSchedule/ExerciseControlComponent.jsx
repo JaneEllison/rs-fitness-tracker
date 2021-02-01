@@ -5,9 +5,8 @@ import {
   exerciseRemoveAction,
   exerciseCompleteAction,
 } from '../../../../store/exerciseDataReducer/exerciseReducer/exerciseActionCreators';
-import { selectDayAction } from '../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
 import { Card, Col } from 'antd';
-import style from './ExerciseSchedule.module.css'
+import style from './ExerciseSchedule.module.css';
 import moduleName from './ExerciseAnt.css'
 
 const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay }) => {
@@ -35,12 +34,17 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay 
         size={'small'}
         title={day}
       >
-        <ExerciseActionComponent
-          day={day}
-          exercises={exercises}
-          completeExercise={completeExercise}
-          removeExercise={removeExercise}
-        />
+        {
+          exercises
+            ? <ExerciseActionComponent
+                day={day}
+                exercises={exercises}
+                completeExercise={completeExercise}
+                removeExercise={removeExercise}
+              />
+            : null
+        }
+
       </Card>
     </Col>
   );

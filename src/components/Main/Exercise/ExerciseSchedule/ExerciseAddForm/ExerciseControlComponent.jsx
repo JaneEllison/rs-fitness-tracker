@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectDayAction } from '../../../../../store/exerciseDataReducer/exerciseSelectDayReducer/selectedDayReducer';
+import { useSelector } from 'react-redux';
 import { Row, Col, Select, Input } from 'antd';
 import style from '../ExerciseSchedule.module.css';
+import profileSelector from '../../../../../store/Selectors/profileSelector';
+import addExercise from '../ExerciseActions/addExercise';
+import daysList from '../../../../../constants/daysList';
+import { useFirebase } from 'react-redux-firebase';
+import { isEmpty, isLoaded } from 'react-redux-firebase';
 
-const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
+const ExerciseAddComponent = ({ selectedDay, setSelectedDay, profile }) => {
+  const firebase = useFirebase();
   const [input, setInput] = useState('');
 
-  const dispatch = useDispatch();
-  const days = useSelector((state) => Object.keys(state.exerciseReducer));
-
-  let currentSelectDay = selectedDay || days;
+  let currentSelectDay = selectedDay || daysList;
 
   const myRef = React.createRef();
 
@@ -24,22 +26,21 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
   const handleSubmitExercise = () => {
     if (input.trim() === '') return;
 
-    globalSetExercise({
-      id: Math.floor(Math.random() * 10000),
+    addExercise({
       title: input.trim(),
       isComplete: false,
-    });
+    }, currentSelectDay, firebase, profile);
 
     setInput('');
   };
 
   const currentDropdownDay = (value) => {
-    dispatch(selectDayAction(value));
+    setSelectedDay(value);
   };
 
   useEffect(() => {
-    myRef.current.focus();
-  }, [selectedDay])
+    myRef.current && myRef.current.focus();
+  }, [selectedDay, isEmpty(profile), isLoaded(profile)]);
 
   return (
     <div>
@@ -48,9 +49,9 @@ const ExerciseAddComponent = ({ globalSetExercise, selectedDay }) => {
         value={currentSelectDay}
         onChange={currentDropdownDay}
       >
-        {days.map((day, index) => (
-          <Option value={day} key={index}>
-            {day}
+        {daysList.map((day) => (
+          <Option value={day.name} key={day.id}>
+            {day.name}
           </Option>
         ))}
       </Select>
