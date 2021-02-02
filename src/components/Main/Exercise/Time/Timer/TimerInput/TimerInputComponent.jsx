@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { CheckOutlined } from '@ant-design/icons';
 import {
   Typography,
@@ -14,8 +14,12 @@ const { Title } = Typography;
 
 function TimerInputComponent(props) {
   const {
-    startTimer, changeCurrentTime, currentMinutes, currentSeconds,
-    timerStarted, setIsTimerOn,
+    startTimer,
+    changeCurrentTime,
+    currentMinutes,
+    currentSeconds,
+    timerStarted,
+    setIsTimerOn,
   } = props;
 
   const allTimeIsZero = currentSeconds + currentMinutes;
@@ -67,5 +71,14 @@ function TimerInputComponent(props) {
     </Col>
   );
 }
+
+TimerInputComponent.propTypes = {
+  startTimer: PropTypes.func.isRequired,
+  changeCurrentTime: PropTypes.func.isRequired,
+  currentMinutes: PropTypes.number.isRequired,
+  currentSeconds: PropTypes.number.isRequired,
+  timerStarted: PropTypes.func.isRequired,
+  setIsTimerOn: PropTypes.func.isRequired,
+};
 
 export default TimerInputComponent;

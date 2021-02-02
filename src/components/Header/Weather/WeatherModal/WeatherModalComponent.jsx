@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Row,
@@ -84,20 +82,34 @@ const WeatherModalComponent = ({
   );
 };
 
-// WeatherModalComponent.propTypes = {
-//   weatherInfo: PropTypes.shape({
-//     name: PropTypes.string.isRequired,
-//     countryName: PropTypes.string.isRequired,
-//     icon: PropTypes.string.isRequired,
-//     temperature: PropTypes.string.isRequired,
-//     description: PropTypes.string.isRequired,
-//     temperatureFeelsLike: PropTypes.string.isRequired,
-//     wind: PropTypes.string.isRequired,
-//     precip: PropTypes.string.isRequired,
-//     humidity: PropTypes.string.isRequired,
-//   }).isRequired,
-//   setIsModalVisible: PropTypes.func.isRequired,
-//   isModalVisible: PropTypes.bool.isRequired,
-// };
+WeatherModalComponent.defaultProps = {
+  weatherInfo: PropTypes.shape({
+    temperature: '-3',
+    name: 'Minsk',
+    countryName: 'Belarus',
+    description: 'Mostly cloudy',
+    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6Eqcl15XoN3eM922kfnx7ftuuENq5kTCrg&usqp=CAU',
+    temperatureFeelsLike: '-5',
+    wind: '11',
+    precip: '3',
+    humidity: '88',
+  }),
+};
+
+WeatherModalComponent.propTypes = {
+  weatherInfo: PropTypes.shape({
+    name: PropTypes.string,
+    countryName: PropTypes.string,
+    icon: PropTypes.string,
+    temperature: PropTypes.string,
+    description: PropTypes.string,
+    temperatureFeelsLike: PropTypes.string,
+    wind: PropTypes.string,
+    precip: PropTypes.string,
+    humidity: PropTypes.string,
+  }),
+  setIsModalVisible: PropTypes.func.isRequired,
+  isModalVisible: PropTypes.bool.isRequired,
+};
 
 export default WeatherModalComponent;

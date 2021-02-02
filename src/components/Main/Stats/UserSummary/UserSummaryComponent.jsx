@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import style from '../StatsComponent.module.css';
 
 function UserSummaryComponent({
@@ -48,5 +48,15 @@ function UserSummaryComponent({
     </ul>
   );
 }
+
+UserSummaryComponent.propTypes = {
+  summary: PropTypes.shape({
+    age: PropTypes.number.isRequired,
+    sex: PropTypes.string.isRequired,
+    height: PropTypes.number.isRequired,
+    weight: PropTypes.number.isRequired,
+    goal: PropTypes.oneOfType(PropTypes.number, PropTypes.bool).isRequired,
+  }).isRequired,
+};
 
 export default UserSummaryComponent;

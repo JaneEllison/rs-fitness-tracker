@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Typography } from 'antd';
 import './CountSpiner.css';
 import style from '../../Time.module.css';
@@ -7,7 +7,11 @@ import style from '../../Time.module.css';
 const { Title } = Typography;
 const formatTime = (time) => `${(time < 10 ? '0' : '')}${time}`;
 
-const StopwatchCountComponent = ({ changeSeconds, stopwatchSeconds, isRunningStopwatch }) => {
+const StopwatchCountComponent = ({
+  changeSeconds,
+  stopwatchSeconds,
+  isRunningStopwatch,
+}) => {
   useEffect(() => {
     if (isRunningStopwatch) {
       const stopwatchInterval = window.setInterval(() => {
@@ -36,6 +40,12 @@ const StopwatchCountComponent = ({ changeSeconds, stopwatchSeconds, isRunningSto
       </Row>
     </Row>
   );
+};
+
+StopwatchCountComponent.propTypes = {
+  stopwatchSeconds: PropTypes.number.isRequired,
+  changeSeconds: PropTypes.func.isRequired,
+  isRunningStopwatch: PropTypes.bool.isRequired,
 };
 
 export default StopwatchCountComponent;

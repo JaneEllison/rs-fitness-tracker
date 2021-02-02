@@ -1,8 +1,11 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
-  Row, Col, Select, Input,
+  Row,
+  Col,
+  Select,
+  Input,
 } from 'antd';
 import { useFirebase, isEmpty, isLoaded } from 'react-redux-firebase';
 import style from '../ExerciseSchedule.module.css';
@@ -76,6 +79,11 @@ const ExerciseAddComponent = ({ selectedDay, setSelectedDay }) => {
       </Row>
     </div>
   );
+};
+
+ExerciseAddComponent.propTypes = {
+  selectedDay: PropTypes.string.isRequired,
+  setSelectedDay: PropTypes.func.isRequired,
 };
 
 export default ExerciseAddComponent;

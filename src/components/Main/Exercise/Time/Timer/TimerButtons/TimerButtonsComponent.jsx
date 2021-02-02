@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Tooltip, Button } from 'antd';
 import { UndoOutlined, PauseOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
@@ -123,5 +123,21 @@ function TimerButtonsComponent(props) {
     </Row>
   );
 }
+
+TimerButtonsComponent.propTypes = {
+  startTimer: PropTypes.func.isRequired,
+  changeCurrentTime: PropTypes.func.isRequired,
+  setIsRunningTimer: PropTypes.func.isRequired,
+  handlePlayAudio: PropTypes.func.isRequired,
+  setIsTimerOn: PropTypes.func.isRequired,
+  initPlayer: PropTypes.func.isRequired,
+  mutedSound: PropTypes.func.isRequired,
+  currentMinutes: PropTypes.number.isRequired,
+  currentSeconds: PropTypes.number.isRequired,
+  timerStarted: PropTypes.bool.isRequired,
+  isRunningTimer: PropTypes.bool.isRequired,
+  isTimerOn: PropTypes.bool.isRequired,
+  isSoundOn: PropTypes.bool.isRequired,
+};
 
 export default TimerButtonsComponent;

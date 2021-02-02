@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable react/prop-types */
 import React, { useState, useLayoutEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Tooltip, Button } from 'antd';
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
@@ -136,6 +135,18 @@ const StopwatchButtonsComponent = ({
       }
     </Row>
   );
+};
+
+StopwatchButtonsComponent.propTypes = {
+  stopwatchSeconds: PropTypes.number.isRequired,
+  setIsRunningStopwatch: PropTypes.func.isRequired,
+  changeSeconds: PropTypes.func.isRequired,
+  deletePreviousValue: PropTypes.func.isRequired,
+  addValuesOfSeconds: PropTypes.func.isRequired,
+  isRunningStopwatch: PropTypes.bool.isRequired,
+  currentTrack: PropTypes.string.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
+  getRandomAudio: PropTypes.func.isRequired,
 };
 
 export default StopwatchButtonsComponent;

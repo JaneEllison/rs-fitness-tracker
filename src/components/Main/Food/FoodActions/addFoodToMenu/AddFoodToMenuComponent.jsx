@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
@@ -54,6 +54,14 @@ const AddFoodToMenuComponent = ({
       </Col>
     </Row>
   );
+};
+
+AddFoodToMenuComponent.propTypes = {
+  foodData: PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)).isRequired,
+  intakeWeight: PropTypes.number.isRequired,
+  changeIntakeWeight: PropTypes.func.isRequired,
+  intakeTime: PropTypes.number.isRequired,
+  changeIntakeTime: PropTypes.func.isRequired,
 };
 
 export default AddFoodToMenuComponent;

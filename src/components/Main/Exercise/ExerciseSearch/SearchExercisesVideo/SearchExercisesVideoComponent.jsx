@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { List, Drawer, Button } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import style from '../ExerciseSearch.module.css';
@@ -58,6 +58,11 @@ const SearchExercisesVideo = ({ data, onVideoSelected }) => {
   );
 
   return <>{constructVideo(data, onVideoSelected)}</>;
+};
+
+SearchExercisesVideo.propTypes = {
+  data: PropTypes.string.isRequired,
+  onVideoSelected: PropTypes.func.isRequired,
 };
 
 export default SearchExercisesVideo;

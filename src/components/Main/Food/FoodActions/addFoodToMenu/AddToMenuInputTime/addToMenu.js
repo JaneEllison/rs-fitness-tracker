@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 import { calculateNutrientsByWeight } from '../../../../../../utils/calculateNutrientsByWeight';
 import setNewMenuItemId from '../../../../../../utils/setNewMenuItemId';
@@ -7,20 +6,20 @@ const addToMenu = (firebase, foodData, weight, time, profile) => {
   const timeKey = new Date(time).toLocaleDateString('ru-RU');
   time = new Date(time).toLocaleTimeString('ru-RU');
   const {
-    food_name,
-    nf_calories,
-    nf_total_fat,
-    nf_total_carbohydrate,
-    nf_protein,
+    food_name: foodName,
+    nf_calories: nfCalories,
+    nf_total_fat: nfTotalFat,
+    nf_total_carbohydrate: nfTotalCarbohydrate,
+    nf_protein: nfProtein,
   } = foodData;
 
   const foodItemToAdd = {
-    food_name,
+    foodName,
     ...calculateNutrientsByWeight({
-      nf_calories,
-      nf_total_fat,
-      nf_total_carbohydrate,
-      nf_protein,
+      nf_calories: nfCalories,
+      nf_total_fat: nfTotalFat,
+      nf_total_carbohydrate: nfTotalCarbohydrate,
+      nf_protein: nfProtein,
     }, weight),
     weight,
     time,

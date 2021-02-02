@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable react/prop-types */
 import React, { useState, useLayoutEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
 import TimerCountComponent from './TimerCount/TimerCountComponent';
 import TimerInputComponent from './TimerInput/TimerInputComponent';
@@ -153,6 +152,12 @@ const TimerComponent = ({
       </Col>
     </Row>
   );
+};
+
+TimerComponent.propTypes = {
+  currentTrack: PropTypes.string.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
+  getRandomAudio: PropTypes.func.isRequired,
 };
 
 export default TimerComponent;

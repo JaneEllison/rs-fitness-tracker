@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Radio } from 'antd';
 import { VALUES, LABELS } from '../../../../config/statsRadioConfig';
 import style from '../StatsComponent.module.css';
@@ -40,5 +40,13 @@ function ChartControlsComponent({
     </div>
   );
 }
+
+ChartControlsComponent.propTypes = {
+  selectedField: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  summary: PropTypes.shape({
+    goal: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 export default ChartControlsComponent;

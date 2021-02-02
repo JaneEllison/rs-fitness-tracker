@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import {
   Button, Col, Row, TimePicker,
 } from 'antd';
+import PropTypes from 'prop-types';
 import React from 'react';
 import style from '../AddFoodToMenu.module.css';
 import foodComponentsConfig from '../../../../../../config/foodComponentsConfig';
@@ -59,4 +59,11 @@ const AddToMenuInputTimeComponent = ({ changeIntakeTime, buttonDisabled, addToMe
     </Row>
   );
 };
+
+AddToMenuInputTimeComponent.propTypes = {
+  changeIntakeTime: PropTypes.func.isRequired,
+  buttonDisabled: PropTypes.bool.isRequired,
+  addToMenuCallback: PropTypes.func.isRequired,
+};
+
 export default AddToMenuInputTimeComponent;

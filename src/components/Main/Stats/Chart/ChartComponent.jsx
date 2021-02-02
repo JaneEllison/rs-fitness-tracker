@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
 import style from '../StatsComponent.module.css';
 
@@ -21,5 +21,11 @@ function ChartComponent({
     </article>
   );
 }
+
+ChartComponent.propTypes = {
+  selectedFields: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  dataset: PropTypes.object.isRequired,
+};
 
 export default ChartComponent;

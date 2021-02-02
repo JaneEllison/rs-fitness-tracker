@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 
 const TimerEndedModalComponent = ({ handleCancel, isModalVisible, handleOk }) => (
@@ -26,5 +26,11 @@ const TimerEndedModalComponent = ({ handleCancel, isModalVisible, handleOk }) =>
     <p>Time is up!</p>
   </Modal>
 );
+
+TimerEndedModalComponent.propTypes = {
+  handleCancel: PropTypes.func.isRequired,
+  isModalVisible: PropTypes.bool.isRequired,
+  handleOk: PropTypes.func.isRequired,
+};
 
 export default TimerEndedModalComponent;

@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import style from '../FoodComponent.module.css';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
 import FoodStatsComponent from '../FoodStats/FoodStatsComponent';
@@ -27,6 +27,11 @@ const FoodInfoComponent = ({ foodData, intakeWeight }) => {
       }
     </div>
   );
+};
+
+FoodInfoComponent.propTypes = {
+  foodData: PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)).isRequired,
+  intakeWeight: PropTypes.number.isRequired,
 };
 
 export default FoodInfoComponent;

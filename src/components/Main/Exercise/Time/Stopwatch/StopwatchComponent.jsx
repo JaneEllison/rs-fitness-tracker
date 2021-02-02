@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
 import StopwatchCountComponent from './StopwatchCount/StopwatchCountComponent';
 import StopwatchButtonsComponent from './StopwatchButtons/StopwatchButtonsComponent';
@@ -58,6 +58,12 @@ const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) =
       </Col>
     </Row>
   );
+};
+
+StopwatchComponent.propTypes = {
+  currentTrack: PropTypes.string.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
+  getRandomAudio: PropTypes.func.isRequired,
 };
 
 export default StopwatchComponent;

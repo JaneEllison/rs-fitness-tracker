@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Space, Card } from 'antd';
 import style from '../../Time.module.css';
 
@@ -28,7 +28,10 @@ const StopwatchListComponent = ({ memoryOfValues }) => (
       </Card>
     </Space>
   </Row>
-
 );
+
+StopwatchListComponent.propTypes = {
+  memoryOfValues: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
 
 export default StopwatchListComponent;

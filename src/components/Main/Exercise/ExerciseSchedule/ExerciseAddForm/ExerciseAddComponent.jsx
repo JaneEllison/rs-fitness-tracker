@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
 import ExerciseControlComponent from './ExerciseControlComponent';
 import style from '../ExerciseSchedule.module.css';
@@ -18,5 +18,10 @@ const ExerciseAddComponent = ({ selectedDay, setSelectedDay }) => (
     ) : null}
   </Row>
 );
+
+ExerciseAddComponent.propTypes = {
+  selectedDay: PropTypes.string.isRequired,
+  setSelectedDay: PropTypes.func.isRequired,
+};
 
 export default ExerciseAddComponent;

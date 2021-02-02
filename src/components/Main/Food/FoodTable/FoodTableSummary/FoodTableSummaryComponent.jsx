@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
@@ -54,12 +53,10 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
   );
 };
 
-FoodTableSummaryComponent.defaultProps = {
-  foodMenu: [],
-};
-
 FoodTableSummaryComponent.propTypes = {
-  foodMenu: PropTypes.array,
+  foodMenu: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)),
+  ).isRequired,
 };
 
 export default FoodTableSummaryComponent;

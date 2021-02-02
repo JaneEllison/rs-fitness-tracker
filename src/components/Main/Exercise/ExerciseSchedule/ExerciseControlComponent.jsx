@@ -1,16 +1,19 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import { Card, Col } from 'antd';
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
+import PropTypes from 'prop-types';
+import { Card, Col } from 'antd';
 import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
-import style from './ExerciseSchedule.module.css';
 import dispatchDeleteExercise from './ExerciseActions/dispatchDeleteExercise';
 import profileSelector from '../../../../store/Selectors/profileSelector';
 import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise';
+import style from './ExerciseSchedule.module.css';
 
 const ExerciseControlComponent = ({
-  day, exercises, selectedDay, setSelectedDay,
+  day,
+  exercises,
+  selectedDay,
+  setSelectedDay,
 }) => {
   const profile = useSelector(profileSelector);
   const firebase = useFirebase();
@@ -48,10 +51,16 @@ const ExerciseControlComponent = ({
             )
             : <div />
         }
-
       </Card>
     </Col>
   );
+};
+
+ExerciseControlComponent.propTypes = {
+  selectedDay: PropTypes.func.isRequired,
+  setSelectedDay: PropTypes.func.isRequired,
+  day: PropTypes.string.isRequired,
+  exercises: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ExerciseControlComponent;

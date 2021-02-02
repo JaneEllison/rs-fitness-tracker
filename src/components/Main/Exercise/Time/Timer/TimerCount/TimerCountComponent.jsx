@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   Col,
   Row,
@@ -52,6 +53,13 @@ const TimerCountComponent = ({
       </Row>
     </Col>
   );
+};
+
+TimerCountComponent.propTypes = {
+  setTimerSeconds: PropTypes.func.isRequired,
+  timerSeconds: PropTypes.number.isRequired,
+  allTimeSeconds: PropTypes.number.isRequired,
+  isRunningTimer: PropTypes.bool.isRequired,
 };
 
 export default TimerCountComponent;

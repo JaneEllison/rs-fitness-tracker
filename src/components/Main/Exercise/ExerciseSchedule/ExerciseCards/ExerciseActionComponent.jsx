@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import { Card } from 'antd';
@@ -77,5 +77,12 @@ function ExerciseActionComponent({
     );
   });
 }
+
+ExerciseActionComponent.propTypes = {
+  exercises: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeExercise: PropTypes.func.isRequired,
+  completeExercise: PropTypes.func.isRequired,
+  day: PropTypes.string.isRequired,
+};
 
 export default ExerciseActionComponent;
