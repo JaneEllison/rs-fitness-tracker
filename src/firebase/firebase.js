@@ -30,6 +30,12 @@ export const rrfConfig = {
       },
       userMenus:{},
       usersExercises:{},
+      userGoals: {
+        activityLevel: "",
+        intensityLevel: "",
+        weightPlan: "",
+        goalCalories: "",
+      },
     }
   },
   createFirestoreInstance,
