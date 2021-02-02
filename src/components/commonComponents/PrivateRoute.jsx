@@ -6,7 +6,6 @@ import authSelector from '../../store/Selectors/authSelector';
 
 const PrivateRoute = ({ children, ...remainingProps }) => {
   const auth = useSelector(authSelector);
-  console.log(isLoaded(auth), isEmpty(auth));
   return isLoaded(auth) ? (
     <Route
       {...remainingProps}
@@ -16,7 +15,7 @@ const PrivateRoute = ({ children, ...remainingProps }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: "/signin",
               state: { from: location },
             }}
           />
