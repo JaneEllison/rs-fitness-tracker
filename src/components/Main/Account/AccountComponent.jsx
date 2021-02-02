@@ -5,10 +5,13 @@ import profileSelector from '../../../store/Selectors/profileSelector';
 import { useSelector } from 'react-redux';
 import ProfileInfoComponent from './ProfileInfo/ProfileInfoComponent';
 import UserPhysicsComponent from '../Goal/UserPhysics/UserPhysicsComponent';
+import moment from 'moment';
+import calculateTotalCaloriesForDay from '../../../utils/calculateTotalCaloriesForDay';
 
 const AccountComponent = () => {
   const profile = useSelector(profileSelector);
-  const {userPhysics, userGoals, userHistory} = profile;
+  const {userPhysics, userMenus, userHistory} = profile;
+  const currentDate = moment(moment.now()).format('DD.MM.YYYY');
   const {avatarUrl} = profile;
 
   return (
@@ -17,8 +20,8 @@ const AccountComponent = () => {
           <ProfileInfoComponent />
           <UserPhysicsComponent
             summary={userPhysics}
-            userGoals={userGoals}
             userHistory={userHistory}
+            dailyCalories={calculateTotalCaloriesForDay(userMenus[currentDate])}
           />
       </Col>
       <Col span={8}>

@@ -25,7 +25,6 @@ function UserGoalComponent({
     age,
   },
   userGoals,
-  userHistory
 }, ) {
   const firebase = useFirebase();
   const [activityLevel, setActivityLevel] = useState(userGoals.activityLevel);
@@ -62,11 +61,6 @@ function UserGoalComponent({
           weightPlan,
           goalCalories,
         }, firebase);
-        updateUserHistoryData({
-          goalCalories,
-          weight,
-          date: moment(moment.now()).format('DD.MM.YYYY')
-        }, firebase, userHistory);
       },
     });
   };

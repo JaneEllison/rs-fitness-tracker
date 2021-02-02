@@ -21,10 +21,8 @@ function UserPhysicsComponent({
     gender,
     birthDay,
   },
-  userGoals:{
-    goalCalories,
-  },
   userHistory,
+  dailyCalories,
 }) {
   const firebase = useFirebase();
   let [userWeight, setUserWeight] = useState(weight);
@@ -52,8 +50,8 @@ function UserPhysicsComponent({
           gender: userSex,
         }, firebase);
         updateUserHistoryData({
-          goalCalories,
           weight: userWeight,
+          caloriesConsumed: dailyCalories,
           date: moment(moment.now()).format('DD.MM.YYYY')
         }, firebase, userHistory)
       },
