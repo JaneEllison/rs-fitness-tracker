@@ -30,6 +30,7 @@ export const rrfConfig = {
       },
       userMenus:{},
       usersExercises:{},
+      userHistory: [],
       userGoals: {
         activityLevel: "",
         intensityLevel: "",
