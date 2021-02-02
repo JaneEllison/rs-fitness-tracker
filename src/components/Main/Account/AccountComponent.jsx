@@ -3,6 +3,7 @@ import placeholderPicture from '../../../assets/nopic.png';
 import { Row, Col, Image } from 'antd';
 import profileSelector from '../../../store/Selectors/profileSelector';
 import { useSelector } from 'react-redux';
+import { isLoaded, isEmpty } from "react-redux-firebase";
 import ProfileInfoComponent from './ProfileInfo/ProfileInfoComponent';
 import UserPhysicsComponent from '../Goal/UserPhysics/UserPhysicsComponent';
 import moment from 'moment';
@@ -14,7 +15,7 @@ const AccountComponent = () => {
   const currentDate = moment(moment.now()).format('DD.MM.YYYY');
   const {avatarUrl} = profile;
 
-  return (
+  return isLoaded(profile) && !isEmpty(profile) ? (
     <Row>
       <Col span={16}>
           <ProfileInfoComponent />
@@ -28,7 +29,8 @@ const AccountComponent = () => {
         <Image width={200} src={avatarUrl} fallback={placeholderPicture}/>
       </Col>
     </Row>
-  );
+  )
+    : null
 };
 
 export default AccountComponent;

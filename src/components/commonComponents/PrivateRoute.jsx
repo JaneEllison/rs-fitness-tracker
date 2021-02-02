@@ -6,12 +6,12 @@ import authSelector from '../../store/Selectors/authSelector';
 
 const PrivateRoute = ({ children, ...remainingProps }) => {
   const auth = useSelector(authSelector);
-
-  return (
+  console.log(isLoaded(auth), isEmpty(auth));
+  return isLoaded(auth) ? (
     <Route
       {...remainingProps}
       render={({ location }) =>
-        isLoaded(auth) && !isEmpty(auth) ? (
+        !isEmpty(auth) ? (
           children
         ) : (
           <Redirect
@@ -23,7 +23,8 @@ const PrivateRoute = ({ children, ...remainingProps }) => {
         )
       }
     />
-  );
+  )
+    : null
 };
 
 export default PrivateRoute;

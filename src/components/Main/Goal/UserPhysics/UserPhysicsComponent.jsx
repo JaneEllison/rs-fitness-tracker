@@ -53,7 +53,7 @@ function UserPhysicsComponent({
           weight: userWeight,
           caloriesConsumed: dailyCalories,
           date: moment(moment.now()).format('DD.MM.YYYY')
-        }, firebase, userHistory)
+        }, firebase, userHistory);
       },
     });
   };

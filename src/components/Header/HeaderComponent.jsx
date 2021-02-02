@@ -2,14 +2,10 @@ import React from 'react';
 import style from './Header.module.css';
 import NavMenuComponent from './NavMenu/NavMenuComponent';
 import WeatherComponent from './Weather/WeatherComponent';
-import { useFirebase } from 'react-redux-firebase';
 import AuthMenuComponent from './AccountMenu/AuthMenuComponent';
 import { Col, Row } from 'antd';
 
 const HeaderComponent = () => {
-  const firebase = useFirebase();
-
-  console.log(firebase);
   return (
     <header>
       <Row justify="space-between">
