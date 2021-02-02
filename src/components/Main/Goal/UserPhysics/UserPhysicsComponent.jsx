@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   Row,
   Col,
@@ -15,7 +14,6 @@ import getAgeFromDateString from './../../../../utils/getAgeFromDateString';
 import { updateAllPhysicsData } from '../../Account/updateProfileData';
 import { useFirebase } from 'react-redux-firebase';
 
-
 function UserPhysicsComponent({
   summary: {
     weight,
@@ -30,7 +28,8 @@ function UserPhysicsComponent({
   let [userHeight, setUserHeight] = useState(height);
   let [userSex, setUserSex] = useState(gender);
   let [userBirthday, setUserBirthday] = useState(moment(birthDay));
-  console.log(    weight,
+  console.log(
+    weight,
     height,
     gender,
     birthDay);
@@ -58,7 +57,7 @@ function UserPhysicsComponent({
   };
 
   return (
-    <Col>
+    <Col >
       <Row>
         <h3>Your physical parameters:</h3>
       </Row>

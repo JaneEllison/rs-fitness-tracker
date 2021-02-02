@@ -12,7 +12,6 @@ const UserPhysicsComponent = () => {
   const {physicsData} = profileFieldsLabels;
   const profile = useSelector(profileSelector);
   const {userPhysics} = profile;
-  console.log(profile);
 
   if (!isLoaded(profile)) {
     return <div>Loading...</div>

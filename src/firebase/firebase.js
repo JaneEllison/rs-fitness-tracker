@@ -23,7 +23,7 @@ export const rrfConfig = {
       email,
       avatarUrl,
       userPhysics: {
-        age: "",
+        birthDay: "",
         gender: "",
         height: "",
         weight: "",
