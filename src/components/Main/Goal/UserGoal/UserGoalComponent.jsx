@@ -11,8 +11,9 @@ import {
 import style from './../GoalComponent.module.css';
 import getWeightChangeParameters from './../../../../utils/getWeightChangeParameters';
 import { updateUserGoalAC } from './../../../../store/userReducer/userReducerActionCreators';
-import { updateUserGoalsData } from '../../Account/updateProfileData';
+import { updateUserGoalsData, updateUserHistoryData } from '../../Account/updateProfileData';
 import { useFirebase } from 'react-redux-firebase';
+import moment from 'moment';
 
 const { Option } = Select;
 
@@ -23,7 +24,8 @@ function UserGoalComponent({
     height,
     age,
   },
-  userGoals
+  userGoals,
+  userHistory
 }, ) {
   const firebase = useFirebase();
   const [activityLevel, setActivityLevel] = useState(userGoals.activityLevel);
@@ -60,6 +62,11 @@ function UserGoalComponent({
           weightPlan,
           goalCalories,
         }, firebase);
+        updateUserHistoryData({
+          goalCalories,
+          weight,
+          date: moment(moment.now()).format('DD.MM.YYYY')
+        }, firebase, userHistory);
       },
     });
   };

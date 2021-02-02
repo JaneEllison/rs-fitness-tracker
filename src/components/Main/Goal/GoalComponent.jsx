@@ -12,6 +12,7 @@ import {isLoaded, isEmpty} from 'react-redux-firebase';
 function GoalComponent() {
 
   const profile = useSelector(profileSelector);
+
   if (!isLoaded(profile)) {
     return <div>Loading...</div>
   }
@@ -19,16 +20,21 @@ function GoalComponent() {
     return <div>You have to sign up</div>
   }
   if (isLoaded(profile) && !isEmpty(profile)) {
-
+    const {userPhysics, userGoals, userHistory} = profile;
     return (
       <Row gutter={8}>
         <Col span={8}>
-          <UserPhysicsComponent summary={profile.userPhysics} />
+          <UserPhysicsComponent
+            summary={userPhysics}
+            userGoals={userGoals}
+            userHistory={userHistory}
+          />
         </Col>
         <Col span={8} >
           <UserGoalComponent
-            summary={profile.userPhysics}
-            userGoals={profile.userGoals}
+            summary={userPhysics}
+            userGoals={userGoals}
+            userHistory={userHistory}
           />
         </Col>
       </Row>

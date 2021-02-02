@@ -11,7 +11,7 @@ import {
 import style from './../GoalComponent.module.css';
 import moment from 'moment';
 import getAgeFromDateString from './../../../../utils/getAgeFromDateString';
-import { updateAllPhysicsData } from '../../Account/updateProfileData';
+import { updateAllPhysicsData, updateUserHistoryData } from '../../Account/updateProfileData';
 import { useFirebase } from 'react-redux-firebase';
 
 function UserPhysicsComponent({
@@ -19,11 +19,14 @@ function UserPhysicsComponent({
     weight,
     height,
     gender,
-    birthDay
-  }
+    birthDay,
+  },
+  userGoals:{
+    goalCalories,
+  },
+  userHistory,
 }) {
   const firebase = useFirebase();
-
   let [userWeight, setUserWeight] = useState(weight);
   let [userHeight, setUserHeight] = useState(height);
   let [userSex, setUserSex] = useState(gender);
@@ -51,11 +54,16 @@ function UserPhysicsComponent({
           height: userHeight,
           birthDay: userBirthday.format('DD.MM.YYYY'),
           gender: userSex,
-        }, firebase)
+        }, firebase);
+        updateUserHistoryData({
+          goalCalories,
+          weight: userWeight,
+          date: moment(moment.now()).format('DD.MM.YYYY')
+        }, firebase, userHistory)
       },
     });
   };
-
+  console.log(moment(moment.now()).format('DD.MM.YYYY'));
   return (
     <Col >
       <Row>

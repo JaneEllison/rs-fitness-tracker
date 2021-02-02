@@ -64,6 +64,7 @@ const FoodStatsComponent = ({foodData, intakeWeight}) => {
             foodName={food_name}
           />
         </Col>
+
       </Row>
     : <div/>
 };
