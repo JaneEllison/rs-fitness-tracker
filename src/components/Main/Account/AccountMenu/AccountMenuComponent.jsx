@@ -1,5 +1,8 @@
 import React from 'react';
-import { UserOutlined, StockOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  StockOutlined,
+} from '@ant-design/icons';
 import { Menu } from 'antd';
 
 const AccountMenuComponent = () => (

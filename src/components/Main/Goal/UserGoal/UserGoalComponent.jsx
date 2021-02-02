@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Row,
@@ -9,9 +8,11 @@ import {
   Button,
   Modal,
 } from 'antd';
+import { useFirebase } from 'react-redux-firebase';
+import moment from 'moment';
 import style from '../GoalComponent.module.css';
 import getWeightChangeParameters from '../../../../utils/getWeightChangeParameters';
-import { updateUserGoalAC } from '../../../../store/userReducer/userReducerActionCreators';
+import { updateUserGoalsData, updateUserHistoryData } from '../../Account/updateProfileData';
 
 const { Option } = Select;
 
@@ -21,13 +22,14 @@ function UserGoalComponent({
     sex,
     height,
     age,
-    goal,
   },
+  userGoals,
+  userHistory,
 }) {
-  const dispatch = useDispatch();
-  const [activityLevel, setActivityLevel] = useState('sedentary');
-  const [intensityLevel, setIntensityLevel] = useState('normal');
-  const [weightPlan, setWeightPlan] = useState('maintain');
+  const firebase = useFirebase();
+  const [activityLevel, setActivityLevel] = useState(userGoals.activityLevel);
+  const [intensityLevel, setIntensityLevel] = useState(userGoals.intensityLevel);
+  const [weightPlan, setWeightPlan] = useState(userGoals.weightPlan);
 
   const showModal = () => {
     Modal.confirm({
@@ -50,15 +52,24 @@ function UserGoalComponent({
         </div>
       ),
       onOk: () => {
-        dispatch(updateUserGoalAC((() => {
-          const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
-          return getWeightChangeParameters({
-            weight,
-            sex,
-            height,
-            age,
-          }, activityLevel)[key];
-        })()));
+        const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
+        const goalCalories = getWeightChangeParameters({
+          weight,
+          sex,
+          height,
+          age,
+        }, activityLevel)[key];
+        updateUserGoalsData({
+          activityLevel,
+          intensityLevel,
+          weightPlan,
+          goalCalories,
+        }, firebase);
+        updateUserHistoryData({
+          goalCalories,
+          weight,
+          date: moment(moment.now()).format('DD.MM.YYYY'),
+        }, firebase, userHistory);
       },
     });
   };
@@ -71,7 +82,7 @@ function UserGoalComponent({
       <Row>
         Current goal calories:
         {' '}
-        {goal}
+        {userGoals.goalCalories}
         {' '}
         kcal
       </Row>
@@ -149,6 +160,10 @@ UserGoalComponent.propTypes = {
       PropTypes.bool,
     ]).isRequired,
   }).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  userGoals: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  userHistory: PropTypes.array.isRequired,
 };
 
 export default UserGoalComponent;

@@ -5,7 +5,7 @@ import style from '../StatsComponent.module.css';
 function UserSummaryComponent({
   summary: {
     age,
-    sex,
+    gender,
     height,
     weight,
     goal,
@@ -23,7 +23,7 @@ function UserSummaryComponent({
       </li>
       <li key="userSummarySex">
         <h3>Sex:</h3>
-        <h3>{ sex }</h3>
+        <h3>{ gender }</h3>
       </li>
       <li key="userSummaryHeight">
         <h3>Height:</h3>
@@ -52,7 +52,7 @@ function UserSummaryComponent({
 UserSummaryComponent.propTypes = {
   summary: PropTypes.shape({
     age: PropTypes.number.isRequired,
-    sex: PropTypes.string.isRequired,
+    gender: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
     weight: PropTypes.number.isRequired,
     goal: PropTypes.oneOfType(PropTypes.number, PropTypes.bool).isRequired,

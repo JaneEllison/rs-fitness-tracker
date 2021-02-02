@@ -10,10 +10,7 @@ import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise
 import style from './ExerciseSchedule.module.css';
 
 const ExerciseControlComponent = ({
-  day,
-  exercises,
-  selectedDay,
-  setSelectedDay,
+  day, exercises, selectedDay, setSelectedDay,
 }) => {
   const profile = useSelector(profileSelector);
   const firebase = useFirebase();

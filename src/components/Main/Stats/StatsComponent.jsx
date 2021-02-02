@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import {
-  userSummarySelector,
   userDatasetSelector,
 } from '../../../store/Selectors/userSelector';
 import { VALUES } from '../../../config/statsRadioConfig';
@@ -10,11 +10,30 @@ import { VALUES } from '../../../config/statsRadioConfig';
 import UserSummaryComponent from './UserSummary/UserSummaryComponent';
 import ChartControlsComponent from './ChartControls/ChartControlsComponent';
 import ChartComponent from './Chart/ChartComponent';
+import profileSelector from '../../../store/Selectors/profileSelector';
+import getAgeFromDateString from '../../../utils/getAgeFromDateString';
 
 function StatsComponent() {
   const [selectedField, setSelectedField] = useState(VALUES.CALORIES);
-  const summary = useSelector(userSummarySelector);
+
+  const profile = useSelector(profileSelector);
+  // const summary = useSelector(userSummarySelector);
+  const [summaryData, setSummaryData] = useState([]);
   const dataset = useSelector(userDatasetSelector);
+
+  useEffect(() => {
+    if (isLoaded(profile)) {
+      return !isEmpty(profile)
+        ? setSummaryData({
+          ...profile.userPhysics,
+          age: getAgeFromDateString(...profile.userPhysics.birthDay),
+          goal: profile.userGoals.goalCalories,
+        })
+        : setSummaryData({
+          ...profile.userPhysics,
+        });
+    } return undefined;
+  }, [profile]);
 
   return (
     <Row gutter={8}>
@@ -28,14 +47,14 @@ function StatsComponent() {
         <Row>
           <Col md={12} lg={24}>
             <UserSummaryComponent
-              summary={summary}
+              summary={summaryData}
             />
           </Col>
           <Col md={12} lg={24}>
             <ChartControlsComponent
               selectedField={selectedField}
               onChange={setSelectedField}
-              summary={summary}
+              summary={summaryData}
             />
           </Col>
         </Row>

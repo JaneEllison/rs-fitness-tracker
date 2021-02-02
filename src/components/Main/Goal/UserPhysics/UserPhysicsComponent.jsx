@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Row,
@@ -11,23 +10,28 @@ import {
   Modal,
 } from 'antd';
 import moment from 'moment';
+import { useFirebase } from 'react-redux-firebase';
 import style from '../GoalComponent.module.css';
-import { updateUserSummaryAC } from '../../../../store/userReducer/userReducerActionCreators';
 import getAgeFromDateString from '../../../../utils/getAgeFromDateString';
+import { updateAllPhysicsData, updateUserHistoryData } from '../../Account/updateProfileData';
 
 function UserPhysicsComponent({
   summary: {
     weight,
     height,
-    sex,
-    birthday,
+    gender,
+    birthDay,
   },
+  userGoals: {
+    goalCalories,
+  },
+  userHistory,
 }) {
-  const dispatch = useDispatch();
+  const firebase = useFirebase();
   const [userWeight, setUserWeight] = useState(weight);
   const [userHeight, setUserHeight] = useState(height);
-  const [userSex, setUserSex] = useState(sex);
-  const [userBirthday, setUserBirthday] = useState(moment(birthday));
+  const [userSex, setUserSex] = useState(gender);
+  const [userBirthday, setUserBirthday] = useState(moment(birthDay));
 
   const showModal = () => {
     Modal.confirm({
@@ -63,12 +67,22 @@ function UserPhysicsComponent({
           <div>
             Sex:
             {' '}
-            {userSex.target ? userSex.target.value : userSex}
+            {userSex}
           </div>
         </div>
       ),
       onOk: () => {
-        dispatch(updateUserSummaryAC(userWeight, userHeight, userBirthday, userSex));
+        updateAllPhysicsData({
+          weight: userWeight,
+          height: userHeight,
+          birthDay: userBirthday.format('DD.MM.YYYY'),
+          gender: userSex,
+        }, firebase);
+        updateUserHistoryData({
+          goalCalories,
+          weight: userWeight,
+          date: moment(moment.now()).format('DD.MM.YYYY'),
+        }, firebase, userHistory);
       },
     });
   };
@@ -119,12 +133,12 @@ function UserPhysicsComponent({
       </Row>
       <Row>
         <Col span={12}>
-          Sex:
+          Gender:
         </Col>
         <Col span={12}>
           <Radio.Group
             defaultValue={userSex}
-            onChange={setUserSex}
+            onChange={(event) => setUserSex(event.target.value)}
             buttonStyle="button"
           >
             <Radio.Button value="female">Female</Radio.Button>
@@ -147,10 +161,15 @@ function UserPhysicsComponent({
 UserPhysicsComponent.propTypes = {
   summary: PropTypes.shape({
     weight: PropTypes.number.isRequired,
-    sex: PropTypes.string.isRequired,
+    gender: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
-    birthday: PropTypes.string.isRequired,
+    birthDay: PropTypes.string.isRequired,
   }).isRequired,
+  userGoals: PropTypes.shape({
+    goalCalories: PropTypes.number.isRequired,
+  }).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  userHistory: PropTypes.array.isRequired,
 };
 
 export default UserPhysicsComponent;

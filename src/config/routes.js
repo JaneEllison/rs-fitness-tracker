@@ -1,6 +1,7 @@
 import React from 'react';
 import StockOutlined from '@ant-design/icons/lib/icons/StockOutlined';
 import UnorderedListOutlined from '@ant-design/icons/lib/icons/UnorderedListOutlined';
+import CarryOutOutlined from '@ant-design/icons/lib/icons/CarryOutOutlined';
 
 const routes = {
   menuRoutes: [
@@ -15,10 +16,6 @@ const routes = {
     {
       path: '/',
       value: 'Default',
-    },
-    {
-      path: '/goal',
-      value: 'Goal',
     },
   ],
   authRoutes: [
@@ -54,6 +51,12 @@ const routes = {
       value: 'User statistics',
       type: 'authenticated',
       icon: <StockOutlined />,
+    },
+    {
+      path: '/goal',
+      value: 'Goal',
+      type: 'authenticated',
+      icon: <CarryOutOutlined />,
     },
   ],
 };

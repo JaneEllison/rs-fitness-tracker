@@ -11,10 +11,6 @@ const foodComponentConstants = {
   },
   foodStatsConstants: [
     {
-      API_VALUE: 'food_name',
-      TEXT_VALUE: 'Food',
-    },
-    {
       API_VALUE: 'nf_calories',
       TEXT_VALUE: 'kCal',
     },

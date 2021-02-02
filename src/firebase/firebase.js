@@ -23,13 +23,20 @@ export const rrfConfig = {
       email,
       avatarUrl,
       userPhysics: {
-        age: '',
+        birthDay: '',
         gender: '',
         height: '',
         weight: '',
       },
       userMenus: {},
       usersExercises: {},
+      userHistory: [],
+      userGoals: {
+        activityLevel: '',
+        intensityLevel: '',
+        weightPlan: '',
+        goalCalories: '',
+      },
     };
   },
   createFirestoreInstance,

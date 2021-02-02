@@ -4,25 +4,41 @@ import {
   Row,
   Col,
 } from 'antd';
-import {
-  userSummarySelector,
-} from '../../../store/Selectors/userSelector';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import UserPhysicsComponent from './UserPhysics/UserPhysicsComponent';
 import UserGoalComponent from './UserGoal/UserGoalComponent';
+import profileSelector from '../../../store/Selectors/profileSelector';
 
 function GoalComponent() {
-  const summary = useSelector(userSummarySelector);
+  const profile = useSelector(profileSelector);
 
-  return (
-    <Row gutter={8}>
-      <Col span={8}>
-        <UserPhysicsComponent summary={summary} />
-      </Col>
-      <Col span={8}>
-        <UserGoalComponent summary={summary} />
-      </Col>
-    </Row>
-  );
+  if (!isLoaded(profile)) {
+    return <div>Loading...</div>;
+  }
+  if (isEmpty(profile)) {
+    return <div>You have to sign up</div>;
+  }
+  if (isLoaded(profile) && !isEmpty(profile)) {
+    const { userPhysics, userGoals, userHistory } = profile;
+    return (
+      <Row gutter={8}>
+        <Col span={8}>
+          <UserPhysicsComponent
+            summary={userPhysics}
+            userGoals={userGoals}
+            userHistory={userHistory}
+          />
+        </Col>
+        <Col span={8}>
+          <UserGoalComponent
+            summary={userPhysics}
+            userGoals={userGoals}
+            userHistory={userHistory}
+          />
+        </Col>
+      </Row>
+    );
+  }
 }
 
 export default GoalComponent;
