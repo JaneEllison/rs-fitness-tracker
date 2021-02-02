@@ -4,7 +4,7 @@ import React from 'react';
 import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 
 const getTableConfig = (foodTableData, foodMenu, loading, columns) => {
-  console.log(foodMenu);
+
   const {foodTableComponent: {
     FOOD_TABLE_SIZE,
     FOOD_TABLE_SCROLL,

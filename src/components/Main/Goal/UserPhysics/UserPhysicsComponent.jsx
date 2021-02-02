@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { 
-  Row, 
-  Col,   
-  InputNumber, 
+import {
+  Row,
+  Col,
+  InputNumber,
   Radio,
   DatePicker,
   Button,
@@ -11,22 +10,27 @@ import {
 } from 'antd';
 import style from './../GoalComponent.module.css';
 import moment from 'moment';
-import { updateUserSummaryAC } from './../../../../store/userReducer/userReducerActionCreators';
 import getAgeFromDateString from './../../../../utils/getAgeFromDateString';
+import { updateAllPhysicsData, updateUserHistoryData } from '../../Account/updateProfileData';
+import { useFirebase } from 'react-redux-firebase';
 
 function UserPhysicsComponent({
   summary: {
     weight,
     height,
-    sex,
-    birthday
-  }
+    gender,
+    birthDay,
+  },
+  userGoals:{
+    goalCalories,
+  },
+  userHistory,
 }) {
-  const dispatch = useDispatch();
+  const firebase = useFirebase();
   let [userWeight, setUserWeight] = useState(weight);
   let [userHeight, setUserHeight] = useState(height);
-  let [userSex, setUserSex] = useState(sex);
-  let [userBirthday, setUserBirthday] = useState(moment(birthday));
+  let [userSex, setUserSex] = useState(gender);
+  let [userBirthday, setUserBirthday] = useState(moment(birthDay));
 
   const showModal = () => {
     Modal.confirm({
@@ -37,17 +41,27 @@ function UserPhysicsComponent({
           <div>Height: {userHeight} cm</div>
           <div>Date of birth: {userBirthday.format('MMMM Do YYYY')}</div>
           <div>Age: {getAgeFromDateString(userBirthday.toString())} years</div>
-          <div>Sex: {userSex.target?.value || userSex}</div>
+          <div>Sex: {userSex}</div>
         </div>
       ),
       onOk: () => {
-        dispatch(updateUserSummaryAC(userWeight, userHeight, userBirthday, userSex));
+        updateAllPhysicsData({
+          weight: userWeight,
+          height: userHeight,
+          birthDay: userBirthday.format('DD.MM.YYYY'),
+          gender: userSex,
+        }, firebase);
+        updateUserHistoryData({
+          goalCalories,
+          weight: userWeight,
+          date: moment(moment.now()).format('DD.MM.YYYY')
+        }, firebase, userHistory)
       },
     });
   };
 
   return (
-    <Col>
+    <Col >
       <Row>
         <h3>Your physical parameters:</h3>
       </Row>
@@ -56,9 +70,9 @@ function UserPhysicsComponent({
           Weight, kg:
         </Col>
         <Col span={12}>
-          <InputNumber 
-            defaultValue={userWeight} 
-            onChange={setUserWeight} 
+          <InputNumber
+            defaultValue={userWeight}
+            onChange={setUserWeight}
             min={25}
             className={style.goalInputField} />
         </Col>
@@ -68,9 +82,9 @@ function UserPhysicsComponent({
           Height, cm:
         </Col>
         <Col span={12}>
-          <InputNumber 
-            defaultValue={userHeight} 
-            onChange={setUserHeight} 
+          <InputNumber
+            defaultValue={userHeight}
+            onChange={setUserHeight}
             min={100}
             className={style.goalInputField} />
         </Col>
@@ -80,8 +94,8 @@ function UserPhysicsComponent({
           Date of birth:
         </Col>
         <Col span={12}>
-          <DatePicker 
-            defaultValue={userBirthday} 
+          <DatePicker
+            defaultValue={userBirthday}
             onChange={setUserBirthday}
             className={style.goalInputField}
             disabledDate={(current) => current >= moment().subtract(13, 'years') } />
@@ -89,12 +103,12 @@ function UserPhysicsComponent({
       </Row>
       <Row>
         <Col span={12}>
-          Sex:
+          Gender:
         </Col>
         <Col span={12}>
-          <Radio.Group 
-            defaultValue={userSex} 
-            onChange={setUserSex} 
+          <Radio.Group
+            defaultValue={userSex}
+            onChange={(event) => setUserSex(event.target.value)}
             buttonStyle='button'>
             <Radio.Button value='female'>Female</Radio.Button>
             <Radio.Button value='male'>Male</Radio.Button>
@@ -102,8 +116,8 @@ function UserPhysicsComponent({
         </Col>
       </Row>
       <Row>
-        <Button 
-          type='primary' 
+        <Button
+          type='primary'
           onClick={showModal}>
             Update stats
         </Button>

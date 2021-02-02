@@ -19,11 +19,9 @@ const ExerciseComponent = () => {
 
   useEffect(() => {
     setDaysExercises(getExercisesForDay(daysList, profile.usersExercises));
-    console.log(daysExercises);
   }, [profile.usersExercises]);
 
   const components = daysExercises.map((day) => {
-    console.log(day);
     return (
       // <Col  sm={{ span: 3, offset: 0}} lg={{ span: 5, offset: 0}} xl={{span: 3, offset: 0,}}>
       // <Col span={3}>

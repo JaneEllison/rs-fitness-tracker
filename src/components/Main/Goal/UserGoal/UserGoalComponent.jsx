@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { 
-  Row, 
-  Col,   
-  Radio, 
+import {
+  Row,
+  Col,
+  Radio,
   Select,
   Button,
   Modal,
@@ -11,22 +11,26 @@ import {
 import style from './../GoalComponent.module.css';
 import getWeightChangeParameters from './../../../../utils/getWeightChangeParameters';
 import { updateUserGoalAC } from './../../../../store/userReducer/userReducerActionCreators';
+import { updateUserGoalsData, updateUserHistoryData } from '../../Account/updateProfileData';
+import { useFirebase } from 'react-redux-firebase';
+import moment from 'moment';
 
 const { Option } = Select;
 
 function UserGoalComponent({
-  summary: { 
+  summary: {
     weight,
     sex,
     height,
     age,
-    goal,
   },
-}) {
-  const dispatch = useDispatch();
-  const [activityLevel, setActivityLevel] = useState('sedentary');
-  const [intensityLevel, setIntensityLevel] = useState('normal');
-  const [weightPlan, setWeightPlan] = useState('maintain');
+  userGoals,
+  userHistory
+}, ) {
+  const firebase = useFirebase();
+  const [activityLevel, setActivityLevel] = useState(userGoals.activityLevel);
+  const [intensityLevel, setIntensityLevel] = useState(userGoals.intensityLevel);
+  const [weightPlan, setWeightPlan] = useState(userGoals.weightPlan);
 
   const showModal = () => {
     Modal.confirm({
@@ -45,15 +49,24 @@ function UserGoalComponent({
         </div>
       ),
       onOk: () => {
-        dispatch(updateUserGoalAC((() => {
-          const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
-          return getWeightChangeParameters({
-            weight,
-            sex,
-            height,
-            age
-          }, activityLevel)[key]
-        })()));
+        const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
+        const goalCalories = getWeightChangeParameters({
+          weight,
+          sex,
+          height,
+          age
+        }, activityLevel)[key];
+        updateUserGoalsData({
+          activityLevel,
+          intensityLevel,
+          weightPlan,
+          goalCalories,
+        }, firebase);
+        updateUserHistoryData({
+          goalCalories,
+          weight,
+          date: moment(moment.now()).format('DD.MM.YYYY')
+        }, firebase, userHistory);
       },
     });
   };
@@ -64,7 +77,7 @@ function UserGoalComponent({
         <h3>Goal settings</h3>
       </Row>
       <Row>
-        Current goal calories: {goal} kcal
+        Current goal calories: {userGoals.goalCalories} kcal
       </Row>
       <Row>
         <Radio.Group value={weightPlan} onChange={(event) => setWeightPlan(event.target.value)}>
@@ -75,12 +88,12 @@ function UserGoalComponent({
       </Row>
       <Row>
         <Col span={12}>
-          My activity level: 
+          My activity level:
         </Col>
         <Col span={12}>
-          <Select 
-            value={activityLevel} 
-            onChange={setActivityLevel} 
+          <Select
+            value={activityLevel}
+            onChange={setActivityLevel}
             className={style.goalInputField}>
             <Option value='sedentary'>Sedentary</Option>
             <Option value='light'>Light</Option>
@@ -92,10 +105,10 @@ function UserGoalComponent({
         </Col>
       </Row>
       <Row>
-        <Select 
+        <Select
           disabled={weightPlan === 'maintain'}
-          value={intensityLevel} 
-          onChange={setIntensityLevel} 
+          value={intensityLevel}
+          onChange={setIntensityLevel}
           className={style.goalInputField}>
           <Option value='mild'>Slowly</Option>
           <Option value='normal'>Normally</Option>
@@ -104,7 +117,7 @@ function UserGoalComponent({
       </Row>
       <Row>
         <Col span={12}>
-          New goal calories: 
+          New goal calories:
         </Col>
         <Col>
           {(() => {
