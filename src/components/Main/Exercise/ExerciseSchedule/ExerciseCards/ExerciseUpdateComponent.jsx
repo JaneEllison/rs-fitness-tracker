@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { Input, Button } from 'antd';
 import style from '../ExerciseSchedule.module.css';

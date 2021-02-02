@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { 
-  Row, 
-  Col,   
+import {
+  Row,
+  Col,
 } from 'antd';
-import { 
+import {
   userSummarySelector,
-} from './../../../store/Selectors/userSelector';
-import UserPhysicsComponent from './UserPhysics/UserPhysicsComponent'
+} from '../../../store/Selectors/userSelector';
+import UserPhysicsComponent from './UserPhysics/UserPhysicsComponent';
 import UserGoalComponent from './UserGoal/UserGoalComponent';
 
 function GoalComponent() {

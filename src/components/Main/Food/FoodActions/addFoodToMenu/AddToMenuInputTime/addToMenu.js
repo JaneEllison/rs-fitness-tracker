@@ -1,4 +1,6 @@
-import calculateNutrientsByWeight from '../../../../../../utils/calculateNutrientsByWeight';
+/* eslint-disable camelcase */
+/* eslint-disable no-param-reassign */
+import { calculateNutrientsByWeight } from '../../../../../../utils/calculateNutrientsByWeight';
 import setNewMenuItemId from '../../../../../../utils/setNewMenuItemId';
 
 const addToMenu = (firebase, foodData, weight, time, profile) => {
@@ -18,24 +20,30 @@ const addToMenu = (firebase, foodData, weight, time, profile) => {
       nf_calories,
       nf_total_fat,
       nf_total_carbohydrate,
-      nf_protein}, weight),
+      nf_protein,
+    }, weight),
     weight,
     time,
   };
 
   if (profile.userMenus[timeKey]) {
-    firebase.updateProfile({userMenus: {[timeKey]: [
+    firebase.updateProfile({
+      userMenus: {
+        [timeKey]: [
           ...profile.userMenus[timeKey],
-          setNewMenuItemId(profile.userMenus[timeKey], foodItemToAdd)
-        ]}});
+          setNewMenuItemId(profile.userMenus[timeKey], foodItemToAdd),
+        ],
+      },
+    });
   } else {
-    firebase.updateProfile({userMenus: {[timeKey]: [
-          {...foodItemToAdd, id: 0}
-        ]}});
+    firebase.updateProfile({
+      userMenus: {
+        [timeKey]: [
+          { ...foodItemToAdd, id: 0 },
+        ],
+      },
+    });
   }
-
-
-
 };
 
 export default addToMenu;

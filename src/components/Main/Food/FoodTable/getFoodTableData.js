@@ -1,11 +1,6 @@
-
-const getFoodTableData = (foodMenu) => {
-  return foodMenu.map((item) => {
-    return {
-      ...item,
-      key: item.id,
-    }
-  });
-};
+const getFoodTableData = (foodMenu) => foodMenu.map((item) => ({
+  ...item,
+  key: item.id,
+}));
 
 export default getFoodTableData;

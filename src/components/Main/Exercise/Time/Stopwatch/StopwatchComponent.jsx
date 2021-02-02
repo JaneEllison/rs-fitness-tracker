@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import { Row, Col } from 'antd';
 import StopwatchCountComponent from './StopwatchCount/StopwatchCountComponent';
 import StopwatchButtonsComponent from './StopwatchButtons/StopwatchButtonsComponent';
 import StopwatchListComponent from './StopwatchList/StopwatchListComponent';
-import { Row, Col } from 'antd';
 
 const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
   const [isRunningStopwatch, setIsRunningStopwatch] = useState(false);
@@ -10,32 +11,32 @@ const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) =
   const [memoryOfValues, setMemoryOfValues] = useState([]);
 
   const changeSeconds = (seconds) => {
-    setStopwatchSeconds(seconds)
+    setStopwatchSeconds(seconds);
   };
 
   const addValuesOfSeconds = () => {
     setMemoryOfValues(memoryOfValues.concat([{
       secondsValue: stopwatchSeconds,
       id: Date.now(),
-    }]))
+    }]));
   };
 
   const deletePreviousValue = () => {
-    if(memoryOfValues.length >= 3) {
+    if (memoryOfValues.length >= 3) {
       memoryOfValues.shift();
       setMemoryOfValues(memoryOfValues);
     }
     return memoryOfValues;
-  }
+  };
 
   return (
-    <Row gutter={[0, 10]} align="bottom" justify="center" style={{width: '80%'}} >
-      <Col sm={{span:12}} xs={{span:24}}>
+    <Row gutter={[0, 10]} align="bottom" justify="center" style={{ width: '80%' }}>
+      <Col sm={{ span: 12 }} xs={{ span: 24 }}>
         <StopwatchListComponent
           memoryOfValues={memoryOfValues}
         />
       </Col>
-      <Col sm={{span:12}} xs={{span:24}}>
+      <Col sm={{ span: 12 }} xs={{ span: 24 }}>
         <StopwatchCountComponent
           isRunningStopwatch={isRunningStopwatch}
           changeSeconds={changeSeconds}
@@ -56,7 +57,7 @@ const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) =
         </Row>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default StopwatchComponent
+export default StopwatchComponent;

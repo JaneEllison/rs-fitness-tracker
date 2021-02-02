@@ -1,6 +1,6 @@
-import { 
+import {
   UPDATE_USER_SUMMARY,
-  UPDATE_USER_GOAL
+  UPDATE_USER_GOAL,
 } from './userReducerActionTypes';
 
 export const updateUserSummaryAC = (userWeight, userHeight, userBirthday, userSex) => ({
@@ -9,13 +9,13 @@ export const updateUserSummaryAC = (userWeight, userHeight, userBirthday, userSe
     weight: userWeight,
     height: userHeight,
     birthday: userBirthday.format('M/D/YYYY'),
-    sex: userSex.target?.value || userSex,
+    sex: userSex.target ? userSex.target.value : userSex,
   },
 });
 
 export const updateUserGoalAC = (userGoal) => ({
   type: UPDATE_USER_GOAL,
   payload: {
-    goal: userGoal
-  }
+    goal: userGoal,
+  },
 });

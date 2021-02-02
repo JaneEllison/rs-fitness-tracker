@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/media-has-caption */
+/* eslint-disable react/prop-types */
 import React, { useState, useLayoutEffect } from 'react';
 import { Row, Col } from 'antd';
 import TimerCountComponent from './TimerCount/TimerCountComponent';
@@ -5,18 +7,22 @@ import TimerInputComponent from './TimerInput/TimerInputComponent';
 import TimerButtonsComponent from './TimerButtons/TimerButtonsComponent';
 import TimerEndedModalComponent from './TimerEndedModal/TimerEndedModalComponent';
 
-const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
-  const [ isTimerOn, setIsTimerOn ] = useState(false);
-  const [ allTimeSeconds, setAllTimeSeconds ] = useState(0)
-  const [ currentSeconds, setCurrentSeconds ] = useState(0);
-  const [ currentMinutes, setCurrentMinutes ] = useState(0);
-  const [ timerSeconds, setTimerSeconds ] = useState(allTimeSeconds);
-  const [ isRunningTimer, setIsRunningTimer ] = useState(false);
-  const [ isModalVisible, setIsModalVisible ] = useState(false);
-  
+const TimerComponent = ({
+  currentTrack,
+  setCurrentTrack,
+  getRandomAudio,
+}) => {
+  const [isTimerOn, setIsTimerOn] = useState(false);
+  const [allTimeSeconds, setAllTimeSeconds] = useState(0);
+  const [currentSeconds, setCurrentSeconds] = useState(0);
+  const [currentMinutes, setCurrentMinutes] = useState(0);
+  const [timerSeconds, setTimerSeconds] = useState(allTimeSeconds);
+  const [isRunningTimer, setIsRunningTimer] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   let audioPlayer;
 
-  const [ isSoundOn, setIsSoundOn ] = useState(true);
+  const [isSoundOn, setIsSoundOn] = useState(true);
 
   const initPlayer = () => {
     audioPlayer = document.getElementById('audioPlayerTimer');
@@ -25,15 +31,15 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
   const handlePlayAudio = () => {
     if (audioPlayer.paused || audioPlayer.ended) {
       setTimeout(() => {
-      audioPlayer.play();
-    }, 0);
+        audioPlayer.play();
+      }, 0);
     } else {
       setTimeout(() => {
         audioPlayer.pause();
       }, 0);
     }
   };
-  
+
   useLayoutEffect(() => {
     initPlayer();
   });
@@ -47,8 +53,8 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
   const handleCancel = () => {
     setIsModalVisible(false);
     setAllTimeSeconds(0);
-    setCurrentSeconds(0)
-    setCurrentMinutes(0)
+    setCurrentSeconds(0);
+    setCurrentMinutes(0);
     setIsTimerOn(false);
   };
 
@@ -56,9 +62,9 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
     setTimerSeconds(allTimeSeconds);
     setIsModalVisible(false);
     getRandomAudio();
-    setTimeout(()=>{
-      setIsRunningTimer(true)
-      handlePlayAudio()  
+    setTimeout(() => {
+      setIsRunningTimer(true);
+      handlePlayAudio();
     }, 0);
   };
 
@@ -66,16 +72,16 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
     setIsModalVisible(true);
   };
 
-  if(timerSeconds < 0) {
+  if (timerSeconds < 0) {
     setIsRunningTimer(false);
     setTimerSeconds(0);
     showModal();
-    setCurrentTrack('./music/done.mp3')
+    setCurrentTrack('./music/done.mp3');
     initPlayer();
-    setTimeout(()=> {
+    setTimeout(() => {
       audioPlayer.play();
-    }, 0)
-  };
+    }, 0);
+  }
 
   const changeCurrentTime = (minutes, seconds) => {
     setCurrentMinutes(minutes);
@@ -87,47 +93,47 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
     setIsRunningTimer(true);
     audioPlayer.pause();
     initPlayer();
-    setTimeout(()=> {
+    setTimeout(() => {
       audioPlayer.play();
-    }, 0)
+    }, 0);
   };
 
   const mutedSound = () => {
-    (isSoundOn) ? audioPlayer.muted=true : audioPlayer.muted=false
-    setIsSoundOn(!isSoundOn)
+    audioPlayer.muted = !!isSoundOn;
+    setIsSoundOn(!isSoundOn);
   };
 
   return (
-    <Row align="middle" style={{width: '100%'}} justify='center'>
-      <Col span={12} >
+    <Row align="middle" style={{ width: '100%' }} justify="center">
+      <Col span={12}>
         <>
-          <TimerEndedModalComponent 
+          <TimerEndedModalComponent
             isModalVisible={isModalVisible}
             handleCancel={handleCancel}
             handleOk={handleOk}
           />
         </>
-        <audio 
+        <audio
           id="audioPlayerTimer"
           preload="metadata"
-          src={currentTrack} 
-          type="audio/ogg" 
+          src={currentTrack}
+          type="audio/ogg"
         />
         <TimerInputComponent
-          startTimer = {startTimer}
-          changeCurrentTime = {changeCurrentTime}
-          currentMinutes = {currentMinutes}
-          currentSeconds = {currentSeconds}
-          timerStarted = {timerStarted}
+          startTimer={startTimer}
+          changeCurrentTime={changeCurrentTime}
+          currentMinutes={currentMinutes}
+          currentSeconds={currentSeconds}
+          timerStarted={timerStarted}
           setIsTimerOn={setIsTimerOn}
         />
         <TimerButtonsComponent
-          startTimer = {startTimer}
-          changeCurrentTime = {changeCurrentTime}
-          currentMinutes = {currentMinutes}
-          currentSeconds = {currentSeconds}
-          timerStarted = {timerStarted}
-          isRunningTimer = {isRunningTimer}
+          startTimer={startTimer}
+          changeCurrentTime={changeCurrentTime}
+          currentMinutes={currentMinutes}
+          currentSeconds={currentSeconds}
+          timerStarted={timerStarted}
+          isRunningTimer={isRunningTimer}
           setIsRunningTimer={setIsRunningTimer}
           handlePlayAudio={handlePlayAudio}
           initPlayer={initPlayer}
@@ -139,14 +145,14 @@ const TimerComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
       </Col>
       <Col span={12}>
         <TimerCountComponent
-            isRunningTimer={isRunningTimer}
-            setTimerSeconds={setTimerSeconds}
-            timerSeconds={timerSeconds}
-            allTimeSeconds = {allTimeSeconds}
-          />
+          isRunningTimer={isRunningTimer}
+          setTimerSeconds={setTimerSeconds}
+          timerSeconds={timerSeconds}
+          allTimeSeconds={allTimeSeconds}
+        />
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 export default TimerComponent;

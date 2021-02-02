@@ -1,20 +1,23 @@
+/* eslint-disable react/prop-types */
 import { Col, Row } from 'antd';
+import React from 'react';
 import style from '../FoodComponent.module.css';
 import SearchFoodComponent from './SearchFood/SearchFoodComponent';
 import AddFoodToMenuComponent from './addFoodToMenu/AddFoodToMenuComponent';
-import React from 'react';
 import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 
 const FoodActionsComponent = ({
-    foodData,
-    intakeWeight,
-    intakeTime,
-    setIntakeWeight,
-    setIntakeTime
-  }) => {
-  const { rowAlignments: {
+  foodData,
+  intakeWeight,
+  intakeTime,
+  setIntakeWeight,
+  setIntakeTime,
+}) => {
+  const {
+    rowAlignments: {
       CENTER, SPACE_BETWEEN,
-    }} = foodComponentsConfig;
+    },
+  } = foodComponentsConfig;
   return (
     <Row
       className={style.searchBar}
@@ -25,13 +28,13 @@ const FoodActionsComponent = ({
     >
       <Col
         span={22}
-        lg={{span: 12}}
+        lg={{ span: 12 }}
       >
         <SearchFoodComponent />
       </Col>
       <Col
         span={22}
-        lg={{span: 12}}
+        lg={{ span: 12 }}
       >
         <AddFoodToMenuComponent
           foodData={foodData}
@@ -42,7 +45,7 @@ const FoodActionsComponent = ({
         />
       </Col>
     </Row>
-  )
+  );
 };
 
 export default FoodActionsComponent;

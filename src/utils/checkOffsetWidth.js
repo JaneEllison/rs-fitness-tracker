@@ -1,5 +1,3 @@
-const checkOffsetWidth = (widthParam) => {
-  if (window.innerWidth < widthParam) return true;
-};
+const checkOffsetWidth = (widthParam) => window.innerWidth < widthParam;
 
 export default checkOffsetWidth;

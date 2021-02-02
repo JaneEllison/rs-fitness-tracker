@@ -1,19 +1,21 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Row, Col, Select, Input } from 'antd';
+import {
+  Row, Col, Select, Input,
+} from 'antd';
+import { useFirebase, isEmpty, isLoaded } from 'react-redux-firebase';
 import style from '../ExerciseSchedule.module.css';
 import profileSelector from '../../../../../store/Selectors/profileSelector';
 import addExercise from '../ExerciseActions/addExercise';
 import daysList from '../../../../../constants/daysList';
-import { useFirebase } from 'react-redux-firebase';
-import { isEmpty, isLoaded } from 'react-redux-firebase';
 
 const ExerciseAddComponent = ({ selectedDay, setSelectedDay }) => {
   const firebase = useFirebase();
   const [input, setInput] = useState('');
   const profile = useSelector(profileSelector);
 
-  let currentSelectDay = selectedDay || daysList;
+  const currentSelectDay = selectedDay || daysList;
 
   const myRef = React.createRef();
 
@@ -40,7 +42,9 @@ const ExerciseAddComponent = ({ selectedDay, setSelectedDay }) => {
   };
 
   useEffect(() => {
-    myRef.current && myRef.current.focus();
+    if (myRef.current) {
+      myRef.current.focus();
+    }
   }, [selectedDay, isEmpty(profile), isLoaded(profile)]);
 
   return (

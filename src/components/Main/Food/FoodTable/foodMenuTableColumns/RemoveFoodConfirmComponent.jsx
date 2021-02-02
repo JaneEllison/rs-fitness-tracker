@@ -1,14 +1,14 @@
 import React from 'react';
-import { Popconfirm } from 'antd';
+import PropTypes from 'prop-types';
+import { Popconfirm, Button } from 'antd';
 import { useSelector } from 'react-redux';
+import { useFirebase } from 'react-redux-firebase';
 import profileSelector from '../../../../../store/Selectors/profileSelector';
 import removeFoodFromMenu from './removeFoodFromMenu';
-import { useFirebase } from 'react-redux-firebase';
 
-const RemoveFoodConfirmComponent = ({tableRecord}) => {
+const RemoveFoodConfirmComponent = ({ tableRecord: { key } }) => {
   const profile = useSelector(profileSelector);
 
-  const { key } = tableRecord;
   const firebase = useFirebase();
   return (
     <Popconfirm
@@ -17,9 +17,15 @@ const RemoveFoodConfirmComponent = ({tableRecord}) => {
         removeFoodFromMenu(key, profile, firebase);
       }}
     >
-      <a>Remove</a>
+      <Button>Remove</Button>
     </Popconfirm>
-  )
+  );
+};
+
+RemoveFoodConfirmComponent.propTypes = {
+  tableRecord: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default RemoveFoodConfirmComponent;

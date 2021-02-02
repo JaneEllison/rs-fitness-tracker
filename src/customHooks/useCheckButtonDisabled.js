@@ -2,28 +2,28 @@ import { useEffect } from 'react';
 import checkArrayForNullUndefNaN from '../utils/checkArrayForNullUndefNaN';
 
 const useCheckButtonDisabled = ({
-    foodData,
-    intakeWeight,
-    intakeTime,
-    toggleButtonDisabled
+  foodData,
+  intakeWeight,
+  intakeTime,
+  toggleButtonDisabled,
 }) => {
   const {
-    food_name,
-    nf_calories,
-    nf_total_fat,
-    nf_total_carbohydrate,
-    nf_protein,
+    food_name: foodName,
+    nf_calories: nfCalories,
+    nf_total_fat: nfTotalFat,
+    nf_total_carbohydrate: nfTotalCarbohydrate,
+    nf_protein: nfProtein,
   } = foodData;
 
   useEffect(() => {
     if (checkArrayForNullUndefNaN([
-      food_name,
-      nf_calories,
-      nf_total_fat,
-      nf_total_carbohydrate,
-      nf_protein,
+      foodName,
+      nfCalories,
+      nfTotalFat,
+      nfTotalCarbohydrate,
+      nfProtein,
       intakeWeight,
-      intakeTime
+      intakeTime,
     ])) {
       toggleButtonDisabled(false);
     } else {
@@ -32,7 +32,7 @@ const useCheckButtonDisabled = ({
   }, [
     foodData,
     intakeWeight,
-    intakeTime
+    intakeTime,
   ]);
 };
 

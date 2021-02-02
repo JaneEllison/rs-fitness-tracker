@@ -1,5 +1,10 @@
 import { VALUES } from '../config/statsRadioConfig';
-import { AXES, DATASETS, BASE_OPTIONS, POSITIONS } from '../config/statsChartConfig';
+import {
+  AXES,
+  DATASETS,
+  BASE_OPTIONS,
+  POSITIONS,
+} from '../config/statsChartConfig';
 
 const {
   WEIGHT,
@@ -28,7 +33,7 @@ const userDatasetCreator = {
           },
         ],
         yAxes: [
-          { 
+          {
             ...AXES.KILOGRAMS,
           },
         ],
@@ -47,7 +52,7 @@ const userDatasetCreator = {
         {
           data: calories,
           ...DATASETS.CALORIES,
-        }
+        },
       ],
     },
     options: {
@@ -56,7 +61,7 @@ const userDatasetCreator = {
         xAxes: [
           {
             ...AXES.DATES,
-          }
+          },
         ],
         yAxes: [
           {
@@ -66,10 +71,10 @@ const userDatasetCreator = {
           {
             ...AXES.CALORIES,
             position: POSITIONS.RIGHT,
-          }
-        ]
-      }
-    }
+          },
+        ],
+      },
+    },
   }),
 
   [CALORIES]: (dates, calories) => ({
@@ -88,10 +93,10 @@ const userDatasetCreator = {
         xAxes: [
           {
             ...AXES.DATES,
-          }
+          },
         ],
         yAxes: [
-          { 
+          {
             ...AXES.CALORIES,
           },
         ],
@@ -124,12 +129,12 @@ const userDatasetCreator = {
         yAxes: [
           {
             ...AXES.CALORIES,
-          }
+          },
         ],
       },
     },
   }),
-}
+};
 
 const reduceDatesArray = (arr) => arr.reduce((acc, obj) => {
   Object.entries(obj).forEach(([key, value]) => {
@@ -140,9 +145,9 @@ const reduceDatesArray = (arr) => arr.reduce((acc, obj) => {
 
 function getUserDataset({ goal }, history) {
   const {
-    date: dates, 
-    weight, 
-    calories, 
+    date: dates,
+    weight,
+    calories,
   } = reduceDatesArray(history);
 
   const result = {
@@ -152,8 +157,9 @@ function getUserDataset({ goal }, history) {
   };
 
   if (goal) {
-    const goalCalories = dates.map(i => goal);
-    result[CALORIES_WITH_GOAL] = userDatasetCreator[CALORIES_WITH_GOAL](dates, calories, goalCalories);
+    const goalCalories = dates.map(() => goal);
+    const dataset = userDatasetCreator[CALORIES_WITH_GOAL](dates, calories, goalCalories);
+    result[CALORIES_WITH_GOAL] = dataset;
   }
 
   return result;

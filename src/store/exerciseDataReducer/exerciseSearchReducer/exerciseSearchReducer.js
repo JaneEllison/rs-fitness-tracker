@@ -113,15 +113,13 @@ export const selectVideoAction = (id) => ({
   id,
 });
 
-export const getSearchDataYoutubeAPI = (query) => {
-  return async (dispatch) => {
-    const response = await makeQueryToSearchYoutube('/search', {
-      params: {
-        q: query,
-      },
-    });
-    dispatch(exerciseSearchAction(response));
-  };
+export const getSearchDataYoutubeAPI = (query) => async (dispatch) => {
+  const response = await makeQueryToSearchYoutube('/search', {
+    params: {
+      q: query,
+    },
+  });
+  dispatch(exerciseSearchAction(response));
 };
 
 export default exerciseSearchReducer;

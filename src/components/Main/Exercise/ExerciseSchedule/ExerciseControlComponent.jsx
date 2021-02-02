@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
 import { Card, Col } from 'antd';
+import { useSelector } from 'react-redux';
+import { useFirebase } from 'react-redux-firebase';
+import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
 import style from './ExerciseSchedule.module.css';
 import dispatchDeleteExercise from './ExerciseActions/dispatchDeleteExercise';
-import { useSelector } from 'react-redux';
 import profileSelector from '../../../../store/Selectors/profileSelector';
-import { useFirebase } from 'react-redux-firebase';
 import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise';
 
-const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay }) => {
-  console.log(day, exercises);
+const ExerciseControlComponent = ({
+  day, exercises, selectedDay, setSelectedDay,
+}) => {
   const profile = useSelector(profileSelector);
   const firebase = useFirebase();
 
@@ -31,17 +33,19 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay 
         className={
           day === selectedDay ? [style.content, style.selected] : style.content
         }
-        size={'small'}
+        size="small"
         title={day}
       >
         {
           exercises
-            ? <ExerciseActionComponent
+            ? (
+              <ExerciseActionComponent
                 day={day}
                 exercises={exercises}
                 completeExercise={completeExercise}
                 removeExercise={removeExercise}
               />
+            )
             : <div />
         }
 

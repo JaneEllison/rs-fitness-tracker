@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import style from '../ExerciseSearch.module.css';
 
@@ -29,6 +30,10 @@ const SearchExercisesInput = ({ onSearch }) => {
       />
     </div>
   );
+};
+
+SearchExercisesInput.propTypes = {
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default SearchExercisesInput;

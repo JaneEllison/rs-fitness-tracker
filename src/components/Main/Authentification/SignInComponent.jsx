@@ -1,25 +1,26 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import signUpComponentLayout from '../../../config/signUpComponentLayout';
 import { useFirebase } from 'react-redux-firebase';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import signUpComponentLayout from '../../../config/signUpComponentLayout';
 import SignInWithGoogleComponent from './SignInWithGoogleComponent';
 
 const SignInComponent = () => {
-  const {layout, tailLayout} = signUpComponentLayout;
+  const { layout, tailLayout } = signUpComponentLayout;
   const firebase = useFirebase();
   const history = useHistory();
 
   const authenticateUser = (values) => {
-    const {email, password} = values;
+    const { email, password } = values;
     firebase.login(
       {
-        email, password
-      }).then(
-        history.push('/account')
+        email, password,
+      },
+    ).then(
+      history.push('/account'),
     ).catch(() => {
       alert('There is no user with such credentials');
-    })
+    });
   };
 
   return (
@@ -66,7 +67,7 @@ const SignInComponent = () => {
           </Button>
         </Form.Item>
       </Form>
-      <SignInWithGoogleComponent/>
+      <SignInWithGoogleComponent />
     </div>
 
   );
