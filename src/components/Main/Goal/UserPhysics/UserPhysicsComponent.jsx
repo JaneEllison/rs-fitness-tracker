@@ -31,11 +31,7 @@ function UserPhysicsComponent({
   let [userHeight, setUserHeight] = useState(height);
   let [userSex, setUserSex] = useState(gender);
   let [userBirthday, setUserBirthday] = useState(moment(birthDay));
-  console.log(
-    weight,
-    height,
-    gender,
-    birthDay);
+
   const showModal = () => {
     Modal.confirm({
       title: 'Confirm new user parameters',
@@ -63,7 +59,7 @@ function UserPhysicsComponent({
       },
     });
   };
-  console.log(moment(moment.now()).format('DD.MM.YYYY'));
+
   return (
     <Col >
       <Row>

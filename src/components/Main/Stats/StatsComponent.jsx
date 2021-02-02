@@ -41,8 +41,6 @@ function StatsComponent() {
      }
   }, [profile]);
 
-  console.log(summaryData, dataset);
-
   return (
     <Row gutter={8}>
       <Col md={24} lg={{ span: 18, push: 6, }}>
