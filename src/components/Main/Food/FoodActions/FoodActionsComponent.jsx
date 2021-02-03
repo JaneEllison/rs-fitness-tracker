@@ -48,7 +48,7 @@ const FoodActionsComponent = ({
 };
 
 FoodActionsComponent.propTypes = {
-  foodData: PropTypes.array.isRequired,
+  foodData: PropTypes.object.isRequired,
   intakeWeight: PropTypes.number.isRequired,
   setIntakeWeight: PropTypes.func.isRequired,
   intakeTime: PropTypes.number.isRequired,
