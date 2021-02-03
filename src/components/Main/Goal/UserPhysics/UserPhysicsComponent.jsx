@@ -81,7 +81,7 @@ function UserPhysicsComponent({
         updateUserHistoryData({
           weight: userWeight,
           caloriesConsumed: dailyCalories,
-          date: moment(moment.now()).format('DD.MM.YYYY'),
+          date: moment(moment.now()).format('MM.DD.YYYY'),
         }, firebase, userHistory);
       },
     });
@@ -160,9 +160,15 @@ function UserPhysicsComponent({
 
 UserPhysicsComponent.propTypes = {
   summary: PropTypes.shape({
-    weight: PropTypes.number.isRequired,
+    weight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
     gender: PropTypes.string.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
     birthDay: PropTypes.string.isRequired,
   }).isRequired,
   dailyCalories: PropTypes.number.isRequired,

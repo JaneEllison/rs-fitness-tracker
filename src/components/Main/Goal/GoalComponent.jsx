@@ -10,6 +10,7 @@ import UserPhysicsComponent from './UserPhysics/UserPhysicsComponent';
 import UserGoalComponent from './UserGoal/UserGoalComponent';
 import profileSelector from '../../../store/Selectors/profileSelector';
 import calculateTotalCaloriesForDay from '../../../utils/calculateTotalCaloriesForDay';
+import getAgeFromDateString from '../../../utils/getAgeFromDateString';
 
 function GoalComponent() {
   const profile = useSelector(profileSelector);
@@ -25,6 +26,9 @@ function GoalComponent() {
     const {
       userPhysics, userGoals, userMenus, userHistory,
     } = profile;
+    const userGoalsSummary = {
+      ...userPhysics, age: getAgeFromDateString(userPhysics.birthDay),
+    };
     return (
       <Row gutter={8}>
         <Col span={8}>
@@ -36,7 +40,7 @@ function GoalComponent() {
         </Col>
         <Col span={8}>
           <UserGoalComponent
-            summary={userPhysics}
+            summary={userGoalsSummary}
             userGoals={userGoals}
           />
         </Col>

@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Typography } from 'antd';
 import WeatherModalComponent from './WeatherModal/WeatherModalComponent';
@@ -23,11 +22,12 @@ const WeatherComponent = () => {
     //   },
     // });
 
-    if (weatherData && weatherData.data.success) {
+
+    if (weatherData && !weatherData.data.error) {
       setWeatherInfo({
         temperature: weatherData.data.current.temperature,
-        name: city,
-        countryName: ipData.data.country.name_en,
+        name: weatherData.data.location.name,
+        countryName: weatherData.data.location.country,
         description: weatherData.data.current.weather_descriptions[0],
         icon: weatherData.data.current.weather_icons[0],
         temperatureFeelsLike: weatherData.data.current.feelslike,
