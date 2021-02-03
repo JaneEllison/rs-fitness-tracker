@@ -81,7 +81,7 @@ function UserPhysicsComponent({
         updateUserHistoryData({
           weight: userWeight,
           caloriesConsumed: dailyCalories,
-          date: moment(moment.now()).format('DD.MM.YYYY'),
+          date: moment(moment.now()).format('MM.DD.YYYY'),
         }, firebase, userHistory);
       },
     });
@@ -171,8 +171,7 @@ UserPhysicsComponent.propTypes = {
     ]).isRequired,
     birthDay: PropTypes.string.isRequired,
   }).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  userHistory: PropTypes.array.isRequired,
+  userHistory: PropTypes.arrayOf([]).isRequired,
   dailyCalories: PropTypes.number.isRequired,
 };
 
