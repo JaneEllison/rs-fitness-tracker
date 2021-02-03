@@ -8,16 +8,30 @@ import AuthMenuComponent from './AccountMenu/AuthMenuComponent';
 const HeaderComponent = () => (
   <header>
     <Row justify="space-between">
-      <Col span={11}>
+      <Col
+        span={11}
+      >
         <NavMenuComponent />
       </Col>
       <Col
-        span={10}
+        xs={3}
+        sm={5}
+        md={6}
+        lg={8}
+        xl={9}
+        xxl={10}
         className={style.authData}
       >
         <AuthMenuComponent />
       </Col>
-      <Col span={3}>
+      <Col
+        xs={10}
+        sm={8}
+        md={7}
+        lg={5}
+        xl={4}
+        xxl={3}
+      >
         <WeatherComponent />
       </Col>
     </Row>

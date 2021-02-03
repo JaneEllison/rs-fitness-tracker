@@ -30,7 +30,7 @@ const FoodInfoComponent = ({ foodData, intakeWeight }) => {
 };
 
 FoodInfoComponent.propTypes = {
-  foodData: PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)).isRequired,
+  foodData: PropTypes.arrayOf([]).isRequired,
   intakeWeight: PropTypes.number.isRequired,
 };
 

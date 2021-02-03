@@ -171,8 +171,8 @@ UserPhysicsComponent.propTypes = {
     ]).isRequired,
     birthDay: PropTypes.string.isRequired,
   }).isRequired,
-  userHistory: PropTypes.arrayOf([]).isRequired,
   dailyCalories: PropTypes.number.isRequired,
+  userHistory: PropTypes.arrayOf([]).isRequired,
 };
 
 export default UserPhysicsComponent;

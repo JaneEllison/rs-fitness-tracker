@@ -15,16 +15,14 @@ const WeatherComponent = () => {
   const getWeatherForUser = async () => {
     const ipData = await cityApi.get('', {});
     const city = ipData ? ipData.data.city.name_en : 'Minsk';
-    let weatherData;
-
-    // у апи есть ограничение на запросы, поэтому пока так
-    // weatherData = await weatherApi.get('', {
+    const weatherData = false;
+    // const weatherData = await weatherApi.get('', {
     //   params: {
     //     query: city,
     //   },
     // });
 
-    if (weatherData) {
+    if (weatherData && weatherData.data.success) {
       setWeatherInfo({
         temperature: weatherData.data.current.temperature,
         name: city,

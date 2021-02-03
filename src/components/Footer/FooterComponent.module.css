@@ -1,0 +1,22 @@
+
+.footerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footerLogoLink {
+  background-color: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+.footerLogoLink:hover,
+.footerLogoLink:focus {
+  opacity: 0.9;
+}
+
+.footerLogoLink:active {
+  opacity: 0.6;
+}

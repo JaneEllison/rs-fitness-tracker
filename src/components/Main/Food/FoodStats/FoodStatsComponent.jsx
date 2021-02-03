@@ -52,8 +52,9 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
     ? (
       <Row gutter={50} align={CENTER}>
         <Col
-          span={24}
-          md={{ span: 6 }}
+          xs={24}
+          md={{ span: 12 }}
+          style={{ display: 'flex', justifyContent: 'center' }}
         >
           <FoodStatCardComponent
             foodPhoto={photo.thumb}
@@ -64,7 +65,8 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
         </Col>
         <Col
           span={24}
-          md={{ span: 6 }}
+          md={{ span: 12 }}
+          style={{ display: 'flex', justifyContent: 'center' }}
         >
           <FoodStatCardComponent
             foodPhoto={photo.thumb}

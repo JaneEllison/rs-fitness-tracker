@@ -50,13 +50,7 @@ function UserSummaryComponent({
 }
 
 UserSummaryComponent.propTypes = {
-  summary: PropTypes.shape({
-    age: PropTypes.number.isRequired,
-    gender: PropTypes.string.isRequired,
-    height: PropTypes.number.isRequired,
-    weight: PropTypes.number.isRequired,
-    goal: PropTypes.oneOfType(PropTypes.number, PropTypes.bool).isRequired,
-  }).isRequired,
+  summary: PropTypes.objectOf({}).isRequired,
 };
 
 export default UserSummaryComponent;
