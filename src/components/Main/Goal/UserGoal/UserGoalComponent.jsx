@@ -9,10 +9,9 @@ import {
   Modal,
 } from 'antd';
 import { useFirebase } from 'react-redux-firebase';
-import moment from 'moment';
 import style from '../GoalComponent.module.css';
 import getWeightChangeParameters from '../../../../utils/getWeightChangeParameters';
-import { updateUserGoalsData, updateUserHistoryData } from '../../Account/updateProfileData';
+import { updateUserGoalsData } from '../../Account/updateProfileData';
 
 const { Option } = Select;
 
@@ -156,9 +155,6 @@ UserGoalComponent.propTypes = {
   }).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   userGoals: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  userHistory: PropTypes.array.isRequired,
 };
 
 export default UserGoalComponent;
-

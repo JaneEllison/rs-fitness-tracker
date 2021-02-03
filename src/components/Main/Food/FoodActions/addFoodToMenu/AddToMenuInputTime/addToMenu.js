@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
+import moment from 'moment';
 import { calculateNutrientsByWeight } from '../../../../../../utils/calculateNutrientsByWeight';
 import setNewMenuItemId from '../../../../../../utils/setNewMenuItemId';
 import { updateUserHistoryData } from '../../../../Account/updateProfileData';
-import moment from 'moment';
 import calculateTotalCaloriesForDay from '../../../../../../utils/calculateTotalCaloriesForDay';
 
 const addToMenu = (firebase, foodData, weight, time, profile) => {
