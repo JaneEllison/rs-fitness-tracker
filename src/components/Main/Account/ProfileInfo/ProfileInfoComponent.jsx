@@ -1,13 +1,13 @@
 import React from 'react';
 import { Descriptions } from 'antd';
+import { useSelector } from 'react-redux';
 import AccountInfoItemComponent from '../AccountInfoItem/AccountInfoItemComponent';
 import updateProfileData from '../updateProfileData';
 import profileFieldsLabels from '../../../../config/profileFieldsLabels';
-import { useSelector } from 'react-redux';
 import profileSelector from '../../../../store/Selectors/profileSelector';
 
 const ProfileInfoComponent = () => {
-  const {authData} = profileFieldsLabels;
+  const { authData } = profileFieldsLabels;
   const profile = useSelector(profileSelector);
 
   return (
@@ -25,7 +25,7 @@ const ProfileInfoComponent = () => {
                 updateCallBack={updateProfileData}
               />
             </Descriptions.Item>
-          )
+          );
         })
       }
     </Descriptions>

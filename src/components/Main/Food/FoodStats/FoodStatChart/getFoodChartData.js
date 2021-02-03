@@ -1,11 +1,11 @@
 import foodChartColors from '../../../../../config/foodChartColors';
 
-const getFoodChartData = (stats, foodName, title, foodStatsConstants) =>{
+const getFoodChartData = (stats, foodName, title, foodStatsConstants) => {
   const {
     CKAL_CHART_COLOR,
     PROTEIN_CHART_COLOR,
     CARBS_CHART_COLOR,
-    FATS_CHART_COLOR
+    FATS_CHART_COLOR,
   } = foodChartColors;
   return {
     labels: foodStatsConstants.map((item) => item.TEXT_VALUE),
@@ -16,7 +16,7 @@ const getFoodChartData = (stats, foodName, title, foodStatsConstants) =>{
         CKAL_CHART_COLOR,
         PROTEIN_CHART_COLOR,
         CARBS_CHART_COLOR,
-        FATS_CHART_COLOR
+        FATS_CHART_COLOR,
       ],
       borderWidth: 1,
       maintainAspectRatio: false,

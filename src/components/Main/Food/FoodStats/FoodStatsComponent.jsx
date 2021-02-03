@@ -1,70 +1,84 @@
+/* eslint-disable camelcase */
+/* eslint-disable react/prop-types */
 import React from 'react';
-import FoodStatChartComponent from './FoodStatChart/FoodStatChartComponent';
-import foodComponentConstants from '../../../../constants/foodComponentConstants';
 import { Row, Col } from 'antd';
-import {calculateNutrientsByWeightForArray} from '../../../../utils/calculateNutrientsByWeight';
+import { useSelector } from 'react-redux';
+import foodComponentConstants from '../../../../constants/foodComponentConstants';
+import { calculateNutrientsByWeight } from '../../../../utils/calculateNutrientsByWeight';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
 import foodComponentsConfig from '../../../../config/foodComponentsConfig';
-import FoodImageComponent from './FoodImage/FoodImageComponent';
 import FoodStatCardComponent from './FoodStatCard/FoodStatCardComponent';
-import { useSelector } from 'react-redux';
 import { foodPhotoSelector } from '../../../../store/Selectors/foodSelector';
 
-const FoodStatsComponent = ({foodData, intakeWeight}) => {
+const FoodStatsComponent = ({ foodData, intakeWeight }) => {
   const photo = useSelector(foodPhotoSelector);
-  const {foodStatsTypes: {
-    FOOD_STATS_PER_100_GR,
-    FOOD_STATS_FOR_INTAKE,
-  }} = foodComponentConstants;
+  const {
+    foodStatsTypes: {
+      FOOD_STATS_PER_100_GR,
+      FOOD_STATS_FOR_INTAKE,
+    },
+  } = foodComponentConstants;
   const {
     rowAlignments: {
       CENTER,
-    }} = foodComponentsConfig;
-  console.log(foodData);
+    },
+  } = foodComponentsConfig;
+
   const {
     food_name,
     nf_calories,
     nf_total_fat,
     nf_total_carbohydrate,
-    nf_protein
-    } = foodData;
+    nf_protein,
+  } = foodData;
 
-  const transformedFoodData = [nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, photo];
-  const foodDataForIntake = calculateNutrientsByWeightForArray(transformedFoodData, intakeWeight);
+  const dataPer100Gr = {
+    nf_calories,
+    nf_total_fat,
+    nf_total_carbohydrate,
+    nf_protein,
+  };
 
-  return checkArrayForNullUndefNaN(transformedFoodData)
-    ? <Row gutter={50} align={CENTER}>
+  const dataForIntake = {
+    ...calculateNutrientsByWeight({
+      nf_calories,
+      nf_total_fat,
+      nf_total_carbohydrate,
+      nf_protein,
+    }, intakeWeight),
+  };
+
+  return checkArrayForNullUndefNaN(foodData)
+    ? (
+      <Row gutter={50} align={CENTER}>
         <Col
-          span={24}
-          md={{span: 4}}
-        >
-          <FoodImageComponent imagePath={photo.thumb} />
-        </Col>
-        <Col
-          span={24}
-          md={{span: 8}}
+          xs={24}
+          md={{ span: 12 }}
+          style={{ display: 'flex', justifyContent: 'center' }}
         >
           <FoodStatCardComponent
             foodPhoto={photo.thumb}
             title={FOOD_STATS_PER_100_GR}
-            foodData={foodData}
+            foodData={dataPer100Gr}
             foodName={food_name}
           />
         </Col>
         <Col
           span={24}
-          md={{span: 6}}
+          md={{ span: 12 }}
+          style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <FoodStatChartComponent stats={transformedFoodData} title={FOOD_STATS_PER_100_GR} foodName={food_name} />
+          <FoodStatCardComponent
+            foodPhoto={photo.thumb}
+            title={FOOD_STATS_FOR_INTAKE}
+            foodData={dataForIntake}
+            foodName={food_name}
+          />
         </Col>
-        <Col
-          span={24}
-          md={{span: 6}}
-        >
-          <FoodStatChartComponent stats={foodDataForIntake} title={FOOD_STATS_FOR_INTAKE} foodName={food_name} />
-        </Col>
+
       </Row>
-    : <div/>
+    )
+    : <div />;
 };
 
 export default FoodStatsComponent;

@@ -1,42 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import ExerciseControlComponent from './ExerciseSchedule/ExerciseControlComponent';
 import { useSelector } from 'react-redux';
+import { Row, Col } from 'antd';
+import { isEmpty, isLoaded } from 'react-redux-firebase';
+import ExerciseControlComponent from './ExerciseSchedule/ExerciseControlComponent';
 import ExerciseAddComponent from './ExerciseSchedule/ExerciseAddForm/ExerciseAddComponent';
 import SearchExercisesComponent from './ExerciseSearch/SearchExercisesComponent';
 import TimeComponent from './Time/TimeComponent';
-import { Row, Col } from 'antd';
-import { isEmpty, isLoaded } from 'react-redux-firebase';
 import style from './ExerciseComponent.module.css';
 import daysList from '../../../constants/daysList';
 import profileSelector from '../../../store/Selectors/profileSelector';
 import getExercisesForDay from './ExerciseSearch/getExercisesForDay';
 
 const ExerciseComponent = () => {
-
   const profile = useSelector(profileSelector);
   const [selectedDay, setSelectedDay] = useState(daysList[new Date(Date.now()).getDay()].name);
   const [daysExercises, setDaysExercises] = useState(daysList);
 
   useEffect(() => {
     setDaysExercises(getExercisesForDay(daysList, profile.usersExercises));
-    console.log(daysExercises);
   }, [profile.usersExercises]);
 
-  const components = daysExercises.map((day) => {
-    console.log(day);
-    return (
-      // <Col  sm={{ span: 3, offset: 0}} lg={{ span: 5, offset: 0}} xl={{span: 3, offset: 0,}}>
-      // <Col span={3}>
-      <ExerciseControlComponent
-        selectedDay={selectedDay}
-        key={day.id}
-        day={day.name}
-        setSelectedDay={setSelectedDay}
-        exercises={day.exercises}
-      />
-      // </Col>
-    );
-  });
+  const components = daysExercises.map((day) => (
+    // <Col  sm={{ span: 3, offset: 0}} lg={{ span: 5, offset: 0}} xl={{span: 3, offset: 0,}}>
+    // <Col span={3}>
+    <ExerciseControlComponent
+      selectedDay={selectedDay}
+      key={day.id}
+      day={day.name}
+      setSelectedDay={setSelectedDay}
+      exercises={day.exercises}
+    />
+    // </Col>
+  ));
 
   return (
     <div className={style.wrapper}>
@@ -44,8 +39,8 @@ const ExerciseComponent = () => {
       <Row align="middle" justify="space-between" className={style.cards}>
         {
           !isEmpty(profile) && isLoaded(profile)
-          ? components
-          : <div>...Loading</div>
+            ? components
+            : <div>...Loading</div>
         }
       </Row>
       <Row className={style.main_content} justify="space-between">

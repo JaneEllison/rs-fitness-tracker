@@ -1,16 +1,19 @@
 import React from 'react';
-import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
-import { Card, Col } from 'antd';
-import style from './ExerciseSchedule.module.css';
-import dispatchDeleteExercise from './ExerciseActions/dispatchDeleteExercise';
 import { useSelector } from 'react-redux';
+import { useFirebase } from 'react-redux-firebase';
+import PropTypes from 'prop-types';
+import { Card, Col } from 'antd';
+import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
+import dispatchDeleteExercise from './ExerciseActions/dispatchDeleteExercise';
 import profileSelector from '../../../../store/Selectors/profileSelector';
 import antStyle from './ExerciseAnt.css';
 import { useFirebase } from 'react-redux-firebase';
 import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise';
+import style from './ExerciseSchedule.module.css';
 
-const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay }) => {
-  console.log(day, exercises);
+const ExerciseControlComponent = ({
+  day, exercises, selectedDay, setSelectedDay,
+}) => {
   const profile = useSelector(profileSelector);
   const firebase = useFirebase();
 
@@ -32,23 +35,35 @@ const ExerciseControlComponent = ({ day, exercises, selectedDay, setSelectedDay 
         className={
           day === selectedDay ? [style.content, style.selected] : style.content
         }
-        size={'small'}
+        size="small"
         title={day}
       >
         {
           exercises
-            ? <ExerciseActionComponent
+            ? (
+              <ExerciseActionComponent
                 day={day}
                 exercises={exercises}
                 completeExercise={completeExercise}
                 removeExercise={removeExercise}
               />
+            )
             : <div />
         }
-
       </Card>
     </Col>
   );
+};
+
+ExerciseControlComponent.defaultProps = {
+  exercises: [],
+};
+
+ExerciseControlComponent.propTypes = {
+  selectedDay: PropTypes.string.isRequired,
+  setSelectedDay: PropTypes.func.isRequired,
+  day: PropTypes.string.isRequired,
+  exercises: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default ExerciseControlComponent;

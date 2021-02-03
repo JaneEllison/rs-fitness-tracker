@@ -5,16 +5,18 @@ import adaptiveBreakPoints from '../../../../../constants/adaptiveBreakPoints';
 import foodComponentsConfig from '../../../../../config/foodComponentsConfig';
 
 const getFoodMenuTableColumns = () => {
-  const {BREAKPOINT_MD} = adaptiveBreakPoints;
-  const  {foodTableComponent: {
-    FOOD_TABLE_WIDE_CELL_WIDTH,
-    FOOD_TABLE_STANDARD_CELL_WIDTH,
-  }} = foodComponentsConfig;
+  const { BREAKPOINT_MD } = adaptiveBreakPoints;
+  const {
+    foodTableComponent: {
+      FOOD_TABLE_WIDE_CELL_WIDTH,
+      FOOD_TABLE_STANDARD_CELL_WIDTH,
+    },
+  } = foodComponentsConfig;
   let tableColumns = [
     {
       title: 'Food name',
       width: FOOD_TABLE_WIDE_CELL_WIDTH,
-      dataIndex: 'food_name',
+      dataIndex: 'foodName',
       key: 'food_name',
       fixed: 'left',
     },
@@ -61,30 +63,27 @@ const getFoodMenuTableColumns = () => {
       key: 'remove',
       fixed: 'right',
       render: (action, record) => {
-        if(record.key < 0 ){
-          return <div></div>
-        } else {
-          return (
-            <RemoveFoodConfirmComponent tableRecord={record} />
-          )
+        if (record.key < 0) {
+          return <div />;
         }
-      }
+        return (
+          <RemoveFoodConfirmComponent tableRecord={record} />
+        );
+      },
     },
   ];
 
-  if(checkOffsetWidth(BREAKPOINT_MD)) {
-    tableColumns = tableColumns.map((item, index) => {
-      return index === 0
+  if (checkOffsetWidth(BREAKPOINT_MD)) {
+    tableColumns = tableColumns.map((item, index) => (index === 0
       ? {
-          ...item,
-          width: FOOD_TABLE_STANDARD_CELL_WIDTH,
-          fixed: false,
-        }
+        ...item,
+        width: FOOD_TABLE_STANDARD_CELL_WIDTH,
+        fixed: false,
+      }
       : {
-          ...item,
-          fixed: false,
-        };
-    })
+        ...item,
+        fixed: false,
+      }));
   }
 
   return tableColumns;

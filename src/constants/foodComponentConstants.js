@@ -9,11 +9,7 @@ const foodComponentConstants = {
     FOOD_STATS_PER_100_GR: 'stats per 100 grams',
     FOOD_STATS_FOR_INTAKE: 'stats for intake',
   },
-  foodStatsConstants:[
-    {
-      API_VALUE: 'food_name',
-      TEXT_VALUE: 'Food',
-    },
+  foodStatsConstants: [
     {
       API_VALUE: 'nf_calories',
       TEXT_VALUE: 'kCal',

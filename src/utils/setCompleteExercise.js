@@ -1,7 +1,8 @@
-const setCompleteExercise = (items, id) => {
-  return items.map((item) => {
-    return item.id === id ?  {...item, isComplete: !item.isComplete} : item;
-  });
-};
+const setCompleteExercise = (items, id) => items.map((item) => (item.id === id
+  ? {
+    ...item,
+    isComplete: !item.isComplete,
+  }
+  : item));
 
 export default setCompleteExercise;

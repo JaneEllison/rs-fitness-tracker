@@ -1,4 +1,3 @@
-export const totalNutrientsSelector = (state) => {
-  return {...state.foodMenuReducer.totalNutrients}
-};
+const totalNutrientsSelector = (state) => ({ ...state.foodMenuReducer.totalNutrients });
 
+export default totalNutrientsSelector;

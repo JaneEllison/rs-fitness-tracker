@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Input, Button } from 'antd';
 import style from '../ExerciseSchedule.module.css';
 
@@ -45,6 +46,11 @@ const ExerciseUpdateComponent = ({ edit, onSubmit }) => {
       </Button>
     </form>
   );
+};
+
+ExerciseUpdateComponent.propTypes = {
+  edit: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ExerciseUpdateComponent;

@@ -15,19 +15,18 @@ const authReducer = (state = initialState, action) => {
         ...state,
         auth: true,
         currentUser: action.payload,
-      }
+      };
     }
     case LOGOUT_USER: {
       return {
         ...state,
         auth: false,
         currentUser: {},
-      }
+      };
     }
     default:
-      return state
+      return state;
   }
 };
-
 
 export default authReducer;

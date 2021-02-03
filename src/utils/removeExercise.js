@@ -1,7 +1,3 @@
-const removeExercise = (items, id) => {
-  return items.filter((item) => {
-    return item.id !== id;
-  });
-};
+const removeExercise = (items, id) => items.filter((item) => item.id !== id);
 
 export default removeExercise;

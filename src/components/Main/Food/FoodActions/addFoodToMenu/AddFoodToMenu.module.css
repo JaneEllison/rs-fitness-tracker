@@ -1,6 +1,7 @@
 .stretchingElement{
     width: 115px;
 }
+
 @media screen and (max-width: 767px) {
     .stretchingElement{
         width: 100%;

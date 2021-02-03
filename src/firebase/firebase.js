@@ -16,21 +16,28 @@ const firebaseConfig = {
 export const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true,
-  profileFactory: (userData, profileData, firebase) => { // how profiles are stored in database
+  profileFactory: (_, profileData) => { // how profiles are stored in database
     const { displayName, email, avatarUrl } = profileData;
     return {
       displayName,
       email,
       avatarUrl,
       userPhysics: {
-        age: "",
-        gender: "",
-        height: "",
-        weight: "",
+        birthDay: '',
+        gender: '',
+        height: '',
+        weight: '',
       },
-      userMenus:{},
-      usersExercises:{},
-    }
+      userMenus: {},
+      usersExercises: {},
+      userHistory: [],
+      userGoals: {
+        activityLevel: '',
+        intensityLevel: '',
+        weightPlan: '',
+        goalCalories: '',
+      },
+    };
   },
   createFirestoreInstance,
 };
@@ -47,4 +54,3 @@ const app = firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 
 export default app;
-

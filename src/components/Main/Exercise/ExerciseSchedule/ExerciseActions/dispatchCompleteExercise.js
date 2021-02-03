@@ -1,9 +1,6 @@
 const dispatchCompleteExercise = (exerciseId, day, firebase, profile) => {
-
   const selectedExerciseIndex = profile.usersExercises[day]
-    .findIndex((item) => {
-      return item.id === exerciseId
-    });
+    .findIndex((item) => item.id === exerciseId);
 
   const newArrayOfExercises = profile.usersExercises[day];
   newArrayOfExercises[selectedExerciseIndex] = {
@@ -11,10 +8,13 @@ const dispatchCompleteExercise = (exerciseId, day, firebase, profile) => {
     isComplete: !profile.usersExercises[day][selectedExerciseIndex].isComplete,
   };
   firebase.updateProfile(
-    {usersExercises:
-      {[day]: [
-          ...newArrayOfExercises
-        ]}
+    {
+      usersExercises:
+      {
+        [day]: [
+          ...newArrayOfExercises,
+        ],
+      },
     },
   );
 };
