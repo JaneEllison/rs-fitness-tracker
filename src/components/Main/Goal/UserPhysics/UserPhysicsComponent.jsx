@@ -33,8 +33,6 @@ function UserPhysicsComponent({
     birthDay ? moment(birthDay) : moment(moment.now()),
   );
 
-  console.log(birthDay);
-
   const showModal = () => {
     Modal.confirm({
       title: 'Confirm new user parameters',
@@ -175,7 +173,7 @@ UserPhysicsComponent.propTypes = {
     birthDay: PropTypes.string.isRequired,
   }).isRequired,
   dailyCalories: PropTypes.number.isRequired,
-  userHistory: PropTypes.arrayOf([]).isRequired,
+  userHistory: PropTypes.array.isRequired,
 };
 
 export default UserPhysicsComponent;

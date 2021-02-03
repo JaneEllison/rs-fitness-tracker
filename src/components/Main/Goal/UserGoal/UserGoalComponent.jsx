@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Row,
@@ -22,6 +22,13 @@ import {
 
 const { Option } = Select;
 
+const MINIMUM_CALORIES = {
+  male: 1500,
+  female: 1200,
+};
+
+const isLessThanSafe = (cal, sex) => cal < MINIMUM_CALORIES[sex];
+
 function UserGoalComponent({
   summary: {
     weight,
@@ -37,6 +44,7 @@ function UserGoalComponent({
   const [intensityLevel, setIntensityLevel] = useState(userGoals.intensityLevel);
   const [intensityDesc, setIntensityDesc] = useState(INTENSITY_DESCRIPTIONS[intensityLevel]);
   const [weightPlan, setWeightPlan] = useState(userGoals.weightPlan);
+  const [goalCalories, setGoalCalories] = useState(userGoals.goalCalories || null);
 
   const getCalories = () => {
     const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
@@ -48,34 +56,55 @@ function UserGoalComponent({
     }, activityLevel)[key];
   };
 
+  useEffect(() => {
+    setGoalCalories(getCalories());
+  }, [activityLevel, intensityLevel, weightPlan]);
+
   const showModal = () => {
-    Modal.confirm({
-      title: 'Confirm new user parameters',
-      content: (
-        <div>
-          Are you sure you want to update goal to:
-          {' '}
-          {getCalories()}
-          {' '}
-          kcal?
-        </div>
-      ),
-      onOk: () => {
-        const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
-        const goalCalories = getWeightChangeParameters({
-          weight,
-          gender,
-          height,
-          age,
-        }, activityLevel)[key];
-        updateUserGoalsData({
-          activityLevel,
-          intensityLevel,
-          weightPlan,
-          goalCalories,
-        }, firebase);
-      },
-    });
+    if (isLessThanSafe(goalCalories, gender)) {
+      Modal.error({
+        title: 'Confirm new user parameters',
+        content: (
+          <div style={{ color: 'red' }}>
+            Warning! Losing weight at
+            {' '}
+            {goalCalories}
+            {' '}
+            kCal per day is not safe for
+            {' '}
+            {`${gender}s`}
+            {' '}
+            .
+            Minimum daily caloric rate is
+            {' '}
+            {MINIMUM_CALORIES[gender]}
+            .
+            <p>Please consult your physician</p>
+          </div>
+        ),
+      });
+    } else {
+      Modal.confirm({
+        title: 'Confirm new user parameters',
+        content: (
+          <div>
+            Update goal to:
+            {' '}
+            {goalCalories}
+            {' '}
+            kCal?
+          </div>
+        ),
+        onOk: () => {
+          updateUserGoalsData({
+            activityLevel,
+            intensityLevel,
+            weightPlan,
+            goalCalories,
+          }, firebase);
+        },
+      });
+    }
   };
 
   return (
@@ -95,7 +124,9 @@ function UserGoalComponent({
           className={style.goalRadioButtons}
           options={GOALS}
           value={weightPlan}
-          onChange={(event) => setWeightPlan(event.target.value)}
+          onChange={(event) => {
+            setWeightPlan(event.target.value);
+          }}
         />
       </Row>
       <Row className={style.userGoalField}>
@@ -156,16 +187,14 @@ function UserGoalComponent({
           <h3>New goal calories:</h3>
         </Col>
         <Col>
-          {getCalories() || null}
-          {' '}
-          kcal
+          {goalCalories ? `${goalCalories} kCal` : null}
         </Col>
       </Row>
       <Row className={style.userGoalField}>
         <Button
           type="primary"
           onClick={showModal}
-          disabled={!(getCalories())}
+          disabled={!goalCalories}
         >
           Set new goal
         </Button>
@@ -180,20 +209,8 @@ UserGoalComponent.propTypes = {
     gender: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
     age: PropTypes.number.isRequired,
-    goal: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.bool,
-    ]).isRequired,
   }).isRequired,
-  userGoals: PropTypes.shape({
-    activityLevel: PropTypes.string.isRequired,
-    goalCalories: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]).isRequired,
-    intensityLevel: PropTypes.string.isRequired,
-    weightPlan: PropTypes.string.isRequired,
-  }).isRequired,
+  userGoals: PropTypes.object.isRequired,
 };
 
 export default UserGoalComponent;

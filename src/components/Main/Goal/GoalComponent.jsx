@@ -31,14 +31,14 @@ function GoalComponent() {
     };
     return (
       <Row gutter={8}>
-        <Col span={12}>
+        <Col span={24} md={12}>
           <UserPhysicsComponent
             summary={userPhysics}
             userHistory={userHistory}
             dailyCalories={calculateTotalCaloriesForDay(userMenus[currentDate])}
           />
         </Col>
-        <Col span={12}>
+        <Col span={24} md={12}>
           <UserGoalComponent
             summary={userGoalsSummary}
             userGoals={userGoals}
