@@ -21,7 +21,6 @@ const WeatherComponent = () => {
     //   },
     // });
 
-
     if (weatherData && !weatherData.data.error) {
       setWeatherInfo({
         temperature: weatherData.data.current.temperature,
