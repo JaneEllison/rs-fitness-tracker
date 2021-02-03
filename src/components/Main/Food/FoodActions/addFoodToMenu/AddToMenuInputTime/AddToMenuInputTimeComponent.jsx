@@ -24,12 +24,17 @@ const AddToMenuInputTimeComponent = ({ changeIntakeTime, buttonDisabled, addToMe
   return (
     <Row
       align={CENTER}
-      gutter={[10, 40]}
-      xl={{ gutter: [10, 0] }}
+      gutter={{
+        xs: [10, 40],
+        sm: [10, 40],
+        xl: [10, 0],
+      }}
+      style={{ width: '100%' }}
     >
       <Col
         span={12}
         md={{ span: 6 }}
+        style={{ display: 'flex', alignItems: 'center' }}
       >
         <span className={style.dataTitle}>{ADD_FOOD_TO_MENU_TIME_LABEL}</span>
       </Col>

@@ -17,8 +17,9 @@ const AddToMenuInputNumberComponent = ({ changeIntakeWeight }) => {
     <Row
       align={CENTER}
       justify={CENTER}
+      style={{ width: '100%' }}
     >
-      <Col span={12}>
+      <Col span={12} style={{ display: 'flex', alignItems: 'center' }}>
         <span className={style.dataTitle}>{ADD_FOOD_TO_MENU_INTAKE_LABEL}</span>
       </Col>
       <Col span={12}>

@@ -22,19 +22,18 @@ const FoodActionsComponent = ({
     <Row
       className={style.searchBar}
       gutter={[40, 20]}
-      lg={[40, 0]}
       align={CENTER}
       justify={SPACE_BETWEEN}
     >
       <Col
         span={22}
-        lg={{ span: 12 }}
+        md={{ span: 12 }}
       >
         <SearchFoodComponent />
       </Col>
       <Col
         span={22}
-        lg={{ span: 12 }}
+        md={{ span: 12 }}
       >
         <AddFoodToMenuComponent
           foodData={foodData}
