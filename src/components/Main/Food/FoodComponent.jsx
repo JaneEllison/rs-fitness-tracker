@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
+import { NavLink } from 'react-router-dom';
 import foodSelector from '../../../store/Selectors/foodSelector';
 import FoodTableComponent from './FoodTable/FoodTableComponent';
 import foodComponentConstants from '../../../constants/foodComponentConstants';
@@ -43,7 +44,12 @@ const FoodComponent = () => {
             !isLoaded(profile) && <div>Loading...</div>
           }
         {
-            isEmpty(profile) && <div>You have to register or log in to manage your food table</div>
+            isEmpty(profile)
+            && (
+            <NavLink to="/signin">
+              You have to register or log in to manage your food table
+            </NavLink>
+            )
           }
         {
             isLoaded(profile) && !isEmpty(profile) && <FoodTableComponent />

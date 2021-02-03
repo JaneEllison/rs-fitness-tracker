@@ -17,7 +17,7 @@ const routes = {
     },
     {
       path: '/',
-      value: 'Default',
+      value: 'Main',
       type: 'nonAuthenticated',
     },
   ],

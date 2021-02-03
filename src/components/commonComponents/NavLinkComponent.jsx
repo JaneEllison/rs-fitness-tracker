@@ -20,7 +20,10 @@ NavLinkComponent.defaultProps = {
 NavLinkComponent.propTypes = {
   path: PropTypes.string.isRequired,
   render: PropTypes.string.isRequired,
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default NavLinkComponent;
