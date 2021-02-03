@@ -33,10 +33,11 @@ const AddFoodToMenuComponent = ({
     <Row
       align={CENTER}
       justify={CENTER}
-      gutter={{
-        sm: 10,
-        lg: [0, 0],
-      }}
+      gutter={[0, {
+        xs: 5,
+        sm: 5,
+        md: 0,
+      }]}
     >
       <Col
         span={22}

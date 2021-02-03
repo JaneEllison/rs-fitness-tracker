@@ -24,11 +24,11 @@ const AddToMenuInputTimeComponent = ({ changeIntakeTime, buttonDisabled, addToMe
   return (
     <Row
       align={CENTER}
-      gutter={{
-        xs: [10, 40],
-        sm: [10, 40],
-        xl: [10, 0],
-      }}
+      gutter={[0, {
+        xs: 5,
+        sm: 5,
+        md: 0,
+      }]}
       style={{ width: '100%' }}
     >
       <Col
