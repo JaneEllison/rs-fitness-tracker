@@ -3,6 +3,7 @@ import { useFirebase, useFirestoreConnect } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
+import style from './googleSignIn.module.css';
 
 const SignInWithGoogleComponent = () => {
   useFirestoreConnect(['physicsChars']);
@@ -20,7 +21,7 @@ const SignInWithGoogleComponent = () => {
   };
 
   return (
-    <div>
+    <div className={style.googleSignIn}>
       <h1>Sign in with Google</h1>
       <Button
         onClick={(event) => {
