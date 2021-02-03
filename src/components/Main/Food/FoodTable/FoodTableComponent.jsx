@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import getFoodMenuTableColumns from './foodMenuTableColumns/getFoodMenuTableColumns';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
 import getTableConfig from './getTableConfig';
@@ -13,11 +13,11 @@ const FoodTableComponent = () => {
   const timeKey = new Date(Date.now()).toLocaleDateString('ru-RU');
 
   const foodMenu = profile.userMenus[timeKey] ? profile.userMenus[timeKey] : [];
-  let columns = getFoodMenuTableColumns();
+  const columns = getFoodMenuTableColumns();
   const foodTableData = getFoodTableData(foodMenu);
 
   useEffect(() => {
-    if(checkArrayForNullUndefNaN(foodTableData)){
+    if (checkArrayForNullUndefNaN(foodTableData)) {
       toggleLoading(false);
     } else {
       toggleLoading(true);

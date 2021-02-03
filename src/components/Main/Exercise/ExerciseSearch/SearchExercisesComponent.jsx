@@ -8,14 +8,14 @@ import SearchExercisesPlayer from './SearchExercisesVideo/SearchExercisesPlayerC
 
 const SearchExercisesComponent = () => {
   const dispatch = useDispatch();
-  const youtubeData = useSelector((state) => state.exerciseSearchReducer)
+  const youtubeData = useSelector((state) => state.exerciseSearchReducer);
 
   const onVideoSelected = (videoId) => {
     dispatch(selectVideoAction(videoId));
   };
 
   const onSearch = (keyword) => {
-    dispatch(getSearchDataYoutubeAPI(keyword))
+    dispatch(getSearchDataYoutubeAPI(keyword));
   };
 
   return (

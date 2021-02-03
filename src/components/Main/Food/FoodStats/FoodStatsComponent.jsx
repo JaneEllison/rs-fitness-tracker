@@ -1,50 +1,59 @@
+/* eslint-disable camelcase */
+/* eslint-disable react/prop-types */
 import React from 'react';
-import foodComponentConstants from '../../../../constants/foodComponentConstants';
 import { Row, Col } from 'antd';
-import calculateNutrientsByWeight from '../../../../utils/calculateNutrientsByWeight';
+import { useSelector } from 'react-redux';
+import foodComponentConstants from '../../../../constants/foodComponentConstants';
+import { calculateNutrientsByWeight } from '../../../../utils/calculateNutrientsByWeight';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
 import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 import FoodStatCardComponent from './FoodStatCard/FoodStatCardComponent';
-import { useSelector } from 'react-redux';
 import { foodPhotoSelector } from '../../../../store/Selectors/foodSelector';
 
-const FoodStatsComponent = ({foodData, intakeWeight}) => {
+const FoodStatsComponent = ({ foodData, intakeWeight }) => {
   const photo = useSelector(foodPhotoSelector);
-  const {foodStatsTypes: {
-    FOOD_STATS_PER_100_GR,
-    FOOD_STATS_FOR_INTAKE,
-  }} = foodComponentConstants;
+  const {
+    foodStatsTypes: {
+      FOOD_STATS_PER_100_GR,
+      FOOD_STATS_FOR_INTAKE,
+    },
+  } = foodComponentConstants;
   const {
     rowAlignments: {
       CENTER,
-    }} = foodComponentsConfig;
+    },
+  } = foodComponentsConfig;
 
   const {
     food_name,
     nf_calories,
     nf_total_fat,
     nf_total_carbohydrate,
-    nf_protein
-    } = foodData;
+    nf_protein,
+  } = foodData;
+
   const dataPer100Gr = {
     nf_calories,
     nf_total_fat,
     nf_total_carbohydrate,
-    nf_protein
+    nf_protein,
   };
+
   const dataForIntake = {
     ...calculateNutrientsByWeight({
       nf_calories,
       nf_total_fat,
       nf_total_carbohydrate,
-      nf_protein}, intakeWeight)
+      nf_protein,
+    }, intakeWeight),
   };
-  console.log(dataForIntake);
+
   return checkArrayForNullUndefNaN(foodData)
-    ? <Row gutter={50} align={CENTER}>
+    ? (
+      <Row gutter={50} align={CENTER}>
         <Col
           span={24}
-          md={{span: 6}}
+          md={{ span: 6 }}
         >
           <FoodStatCardComponent
             foodPhoto={photo.thumb}
@@ -55,7 +64,7 @@ const FoodStatsComponent = ({foodData, intakeWeight}) => {
         </Col>
         <Col
           span={24}
-          md={{span: 6}}
+          md={{ span: 6 }}
         >
           <FoodStatCardComponent
             foodPhoto={photo.thumb}
@@ -66,7 +75,8 @@ const FoodStatsComponent = ({foodData, intakeWeight}) => {
         </Col>
 
       </Row>
-    : <div/>
+    )
+    : <div />;
 };
 
 export default FoodStatsComponent;

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const makeQuery = async (options) => {
+async function makeQuery(options) {
   try {
-    const response =  await axios.request(options);
+    const response = await axios.request(options);
     return response.data;
-  } catch(error) {
-    console.log(error.response);
+  } catch (error) {
+    return false;
   }
-};
+}
 
 export default makeQuery;

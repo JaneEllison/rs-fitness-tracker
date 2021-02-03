@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 
-const AuthErrorModalComponent = ({errorMessage, modalVisible, setModalVisible}) => {
-
+const AuthErrorModalComponent = ({ errorMessage, modalVisible, setModalVisible }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
-  console.log(errorMessage);
+
   const cancelModal = () => {
     setModalVisible(false);
   };
@@ -17,7 +17,6 @@ const AuthErrorModalComponent = ({errorMessage, modalVisible, setModalVisible}) 
     }, 1000);
   };
 
-
   return (
     <Modal
       title="Title"
@@ -29,6 +28,12 @@ const AuthErrorModalComponent = ({errorMessage, modalVisible, setModalVisible}) 
       <p>{errorMessage}</p>
     </Modal>
   );
+};
+
+AuthErrorModalComponent.propTypes = {
+  errorMessage: PropTypes.string.isRequired,
+  modalVisible: PropTypes.bool.isRequired,
+  setModalVisible: PropTypes.func.isRequired,
 };
 
 export default AuthErrorModalComponent;

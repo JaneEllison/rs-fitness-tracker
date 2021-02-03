@@ -1,14 +1,21 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { Skeleton, Switch, Card, Avatar, Descriptions } from 'antd';
+import {
+  Card,
+  Avatar,
+  Descriptions,
+} from 'antd';
 import foodComponentConstants from '../../../../../constants/foodComponentConstants';
 import getFoodParamTextValue from '../../../../../utils/getFoodParamTextValue';
 
-const FoodStatCardComponent = ({foodPhoto, title, foodData, foodName}) => {
+const FoodStatCardComponent = ({
+  foodPhoto, title, foodData, foodName,
+}) => {
   const { foodStatsConstants } = foodComponentConstants;
   const { Meta } = Card;
   const food = Object.keys(foodData);
   return (
-    <Card style={{ width: 300}} >
+    <Card style={{ width: 300 }}>
       <Meta
         avatar={
           <Avatar src={foodPhoto} />
@@ -23,8 +30,7 @@ const FoodStatCardComponent = ({foodPhoto, title, foodData, foodName}) => {
             >
               {foodData[item]}
             </Descriptions.Item>
-            )
-          )
+          ))
         }
       </Descriptions>
     </Card>

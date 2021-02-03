@@ -1,50 +1,62 @@
-import { Table } from 'antd';
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalNutrientsSelector } from '../../../../../store/Selectors/totalNutrientsSelector';
-import { calculateTotalNutrientsAC } from '../../../../../store/FoodMenuReducer/foodMenuActionCreators';
+import totalNutrientsSelector from '../../../../../store/Selectors/totalNutrientsSelector';
+import calculateTotalNutrientsAC from '../../../../../store/FoodMenuReducer/foodMenuActionCreators';
 import getAdaptiveClassNames from './getAdaptiveClassNames';
 
-const FoodTableSummaryComponent = ({foodMenu}) => {
+const FoodTableSummaryComponent = ({ foodMenu }) => {
   const totalNutrients = useSelector(totalNutrientsSelector);
   const dispatch = useDispatch();
-  const {classesLeft, classesRight} = getAdaptiveClassNames();
+  const { classesLeft, classesRight } = getAdaptiveClassNames();
+
   useEffect(() => {
-    foodMenu.length > 0
-    && dispatch(calculateTotalNutrientsAC(foodMenu))
+    if (foodMenu.length > 0) {
+      dispatch(calculateTotalNutrientsAC(foodMenu));
+    }
   }, [foodMenu]);
+
   const {
-    nf_calories,
-    nf_protein,
-    nf_total_carbohydrate,
-    nf_total_fat,
+    nf_calories: nfCalories,
+    nf_protein: nfProtein,
+    nf_total_carbohydrate: nfTotalCarbohydrate,
+    nf_total_fat: nfTotalFat,
     weight,
   } = totalNutrients;
 
-  const summaryRow = [weight, nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein];
+  const summaryRow = [weight, nfCalories, nfProtein, nfTotalCarbohydrate, nfTotalFat];
   return (
     <>
       <Table.Summary.Row>
         <Table.Summary.Cell
           className={classesLeft}
-        >Total:</Table.Summary.Cell>
-        <Table.Summary.Cell/>
+        >
+          Total:
+
+        </Table.Summary.Cell>
+        <Table.Summary.Cell />
         {
-          summaryRow.map((item, index) => {
-            return <Table.Summary.Cell
-                key={`${index * 2}`}
-              >
-                {item}
-              </Table.Summary.Cell>
-            }
-          )
+          summaryRow.map((item, index) => (
+            <Table.Summary.Cell
+              key={`${index * 2}`}
+            >
+              {item}
+            </Table.Summary.Cell>
+          ))
         }
         <Table.Summary.Cell
           className={classesRight}
         />
       </Table.Summary.Row>
     </>
-  )
+  );
+};
+
+FoodTableSummaryComponent.propTypes = {
+  foodMenu: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)),
+  ).isRequired,
 };
 
 export default FoodTableSummaryComponent;

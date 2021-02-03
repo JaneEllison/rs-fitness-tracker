@@ -10,9 +10,9 @@ const LABELS = {
   WEIGHT_WITH_CALORIES: 'Weight w/ calories',
   CALORIES: 'Calories',
   CALORIES_WITH_GOAL: 'Calories w/ goal',
-}
+};
 
-export { 
-  VALUES, 
-  LABELS, 
+export {
+  VALUES,
+  LABELS,
 };

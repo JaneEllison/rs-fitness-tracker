@@ -25,21 +25,21 @@ const routes = {
     {
       path: '/signup',
       value: 'Sign up',
-      type: 'nonAuthenticated'
+      type: 'nonAuthenticated',
     },
     {
       path: '/signin',
       value: 'Sign In',
-      type: 'nonAuthenticated'
+      type: 'nonAuthenticated',
     },
     {
       path: '/logout',
       value: 'Log out',
-      type: 'authenticated'
+      type: 'authenticated',
     },
     {
       value: 'accountButton',
-      type: 'authenticated'
+      type: 'authenticated',
     },
   ],
   accountMenuRoutes: [
@@ -60,7 +60,7 @@ const routes = {
       value: 'Goal',
       type: 'authenticated',
       icon: <CarryOutOutlined />,
-    }
+    },
   ],
 };
 

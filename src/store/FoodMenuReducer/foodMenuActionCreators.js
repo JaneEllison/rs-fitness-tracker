@@ -1,9 +1,8 @@
-import {
-  CALCULATE_TOTAL_NUTRIENTS,
-} from './foodMenuReducerActionTypes';
+import CALCULATE_TOTAL_NUTRIENTS from './foodMenuReducerActionTypes';
 
-export const calculateTotalNutrientsAC = (foodMenu) => ({
+const calculateTotalNutrientsAC = (foodMenu) => ({
   type: CALCULATE_TOTAL_NUTRIENTS,
   payload: foodMenu,
 });
 
+export default calculateTotalNutrientsAC;

@@ -4,22 +4,21 @@ import {
   Row,
   Col,
 } from 'antd';
-import UserPhysicsComponent from './UserPhysics/UserPhysicsComponent'
+import { isLoaded, isEmpty } from 'react-redux-firebase';
+import UserPhysicsComponent from './UserPhysics/UserPhysicsComponent';
 import UserGoalComponent from './UserGoal/UserGoalComponent';
 import profileSelector from '../../../store/Selectors/profileSelector';
-import {isLoaded, isEmpty} from 'react-redux-firebase';
 import calculateTotalCaloriesForDay from '../../../utils/calculateTotalCaloriesForDay';
 import moment from 'moment';
-
+        
 function GoalComponent() {
-
   const profile = useSelector(profileSelector);
 
   if (!isLoaded(profile)) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
   if (isEmpty(profile)) {
-    return <div>You have to sign up</div>
+    return <div>You have to sign up</div>;
   }
   if (isLoaded(profile) && !isEmpty(profile)) {
     const currentDate = moment(moment.now()).format('DD.MM.YYYY');
@@ -33,7 +32,7 @@ function GoalComponent() {
             dailyCalories={calculateTotalCaloriesForDay(userMenus[currentDate])}
           />
         </Col>
-        <Col span={8} >
+        <Col span={8}>
           <UserGoalComponent
             summary={userPhysics}
             userGoals={userGoals}

@@ -1,1 +1,3 @@
 const FETCH_FOOD_DATA = 'FETCH_FOOD_DATA';
+
+export default FETCH_FOOD_DATA;

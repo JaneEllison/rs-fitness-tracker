@@ -1,20 +1,22 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getSearchDataFromAPI } from '../../../../../store/foodReducer/foodReducer';
 import { Input } from 'antd';
+import { getSearchDataFromAPI } from '../../../../../store/foodReducer/foodReducer';
 import foodComponentConstants from '../../../../../constants/foodComponentConstants';
 import foodComponentsConfig from '../../../../../config/foodComponentsConfig';
 
 const SearchFoodComponent = () => {
-  const {foodSearchComponent:{INPUT_TYPE}} = foodComponentsConfig;
-  const {SEARCH_FIELD_PLACEHOLDER} = foodComponentConstants;
-  const {Search} = Input;
+  const { foodSearchComponent: { INPUT_TYPE } } = foodComponentsConfig;
+  const { SEARCH_FIELD_PLACEHOLDER } = foodComponentConstants;
+  const { Search } = Input;
   const [foodToSearch, setFoodToSearch] = useState('');
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    foodToSearch.length > 0 && dispatch(getSearchDataFromAPI(foodToSearch));
+    if (foodToSearch.length > 0) {
+      dispatch(getSearchDataFromAPI(foodToSearch));
+    }
   }, [foodToSearch]);
 
   return (

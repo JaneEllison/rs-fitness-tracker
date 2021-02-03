@@ -1,8 +1,8 @@
 import React from 'react';
-import placeholderPicture from '../../../assets/nopic.png';
 import { Row, Col, Image } from 'antd';
-import profileSelector from '../../../store/Selectors/profileSelector';
 import { useSelector } from 'react-redux';
+import placeholderPicture from '../../../assets/nopic.png';
+import profileSelector from '../../../store/Selectors/profileSelector';
 import { isLoaded, isEmpty } from "react-redux-firebase";
 import ProfileInfoComponent from './ProfileInfo/ProfileInfoComponent';
 import UserPhysicsComponent from '../Goal/UserPhysics/UserPhysicsComponent';
@@ -18,15 +18,15 @@ const AccountComponent = () => {
   return isLoaded(profile) && !isEmpty(profile) ? (
     <Row>
       <Col span={16}>
-          <ProfileInfoComponent />
-          <UserPhysicsComponent
-            summary={userPhysics}
-            userHistory={userHistory}
-            dailyCalories={calculateTotalCaloriesForDay(userMenus[currentDate])}
-          />
+        <ProfileInfoComponent />
+        <UserPhysicsComponent
+          summary={userPhysics}
+          userHistory={userHistory}
+          dailyCalories={calculateTotalCaloriesForDay(userMenus[currentDate])}
+        />
       </Col>
       <Col span={8}>
-        <Image width={200} src={avatarUrl} fallback={placeholderPicture}/>
+        <Image width={200} src={avatarUrl} fallback={placeholderPicture} />
       </Col>
     </Row>
   )

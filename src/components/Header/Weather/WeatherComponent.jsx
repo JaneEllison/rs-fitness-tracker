@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Typography } from 'antd';
-import WeatherModalComponent from './WeatherModal/WeatherModalComponent'
+import WeatherModalComponent from './WeatherModal/WeatherModalComponent';
 import weatherApi from '../../../api/makeQueryToShowWeather';
 import cityApi from '../../../api/makeQueryToFindCity';
 import style from './Weather.module.css';
+
 const { Text } = Typography;
 
 const WeatherComponent = () => {
@@ -11,16 +14,10 @@ const WeatherComponent = () => {
 
   const getWeatherForUser = async () => {
     const ipData = await cityApi.get('', {});
-
-    let city;
+    const city = ipData ? ipData.data.city.name_en : 'Minsk';
     let weatherData;
 
-    (ipData)
-    ? city = ipData.data.city.name_en
-    : city = 'Minsk'
-
-    //у апи есть ограничение на запросы, поэтому пока так
-
+    // у апи есть ограничение на запросы, поэтому пока так
     // weatherData = await weatherApi.get('', {
     //   params: {
     //     query: city,
@@ -32,7 +29,7 @@ const WeatherComponent = () => {
         temperature: weatherData.data.current.temperature,
         name: city,
         countryName: ipData.data.country.name_en,
-        discription: weatherData.data.current.weather_descriptions[0],
+        description: weatherData.data.current.weather_descriptions[0],
         icon: weatherData.data.current.weather_icons[0],
         temperatureFeelsLike: weatherData.data.current.feelslike,
         wind: weatherData.data.current.wind_speed,
@@ -43,8 +40,8 @@ const WeatherComponent = () => {
       setWeatherInfo({
         temperature: '-3',
         name: 'Minsk',
-        countryName: "Belarus",
-        discription: 'Mostly cloudy',
+        countryName: 'Belarus',
+        description: 'Mostly cloudy',
         icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6Eqcl15XoN3eM922kfnx7ftuuENq5kTCrg&usqp=CAU',
         temperatureFeelsLike: '-5',
         wind: '11',
@@ -57,8 +54,6 @@ const WeatherComponent = () => {
   useEffect(() => {
     getWeatherForUser();
   }, []);
-
-
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -77,7 +72,7 @@ const WeatherComponent = () => {
       />
       <Col
         onClick={showModal}
-        style={{ cursor:"pointer" }}
+        style={{ cursor: 'pointer' }}
       >
         <img
           src={weatherInfo.icon}
@@ -87,22 +82,22 @@ const WeatherComponent = () => {
       </Col>
       <Col
         onClick={showModal}
-        style={{ cursor:"pointer" }}
+        style={{ cursor: 'pointer' }}
       >
         <Row justify="center">
-            <Text className={style.weatherTitle}>
-              {weatherInfo.countryName}
-            </Text>
-            <Text className={style.weatherTitle}>
-              {`${weatherInfo.temperature} °C`}
-            </Text>
+          <Text className={style.weatherTitle}>
+            {weatherInfo.countryName}
+          </Text>
+          <Text className={style.weatherTitle}>
+            {`${weatherInfo.temperature} °C`}
+          </Text>
         </Row>
         <Row className={style.weatherSubtitle}>
-          {weatherInfo.discription}
+          {weatherInfo.description}
         </Row>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 export default WeatherComponent;

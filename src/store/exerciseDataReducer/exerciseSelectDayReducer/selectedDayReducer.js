@@ -1,7 +1,7 @@
-import { SELECT_DAY } from "./selectedDayReducerConstant";
+import SELECT_DAY from './selectedDayReducerConstant';
 
-export const selectedDayReducer = (state=null, { day, type }) => {
-  switch(type) {
+const selectedDayReducer = (state = null, { day, type }) => {
+  switch (type) {
     case SELECT_DAY:
       return day;
     default:
@@ -9,9 +9,12 @@ export const selectedDayReducer = (state=null, { day, type }) => {
   }
 };
 
-export const selectDayAction = (day) => ({
+const selectDayAction = (day) => ({
   type: SELECT_DAY,
-  day
+  day,
 });
 
-export default selectedDayReducer;
+export {
+  selectedDayReducer,
+  selectDayAction,
+};

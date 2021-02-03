@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SearchExercisesVideo from './SearchExercisesVideoComponent';
 
-const SearchExercisesList = ({ data, onVideoSelected }) => {
-  return (
+const SearchExercisesList = ({ data, onVideoSelected }) => (
+  <div>
     <div>
-      <div>
-        <SearchExercisesVideo data={data} onVideoSelected={onVideoSelected} />
-      </div>
+      <SearchExercisesVideo data={data} onVideoSelected={onVideoSelected} />
     </div>
-  );
+  </div>
+);
+
+SearchExercisesList.propTypes = {
+  data: PropTypes.string.isRequired,
+  onVideoSelected: PropTypes.func.isRequired,
 };
 
 export default SearchExercisesList;

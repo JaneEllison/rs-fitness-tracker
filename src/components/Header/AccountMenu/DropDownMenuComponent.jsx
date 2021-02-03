@@ -1,20 +1,20 @@
 import React from 'react';
-import { Dropdown } from 'antd';
-import AccountMenuComponent from './DropDownMenu/AccountMenuComponent';
+import { Dropdown, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import AccountMenuComponent from './DropDownMenu/AccountMenuComponent';
 
-const DropDownMenuComponent = ({}) => {
-  return (
-    <Dropdown
-      overlay={AccountMenuComponent}
-      trigger={['click']}
-      placement="bottomCenter"
-    >
-      <a onClick={event => event.preventDefault()}>
-        Account <UserOutlined />
-      </a>
-    </Dropdown>
-  );
-};
+const DropDownMenuComponent = () => (
+  <Dropdown
+    overlay={AccountMenuComponent}
+    trigger={['click']}
+    placement="bottomCenter"
+  >
+    <Button type="text" onClick={(event) => event.preventDefault()}>
+      Account
+      {' '}
+      <UserOutlined />
+    </Button>
+  </Dropdown>
+);
 
 export default DropDownMenuComponent;

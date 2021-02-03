@@ -1,31 +1,31 @@
 const daysList = [
   {
     id: 0,
-    name: "Sunday",
+    name: 'Sunday',
   },
   {
     id: 1,
-    name: "Monday",
+    name: 'Monday',
   },
   {
     id: 2,
-    name: "Tuesday",
+    name: 'Tuesday',
   },
   {
     id: 3,
-    name: "Wednesday",
+    name: 'Wednesday',
   },
   {
     id: 4,
-    name: "Thursday",
+    name: 'Thursday',
   },
   {
     id: 5,
-    name: "Friday",
+    name: 'Friday',
   },
   {
     id: 6,
-    name: "Saturday",
+    name: 'Saturday',
   },
 ];
 

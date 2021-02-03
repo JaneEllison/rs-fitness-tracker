@@ -16,6 +16,7 @@
   stroke-dashoffset: 0;
   animation: spin 3s linear infinite;
 }
+
 .spinner-track {
   fill: transparent;
   stroke: rgba(0,0,0,0.2);

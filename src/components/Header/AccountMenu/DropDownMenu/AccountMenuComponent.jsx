@@ -9,11 +9,18 @@ const AccountMenuComponent = () => {
   return (
     <Menu>
       {
-        accountMenuRoutes.map((route, index)=> (
-          <Menu.Item key={`${index}`}>
-            <NavLinkComponent path={route.path} render={route.value} icon={route.icon} />
-          </Menu.Item>
-        ))
+        accountMenuRoutes.map((route, index) => {
+          const keyProp = `route-${index}`;
+          return (
+            <Menu.Item key={keyProp}>
+              <NavLinkComponent
+                path={route.path}
+                render={route.value}
+                icon={route.icon}
+              />
+            </Menu.Item>
+          );
+        })
       }
     </Menu>
   );
