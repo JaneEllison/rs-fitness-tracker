@@ -30,7 +30,7 @@ function UserPhysicsComponent({
   const [userHeight, setUserHeight] = useState(height);
   const [userSex, setUserSex] = useState(gender);
   const [userBirthday, setUserBirthday] = useState(
-    birthDay ? moment(birthDay) : moment(moment.now())
+    birthDay ? moment(birthDay) : moment(moment.now()),
   );
 
   const showModal = () => {
@@ -165,12 +165,12 @@ UserPhysicsComponent.propTypes = {
     height: PropTypes.number.isRequired,
     birthDay: PropTypes.string.isRequired,
   }).isRequired,
-  userGoals: PropTypes.shape({
-    goalCalories: PropTypes.number.isRequired,
-  }).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  userHistory: PropTypes.array.isRequired,
+  dailyCalories: PropTypes.number.isRequired,
+  userHistory: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.oneOfType(PropTypes.number, PropTypes.string),
+    ),
+  ).isRequired,
 };
 
 export default UserPhysicsComponent;
-

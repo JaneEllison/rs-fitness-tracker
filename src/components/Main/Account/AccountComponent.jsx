@@ -1,19 +1,19 @@
 import React from 'react';
 import { Row, Col, Image } from 'antd';
 import { useSelector } from 'react-redux';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
+import moment from 'moment';
 import placeholderPicture from '../../../assets/nopic.png';
 import profileSelector from '../../../store/Selectors/profileSelector';
-import { isLoaded, isEmpty } from "react-redux-firebase";
 import ProfileInfoComponent from './ProfileInfo/ProfileInfoComponent';
 import UserPhysicsComponent from '../Goal/UserPhysics/UserPhysicsComponent';
-import moment from 'moment';
 import calculateTotalCaloriesForDay from '../../../utils/calculateTotalCaloriesForDay';
 
 const AccountComponent = () => {
   const profile = useSelector(profileSelector);
-  const {userPhysics, userMenus, userHistory} = profile;
+  const { userPhysics, userMenus, userHistory } = profile;
   const currentDate = moment(moment.now()).format('DD.MM.YYYY');
-  const {avatarUrl} = profile;
+  const { avatarUrl } = profile;
 
   return isLoaded(profile) && !isEmpty(profile) ? (
     <Row>
@@ -30,7 +30,7 @@ const AccountComponent = () => {
       </Col>
     </Row>
   )
-    : null
+    : null;
 };
 
 export default AccountComponent;

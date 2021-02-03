@@ -13,12 +13,12 @@ const routes = {
     {
       path: '/exercise',
       value: 'Exercise',
-      type: 'authenticated'
+      type: 'authenticated',
     },
     {
       path: '/',
       value: 'Default',
-      type: 'nonAuthenticated'
+      type: 'nonAuthenticated',
     },
   ],
   authRoutes: [
