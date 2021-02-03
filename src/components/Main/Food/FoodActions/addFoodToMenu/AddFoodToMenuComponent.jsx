@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
 import { useSelector } from 'react-redux';
-import { useFirebase } from 'react-redux-firebase';
+import { isEmpty, useFirebase } from 'react-redux-firebase';
 import useCheckButtonDisabled from '../../../../../customHooks/useCheckButtonDisabled';
 import foodComponentsConfig from '../../../../../config/foodComponentsConfig';
 import AddToMenuInputNumberComponent from './AddToMenuInputNumber/AddToMenuInputNumberComponent';
 import AddToMenuInputTimeComponent from './AddToMenuInputTime/AddToMenuInputTimeComponent';
 import addToMenu from './AddToMenuInputTime/addToMenu';
 import profileSelector from '../../../../../store/Selectors/profileSelector';
+import authSelector from '../../../../../store/Selectors/authSelector';
 
 const AddFoodToMenuComponent = ({
   foodData,
@@ -28,7 +29,7 @@ const AddFoodToMenuComponent = ({
   useCheckButtonDisabled({
     foodData, intakeWeight, intakeTime, toggleButtonDisabled,
   });
-
+  const auth = useSelector(authSelector);
   return (
     <Row
       align={CENTER}
@@ -52,7 +53,7 @@ const AddFoodToMenuComponent = ({
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}
       >
         <AddToMenuInputTimeComponent
-          buttonDisabled={buttonDisabled}
+          buttonDisabled={isEmpty(auth) ? true : buttonDisabled}
           changeIntakeTime={changeIntakeTime}
           addToMenuCallback={() => addToMenu(firebase, foodData, intakeWeight, intakeTime, profile)}
         />
