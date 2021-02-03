@@ -21,7 +21,7 @@ const SignInWithGoogleComponent = () => {
 
   return (
     <div>
-      <h1>Sign In</h1>
+      <h1>Sign in with Google</h1>
       <Button
         onClick={(event) => {
           event.preventDefault();
