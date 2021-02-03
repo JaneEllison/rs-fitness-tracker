@@ -9,12 +9,11 @@ function ChartComponent({
   selectedFields,
   dataset,
 }) {
-  console.log(dataset);
   if (!dataset[selectedFields]) {
     return <div>...</div>;
   }
   const { data, options } = dataset[selectedFields];
-  console.log(data, options);
+
   return (
     <article className={style.statsCanvasContainer}>
       <Bar

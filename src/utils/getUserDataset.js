@@ -149,7 +149,7 @@ function getUserDataset(goal, history) {
     weight,
     caloriesConsumed,
   } = reduceDatesArray(history);
-  console.log(history, dates);
+
   const result = {
     [WEIGHT]: userDatasetCreator[WEIGHT](dates, weight),
     [WEIGHT_WITH_CALORIES]:
