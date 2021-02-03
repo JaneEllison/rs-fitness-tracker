@@ -6,10 +6,9 @@ import { Card, Col } from 'antd';
 import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
 import dispatchDeleteExercise from './ExerciseActions/dispatchDeleteExercise';
 import profileSelector from '../../../../store/Selectors/profileSelector';
-import antStyle from './ExerciseAnt.css';
-import { useFirebase } from 'react-redux-firebase';
 import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise';
 import style from './ExerciseSchedule.module.css';
+import './ExerciseAnt.css';
 
 const ExerciseControlComponent = ({
   day, exercises, selectedDay, setSelectedDay,
