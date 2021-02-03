@@ -11,7 +11,14 @@ const ProfileInfoComponent = () => {
   const profile = useSelector(profileSelector);
 
   return (
-    <Descriptions title="User Info" column={1} bordered>
+    <Descriptions
+      title="User Info"
+      column={1}
+      bordered
+      style={{
+        marginBottom: 40,
+      }}
+    >
       {
         authData.map((item) => {
           const { label, paramName } = item;
