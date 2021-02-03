@@ -25,7 +25,7 @@ const FoodTableComponent = () => {
   }, [foodTableData]);
 
   const tableConfig = getTableConfig(foodTableData, foodMenu, loading, columns);
-  console.log(tableConfig);
+
   return (
     <Table
       {...tableConfig}

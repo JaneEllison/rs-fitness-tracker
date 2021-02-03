@@ -8,11 +8,6 @@ const ACTIVITY_FACTORS = {
   extraActive: 1.9,
 };
 
-// const MINIMUM_CALORIES = {
-//   male: 1500,
-//   female: 1200,
-// };
-
 const CALORIES_IN_LB = 3500;
 
 const getHarrisBenedictBMR = ({
