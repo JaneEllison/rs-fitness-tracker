@@ -8,14 +8,17 @@ const routes = {
     {
       path: '/search_food',
       value: 'Search food',
+      type: 'nonAuthenticated',
     },
     {
       path: '/exercise',
       value: 'Exercise',
+      type: 'authenticated'
     },
     {
       path: '/',
       value: 'Default',
+      type: 'nonAuthenticated'
     },
   ],
   authRoutes: [

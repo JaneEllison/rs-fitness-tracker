@@ -20,7 +20,7 @@ export const updateUserGoalsData = (newValues, firebase) => {
   });
 };
 export const updateUserHistoryData = (newValue, firebase, userHistory) => {
-  if (userHistory[userHistory.length - 1].date === newValue.date) {
+  if (userHistory.length > 0 && userHistory[userHistory.length - 1].date === newValue.date) {
     const newHistory = [...userHistory];
     newHistory[userHistory.length - 1] = newValue;
     firebase.updateProfile({

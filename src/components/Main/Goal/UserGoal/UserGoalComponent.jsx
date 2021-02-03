@@ -25,7 +25,6 @@ function UserGoalComponent({
     age,
   },
   userGoals,
-  userHistory
 }, ) {
   const firebase = useFirebase();
   const [activityLevel, setActivityLevel] = useState(userGoals.activityLevel);
@@ -62,11 +61,6 @@ function UserGoalComponent({
           weightPlan,
           goalCalories,
         }, firebase);
-        updateUserHistoryData({
-          goalCalories,
-          weight,
-          date: moment(moment.now()).format('DD.MM.YYYY')
-        }, firebase, userHistory);
       },
     });
   };
@@ -77,7 +71,7 @@ function UserGoalComponent({
         <h3>Goal settings</h3>
       </Row>
       <Row>
-        Current goal calories: {userGoals.goalCalories} kcal
+        Current goal calories: {userGoals.goalCalories ? userGoals.goalCalories : 2000} kcal
       </Row>
       <Row>
         <Radio.Group value={weightPlan} onChange={(event) => setWeightPlan(event.target.value)}>

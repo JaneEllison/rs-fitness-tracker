@@ -23,12 +23,18 @@ const MainComponent = () => {
           <Switch>
             <Route exact path="/" render={() => <div>Default page</div>} />
             <Route path="/search_food" render={() => <FoodComponent/>} />
-            <Route path="/exercise" render={() => <ExerciseComponent/>} />
             <Route path="/signup" render={() => <SignUpComponent/>} />
             <Route path="/signin" render={() => <SignInComponent/>} />
-            <Route path="/stats" render={() => <StatsComponent />} />
-            <Route path='/goal' render={() => <GoalComponent />} />
-            <PrivateRoute path="/account" >
+            <PrivateRoute path="/exercise">
+              < ExerciseComponent/>
+            </PrivateRoute>
+            <PrivateRoute path="/stats">
+              <StatsComponent />
+            </PrivateRoute>
+            <PrivateRoute path='/goal'>
+              <GoalComponent />
+            </PrivateRoute>
+            <PrivateRoute path="/account">
               <AccountComponent/>
             </PrivateRoute>
             <PrivateRoute path="/logout">

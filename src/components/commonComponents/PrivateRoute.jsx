@@ -7,7 +7,7 @@ import authSelector from '../../store/Selectors/authSelector';
 const PrivateRoute = ({ children, ...remainingProps }) => {
   const auth = useSelector(authSelector);
 
-  return (
+  return isLoaded(auth) ? (
     <Route
       {...remainingProps}
       render={({ location }) =>
@@ -16,14 +16,15 @@ const PrivateRoute = ({ children, ...remainingProps }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: "/signin",
               state: { from: location },
             }}
           />
         )
       }
     />
-  );
+  )
+    : null
 };
 
 export default PrivateRoute;
