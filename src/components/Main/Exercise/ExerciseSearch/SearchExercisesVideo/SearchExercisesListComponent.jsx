@@ -11,7 +11,8 @@ const SearchExercisesList = ({ data, onVideoSelected }) => (
 );
 
 SearchExercisesList.propTypes = {
-  data: PropTypes.string.isRequired,
+  /* eslint-disable react/forbid-prop-types */
+  data: PropTypes.array.isRequired,
   onVideoSelected: PropTypes.func.isRequired,
 };
 

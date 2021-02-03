@@ -153,8 +153,7 @@ UserGoalComponent.propTypes = {
       PropTypes.bool,
     ]).isRequired,
   }).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  userGoals: PropTypes.object.isRequired,
+  userGoals: PropTypes.objectOf({}).isRequired,
 };
 
 export default UserGoalComponent;

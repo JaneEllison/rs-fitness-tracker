@@ -155,7 +155,7 @@ const TimerComponent = ({
 };
 
 TimerComponent.propTypes = {
-  currentTrack: PropTypes.string.isRequired,
+  currentTrack: PropTypes.object.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   getRandomAudio: PropTypes.func.isRequired,
 };

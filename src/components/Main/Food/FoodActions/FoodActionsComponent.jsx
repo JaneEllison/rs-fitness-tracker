@@ -21,20 +21,22 @@ const FoodActionsComponent = ({
   return (
     <Row
       className={style.searchBar}
-      gutter={[40, 20]}
-      lg={[40, 0]}
+      gutter={[40, 5]}
       align={CENTER}
       justify={SPACE_BETWEEN}
+      style={{
+        marginBottom: 30,
+      }}
     >
       <Col
         span={22}
-        lg={{ span: 12 }}
+        xl={{ span: 10 }}
       >
         <SearchFoodComponent />
       </Col>
       <Col
         span={22}
-        lg={{ span: 12 }}
+        xl={{ span: 14 }}
       >
         <AddFoodToMenuComponent
           foodData={foodData}
@@ -49,7 +51,7 @@ const FoodActionsComponent = ({
 };
 
 FoodActionsComponent.propTypes = {
-  foodData: PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)).isRequired,
+  foodData: PropTypes.object.isRequired,
   intakeWeight: PropTypes.number.isRequired,
   setIntakeWeight: PropTypes.func.isRequired,
   intakeTime: PropTypes.number.isRequired,

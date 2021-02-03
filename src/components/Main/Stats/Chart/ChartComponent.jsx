@@ -24,8 +24,7 @@ function ChartComponent({
 
 ChartComponent.propTypes = {
   selectedFields: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  dataset: PropTypes.object.isRequired,
+  dataset: PropTypes.arrayOf({}).isRequired,
 };
 
 export default ChartComponent;

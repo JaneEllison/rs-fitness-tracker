@@ -33,18 +33,23 @@ const AddFoodToMenuComponent = ({
     <Row
       align={CENTER}
       justify={CENTER}
-      gutter={[0, 0]}
-      xl={{ gutter: [0, 0] }}
+      gutter={[0, {
+        xs: 5,
+        sm: 5,
+        md: 0,
+      }]}
     >
       <Col
         span={22}
         md={{ span: 10 }}
+        style={{ display: 'flex', alignItems: 'center' }}
       >
         <AddToMenuInputNumberComponent changeIntakeWeight={changeIntakeWeight} />
       </Col>
       <Col
         span={22}
         md={{ span: 12 }}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}
       >
         <AddToMenuInputTimeComponent
           buttonDisabled={buttonDisabled}
@@ -57,8 +62,14 @@ const AddFoodToMenuComponent = ({
 };
 
 AddFoodToMenuComponent.propTypes = {
-  foodData: PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)).isRequired,
-  intakeWeight: PropTypes.number.isRequired,
+  foodData: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ])).isRequired,
+  intakeWeight: PropTypes.PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
   changeIntakeWeight: PropTypes.func.isRequired,
   intakeTime: PropTypes.number.isRequired,
   changeIntakeTime: PropTypes.func.isRequired,

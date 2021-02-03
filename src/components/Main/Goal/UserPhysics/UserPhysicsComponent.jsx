@@ -165,12 +165,8 @@ UserPhysicsComponent.propTypes = {
     height: PropTypes.number.isRequired,
     birthDay: PropTypes.string.isRequired,
   }).isRequired,
-  userGoals: PropTypes.shape({
-    goalCalories: PropTypes.number.isRequired,
-  }).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  userHistory: PropTypes.array.isRequired,
   dailyCalories: PropTypes.number.isRequired,
+  userHistory: PropTypes.arrayOf([]).isRequired,
 };
 
 export default UserPhysicsComponent;

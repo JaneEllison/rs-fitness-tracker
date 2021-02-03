@@ -62,6 +62,7 @@ function TimerButtonsComponent(props) {
           icon={<UndoOutlined />}
           onClick={repeatTimer}
           disabled={!allTimeIsZero}
+          className={style.timeBtn}
         />
       </Tooltip>
       {
@@ -84,6 +85,7 @@ function TimerButtonsComponent(props) {
                 icon={<CaretRightOutlined />}
                 onClick={runTimer}
                 disabled={!isTimerOn}
+                className={style.timeBtn}
               />
             </Tooltip>
           )
@@ -134,7 +136,7 @@ TimerButtonsComponent.propTypes = {
   mutedSound: PropTypes.func.isRequired,
   currentMinutes: PropTypes.number.isRequired,
   currentSeconds: PropTypes.number.isRequired,
-  timerStarted: PropTypes.bool.isRequired,
+  timerStarted: PropTypes.func.isRequired,
   isRunningTimer: PropTypes.bool.isRequired,
   isTimerOn: PropTypes.bool.isRequired,
   isSoundOn: PropTypes.bool.isRequired,

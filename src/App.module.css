@@ -2,14 +2,20 @@
     min-height: 100vh;
 }
 
-.appLayoutSpace{
+.appLayoutSpace {
     height: 100%;
 }
 
-.appContent{
+.appContent {
     min-height: calc( 100vh - 166px);
 }
-.appFooter{
+
+.appFooter {
     background: #001529;
     color: white;
+}
+
+.appFooter:global {
+  padding-top: 11.2px;
+  padding-bottom: 11.2px;
 }
