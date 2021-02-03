@@ -1,6 +1,6 @@
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Row, Col } from 'antd';
+import React from 'react';
 import style from './Main.module.css';
 import ExerciseComponent from './Exercise/ExerciseComponent';
 import StatsComponent from './Stats/StatsComponent';

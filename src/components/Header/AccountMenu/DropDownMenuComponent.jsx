@@ -9,7 +9,11 @@ const DropDownMenuComponent = () => (
     trigger={['click']}
     placement="bottomCenter"
   >
-    <Button type="text" onClick={(event) => event.preventDefault()}>
+    <Button
+      style={{ color: 'white' }}
+      type="text"
+      onClick={(event) => event.preventDefault()}
+    >
       Account
       {' '}
       <UserOutlined />
