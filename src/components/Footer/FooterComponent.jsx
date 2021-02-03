@@ -27,7 +27,7 @@ const FooterComponent = () => (
       href="https://rs.school/js/"
     >
       <img
-        width="50"
+        width="75"
         height="auto"
         src={logo}
         alt="Rolling Scopes School"
