@@ -107,13 +107,10 @@ const SignUpComponent = () => {
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                return Promise((resolve, reject) => {
-                  if (!value || getFieldValue('password') === value) {
-                    resolve(' ');
-                  } else {
-                    reject('The two passwords that you entered do not match!');
-                  }
-                });
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('The two passwords that you entered do not match!'));
               },
             }),
           ]}

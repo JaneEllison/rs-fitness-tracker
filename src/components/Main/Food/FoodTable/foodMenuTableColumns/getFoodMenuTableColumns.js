@@ -16,7 +16,7 @@ const getFoodMenuTableColumns = () => {
     {
       title: 'Food name',
       width: FOOD_TABLE_WIDE_CELL_WIDTH,
-      dataIndex: 'food_name',
+      dataIndex: 'foodName',
       key: 'food_name',
       fixed: 'left',
     },
