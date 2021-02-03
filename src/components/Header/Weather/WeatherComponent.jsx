@@ -17,9 +17,10 @@ const WeatherComponent = () => {
     const weatherData = false;
     // const weatherData = await weatherApi.get('', {
     //   params: {
-    //     query: `${lat},${lon}`,
+    //     query: city,
     //   },
     // });
+
 
     if (weatherData && !weatherData.data.error) {
       setWeatherInfo({

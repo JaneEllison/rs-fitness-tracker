@@ -143,22 +143,23 @@ const reduceDatesArray = (arr) => arr.reduce((acc, obj) => {
   return acc;
 }, {});
 
-function getUserDataset({ goal }, history) {
+function getUserDataset(goal, history) {
   const {
     date: dates,
     weight,
-    calories,
+    caloriesConsumed,
   } = reduceDatesArray(history);
-
+  console.log(history, dates);
   const result = {
     [WEIGHT]: userDatasetCreator[WEIGHT](dates, weight),
-    [WEIGHT_WITH_CALORIES]: userDatasetCreator[WEIGHT_WITH_CALORIES](dates, weight, calories),
-    [CALORIES]: userDatasetCreator[CALORIES](dates, calories),
+    [WEIGHT_WITH_CALORIES]:
+      userDatasetCreator[WEIGHT_WITH_CALORIES](dates, weight, caloriesConsumed),
+    [CALORIES]: userDatasetCreator[CALORIES](dates, caloriesConsumed),
   };
 
   if (goal) {
     const goalCalories = dates.map(() => goal);
-    const dataset = userDatasetCreator[CALORIES_WITH_GOAL](dates, calories, goalCalories);
+    const dataset = userDatasetCreator[CALORIES_WITH_GOAL](dates, caloriesConsumed, goalCalories);
     result[CALORIES_WITH_GOAL] = dataset;
   }
 

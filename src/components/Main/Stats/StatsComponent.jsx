@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
-import {
-  userDatasetSelector,
-} from '../../../store/Selectors/userSelector';
+// import {
+//   userDatasetSelector,
+// } from '../../../store/Selectors/userSelector';
 import { VALUES } from '../../../config/statsRadioConfig';
-
 import UserSummaryComponent from './UserSummary/UserSummaryComponent';
 import ChartControlsComponent from './ChartControls/ChartControlsComponent';
 import ChartComponent from './Chart/ChartComponent';
 import profileSelector from '../../../store/Selectors/profileSelector';
 import getAgeFromDateString from '../../../utils/getAgeFromDateString';
+import getUserDataset from '../../../utils/getUserDataset';
 
 function StatsComponent() {
   const [selectedField, setSelectedField] = useState(VALUES.CALORIES);
@@ -19,22 +19,33 @@ function StatsComponent() {
   const profile = useSelector(profileSelector);
   // const summary = useSelector(userSummarySelector);
   const [summaryData, setSummaryData] = useState([]);
-  const dataset = useSelector(userDatasetSelector);
+  const [dataset, setDataset] = useState({});
 
   useEffect(() => {
     if (isLoaded(profile)) {
-      return !isEmpty(profile)
-        ? setSummaryData({
+      if (!isEmpty(profile)) {
+        setSummaryData({
           ...profile.userPhysics,
           age: getAgeFromDateString(...profile.userPhysics.birthDay),
           goal: profile.userGoals.goalCalories,
-        })
-        : setSummaryData({
+        });
+        setDataset(
+          getUserDataset(profile.userGoals.goalCalories, profile.userHistory),
+        );
+      } else {
+        setSummaryData({
           ...profile.userPhysics,
         });
+      }
     } return undefined;
-  }, [profile]);
+  }, [profile, isEmpty(profile), isLoaded(profile)]);
 
+  if (!isLoaded(profile)) {
+    return <div>Loading...</div>;
+  }
+  if (isEmpty(profile)) {
+    return <div>Nothing to show...</div>;
+  }
   return (
     <Row gutter={8}>
       <Col md={24} lg={{ span: 18, push: 6 }}>
