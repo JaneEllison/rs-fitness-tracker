@@ -62,6 +62,7 @@ function TimerButtonsComponent(props) {
           icon={<UndoOutlined />}
           onClick={repeatTimer}
           disabled={!allTimeIsZero}
+          className={style.timeBtn}
         />
       </Tooltip>
       {
@@ -84,6 +85,7 @@ function TimerButtonsComponent(props) {
                 icon={<CaretRightOutlined />}
                 onClick={runTimer}
                 disabled={!isTimerOn}
+                className={style.timeBtn}
               />
             </Tooltip>
           )
