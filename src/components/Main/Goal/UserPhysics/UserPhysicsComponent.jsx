@@ -33,6 +33,8 @@ function UserPhysicsComponent({
     birthDay ? moment(birthDay) : moment(moment.now()),
   );
 
+  console.log(birthDay);
+
   const showModal = () => {
     Modal.confirm({
       title: 'Confirm new user parameters',
@@ -65,7 +67,7 @@ function UserPhysicsComponent({
             years
           </div>
           <div>
-            Sex:
+            Gender:
             {' '}
             {userSex}
           </div>
@@ -75,7 +77,7 @@ function UserPhysicsComponent({
         updateAllPhysicsData({
           weight: userWeight,
           height: userHeight,
-          birthDay: userBirthday.format('DD.MM.YYYY'),
+          birthDay: userBirthday.format('MM.DD.YYYY'),
           gender: userSex,
         }, firebase);
         updateUserHistoryData({
@@ -92,7 +94,7 @@ function UserPhysicsComponent({
       <Row>
         <h3>Your physical parameters:</h3>
       </Row>
-      <Row>
+      <Row className={style.userPhysicsField}>
         <Col span={12}>
           Weight, kg:
         </Col>
@@ -105,7 +107,7 @@ function UserPhysicsComponent({
           />
         </Col>
       </Row>
-      <Row>
+      <Row className={style.userPhysicsField}>
         <Col span={12}>
           Height, cm:
         </Col>
@@ -118,20 +120,20 @@ function UserPhysicsComponent({
           />
         </Col>
       </Row>
-      <Row>
+      <Row className={style.userPhysicsField}>
         <Col span={12}>
           Date of birth:
         </Col>
         <Col span={12}>
           <DatePicker
-            defaultValue={userBirthday}
+            defaultValue={moment(birthDay) === 'Invalid date' ? moment() : moment(birthDay)}
             onChange={setUserBirthday}
             className={style.goalInputField}
-            disabledDate={(current) => current >= moment().subtract(13, 'years')}
+            disabledDate={(current) => current >= moment().subtract(3, 'years')}
           />
         </Col>
       </Row>
-      <Row>
+      <Row className={style.userPhysicsField}>
         <Col span={12}>
           Gender:
         </Col>
@@ -146,8 +148,9 @@ function UserPhysicsComponent({
           </Radio.Group>
         </Col>
       </Row>
-      <Row>
+      <Row className={style.userPhysicsField}>
         <Button
+          disabled={!userBirthday}
           type="primary"
           onClick={showModal}
         >

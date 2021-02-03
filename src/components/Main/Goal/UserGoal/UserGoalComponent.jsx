@@ -12,6 +12,13 @@ import { useFirebase } from 'react-redux-firebase';
 import style from '../GoalComponent.module.css';
 import getWeightChangeParameters from '../../../../utils/getWeightChangeParameters';
 import { updateUserGoalsData } from '../../Account/updateProfileData';
+import {
+  ACTIVITIES,
+  GOALS,
+  INTENSITIES,
+  ACTIVITY_DESCRIPTIONS,
+  INTENSITY_DESCRIPTIONS,
+} from '../../../../config/goalSettingsConfig';
 
 const { Option } = Select;
 
@@ -26,8 +33,21 @@ function UserGoalComponent({
 }) {
   const firebase = useFirebase();
   const [activityLevel, setActivityLevel] = useState(userGoals.activityLevel);
+  const [activityDesc, setActivityDesc] = useState(ACTIVITY_DESCRIPTIONS[activityLevel]);
   const [intensityLevel, setIntensityLevel] = useState(userGoals.intensityLevel);
+  const [intensityDesc, setIntensityDesc] = useState(INTENSITY_DESCRIPTIONS[intensityLevel]);
   const [weightPlan, setWeightPlan] = useState(userGoals.weightPlan);
+
+  const getCalories = () => {
+    const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
+    return getWeightChangeParameters({
+      weight,
+      height,
+      gender,
+      age,
+    }, activityLevel)[key];
+  };
+
   const showModal = () => {
     Modal.confirm({
       title: 'Confirm new user parameters',
@@ -35,15 +55,7 @@ function UserGoalComponent({
         <div>
           Are you sure you want to update goal to:
           {' '}
-          {(() => {
-            const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
-            return getWeightChangeParameters({
-              weight,
-              height,
-              gender,
-              age,
-            }, activityLevel)[key];
-          })()}
+          {getCalories()}
           {' '}
           kcal?
         </div>
@@ -68,74 +80,95 @@ function UserGoalComponent({
 
   return (
     <Col>
-      <Row>
+      <Row className={style.userGoalField}>
         <h3>Goal settings</h3>
       </Row>
-      <Row>
+      <Row className={style.userGoalField}>
         Current goal calories:
         {' '}
         {userGoals.goalCalories ? userGoals.goalCalories : 2000}
         {' '}
         kcal
       </Row>
-      <Row>
-        <Radio.Group value={weightPlan} onChange={(event) => setWeightPlan(event.target.value)}>
-          <Radio value="maintain">Maintain weight</Radio>
-          <Radio value="Loss">Lose weight</Radio>
-          <Radio value="Gain">Gain weight</Radio>
-        </Radio.Group>
+      <Row className={style.userGoalField}>
+        <Radio.Group
+          className={style.goalRadioButtons}
+          options={GOALS}
+          value={weightPlan}
+          onChange={(event) => setWeightPlan(event.target.value)}
+        />
       </Row>
-      <Row>
+      <Row className={style.userGoalField}>
+        <Col span={12}>
+          How intensely:
+        </Col>
+        <Col span={12}>
+          <Select
+            disabled={weightPlan === 'maintain'}
+            value={intensityLevel}
+            onChange={(value) => {
+              setIntensityLevel(value);
+              setIntensityDesc(INTENSITY_DESCRIPTIONS[value]);
+            }}
+            className={style.goalInputField}
+          >
+            {
+              INTENSITIES.map(({ value, label }, index) => {
+                const keyProp = `activity${index}`;
+                return (
+                  <Option key={keyProp} value={value}>{label}</Option>
+                );
+              })
+            }
+          </Select>
+        </Col>
+      </Row>
+      <Row>{intensityDesc}</Row>
+      <Row className={style.userGoalField}>
         <Col span={12}>
           My activity level:
         </Col>
         <Col span={12}>
           <Select
             value={activityLevel}
-            onChange={setActivityLevel}
+            onChange={(value) => {
+              setActivityLevel(value);
+              setActivityDesc(ACTIVITY_DESCRIPTIONS[value]);
+            }}
             className={style.goalInputField}
           >
-            <Option value="sedentary">Sedentary</Option>
-            <Option value="light">Light</Option>
-            <Option value="moderate">Moderate</Option>
-            <Option value="active">Active</Option>
-            <Option value="veryActive">Very Active</Option>
-            <Option value="extraActive">Extra Active</Option>
+            {
+              ACTIVITIES.map(({ value, label }, index) => {
+                const keyProp = `activity${index}`;
+                return (
+                  <Option key={keyProp} value={value}>{label}</Option>
+                );
+              })
+            }
           </Select>
         </Col>
       </Row>
       <Row>
-        <Select
-          disabled={weightPlan === 'maintain'}
-          value={intensityLevel}
-          onChange={setIntensityLevel}
-          className={style.goalInputField}
-        >
-          <Option value="mild">Slowly</Option>
-          <Option value="normal">Normally</Option>
-          <Option value="extreme">Fast</Option>
-        </Select>
+        {activityDesc}
       </Row>
-      <Row>
+      <Row className={style.userGoalField} style={{ marginTop: 40 }}>
         <Col span={12}>
-          New goal calories:
+          <h3>New goal calories:</h3>
         </Col>
         <Col>
-          {(() => {
-            const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
-            return getWeightChangeParameters({
-              weight,
-              height,
-              gender,
-              age,
-            }, activityLevel)[key];
-          })()}
+          {getCalories() || null}
           {' '}
           kcal
         </Col>
       </Row>
-      <Row>
-        <Button type="primary" onClick={showModal}>Set new goal</Button>
+      <Row className={style.userGoalField}>
+        <Button
+          type="primary"
+          onClick={showModal}
+          disabled={!(getCalories())}
+        >
+          Set new goal
+        </Button>
       </Row>
     </Col>
   );
