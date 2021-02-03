@@ -53,11 +53,15 @@ const ExerciseControlComponent = ({
   );
 };
 
+ExerciseControlComponent.defaultProps = {
+  exercises: [],
+};
+
 ExerciseControlComponent.propTypes = {
-  selectedDay: PropTypes.func.isRequired,
+  selectedDay: PropTypes.string.isRequired,
   setSelectedDay: PropTypes.func.isRequired,
   day: PropTypes.string.isRequired,
-  exercises: PropTypes.arrayOf(PropTypes.object).isRequired,
+  exercises: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default ExerciseControlComponent;

@@ -153,9 +153,7 @@ UserGoalComponent.propTypes = {
       PropTypes.bool,
     ]).isRequired,
   }).isRequired,
-  userGoals: PropTypes.objectOf(
-    PropTypes.oneOfType(PropTypes.number, PropTypes.string),
-  ).isRequired,
+  userGoals: PropTypes.objectOf({}).isRequired,
 };
 
 export default UserGoalComponent;

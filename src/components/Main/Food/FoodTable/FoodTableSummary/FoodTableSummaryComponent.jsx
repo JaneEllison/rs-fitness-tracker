@@ -54,9 +54,7 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
 };
 
 FoodTableSummaryComponent.propTypes = {
-  foodMenu: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)),
-  ).isRequired,
+  foodMenu: PropTypes.arrayOf([]).isRequired,
 };
 
 export default FoodTableSummaryComponent;

@@ -61,8 +61,14 @@ const AddFoodToMenuComponent = ({
 };
 
 AddFoodToMenuComponent.propTypes = {
-  foodData: PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)).isRequired,
-  intakeWeight: PropTypes.number.isRequired,
+  foodData: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ])).isRequired,
+  intakeWeight: PropTypes.PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
   changeIntakeWeight: PropTypes.func.isRequired,
   intakeTime: PropTypes.number.isRequired,
   changeIntakeTime: PropTypes.func.isRequired,

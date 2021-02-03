@@ -50,6 +50,7 @@ const AddToMenuInputTimeComponent = ({ changeIntakeTime, buttonDisabled, addToMe
       </Col>
       <Col
         span={22}
+        lg={{ span: 8 }}
         md={{ span: 8 }}
       >
         <Button

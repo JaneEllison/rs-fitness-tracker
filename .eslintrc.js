@@ -33,6 +33,6 @@ module.exports = {
     'jsx-a11y/media-has-caption': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'react/jsx-props-no-spreading': 'off',
-
+    'react/forbid-prop-types': 'off',
   },
 };

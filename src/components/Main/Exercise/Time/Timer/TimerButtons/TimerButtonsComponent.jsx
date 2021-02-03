@@ -134,7 +134,7 @@ TimerButtonsComponent.propTypes = {
   mutedSound: PropTypes.func.isRequired,
   currentMinutes: PropTypes.number.isRequired,
   currentSeconds: PropTypes.number.isRequired,
-  timerStarted: PropTypes.bool.isRequired,
+  timerStarted: PropTypes.func.isRequired,
   isRunningTimer: PropTypes.bool.isRequired,
   isTimerOn: PropTypes.bool.isRequired,
   isSoundOn: PropTypes.bool.isRequired,

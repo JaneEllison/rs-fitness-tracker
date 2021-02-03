@@ -27,13 +27,13 @@ const FoodActionsComponent = ({
     >
       <Col
         span={22}
-        md={{ span: 12 }}
+        xl={{ span: 10 }}
       >
         <SearchFoodComponent />
       </Col>
       <Col
         span={22}
-        md={{ span: 12 }}
+        xl={{ span: 14 }}
       >
         <AddFoodToMenuComponent
           foodData={foodData}
@@ -48,7 +48,7 @@ const FoodActionsComponent = ({
 };
 
 FoodActionsComponent.propTypes = {
-  foodData: PropTypes.objectOf(PropTypes.oneOfType(PropTypes.number, PropTypes.string)).isRequired,
+  foodData: PropTypes.array.isRequired,
   intakeWeight: PropTypes.number.isRequired,
   setIntakeWeight: PropTypes.func.isRequired,
   intakeTime: PropTypes.number.isRequired,
