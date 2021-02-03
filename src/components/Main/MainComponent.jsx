@@ -2,6 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Row, Col } from 'antd';
 import React from 'react';
 import style from './Main.module.css';
+import DefaultPageComponent from './DefaultPage/DefaultPageComponent';
 import ExerciseComponent from './Exercise/ExerciseComponent';
 import StatsComponent from './Stats/StatsComponent';
 import FoodComponent from './Food/FoodComponent';
@@ -20,7 +21,7 @@ const MainComponent = () => (
     >
       <Col span={22}>
         <Switch>
-          <Route exact path="/" render={() => <div>Default page</div>} />
+          <Route exact path="/" render={() => <DefaultPageComponent />} />
           <Route path="/search_food" render={() => <FoodComponent />} />
           <Route path="/signup" render={() => <SignUpComponent />} />
           <Route path="/signin" render={() => <SignInComponent />} />
