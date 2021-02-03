@@ -155,7 +155,6 @@ const TimerComponent = ({
 };
 
 TimerComponent.propTypes = {
-  /* eslint-disable react/forbid-prop-types */
   currentTrack: PropTypes.object.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   getRandomAudio: PropTypes.func.isRequired,
