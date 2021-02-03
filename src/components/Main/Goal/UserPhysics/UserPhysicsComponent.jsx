@@ -24,12 +24,15 @@ function UserPhysicsComponent({
   userHistory,
   dailyCalories,
 }) {
+
   const firebase = useFirebase();
   let [userWeight, setUserWeight] = useState(weight);
   let [userHeight, setUserHeight] = useState(height);
   let [userSex, setUserSex] = useState(gender);
-  let [userBirthday, setUserBirthday] = useState(moment(birthDay));
-
+  let [userBirthday, setUserBirthday] = useState(
+    birthDay ? moment(birthDay) : moment(moment.now())
+  );
+  console.log(userBirthday);
   const showModal = () => {
     Modal.confirm({
       title: 'Confirm new user parameters',
@@ -93,7 +96,9 @@ function UserPhysicsComponent({
         </Col>
         <Col span={12}>
           <DatePicker
-            defaultValue={userBirthday}
+            defaultValue={
+              userBirthday
+            }
             onChange={setUserBirthday}
             className={style.goalInputField}
             disabledDate={(current) => current >= moment().subtract(13, 'years') } />

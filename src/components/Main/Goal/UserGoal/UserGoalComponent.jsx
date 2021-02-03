@@ -71,7 +71,7 @@ function UserGoalComponent({
         <h3>Goal settings</h3>
       </Row>
       <Row>
-        Current goal calories: {userGoals.goalCalories} kcal
+        Current goal calories: {userGoals.goalCalories ? userGoals.goalCalories : 2000} kcal
       </Row>
       <Row>
         <Radio.Group value={weightPlan} onChange={(event) => setWeightPlan(event.target.value)}>
