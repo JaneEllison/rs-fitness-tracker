@@ -22,16 +22,16 @@ function UserPhysicsComponent({
     gender,
     birthDay,
   },
-  userGoals: {
-    goalCalories,
-  },
   userHistory,
+  dailyCalories,
 }) {
   const firebase = useFirebase();
   const [userWeight, setUserWeight] = useState(weight);
   const [userHeight, setUserHeight] = useState(height);
   const [userSex, setUserSex] = useState(gender);
-  const [userBirthday, setUserBirthday] = useState(moment(birthDay));
+  const [userBirthday, setUserBirthday] = useState(
+    birthDay ? moment(birthDay) : moment(moment.now())
+  );
 
   const showModal = () => {
     Modal.confirm({
@@ -79,8 +79,8 @@ function UserPhysicsComponent({
           gender: userSex,
         }, firebase);
         updateUserHistoryData({
-          goalCalories,
           weight: userWeight,
+          caloriesConsumed: dailyCalories,
           date: moment(moment.now()).format('DD.MM.YYYY'),
         }, firebase, userHistory);
       },
@@ -173,3 +173,4 @@ UserPhysicsComponent.propTypes = {
 };
 
 export default UserPhysicsComponent;
+

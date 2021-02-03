@@ -11,7 +11,7 @@ const PrivateRoute = ({
 }) => {
   const auth = useSelector(authSelector);
 
-  return (
+  return isLoaded(auth) ? (
     <Route
       {...remainingProps}
       render={({ location }) => {
@@ -19,7 +19,7 @@ const PrivateRoute = ({
         return isAuthReady ? children : (
           <Redirect
             to={{
-              pathname: '/',
+              pathname: '/signin',
               state: {
                 from: location,
               },
@@ -28,7 +28,8 @@ const PrivateRoute = ({
         );
       }}
     />
-  );
+  )
+    : null
 };
 
 PrivateRoute.defaultProps = {

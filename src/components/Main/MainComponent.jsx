@@ -13,30 +13,36 @@ import SignInComponent from './Authentification/SignInComponent';
 import GoalComponent from './Goal/GoalComponent';
 
 const MainComponent = () => (
-  <div className={style.mainComponent}>
-    <Row
-      align="center"
-      justify="center"
-    >
-      <Col span={22}>
-        <Switch>
-          <Route exact path="/" render={() => <div>Default page</div>} />
-          <Route path="/search_food" render={() => <FoodComponent />} />
-          <Route path="/exercise" render={() => <ExerciseComponent />} />
-          <Route path="/signup" render={() => <SignUpComponent />} />
-          <Route path="/signin" render={() => <SignInComponent />} />
-          <Route path="/stats" render={() => <StatsComponent />} />
-          <Route path="/goal" render={() => <GoalComponent />} />
-          <PrivateRoute path="/account">
-            <AccountComponent />
-          </PrivateRoute>
-          <PrivateRoute path="/logout">
-            <SignOut />
-          </PrivateRoute>
-        </Switch>
-      </Col>
-    </Row>
-  </div>
+ <div className={style.mainComponent}>
+  <Row
+    align="center"
+    justify="center"
+  >
+    <Col span={22}>
+      <Switch>
+        <Route exact path="/" render={() => <div>Default page</div>} />
+        <Route path="/search_food" render={() => <FoodComponent/>} />
+        <Route path="/signup" render={() => <SignUpComponent/>} />
+        <Route path="/signin" render={() => <SignInComponent/>} />
+        <PrivateRoute path="/exercise">
+          < ExerciseComponent/>
+        </PrivateRoute>
+        <PrivateRoute path="/stats">
+          <StatsComponent />
+        </PrivateRoute>
+        <PrivateRoute path='/goal'>
+          <GoalComponent />
+        </PrivateRoute>
+        <PrivateRoute path="/account">
+          <AccountComponent/>
+        </PrivateRoute>
+        <PrivateRoute path="/logout">
+          <SignOut/>
+        </PrivateRoute>
+      </Switch>
+    </Col>
+  </Row>
+ </div>
 );
 
 export default MainComponent;
