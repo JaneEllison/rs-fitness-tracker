@@ -160,13 +160,16 @@ function UserPhysicsComponent({
 
 UserPhysicsComponent.propTypes = {
   summary: PropTypes.shape({
-    weight: PropTypes.number.isRequired,
+    weight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
     gender: PropTypes.string.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
     birthDay: PropTypes.string.isRequired,
-  }).isRequired,
-  userGoals: PropTypes.shape({
-    goalCalories: PropTypes.number.isRequired,
   }).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   userHistory: PropTypes.array.isRequired,

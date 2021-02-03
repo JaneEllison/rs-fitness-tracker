@@ -18,8 +18,8 @@ const { Option } = Select;
 function UserGoalComponent({
   summary: {
     weight,
-    sex,
     height,
+    gender,
     age,
   },
   userGoals,
@@ -28,7 +28,6 @@ function UserGoalComponent({
   const [activityLevel, setActivityLevel] = useState(userGoals.activityLevel);
   const [intensityLevel, setIntensityLevel] = useState(userGoals.intensityLevel);
   const [weightPlan, setWeightPlan] = useState(userGoals.weightPlan);
-
   const showModal = () => {
     Modal.confirm({
       title: 'Confirm new user parameters',
@@ -40,8 +39,8 @@ function UserGoalComponent({
             const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
             return getWeightChangeParameters({
               weight,
-              sex,
               height,
+              gender,
               age,
             }, activityLevel)[key];
           })()}
@@ -53,7 +52,7 @@ function UserGoalComponent({
         const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
         const goalCalories = getWeightChangeParameters({
           weight,
-          sex,
+          gender,
           height,
           age,
         }, activityLevel)[key];
@@ -126,8 +125,8 @@ function UserGoalComponent({
             const key = weightPlan === 'maintain' ? weightPlan : `${intensityLevel}${weightPlan}`;
             return getWeightChangeParameters({
               weight,
-              sex,
               height,
+              gender,
               age,
             }, activityLevel)[key];
           })()}
@@ -145,7 +144,7 @@ function UserGoalComponent({
 UserGoalComponent.propTypes = {
   summary: PropTypes.shape({
     weight: PropTypes.number.isRequired,
-    sex: PropTypes.string.isRequired,
+    gender: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
     age: PropTypes.number.isRequired,
     goal: PropTypes.oneOfType([
@@ -153,8 +152,15 @@ UserGoalComponent.propTypes = {
       PropTypes.bool,
     ]).isRequired,
   }).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  userGoals: PropTypes.object.isRequired,
+  userGoals: PropTypes.shape({
+    activityLevel: PropTypes.string.isRequired,
+    goalCalories: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+    intensityLevel: PropTypes.string.isRequired,
+    weightPlan: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default UserGoalComponent;
