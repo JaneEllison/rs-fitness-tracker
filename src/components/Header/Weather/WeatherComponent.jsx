@@ -14,13 +14,11 @@ const WeatherComponent = () => {
   const getWeatherForUser = async () => {
     const ipData = await cityApi.get('', {});
     const city = ipData ? ipData.data.city.name_en : 'Minsk';
-    const weatherData = false;
-    // const weatherData = await weatherApi.get('', {
-    //   params: {
-    //     query: city,
-    //   },
-    // });
-
+    const weatherData = await weatherApi.get('', {
+      params: {
+        query: city,
+      },
+    });
 
     if (weatherData && !weatherData.data.error) {
       setWeatherInfo({
