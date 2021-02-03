@@ -29,7 +29,7 @@ const PrivateRoute = ({
       }}
     />
   )
-    : null
+    : null;
 };
 
 PrivateRoute.defaultProps = {

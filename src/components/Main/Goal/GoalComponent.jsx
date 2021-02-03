@@ -5,12 +5,12 @@ import {
   Col,
 } from 'antd';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
+import moment from 'moment';
 import UserPhysicsComponent from './UserPhysics/UserPhysicsComponent';
 import UserGoalComponent from './UserGoal/UserGoalComponent';
 import profileSelector from '../../../store/Selectors/profileSelector';
 import calculateTotalCaloriesForDay from '../../../utils/calculateTotalCaloriesForDay';
-import moment from 'moment';
-        
+
 function GoalComponent() {
   const profile = useSelector(profileSelector);
 
@@ -22,7 +22,9 @@ function GoalComponent() {
   }
   if (isLoaded(profile) && !isEmpty(profile)) {
     const currentDate = moment(moment.now()).format('DD.MM.YYYY');
-    const {userPhysics, userGoals, userMenus, userHistory} = profile;
+    const {
+      userPhysics, userGoals, userMenus, userHistory,
+    } = profile;
     return (
       <Row gutter={8}>
         <Col span={8}>
