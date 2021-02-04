@@ -19,7 +19,7 @@ const WeatherModalComponent = ({
     description,
     temperatureFeelsLike,
     wind,
-    precip,
+    pressure,
     humidity,
   },
   setIsModalVisible,
@@ -41,7 +41,7 @@ const WeatherModalComponent = ({
       <Row gutter={15} align="middle" justify="space-around">
         <Col sm={{ span: 12 }} xs={{ span: 17 }}>
           <img
-            src={icon}
+            src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
             alt="weather-icon"
             className={style.weatherModalImg}
           />
@@ -69,8 +69,8 @@ const WeatherModalComponent = ({
             <p>{`${wind} km/h`}</p>
           </Row>
           <Row justify="space-between">
-            <p>Precipitation:</p>
-            <p>{`${precip} %`}</p>
+            <p>Pressure:</p>
+            <p>{`${pressure} hPa`}</p>
           </Row>
           <Row justify="space-between">
             <p>Humidity:</p>
@@ -101,12 +101,12 @@ WeatherModalComponent.propTypes = {
     name: PropTypes.string,
     countryName: PropTypes.string,
     icon: PropTypes.string,
-    temperature: PropTypes.string,
     description: PropTypes.string,
-    temperatureFeelsLike: PropTypes.string,
-    wind: PropTypes.string,
-    precip: PropTypes.string,
-    humidity: PropTypes.string,
+    temperature: PropTypes.number,
+    temperatureFeelsLike: PropTypes.number,
+    wind: PropTypes.number,
+    pressure: PropTypes.number,
+    humidity: PropTypes.number,
   }),
   setIsModalVisible: PropTypes.func.isRequired,
   isModalVisible: PropTypes.bool.isRequired,

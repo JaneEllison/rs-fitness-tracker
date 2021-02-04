@@ -18,21 +18,21 @@ const WeatherComponent = () => {
 
     const weatherData = await weatherApi.get('', {
       params: {
-        query: city,
+        q: city,
       },
     });
 
     if (weatherData && !weatherData.data.error) {
       setWeatherInfo({
-        temperature: weatherData.data.current.temperature,
-        name: weatherData.data.location.name,
-        countryName: weatherData.data.location.country,
-        description: weatherData.data.current.weather_descriptions[0],
-        icon: weatherData.data.current.weather_icons[0],
-        temperatureFeelsLike: weatherData.data.current.feelslike,
-        wind: weatherData.data.current.wind_speed,
-        precip: weatherData.data.current.precip,
-        humidity: weatherData.data.current.humidity,
+        temperature: weatherData.data.main.temp,
+        name: weatherData.data.name,
+        countryName: weatherData.data.sys.country,
+        description: weatherData.data.weather[0].description,
+        icon: weatherData.data.weather[0].icon,
+        temperatureFeelsLike: weatherData.data.main.feels_like,
+        pressure: weatherData.data.main.pressure,
+        wind: weatherData.data.wind.speed,
+        humidity: weatherData.data.main.humidity,
       });
     } else {
       setWeatherInfo({
@@ -43,7 +43,7 @@ const WeatherComponent = () => {
         icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6Eqcl15XoN3eM922kfnx7ftuuENq5kTCrg&usqp=CAU',
         temperatureFeelsLike: '-5',
         wind: '11',
-        precip: '3',
+        pressure: '1002 Hpa',
         humidity: '88',
       });
     }
@@ -59,44 +59,47 @@ const WeatherComponent = () => {
     setIsModalVisible(true);
   };
 
-  return (
-    <Row
-      className={style.weatherContainer}
-    >
-      <WeatherModalComponent
-        weatherInfo={weatherInfo}
-        isModalVisible={isModalVisible}
-        setIsModalVisible={setIsModalVisible}
-      />
-      <Col
-        onClick={showModal}
-        style={{ cursor: 'pointer' }}
+  if (Object.keys(weatherInfo).length > 0) {
+    return (
+      <Row
+        className={style.weatherContainer}
       >
-        <img
-          src={weatherInfo.icon}
-          className={style.weatherIcon}
-          alt="weather-icon"
+        <WeatherModalComponent
+          weatherInfo={weatherInfo}
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
         />
-      </Col>
-      <Col
-        onClick={showModal}
-        style={{ cursor: 'pointer' }}
-        className={style.content}
-      >
-        <Row justify="center">
-          <Text className={style.weatherTitle}>
-            {weatherInfo.countryName}
-          </Text>
-          <Text className={style.weatherTitle}>
-            {`${weatherInfo.temperature} °C`}
-          </Text>
-        </Row>
-        <Row className={style.weatherSubtitle}>
-          {weatherInfo.description}
-        </Row>
-      </Col>
-    </Row>
-  );
+        <Col
+          onClick={showModal}
+          style={{ cursor: 'pointer' }}
+        >
+          <img
+            src={`https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png`}
+            className={style.weatherIcon}
+            alt="weather-icon"
+          />
+        </Col>
+        <Col
+          onClick={showModal}
+          style={{ cursor: 'pointer' }}
+          className={style.content}
+        >
+          <Row justify="center">
+            <Text className={style.weatherTitle}>
+              {weatherInfo.name}
+            </Text>
+            <Text className={style.weatherTitle}>
+              {`${weatherInfo.temperature} °C`}
+            </Text>
+          </Row>
+          <Row className={style.weatherSubtitle}>
+            {weatherInfo.description}
+          </Row>
+        </Col>
+      </Row>
+    );
+  }
+  return <div />;
 };
 
 export default WeatherComponent;
