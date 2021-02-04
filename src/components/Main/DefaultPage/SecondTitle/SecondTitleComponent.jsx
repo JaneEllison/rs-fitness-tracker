@@ -17,7 +17,7 @@ const SecondTitleComponent = () => (
         title="How it works"
         width="100%"
         height="380"
-        src="https://www.youtube.com/embed/ah6fmNEtXFI"
+        src="https://www.youtube.com/embed/MO10KOoQx5E"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
@@ -38,7 +38,7 @@ const SecondTitleComponent = () => (
           type="primary"
           size="large"
         >
-          <a target="_blank" rel="noreferrer" href="https://www.youtube.com/embed/ah6fmNEtXFI">Watch wideo</a>
+          <a target="_blank" rel="noreferrer" href="https://www.youtube.com/embed/MO10KOoQx5E">Watch wideo</a>
         </Button>
       </Row>
     </Col>
