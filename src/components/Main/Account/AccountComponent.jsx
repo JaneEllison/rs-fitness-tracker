@@ -8,6 +8,7 @@ import profileSelector from '../../../store/Selectors/profileSelector';
 import ProfileInfoComponent from './ProfileInfo/ProfileInfoComponent';
 import UserPhysicsComponent from '../Goal/UserPhysics/UserPhysicsComponent';
 import calculateTotalCaloriesForDay from '../../../utils/calculateTotalCaloriesForDay';
+import style from './AccountComponent.module.css';
 
 const AccountComponent = () => {
   const profile = useSelector(profileSelector);
@@ -17,7 +18,7 @@ const AccountComponent = () => {
 
   return isLoaded(profile) && !isEmpty(profile) ? (
     <Row>
-      <Col span={16}>
+      <Col className={style.profile} span={16}>
         <ProfileInfoComponent />
         <UserPhysicsComponent
           summary={userPhysics}
@@ -25,7 +26,7 @@ const AccountComponent = () => {
           dailyCalories={calculateTotalCaloriesForDay(userMenus[currentDate])}
         />
       </Col>
-      <Col span={8}>
+      <Col className={style.profile_image} span={8}>
         <Image width={200} src={avatarUrl} fallback={placeholderPicture} />
       </Col>
     </Row>

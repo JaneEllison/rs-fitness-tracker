@@ -21,7 +21,6 @@ const FoodActionsComponent = ({
   return (
     <Row
       className={style.searchBar}
-      gutter={[40, 5]}
       align={CENTER}
       justify={SPACE_BETWEEN}
       style={{
