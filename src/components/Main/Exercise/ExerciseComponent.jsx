@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
 import { isEmpty, isLoaded } from 'react-redux-firebase';
 import ExerciseControlComponent from './ExerciseSchedule/ExerciseControlComponent';
-import ExerciseAddComponent from './ExerciseSchedule/ExerciseAddForm/ExerciseAddComponent';
+import ExerciseFormComponent from './ExerciseSchedule/ExerciseAddForm/ExerciseFormComponent';
 import SearchExercisesComponent from './ExerciseSearch/SearchExercisesComponent';
 import TimeComponent from './Time/TimeComponent';
 import style from './ExerciseComponent.module.css';
@@ -21,8 +21,6 @@ const ExerciseComponent = () => {
   }, [profile.usersExercises]);
 
   const components = daysExercises.map((day) => (
-    // <Col  sm={{ span: 3, offset: 0}} lg={{ span: 5, offset: 0}} xl={{span: 3, offset: 0,}}>
-    // <Col span={3}>
     <ExerciseControlComponent
       selectedDay={selectedDay}
       key={day.id}
@@ -30,7 +28,6 @@ const ExerciseComponent = () => {
       setSelectedDay={setSelectedDay}
       exercises={day.exercises}
     />
-    // </Col>
   ));
 
   return (
@@ -45,7 +42,7 @@ const ExerciseComponent = () => {
       </Row>
       <Row className={style.main_content} justify="space-between">
         <Col className={style.left_content}>
-          <ExerciseAddComponent
+          <ExerciseFormComponent
             selectedDay={selectedDay}
             setSelectedDay={setSelectedDay}
             profile={profile}
