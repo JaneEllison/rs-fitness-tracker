@@ -41,12 +41,21 @@ function ChartControlsComponent({
   );
 }
 
+ChartControlsComponent.defaultProps = {
+  goal: undefined,
+};
+
 ChartControlsComponent.propTypes = {
   selectedField: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  summary: PropTypes.shape({
-    goal: PropTypes.number.isRequired,
-  }).isRequired,
+  summary: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]).isRequired,
+  goal: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 export default ChartControlsComponent;

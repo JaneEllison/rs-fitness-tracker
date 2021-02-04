@@ -67,12 +67,15 @@ AddFoodToMenuComponent.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ])).isRequired,
-  intakeWeight: PropTypes.PropTypes.oneOfType([
+  intakeWeight: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]).isRequired,
   changeIntakeWeight: PropTypes.func.isRequired,
-  intakeTime: PropTypes.number.isRequired,
+  intakeTime: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
   changeIntakeTime: PropTypes.func.isRequired,
 };
 

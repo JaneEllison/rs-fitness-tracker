@@ -16,41 +16,63 @@ function UserSummaryComponent({
       <li key="userSummaryAge">
         <h3>Age:</h3>
         <h3>
-          { age }
-          {' '}
-          years
+          { age ? `${age} years` : 'not set' }
         </h3>
       </li>
       <li key="userSummarySex">
-        <h3>Sex:</h3>
-        <h3>{ gender }</h3>
+        <h3>Gender:</h3>
+        <h3>{ gender ? `${gender}` : 'not set' }</h3>
       </li>
       <li key="userSummaryHeight">
         <h3>Height:</h3>
         <h3>
-          { height }
-          {' '}
-          cm
+          { height ? `${height} cm` : 'not set' }
         </h3>
       </li>
       <li key="userSummaryWeight">
         <h3>Weight:</h3>
         <h3>
-          { weight }
-          {' '}
-          kg
+          { weight ? `${weight} kg` : 'not set' }
         </h3>
       </li>
       <li key="userSummaryGoalCalories">
         <h3>Goal calories:</h3>
-        <h3>{ goal === undefined ? 'none' : `${goal} / day` }</h3>
+        <h3>{ goal ? `${goal} / day` : 'not set' }</h3>
       </li>
     </ul>
   );
 }
 
+UserSummaryComponent.defaultProps = {
+  gender: undefined,
+  age: undefined,
+  height: undefined,
+  weight: undefined,
+  goal: undefined,
+};
+
 UserSummaryComponent.propTypes = {
-  summary: PropTypes.objectOf({}).isRequired,
+  summary: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]).isRequired,
+  gender: PropTypes.string,
+  age: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  height: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  weight: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  goal: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 export default UserSummaryComponent;

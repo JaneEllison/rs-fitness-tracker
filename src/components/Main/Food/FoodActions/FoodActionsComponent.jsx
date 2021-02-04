@@ -54,7 +54,10 @@ FoodActionsComponent.propTypes = {
   foodData: PropTypes.object.isRequired,
   intakeWeight: PropTypes.number.isRequired,
   setIntakeWeight: PropTypes.func.isRequired,
-  intakeTime: PropTypes.number.isRequired,
+  intakeTime: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
   setIntakeTime: PropTypes.func.isRequired,
 };
 
