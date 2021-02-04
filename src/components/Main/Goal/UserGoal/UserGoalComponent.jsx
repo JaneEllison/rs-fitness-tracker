@@ -205,10 +205,19 @@ function UserGoalComponent({
 
 UserGoalComponent.propTypes = {
   summary: PropTypes.shape({
-    weight: PropTypes.number.isRequired,
+    weight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+    height: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+    age: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
     gender: PropTypes.string.isRequired,
-    height: PropTypes.number.isRequired,
-    age: PropTypes.number.isRequired,
   }).isRequired,
   userGoals: PropTypes.object.isRequired,
 };

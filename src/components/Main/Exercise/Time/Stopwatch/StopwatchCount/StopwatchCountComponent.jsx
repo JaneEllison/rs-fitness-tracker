@@ -26,19 +26,21 @@ const StopwatchCountComponent = ({
   const seconds = Math.floor(stopwatchSeconds % 60);
 
   return (
-    <Row justify="center" align="middle" class="wrapper" className={style.stopwatchCount}>
-      <svg className="spinerIcon" viewBox="0 0 500 500">
-        <circle cx="250" cy="250" r="100" className="spinner-track" />
-        {
-          (isRunningStopwatch) ? <circle cx="250" cy="250" r="100" className="spinner" /> : ''
-        }
-      </svg>
-      <Row>
-        <Title className={style.stopwatchTime}>
-          {`${formatTime(minutes)}:${formatTime(seconds)}`}
-        </Title>
+    <div className="wrapper">
+      <Row justify="center" align="middle" className={style.stopwatchCount}>
+        <svg className="spinerIcon" viewBox="0 0 500 500">
+          <circle cx="250" cy="250" r="100" className="spinner-track" />
+          {
+            (isRunningStopwatch) ? <circle cx="250" cy="250" r="100" className="spinner" /> : ''
+          }
+        </svg>
+        <Row>
+          <Title className={style.stopwatchTime}>
+            {`${formatTime(minutes)}:${formatTime(seconds)}`}
+          </Title>
+        </Row>
       </Row>
-    </Row>
+    </div>
   );
 };
 

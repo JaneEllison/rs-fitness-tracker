@@ -61,7 +61,10 @@ const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) =
 };
 
 StopwatchComponent.propTypes = {
-  currentTrack: PropTypes.string.isRequired,
+  currentTrack: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ]).isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   getRandomAudio: PropTypes.func.isRequired,
 };

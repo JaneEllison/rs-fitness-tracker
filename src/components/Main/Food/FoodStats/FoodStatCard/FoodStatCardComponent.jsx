@@ -24,13 +24,17 @@ const FoodStatCardComponent = ({
       />
       <Descriptions column={1}>
         {
-          food.map((item) => (
-            <Descriptions.Item
-              label={getFoodParamTextValue(item, foodStatsConstants)}
-            >
-              {foodData[item]}
-            </Descriptions.Item>
-          ))
+          food.map((item, index) => {
+            const keyProp = `card${index}`;
+            return (
+              <Descriptions.Item
+                label={getFoodParamTextValue(item, foodStatsConstants)}
+                key={keyProp}
+              >
+                {foodData[item]}
+              </Descriptions.Item>
+            );
+          })
         }
       </Descriptions>
     </Card>
