@@ -5,6 +5,7 @@ import AccountInfoItemComponent from '../AccountInfoItem/AccountInfoItemComponen
 import updateProfileData from '../updateProfileData';
 import profileFieldsLabels from '../../../../config/profileFieldsLabels';
 import profileSelector from '../../../../store/Selectors/profileSelector';
+import style from '../AccountComponent.module.css';
 
 const ProfileInfoComponent = () => {
   const { authData } = profileFieldsLabels;
@@ -15,9 +16,7 @@ const ProfileInfoComponent = () => {
       title="User Info"
       column={1}
       bordered
-      style={{
-        marginBottom: 40,
-      }}
+      className={style.descriptions}
     >
       {
         authData.map((item) => {
