@@ -144,7 +144,10 @@ StopwatchButtonsComponent.propTypes = {
   deletePreviousValue: PropTypes.func.isRequired,
   addValuesOfSeconds: PropTypes.func.isRequired,
   isRunningStopwatch: PropTypes.bool.isRequired,
-  currentTrack: PropTypes.string.isRequired,
+  currentTrack: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ]).isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   getRandomAudio: PropTypes.func.isRequired,
 };
