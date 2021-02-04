@@ -21,18 +21,18 @@ const WeatherComponent = () => {
         q: city,
       },
     });
-    console.log(weatherData);
+
     if (weatherData && !weatherData.data.error) {
       setWeatherInfo({
-        temperature: weatherData.data.main.temperature,
+        temperature: weatherData.data.main.temp,
         name: weatherData.data.name,
         countryName: weatherData.data.sys.country,
         description: weatherData.data.weather[0].description,
-        icon: weatherData.data.current.weather_icons[0],
-        temperatureFeelsLike: weatherData.data.current.feelslike,
-        wind: weatherData.data.current.wind_speed,
-        precip: weatherData.data.current.precip,
-        humidity: weatherData.data.current.humidity,
+        icon: weatherData.data.weather[0].icon,
+        temperatureFeelsLike: weatherData.data.main.feels_like,
+        pressure: weatherData.data.main.pressure,
+        wind: weatherData.data.wind.speed,
+        humidity: weatherData.data.main.humidity,
       });
     } else {
       setWeatherInfo({
@@ -43,7 +43,7 @@ const WeatherComponent = () => {
         icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6Eqcl15XoN3eM922kfnx7ftuuENq5kTCrg&usqp=CAU',
         temperatureFeelsLike: '-5',
         wind: '11',
-        precip: '3',
+        pressure: '1002 Hpa',
         humidity: '88',
       });
     }
@@ -73,7 +73,7 @@ const WeatherComponent = () => {
         style={{ cursor: 'pointer' }}
       >
         <img
-          src={weatherInfo.icon}
+          src={`https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png`}
           className={style.weatherIcon}
           alt="weather-icon"
         />
@@ -85,7 +85,7 @@ const WeatherComponent = () => {
       >
         <Row justify="center">
           <Text className={style.weatherTitle}>
-            {weatherInfo.countryName}
+            {weatherInfo.name}
           </Text>
           <Text className={style.weatherTitle}>
             {`${weatherInfo.temperature} °C`}
