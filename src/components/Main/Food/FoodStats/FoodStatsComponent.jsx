@@ -9,6 +9,7 @@ import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefN
 import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 import FoodStatCardComponent from './FoodStatCard/FoodStatCardComponent';
 import { foodPhotoSelector } from '../../../../store/Selectors/foodSelector';
+import FoodToReachGoalComponent from '../FoodToReachGoal/FoodToReachGoalComponent';
 
 const FoodStatsComponent = ({ foodData, intakeWeight }) => {
   const photo = useSelector(foodPhotoSelector);
@@ -53,7 +54,7 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
       <Row gutter={20} align={CENTER} style={{ marginBottom: 20 }}>
         <Col
           xs={24}
-          md={{ span: 12 }}
+          lg={{ span: 8 }}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
           <FoodStatCardComponent
@@ -65,7 +66,7 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
         </Col>
         <Col
           span={24}
-          md={{ span: 12 }}
+          lg={{ span: 8 }}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
           <FoodStatCardComponent
@@ -75,7 +76,16 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
             foodName={food_name}
           />
         </Col>
-
+        <Col
+          span={24}
+          lg={{ span: 8 }}
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
+          <FoodToReachGoalComponent
+            intakeCalories={1400}
+            foodName={food_name}
+          />
+        </Col>
       </Row>
     )
     : <div />;
