@@ -50,7 +50,7 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
 
   return checkArrayForNullUndefNaN(foodData)
     ? (
-      <Row gutter={50} align={CENTER}>
+      <Row gutter={20} align={CENTER} style={{ marginBottom: 20 }}>
         <Col
           xs={24}
           md={{ span: 12 }}

@@ -9,3 +9,13 @@
 .ant-switch-inner {
   font-size: 16px;
 }
+
+@media only screen and (max-width: 575px) {
+  .ant-form .ant-form-item .ant-form-item-label {
+    flex: 0 0 50%;
+  }
+
+  .ant-form .ant-form-item .ant-form-item-control {
+    flex: 0 0 50%;
+  }
+}
