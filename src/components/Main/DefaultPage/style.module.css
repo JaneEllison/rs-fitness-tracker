@@ -32,3 +32,23 @@
     height: 280px;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .defaultPageText {
+    text-align: center;
+  }
+
+  .defaultPageButton {
+    justify-content: center;
+  }
+
+  .videoPlayer {
+    height: 280px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .videoPlayer {
+    height: 180px;
+  }
+}
