@@ -12,6 +12,7 @@ const ExerciseUpdateComponent = ({ edit, onSubmit }) => {
 
   const submitExerciseUpdate = (event) => {
     event.preventDefault();
+    if (input.trim() === '') return;
 
     onSubmit({
       id: Math.floor(Math.random() * 10000),

@@ -81,6 +81,7 @@ const WeatherComponent = () => {
       <Col
         onClick={showModal}
         style={{ cursor: 'pointer' }}
+        className={style.content}
       >
         <Row justify="center">
           <Text className={style.weatherTitle}>
