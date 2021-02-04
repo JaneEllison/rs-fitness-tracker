@@ -59,44 +59,47 @@ const WeatherComponent = () => {
     setIsModalVisible(true);
   };
 
-  return (
-    <Row
-      className={style.weatherContainer}
-    >
-      <WeatherModalComponent
-        weatherInfo={weatherInfo}
-        isModalVisible={isModalVisible}
-        setIsModalVisible={setIsModalVisible}
-      />
-      <Col
-        onClick={showModal}
-        style={{ cursor: 'pointer' }}
+  if (Object.keys(weatherInfo).length > 0) {
+    return (
+      <Row
+        className={style.weatherContainer}
       >
-        <img
-          src={`https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png`}
-          className={style.weatherIcon}
-          alt="weather-icon"
+        <WeatherModalComponent
+          weatherInfo={weatherInfo}
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
         />
-      </Col>
-      <Col
-        onClick={showModal}
-        style={{ cursor: 'pointer' }}
-        className={style.content}
-      >
-        <Row justify="center">
-          <Text className={style.weatherTitle}>
-            {weatherInfo.name}
-          </Text>
-          <Text className={style.weatherTitle}>
-            {`${weatherInfo.temperature} °C`}
-          </Text>
-        </Row>
-        <Row className={style.weatherSubtitle}>
-          {weatherInfo.description}
-        </Row>
-      </Col>
-    </Row>
-  );
+        <Col
+          onClick={showModal}
+          style={{ cursor: 'pointer' }}
+        >
+          <img
+            src={`https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png`}
+            className={style.weatherIcon}
+            alt="weather-icon"
+          />
+        </Col>
+        <Col
+          onClick={showModal}
+          style={{ cursor: 'pointer' }}
+          className={style.content}
+        >
+          <Row justify="center">
+            <Text className={style.weatherTitle}>
+              {weatherInfo.name}
+            </Text>
+            <Text className={style.weatherTitle}>
+              {`${weatherInfo.temperature} °C`}
+            </Text>
+          </Row>
+          <Row className={style.weatherSubtitle}>
+            {weatherInfo.description}
+          </Row>
+        </Col>
+      </Row>
+    );
+  }
+  return <div />;
 };
 
 export default WeatherComponent;

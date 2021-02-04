@@ -27,15 +27,7 @@ const WeatherModalComponent = ({
 }) => {
   const handleOk = () => { setIsModalVisible(false); };
   const handleCancel = () => { setIsModalVisible(false); };
-  console.log(name,
-    countryName,
-    icon,
-    temperature,
-    description,
-    temperatureFeelsLike,
-    wind,
-    pressure,
-    humidity);
+
   return (
     <Modal
       className={style.weatherModal}
