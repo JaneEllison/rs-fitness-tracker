@@ -1,0 +1,54 @@
+.wrapper {
+  margin-bottom: 40px;
+}
+
+.contentCarousel {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.carouselImage {
+  width: 45%
+}
+
+.defaultPageTextRight {
+  text-align: right;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .defaultPageText {
+    text-align: center;
+  }
+
+  .defaultPageButton {
+    justify-content: center;
+  }
+
+  .videoPlayer {
+    height: 280px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .defaultPageText {
+    text-align: center;
+  }
+
+  .defaultPageButton {
+    justify-content: center;
+  }
+
+  .videoPlayer {
+    height: 280px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .videoPlayer {
+    height: 180px;
+  }
+}

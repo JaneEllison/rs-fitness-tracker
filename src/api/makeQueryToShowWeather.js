@@ -3,7 +3,7 @@ import axios from 'axios';
 const KEY = 'f7d771976eb460388c4ee30c72eb5157';
 
 export default axios.create({
-  baseURL: 'https://api.weatherstack.com/current',
+  baseURL: 'http://api.weatherstack.com/current',
   params: {
     access_key: KEY,
     query: 'New York',
