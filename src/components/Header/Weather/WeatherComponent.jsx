@@ -18,16 +18,16 @@ const WeatherComponent = () => {
 
     const weatherData = await weatherApi.get('', {
       params: {
-        query: city,
+        q: city,
       },
     });
-
+    console.log(weatherData);
     if (weatherData && !weatherData.data.error) {
       setWeatherInfo({
-        temperature: weatherData.data.current.temperature,
-        name: weatherData.data.location.name,
-        countryName: weatherData.data.location.country,
-        description: weatherData.data.current.weather_descriptions[0],
+        temperature: weatherData.data.main.temperature,
+        name: weatherData.data.name,
+        countryName: weatherData.data.sys.country,
+        description: weatherData.data.weather[0].description,
         icon: weatherData.data.current.weather_icons[0],
         temperatureFeelsLike: weatherData.data.current.feelslike,
         wind: weatherData.data.current.wind_speed,

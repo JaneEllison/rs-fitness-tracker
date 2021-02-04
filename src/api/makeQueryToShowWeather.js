@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-const KEY = 'f7d771976eb460388c4ee30c72eb5157';
-
 export default axios.create({
-  baseURL: 'http://api.weatherstack.com/current',
+  baseURL: 'https://api.openweathermap.org/data/2.5/weather',
   params: {
-    access_key: KEY,
-    query: 'New York',
+    q: 'New York',
+    appid: `${process.env.REACT_APP_OPEN_WEATHERMAP_API_KEY}`,
+    units: 'metric',
   },
   dataType: 'json',
 });
