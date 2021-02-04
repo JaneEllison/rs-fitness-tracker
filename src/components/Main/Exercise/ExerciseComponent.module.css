@@ -8,19 +8,20 @@
 }
 
 .cards {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 @media only screen and (max-width: 1230px) {
   .cards {
-    max-width: 71%;
+    max-width: 73%;
     margin: 0 auto;
+    justify-content: center;
   }
 }
 
 @media only screen and (max-width: 1000px) {
   .cards {
-    max-width: 87%;
+    max-width: 90%;
     margin: 0 auto;
   }
 }

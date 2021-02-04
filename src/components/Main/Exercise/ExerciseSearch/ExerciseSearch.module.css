@@ -32,8 +32,9 @@
   }
 }
 
-@media only screen and (max-width: 900px) {
-  .input {
-    margin-top: 10px;
+@media only screen and (max-width: 551px) {
+  .video_empty {
+    margin-left: 0rem;
+    margin-top: 0rem;
   }
 }

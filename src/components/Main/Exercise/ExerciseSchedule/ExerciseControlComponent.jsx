@@ -8,6 +8,7 @@ import dispatchDeleteExercise from './ExerciseActions/dispatchDeleteExercise';
 import profileSelector from '../../../../store/Selectors/profileSelector';
 import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise';
 import style from './ExerciseSchedule.module.css';
+import './ExerciseAnt.css';
 
 const ExerciseControlComponent = ({
   day, exercises, selectedDay, setSelectedDay,
