@@ -11,8 +11,8 @@ describe('Exercise reducer:', () => {
   let state;
 
   describe('Exercise add action:', () => {
-    let action = exerciseAddAction(13, 'pull up', false, 'Monday');
-    let newState = exerciseReducer(state, action);
+    const action = exerciseAddAction(13, 'pull up', false, 'Monday');
+    const newState = exerciseReducer(state, action);
 
     it('should be current action type', () => {
       expect(action.type).toBe('ADD_EXERCISE');
@@ -27,7 +27,7 @@ describe('Exercise reducer:', () => {
             text: 'pull up',
             isComplete: false,
           }),
-        ])
+        ]),
       );
     });
 
@@ -37,8 +37,8 @@ describe('Exercise reducer:', () => {
   });
 
   describe('Exercise remove action:', () => {
-    let action = exerciseRemoveAction(11, 'Monday');
-    let newState = exerciseReducer(state, action);
+    const action = exerciseRemoveAction(11, 'Monday');
+    const newState = exerciseReducer(state, action);
 
     it('should be current action type', () => {
       expect(action.type).toBe('REMOVE_EXERCISE');
@@ -53,14 +53,14 @@ describe('Exercise reducer:', () => {
             text: 'jumps',
             isComplete: false,
           },
-        ])
+        ]),
       );
     });
   });
 
   describe('Exercise complete action:', () => {
-    let action = exerciseCompleteAction(11, 'Monday');
-    let newState = exerciseReducer(state, action);
+    const action = exerciseCompleteAction(11, 'Monday');
+    const newState = exerciseReducer(state, action);
 
     it('should be current action type', () => {
       expect(action.type).toBe('COMPLETE_EXERCISE');
@@ -75,14 +75,14 @@ describe('Exercise reducer:', () => {
             text: 'jumps',
             isComplete: true,
           }),
-        ])
+        ]),
       );
     });
   });
 
   describe('Exercise update action:', () => {
-    let action = exerciseUpdateAction(11, 'swim', 'Monday');
-    let newState = exerciseReducer(state, action);
+    const action = exerciseUpdateAction(11, 'swim', 'Monday');
+    const newState = exerciseReducer(state, action);
 
     it('should be current action type', () => {
       expect(action.type).toBe('UPDATE_EXERCISE');
