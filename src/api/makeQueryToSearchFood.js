@@ -1,5 +1,5 @@
+import axios from 'axios';
 import apiQueryConstants from '../constants/apiQueryConstants';
-import makeQuery from './makeQuery';
 
 const {
   nutritionixEndpoints: {
@@ -23,7 +23,13 @@ const makeQueryToSearchFood = async (query = '') => {
       timezone: 'US/Eastern',
     },
   };
-  return makeQuery(options);
+
+  return axios.request(options)
+    .then((obj) => obj.data)
+    .catch((err) => {
+      console.log(err);
+      return {};
+    });
 };
 
 export default makeQueryToSearchFood;
