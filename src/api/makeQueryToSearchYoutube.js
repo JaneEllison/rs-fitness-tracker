@@ -1,14 +1,19 @@
 import axios from 'axios';
+import apiQueryConstants from '../constants/apiQueryConstants';
 
-const KEY = 'AIzaSyCotiYDlzwZ8I_ONP1M2DhD4vcHkScFPeU';
+const {
+  youtubeApiEndpoints: {
+    SEARCH_YOUTUBE_VIDEOS,
+  },
+} = apiQueryConstants;
 
 export default axios.create({
-  baseURL: 'https://www.googleapis.com/youtube/v3',
+  baseURL: SEARCH_YOUTUBE_VIDEOS,
   params: {
     part: 'snippet',
     maxResults: 5,
     type: 'video',
-    key: KEY,
+    key: process.env.REACT_APP_YOUTUBE_API_KEY,
   },
   headers: {},
 });
