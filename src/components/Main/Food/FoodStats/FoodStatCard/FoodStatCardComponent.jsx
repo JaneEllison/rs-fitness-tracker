@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Card,
   Avatar,
@@ -39,6 +39,13 @@ const FoodStatCardComponent = ({
       </Descriptions>
     </Card>
   );
+};
+
+FoodStatCardComponent.propTypes = {
+  foodPhoto: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  foodName: PropTypes.string.isRequired,
+  foodData: PropTypes.object.isRequired,
 };
 
 export default FoodStatCardComponent;

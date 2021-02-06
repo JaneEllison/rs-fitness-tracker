@@ -124,7 +124,7 @@ function UserPhysicsComponent({
         </Col>
         <Col span={12}>
           <DatePicker
-            defaultValue={birthDay ? moment() : moment().subtract(3, 'years')}
+            defaultValue={birthDay ? userBirthday : moment().subtract(3, 'years')}
             onChange={setUserBirthday}
             className={style.goalInputField}
             disabledDate={(current) => current >= moment().subtract(3, 'years')}

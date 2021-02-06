@@ -82,32 +82,18 @@ const WeatherModalComponent = ({
   );
 };
 
-WeatherModalComponent.defaultProps = {
-  weatherInfo: PropTypes.shape({
-    temperature: '-3',
-    name: 'Minsk',
-    countryName: 'Belarus',
-    description: 'Mostly cloudy',
-    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6Eqcl15XoN3eM922kfnx7ftuuENq5kTCrg&usqp=CAU',
-    temperatureFeelsLike: '-5',
-    wind: '11',
-    precip: '3',
-    humidity: '88',
-  }),
-};
-
 WeatherModalComponent.propTypes = {
   weatherInfo: PropTypes.shape({
-    name: PropTypes.string,
-    countryName: PropTypes.string,
-    icon: PropTypes.string,
-    description: PropTypes.string,
-    temperature: PropTypes.number,
-    temperatureFeelsLike: PropTypes.number,
-    wind: PropTypes.number,
-    pressure: PropTypes.number,
-    humidity: PropTypes.number,
-  }),
+    name: PropTypes.string.isRequired,
+    countryName: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    temperature: PropTypes.number.isRequired,
+    temperatureFeelsLike: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+  }).isRequired,
   setIsModalVisible: PropTypes.func.isRequired,
   isModalVisible: PropTypes.bool.isRequired,
 };

@@ -5,20 +5,25 @@ import style from './App.module.css';
 import MainComponent from './components/Main/MainComponent';
 import HeaderComponent from './components/Header/HeaderComponent';
 import FooterComponent from './components/Footer/FooterComponent';
-import appLayoutConstants from './constants/appLayoutConstants';
+import designConstants from './constants/antdPropConstants';
 
 function App() {
   const {
-    APP_CONTAINER_SPACING_DIRECTION,
-    APP_CONTAINER_SPACING_SIZE,
-  } = appLayoutConstants;
+    APP_CONTAINER: {
+      SPACING: {
+        DIRECTION,
+        SIZE,
+      },
+    },
+  } = designConstants;
   const { Header, Footer, Content } = Layout;
+
   return (
     <Layout className={style.appLayout}>
       <Space
         className={style.appLayoutSpace}
-        direction={APP_CONTAINER_SPACING_DIRECTION}
-        size={APP_CONTAINER_SPACING_SIZE}
+        direction={DIRECTION}
+        size={SIZE}
       >
         <Header><HeaderComponent /></Header>
         <Content className={style.appContent}><MainComponent /></Content>
