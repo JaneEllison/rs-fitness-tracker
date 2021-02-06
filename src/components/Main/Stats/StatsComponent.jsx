@@ -12,10 +12,8 @@ import getUserDataset from '../../../utils/getUserDataset';
 import antdPropConstants from '../../../constants/antdPropConstants';
 
 const {
-  SPIN: {
-    SIZE: {
-      LARGE,
-    },
+  STATS_COMPONENT: {
+    SPIN_SIZE,
   },
 } = antdPropConstants;
 
@@ -45,7 +43,7 @@ function StatsComponent() {
   }, [profile, isEmpty(profile), isLoaded(profile)]);
 
   if (!isLoaded(profile)) {
-    return <Spin size={LARGE} />;
+    return <Spin size={SPIN_SIZE} />;
   }
 
   if (isEmpty(profile)) {

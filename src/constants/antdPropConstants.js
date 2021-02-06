@@ -1,15 +1,15 @@
 const antdPropConstants = {
-  APP_CONTAINER: {
-    SPACING: {
-      DIRECTION: 'vertical',
-      SIZE: 'middle',
-    },
+  EMPTY_PROP: {
+    IMAGE_HEIGHT: 80,
   },
 
-  SPIN: {
-    SIZE: {
-      LARGE: 'large',
-    },
+  APP_CONTAINER: {
+    SPACING_DIRECTION: 'vertical',
+    SPACING_SIZE: 'middle',
+  },
+
+  STATS_COMPONENT: {
+    SPIN_SIZE: 'large',
   },
 };
 

@@ -10,10 +10,8 @@ import designConstants from './constants/antdPropConstants';
 function App() {
   const {
     APP_CONTAINER: {
-      SPACING: {
-        DIRECTION,
-        SIZE,
-      },
+      SPACING_DIRECTION,
+      SPACING_SIZE,
     },
   } = designConstants;
   const { Header, Footer, Content } = Layout;
@@ -22,8 +20,8 @@ function App() {
     <Layout className={style.appLayout}>
       <Space
         className={style.appLayoutSpace}
-        direction={DIRECTION}
-        size={SIZE}
+        direction={SPACING_DIRECTION}
+        size={SPACING_SIZE}
       >
         <Header><HeaderComponent /></Header>
         <Content className={style.appContent}><MainComponent /></Content>

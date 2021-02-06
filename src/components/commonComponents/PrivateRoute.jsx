@@ -4,6 +4,11 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import authSelector from '../../store/Selectors/authSelector';
+import routePaths from '../../constants/routePaths';
+
+const {
+  SIGN_IN_ROUTE,
+} = routePaths;
 
 const PrivateRoute = ({
   children,
@@ -19,7 +24,7 @@ const PrivateRoute = ({
         return isAuthReady ? children : (
           <Redirect
             to={{
-              pathname: '/signin',
+              pathname: SIGN_IN_ROUTE,
               state: {
                 from: location,
               },

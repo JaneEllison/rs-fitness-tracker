@@ -1,36 +1,54 @@
 import React from 'react';
+import FooterLinkComponent from './FooterLink/FooterLinkComponent';
 import style from './FooterComponent.module.css';
 import logo from '../../assets/rs_school_logo.svg';
+import {
+  DEVELOPERS_INFO,
+  GENERIC_TEXT,
+  RSS_LOGO,
+} from '../../constants/footerConstants';
+
+const {
+  CREATED_BY,
+  AND,
+  IN_2001,
+} = GENERIC_TEXT;
+
+const {
+  HREF,
+  ALT,
+} = RSS_LOGO;
 
 const FooterComponent = () => (
   <div className={style.footerWrapper}>
     <div>
-      Created by
-      {' '}
-      <a href="https://github.com/Velidoss" target="_blank" rel="noreferrer">Velidoss</a>
-      ,
-      {' '}
-      <a href="https://github.com/va-z" target="_blank" rel="noreferrer">va-z</a>
-      ,
-      {' '}
-      <a href="https://github.com/Noch4nce" target="_blank" rel="noreferrer">Noch4nce</a>
-      ,
-      {' '}
-      and
-      {' '}
-      <a href="https://github.com/JaneEllison" target="_blank" rel="noreferrer">JaneEllison</a>
-      {' '}
-      in 2021.
+      {CREATED_BY}
+      {DEVELOPERS_INFO.map((obj, index) => {
+        const keyProp = `link${index}`;
+        return index < DEVELOPERS_INFO.length - 1
+          ? (
+            <>
+              <FooterLinkComponent data={obj} key={keyProp} />
+              {index < DEVELOPERS_INFO.length - 2 ? ', ' : ' '}
+            </>
+          )
+          : (
+            <>
+              {`${AND} `}
+              <FooterLinkComponent data={obj} key={keyProp} />
+            </>
+          );
+      })}
+      {IN_2001}
     </div>
     <a
       className={style.footerLogoLink}
-      href="https://rs.school/js/"
+      href={HREF}
     >
       <img
-        width="75"
-        height="auto"
         src={logo}
-        alt="Rolling Scopes School"
+        alt={ALT}
+        className={style.footerLogo}
       />
     </a>
   </div>

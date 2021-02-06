@@ -4,10 +4,9 @@ import apiQueryConstants from '../constants/apiQueryConstants';
 const {
   sypexgeoEndpoints: {
     FIND_CITY_ID_BY_IP,
+    DEFAULT_CITY_ID,
   },
 } = apiQueryConstants;
-
-const DEFAULT_CITY_ID = 625144;
 
 const makeQueryToFindCityId = async (ip = '') => {
   const options = {
