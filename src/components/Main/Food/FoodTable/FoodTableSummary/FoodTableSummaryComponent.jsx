@@ -12,7 +12,7 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
   const { classesLeft, classesRight } = getAdaptiveClassNames();
 
   useEffect(() => {
-    if (foodMenu.length > 0) {
+    if (foodMenu.length >= 0) {
       dispatch(calculateTotalNutrientsAC(foodMenu));
     }
   }, [foodMenu]);

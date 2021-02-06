@@ -21,6 +21,7 @@ const AddToMenuInputTimeComponent = ({ changeIntakeTime, buttonDisabled, addToMe
   const {
     ADD_FOOD_TO_MENU_TIME_LABEL,
   } = foodComponentConstants;
+
   return (
     <Row
       align={CENTER}

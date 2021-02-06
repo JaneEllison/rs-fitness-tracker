@@ -25,7 +25,9 @@ const AddFoodToMenuComponent = ({
     },
   } = foodComponentsConfig;
   const profile = useSelector(profileSelector);
+
   const firebase = useFirebase();
+
   useCheckButtonDisabled({
     foodData, intakeWeight, intakeTime, toggleButtonDisabled,
   });
@@ -55,7 +57,9 @@ const AddFoodToMenuComponent = ({
         <AddToMenuInputTimeComponent
           buttonDisabled={isEmpty(auth) ? true : buttonDisabled}
           changeIntakeTime={changeIntakeTime}
-          addToMenuCallback={() => addToMenu(firebase, foodData, intakeWeight, intakeTime, profile)}
+          addToMenuCallback={() => {
+            addToMenu(firebase, foodData, intakeWeight, intakeTime, profile);
+          }}
         />
       </Col>
     </Row>
