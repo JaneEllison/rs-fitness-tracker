@@ -5,6 +5,11 @@
   justify-content: space-between;
 }
 
+.footerLogo {
+  width: 75px;
+  height: auto;
+}
+
 .footerLogoLink {
   background-color: aliceblue;
   padding: 10px;

@@ -48,17 +48,17 @@ describe('Get change weight function: ', () => {
     };
 
     expect(getWeightChangeParameters(summary, activity)).toHaveProperty(
-      'maintain'
+      'maintain',
     );
     expect(getWeightChangeParameters(summary, activity)).toHaveProperty(
-      'mildLoss'
+      'mildLoss',
     );
     expect(getWeightChangeParameters(summary, activity)).toHaveProperty(
       'normalLoss',
-      1218
+      1218,
     );
     expect(
-      Boolean(getWeightChangeParameters(summary, activity)[summary.maintain])
+      Boolean(getWeightChangeParameters(summary, activity)[summary.maintain]),
     ).toBe(false);
     expect(getWeightChangeParameters(summary, activity)).toEqual(result);
     expect(getWeightChangeParameters(summary, activity)).toMatchObject(result);

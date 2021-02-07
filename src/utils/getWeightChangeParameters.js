@@ -1,14 +1,4 @@
-const ACTIVITY_FACTORS = {
-  basal: 1,
-  sedentary: 1.2,
-  light: 1.36,
-  moderate: 1.47,
-  active: 1.55,
-  veryActive: 1.7,
-  extraActive: 1.9,
-};
-
-const CALORIES_IN_LB = 3500;
+import { ACTIVITY_FACTORS, CALORIES_IN_LB } from '../constants/weightChangeConstants';
 
 const getHarrisBenedictBMR = ({
   age, sex, height, weight,

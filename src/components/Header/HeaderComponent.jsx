@@ -7,7 +7,7 @@ import AuthMenuComponent from './AccountMenu/AuthMenuComponent';
 
 const HeaderComponent = () => (
   <header>
-    <Row justify="space-between">
+    <Row>
       <Col
         span={11}
       >

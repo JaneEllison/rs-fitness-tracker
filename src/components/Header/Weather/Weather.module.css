@@ -4,6 +4,7 @@
   right: -1rem;
   color: #fff;
   line-height: normal;
+  cursor: pointer;
 }
 
 .weatherIcon {
@@ -20,6 +21,10 @@
 .weatherSubtitle {
   color:rgba(255, 255, 255, 0.65);
   font-size: 0.7rem;
+}
+
+.weatherModalTitle {
+  margin-bottom: 3px;
 }
 
 .weatherModalSubtitle {

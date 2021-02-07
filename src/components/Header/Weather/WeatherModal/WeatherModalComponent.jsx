@@ -6,9 +6,45 @@ import {
   Modal,
 } from 'antd';
 import PropTypes from 'prop-types';
+import antdPropConstants from '../../../../constants/antdPropConstants';
+import weatherComponentConstants from '../../../../constants/weatherComponentConstants';
 import style from '../Weather.module.css';
 
 const { Title } = Typography;
+
+const {
+  WEATHER_COMPONENT: {
+    MODAL: {
+      FOOTER,
+      TITLE_LEVEL,
+      COMPONENT_ALIGN,
+      COMPONENT_JUSTIFY,
+      COMPONENT_GUTTER,
+      TEMPERATURE_ROW_JUSTIFY,
+      DESCRIPTION_ROW_JUSTIFY,
+      FEELS_LIKE_ROW_JUSTIFY,
+      WIND_ROW_JUSTIFY,
+      PRESSURE_ROW_JUSTIFY,
+      HUMIDITY_ROW_JUSTIFY,
+    },
+  },
+} = antdPropConstants;
+
+const {
+  IMG_ALT,
+  IMG_SIZE_MODAL,
+  GET_IMG_SRC,
+
+  TEMP_UNIT,
+  WIND_UNIT,
+  PRESSURE_UNIT,
+  HUMIDITY_UNIT,
+
+  FEELS_LIKE_TEXT,
+  WIND_TEXT,
+  PRESSURE_TEXT,
+  HUMIDITY_TEXT,
+} = weatherComponentConstants;
 
 const WeatherModalComponent = ({
   weatherInfo: {
@@ -25,56 +61,55 @@ const WeatherModalComponent = ({
   setIsModalVisible,
   isModalVisible,
 }) => {
-  const handleOk = () => { setIsModalVisible(false); };
-  const handleCancel = () => { setIsModalVisible(false); };
+  const closeModal = () => { setIsModalVisible(false); };
 
   return (
     <Modal
       className={style.weatherModal}
       title={`${name}, ${countryName}`}
       visible={isModalVisible}
-      onOk={handleOk}
-      onCancel={handleCancel}
+      onOk={closeModal}
+      onCancel={closeModal}
       centered
-      footer={null}
+      footer={FOOTER}
     >
-      <Row gutter={15} align="middle" justify="space-around">
-        <Col sm={{ span: 12 }} xs={{ span: 17 }}>
+      <Row gutter={COMPONENT_GUTTER} align={COMPONENT_ALIGN} justify={COMPONENT_JUSTIFY}>
+        <Col sm={12} xs={17}>
           <img
-            src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
-            alt="weather-icon"
+            src={GET_IMG_SRC(IMG_SIZE_MODAL)(icon)}
+            alt={IMG_ALT}
             className={style.weatherModalImg}
           />
         </Col>
-        <Col sm={{ span: 12 }} xs={{ span: 17 }}>
-          <Row justify="center">
+        <Col sm={12} xs={17}>
+          <Row justify={TEMPERATURE_ROW_JUSTIFY}>
             <Title
-              level={1}
-              style={{ marginBottom: '3px' }}
+              level={TITLE_LEVEL}
+              className={style.weatherModalTitle}
             >
-              {`${temperature} °C`}
+              {`${temperature} ${TEMP_UNIT}`}
             </Title>
           </Row>
-          <Row justify="center">
+          <Row justify={DESCRIPTION_ROW_JUSTIFY}>
             <p className={style.weatherModalSubtitle}>
               {description}
             </p>
           </Row>
-          <Row justify="center">
-            <p>Feels like:</p>
-            <p>{`${temperatureFeelsLike} °C`}</p>
+          <Row justify={FEELS_LIKE_ROW_JUSTIFY}>
+            <p>{FEELS_LIKE_TEXT}</p>
+            <p>{`${temperatureFeelsLike} ${TEMP_UNIT}`}</p>
           </Row>
-          <Row justify="space-between">
-            <p>Wind:</p>
-            <p>{`${wind} km/h`}</p>
+          <Row justify={WIND_ROW_JUSTIFY}>
+            <p>{WIND_TEXT}</p>
+            <p>{`${wind} ${WIND_UNIT}`}</p>
           </Row>
-          <Row justify="space-between">
-            <p>Pressure:</p>
-            <p>{`${pressure} hPa`}</p>
+          <Row justify={PRESSURE_ROW_JUSTIFY}>
+            <p>{PRESSURE_TEXT}</p>
+            <p>{`${pressure} ${PRESSURE_UNIT}`}</p>
           </Row>
-          <Row justify="space-between">
-            <p>Humidity:</p>
-            <p>{`${humidity} %`}</p>
+          <Row justify={HUMIDITY_ROW_JUSTIFY}>
+            <p>{HUMIDITY_TEXT}</p>
+            <p>{`${humidity} ${HUMIDITY_UNIT}`}</p>
           </Row>
         </Col>
       </Row>
@@ -82,32 +117,18 @@ const WeatherModalComponent = ({
   );
 };
 
-WeatherModalComponent.defaultProps = {
-  weatherInfo: PropTypes.shape({
-    temperature: '-3',
-    name: 'Minsk',
-    countryName: 'Belarus',
-    description: 'Mostly cloudy',
-    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6Eqcl15XoN3eM922kfnx7ftuuENq5kTCrg&usqp=CAU',
-    temperatureFeelsLike: '-5',
-    wind: '11',
-    precip: '3',
-    humidity: '88',
-  }),
-};
-
 WeatherModalComponent.propTypes = {
   weatherInfo: PropTypes.shape({
-    name: PropTypes.string,
-    countryName: PropTypes.string,
-    icon: PropTypes.string,
-    description: PropTypes.string,
-    temperature: PropTypes.number,
-    temperatureFeelsLike: PropTypes.number,
-    wind: PropTypes.number,
-    pressure: PropTypes.number,
-    humidity: PropTypes.number,
-  }),
+    name: PropTypes.string.isRequired,
+    countryName: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    temperature: PropTypes.number.isRequired,
+    temperatureFeelsLike: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+  }).isRequired,
   setIsModalVisible: PropTypes.func.isRequired,
   isModalVisible: PropTypes.bool.isRequired,
 };

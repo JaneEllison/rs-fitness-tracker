@@ -1,6 +1,7 @@
 function getAgeFromDateString(dateString) {
   const today = new Date();
   const birthDate = new Date(dateString);
+
   const months = today.getMonth() - birthDate.getMonth();
   const days = today.getDate() - birthDate.getDate();
   const years = today.getFullYear() - birthDate.getFullYear();

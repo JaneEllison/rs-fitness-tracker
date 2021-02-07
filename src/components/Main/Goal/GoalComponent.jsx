@@ -29,6 +29,7 @@ function GoalComponent() {
     const userGoalsSummary = {
       ...userPhysics, age: getAgeFromDateString(userPhysics.birthDay),
     };
+
     return (
       <Row gutter={8}>
         <Col span={24} md={12}>

@@ -2,63 +2,81 @@ import React from 'react';
 import StockOutlined from '@ant-design/icons/lib/icons/StockOutlined';
 import UnorderedListOutlined from '@ant-design/icons/lib/icons/UnorderedListOutlined';
 import CarryOutOutlined from '@ant-design/icons/lib/icons/CarryOutOutlined';
+import { PATHS, AUTH_TYPES } from '../constants/routeConstants';
+
+const {
+  SEARCH_FOOD_ROUTE,
+  EXERCISE_ROUTE,
+  MAIN_ROUTE,
+  SIGN_UP_ROUTE,
+  SIGN_IN_ROUTE,
+  LOGOUT_ROUTE,
+  USER_INFO_ROUTE,
+  USER_STATS_ROUTE,
+  USER_GOAL_ROUTE,
+} = PATHS;
+
+const {
+  AUTHENTICATED,
+  NON_AUTHENTICATED,
+} = AUTH_TYPES;
 
 const routes = {
   menuRoutes: [
     {
-      path: '/search_food',
+      path: SEARCH_FOOD_ROUTE,
       value: 'Search food',
-      type: 'nonAuthenticated',
+      type: NON_AUTHENTICATED,
     },
     {
-      path: '/exercise',
+      path: EXERCISE_ROUTE,
       value: 'Exercise',
-      type: 'authenticated',
+      type: AUTHENTICATED,
     },
     {
-      path: '/',
+      path: MAIN_ROUTE,
       value: 'Main',
-      type: 'nonAuthenticated',
+      type: NON_AUTHENTICATED,
     },
   ],
   authRoutes: [
     {
-      path: '/signup',
+      path: SIGN_UP_ROUTE,
       value: 'Sign up',
-      type: 'nonAuthenticated',
+      type: NON_AUTHENTICATED,
     },
     {
-      path: '/signin',
+      path: SIGN_IN_ROUTE,
       value: 'Sign In',
-      type: 'nonAuthenticated',
+      type: NON_AUTHENTICATED,
     },
     {
-      path: '/logout',
+      path: LOGOUT_ROUTE,
       value: 'Log out',
-      type: 'authenticated',
+      type: AUTHENTICATED,
     },
     {
       value: 'accountButton',
-      type: 'authenticated',
+      type: AUTHENTICATED,
     },
   ],
   accountMenuRoutes: [
     {
-      path: '/account',
+      path: USER_INFO_ROUTE,
       value: 'User info',
-      type: 'authenticated',
+      type: AUTHENTICATED,
       icon: <UnorderedListOutlined />,
     },
     {
-      path: '/stats',
+      path: USER_STATS_ROUTE,
       value: 'User statistics',
-      type: 'authenticated',
+      type: AUTHENTICATED,
       icon: <StockOutlined />,
     },
     {
-      path: '/goal',
+      path: USER_GOAL_ROUTE,
       value: 'Goal',
-      type: 'authenticated',
+      type: AUTHENTICATED,
       icon: <CarryOutOutlined />,
     },
   ],
