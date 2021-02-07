@@ -5,8 +5,13 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import signUpComponentLayout from '../../../config/signUpComponentLayout';
 import SignInWithGoogleComponent from './SignInWithGoogleComponent';
-import AuthErrorModalComponent from '../Account/AuthErrorModal/AuthErrorModalComponent';
+import AuthErrorModalComponent from './AuthErrorModal/AuthErrorModalComponent';
 import authErrorSelector from '../../../store/Selectors/authErrorSelector';
+import { PATHS } from '../../../constants/routeConstants';
+// import authentificationConstants from '../../../constants/authentificationConstants';
+// import antdPropConstants from '../../../constants/antdPropConstants';
+
+const { USER_INFO_ROUTE } = PATHS;
 
 const SignUpComponent = () => {
   const [modalErrorMessage, setModalErrorMessage] = useState('');
@@ -36,7 +41,7 @@ const SignUpComponent = () => {
       },
     )
       .then(() => {
-        history.push('/account');
+        history.push(USER_INFO_ROUTE);
       });
   };
 

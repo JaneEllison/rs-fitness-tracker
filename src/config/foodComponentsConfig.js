@@ -3,14 +3,17 @@ const foodComponentsConfig = {
     CENTER: 'center',
     SPACE_BETWEEN: 'space-between',
   },
+
   foodSearchComponent: {
     INPUT_TYPE: 'text',
   },
+
   foodActionsComponent: {
     TIME_PICKER_FORMAT: 'HH:mm',
     ADD_BUTTON_TEXT: 'Add to ration',
     ADD_BUTTON_TYPE: 'primary',
   },
+
   foodTableComponent: {
     FOOD_TABLE_SIZE: 'middle',
     FOOD_TABLE_SCROLL: { x: 1000, y: 400 },
@@ -26,6 +29,7 @@ const foodComponentsConfig = {
       SUMMARY_COMPONENT_FIX_RIGHT_LAST_CLASS: 'ant-table-cell-fix-left-right',
     },
   },
+
   emptyComponent: {
     EMPTY_COMPONENT_IMAGE: 'https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg',
     EMPTY_COMPONENT_MESSAGE: 'Search for food to see its nutrients!',

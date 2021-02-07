@@ -5,7 +5,17 @@ import AccountInfoItemComponent from '../AccountInfoItem/AccountInfoItemComponen
 import updateProfileData from '../updateProfileData';
 import profileFieldsLabels from '../../../../config/profileFieldsLabels';
 import profileSelector from '../../../../store/Selectors/profileSelector';
+import antdPropConstants from '../../../../constants/antdPropConstants';
 import style from '../AccountComponent.module.css';
+
+const {
+  ACCOUNT_COMPONENT: {
+    PROFILE_INFO: {
+      TITLE,
+      COLUMN,
+    },
+  },
+} = antdPropConstants;
 
 const ProfileInfoComponent = () => {
   const { authData } = profileFieldsLabels;
@@ -13,8 +23,8 @@ const ProfileInfoComponent = () => {
 
   return (
     <Descriptions
-      title="User Info"
-      column={1}
+      title={TITLE}
+      column={COLUMN}
       bordered
       className={style.descriptions}
     >

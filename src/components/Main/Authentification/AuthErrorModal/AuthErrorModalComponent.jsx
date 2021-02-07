@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'antd';
+import antdPropConstants from '../../../../constants/antdPropConstants';
+
+const {
+  AUTHENTIFICATION: {
+    ERROR_MODAL: {
+      TITLE,
+    },
+  },
+} = antdPropConstants;
 
 const AuthErrorModalComponent = ({ errorMessage, modalVisible, setModalVisible }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -19,7 +28,7 @@ const AuthErrorModalComponent = ({ errorMessage, modalVisible, setModalVisible }
 
   return (
     <Modal
-      title="Title"
+      title={TITLE}
       visible={modalVisible}
       onOk={handleOk}
       confirmLoading={confirmLoading}

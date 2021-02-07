@@ -26,8 +26,8 @@ const AccountComponent = () => {
           dailyCalories={calculateTotalCaloriesForDay(userMenus[currentDate])}
         />
       </Col>
-      <Col className={style.profile_image} span={8}>
-        <Image width={200} src={avatarUrl} fallback={placeholderPicture} />
+      <Col className={style.profileImageWrapper} span={8}>
+        <Image className={style.profileImage} src={avatarUrl} fallback={placeholderPicture} />
       </Col>
     </Row>
   )
