@@ -48,7 +48,8 @@ const addToMenu = (firebase, foodData, weight, time, profile) => {
   }
   updateUserHistoryData({
     weight: profile.userPhysics.weight,
-    caloriesConsumed: calculateTotalCaloriesForDay(profile.userMenus[moment(moment.now()).format('DD.MM.YYYY')]),
+    caloriesConsumed: (parseFloat(calculateTotalCaloriesForDay(profile.userMenus[moment(moment.now()).format('DD.MM.YYYY')]))
+      + foodItemToAdd.nf_calories).toFixed(2),
     date: moment(moment.now()).format('MM.DD.YYYY'),
   }, firebase, profile.userHistory);
 };
