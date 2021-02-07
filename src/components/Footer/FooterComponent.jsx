@@ -27,16 +27,16 @@ const FooterComponent = () => (
         const keyProp = `link${index}`;
         return index < DEVELOPERS_INFO.length - 1
           ? (
-            <>
+            <span key={keyProp}>
               <FooterLinkComponent data={obj} key={keyProp} />
               {index < DEVELOPERS_INFO.length - 2 ? ', ' : ' '}
-            </>
+            </span>
           )
           : (
-            <>
+            <span key={keyProp}>
               {`${AND} `}
               <FooterLinkComponent data={obj} key={keyProp} />
-            </>
+            </span>
           );
       })}
       {IN_2001}

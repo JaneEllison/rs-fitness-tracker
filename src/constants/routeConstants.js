@@ -1,4 +1,4 @@
-const routePaths = {
+const PATHS = {
   SEARCH_FOOD_ROUTE: '/search_food',
   EXERCISE_ROUTE: '/exercise',
   MAIN_ROUTE: '/',
@@ -10,4 +10,12 @@ const routePaths = {
   USER_GOAL_ROUTE: '/goal',
 };
 
-export default routePaths;
+const AUTH_TYPES = {
+  NON_AUTHENTICATED: 'nonAuthenticated',
+  AUTHENTICATED: 'authenticated',
+};
+
+export {
+  PATHS,
+  AUTH_TYPES,
+};

@@ -2,7 +2,7 @@ import React from 'react';
 import StockOutlined from '@ant-design/icons/lib/icons/StockOutlined';
 import UnorderedListOutlined from '@ant-design/icons/lib/icons/UnorderedListOutlined';
 import CarryOutOutlined from '@ant-design/icons/lib/icons/CarryOutOutlined';
-import routePaths from '../constants/routePaths';
+import { PATHS, AUTH_TYPES } from '../constants/routeConstants';
 
 const {
   SEARCH_FOOD_ROUTE,
@@ -14,64 +14,69 @@ const {
   USER_INFO_ROUTE,
   USER_STATS_ROUTE,
   USER_GOAL_ROUTE,
-} = routePaths;
+} = PATHS;
+
+const {
+  AUTHENTICATED,
+  NON_AUTHENTICATED,
+} = AUTH_TYPES;
 
 const routes = {
   menuRoutes: [
     {
       path: SEARCH_FOOD_ROUTE,
       value: 'Search food',
-      type: 'nonAuthenticated',
+      type: NON_AUTHENTICATED,
     },
     {
       path: EXERCISE_ROUTE,
       value: 'Exercise',
-      type: 'authenticated',
+      type: AUTHENTICATED,
     },
     {
       path: MAIN_ROUTE,
       value: 'Main',
-      type: 'nonAuthenticated',
+      type: NON_AUTHENTICATED,
     },
   ],
   authRoutes: [
     {
       path: SIGN_UP_ROUTE,
       value: 'Sign up',
-      type: 'nonAuthenticated',
+      type: NON_AUTHENTICATED,
     },
     {
       path: SIGN_IN_ROUTE,
       value: 'Sign In',
-      type: 'nonAuthenticated',
+      type: NON_AUTHENTICATED,
     },
     {
       path: LOGOUT_ROUTE,
       value: 'Log out',
-      type: 'authenticated',
+      type: AUTHENTICATED,
     },
     {
       value: 'accountButton',
-      type: 'authenticated',
+      type: AUTHENTICATED,
     },
   ],
   accountMenuRoutes: [
     {
       path: USER_INFO_ROUTE,
       value: 'User info',
-      type: 'authenticated',
+      type: AUTHENTICATED,
       icon: <UnorderedListOutlined />,
     },
     {
       path: USER_STATS_ROUTE,
       value: 'User statistics',
-      type: 'authenticated',
+      type: AUTHENTICATED,
       icon: <StockOutlined />,
     },
     {
       path: USER_GOAL_ROUTE,
       value: 'Goal',
-      type: 'authenticated',
+      type: AUTHENTICATED,
       icon: <CarryOutOutlined />,
     },
   ],

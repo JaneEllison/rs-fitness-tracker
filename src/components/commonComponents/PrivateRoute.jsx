@@ -4,11 +4,11 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import authSelector from '../../store/Selectors/authSelector';
-import routePaths from '../../constants/routePaths';
+import { PATHS } from '../../constants/routeConstants';
 
 const {
   SIGN_IN_ROUTE,
-} = routePaths;
+} = PATHS;
 
 const PrivateRoute = ({
   children,

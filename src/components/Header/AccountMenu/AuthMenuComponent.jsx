@@ -5,6 +5,22 @@ import routes from '../../../config/routes';
 import authSelector from '../../../store/Selectors/authSelector';
 import NavLinkComponent from '../../commonComponents/NavLinkComponent';
 import DropDownMenuComponent from './DropDownMenuComponent';
+import antdPropConstants from '../../../constants/antdPropConstants';
+import { AUTH_TYPES } from '../../../constants/routeConstants';
+
+const {
+  HEADER: {
+    AUTH_MENU: {
+      MODE,
+      THEME,
+    },
+  },
+} = antdPropConstants;
+
+const {
+  AUTHENTICATED,
+  NON_AUTHENTICATED,
+} = AUTH_TYPES;
 
 const AuthMenuComponent = () => {
   const { authRoutes } = routes;
@@ -15,13 +31,13 @@ const AuthMenuComponent = () => {
   useEffect(() => {
     if (isLoaded) {
       setRoutesList([
-        ...authRoutes.filter((item) => item.type === (isEmpty ? 'nonAuthenticated' : 'authenticated')),
+        ...authRoutes.filter((item) => item.type === (isEmpty ? NON_AUTHENTICATED : AUTHENTICATED)),
       ]);
     }
   }, [isEmpty, isLoaded]);
 
   return (
-    <Menu mode="horizontal" theme="dark">
+    <Menu mode={MODE} theme={THEME}>
       {
         routesList.map((route, index) => {
           const keyProp = `route-${index}`;
