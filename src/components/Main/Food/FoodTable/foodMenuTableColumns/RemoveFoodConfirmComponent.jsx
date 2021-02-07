@@ -24,7 +24,7 @@ const RemoveFoodConfirmComponent = ({ tableRecord: { key } }) => {
 
 RemoveFoodConfirmComponent.propTypes = {
   tableRecord: PropTypes.shape({
-    key: PropTypes.string.isRequired,
+    key: PropTypes.number.isRequired,
   }).isRequired,
 };
 

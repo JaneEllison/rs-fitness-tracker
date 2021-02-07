@@ -25,6 +25,7 @@ const AddFoodToMenuComponent = ({
     },
   } = foodComponentsConfig;
   const profile = useSelector(profileSelector);
+
   const firebase = useFirebase();
 
   useCheckButtonDisabled({
@@ -75,7 +76,11 @@ AddFoodToMenuComponent.propTypes = {
     PropTypes.string,
   ]).isRequired,
   changeIntakeWeight: PropTypes.func.isRequired,
-  intakeTime: PropTypes.string.isRequired,
+  intakeTime: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.shape({}),
+  ]).isRequired,
   changeIntakeTime: PropTypes.func.isRequired,
 };
 
