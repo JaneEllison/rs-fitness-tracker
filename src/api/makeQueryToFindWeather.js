@@ -4,20 +4,9 @@ import apiQueryConstants from '../constants/apiQueryConstants';
 const {
   openWeatherMapEndpoints: {
     FIND_WEATHER_BY_CITY_ID,
+    DEFAULT_WEATHER_DATA,
   },
 } = apiQueryConstants;
-
-const DEFAULT_WEATHER_DATA = {
-  temperature: '-3',
-  name: 'Minsk',
-  countryName: 'Belarus',
-  description: 'Mostly cloudy',
-  icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6Eqcl15XoN3eM922kfnx7ftuuENq5kTCrg&usqp=CAU',
-  temperatureFeelsLike: '-5',
-  wind: '11',
-  pressure: '1002 Hpa',
-  humidity: '88',
-};
 
 const makeQueryToFindWeather = async (id) => {
   const options = {
