@@ -8,8 +8,8 @@ import removeFoodFromMenu from './removeFoodFromMenu';
 
 const RemoveFoodConfirmComponent = ({ tableRecord: { key } }) => {
   const profile = useSelector(profileSelector);
-
   const firebase = useFirebase();
+
   return (
     <Popconfirm
       title="Sure to remove food from menu?"
@@ -24,7 +24,7 @@ const RemoveFoodConfirmComponent = ({ tableRecord: { key } }) => {
 
 RemoveFoodConfirmComponent.propTypes = {
   tableRecord: PropTypes.shape({
-    key: PropTypes.string.isRequired,
+    key: PropTypes.number.isRequired,
   }).isRequired,
 };
 
