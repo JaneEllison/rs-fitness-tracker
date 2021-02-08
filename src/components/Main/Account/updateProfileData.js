@@ -5,6 +5,7 @@ const updateProfileData = (paramName, newValue, firebase) => {
 export const updateUserPhysicsData = (paramName, newValue, firebase) => {
   firebase.updateProfile({ userPhysics: { [paramName]: newValue } });
 };
+
 export const updateAllPhysicsData = (newValues, firebase) => {
   firebase.updateProfile({
     userPhysics: {
@@ -12,6 +13,7 @@ export const updateAllPhysicsData = (newValues, firebase) => {
     },
   });
 };
+
 export const updateUserGoalsData = (newValues, firebase) => {
   firebase.updateProfile({
     userGoals: {
@@ -19,6 +21,7 @@ export const updateUserGoalsData = (newValues, firebase) => {
     },
   });
 };
+
 export const updateUserHistoryData = (newValue, firebase, userHistory) => {
   if (userHistory.length > 0 && userHistory[userHistory.length - 1].date === newValue.date) {
     const newHistory = [...userHistory];

@@ -5,8 +5,23 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import signUpComponentLayout from '../../../config/signUpComponentLayout';
 import SignInWithGoogleComponent from './SignInWithGoogleComponent';
-import AuthErrorModalComponent from '../Account/AuthErrorModal/AuthErrorModalComponent';
+import AuthErrorModalComponent from './AuthErrorModal/AuthErrorModalComponent';
 import authErrorSelector from '../../../store/Selectors/authErrorSelector';
+import { PATHS } from '../../../constants/routeConstants';
+import authFormsConfig from '../../../config/authFormsConfig';
+import antdPropConstants from '../../../constants/antdPropConstants';
+
+const { USER_INFO_ROUTE } = PATHS;
+
+const {
+  AUTHENTIFICATION: {
+    SIGN_IN_COMPONENT: {
+      FORM_NAME,
+      BUTTON_TYPE,
+      BUTTON_HTML_TYPE,
+    },
+  },
+} = antdPropConstants;
 
 const SignUpComponent = () => {
   const [modalErrorMessage, setModalErrorMessage] = useState('');
@@ -36,7 +51,7 @@ const SignUpComponent = () => {
       },
     )
       .then(() => {
-        history.push('/account');
+        history.push(USER_INFO_ROUTE);
       });
   };
 
@@ -49,77 +64,50 @@ const SignUpComponent = () => {
       />
       <Form
         {...layout}
-        name="basic"
+        name={FORM_NAME}
         initialValues={{
           remember: true,
         }}
         onFinish={createUser}
       >
-        <Form.Item
-          label="E-mail"
-          name="email"
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Username"
-          name="displayName"
-          rules={[
-            {
-              required: true,
-              message: 'Please enter your username!',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          name="confirm"
-          label="Confirm Password"
-          dependencies={['password']}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: 'Please confirm your password!',
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('The two passwords that you entered do not match!'));
-              },
-            }),
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
+        {Object.values(authFormsConfig).map((obj, index) => {
+          const keyProp = `signUpForm-${index}`;
 
+          const {
+            name,
+            label,
+            dependencies,
+            rules,
+          } = obj;
+
+          if (obj.name !== 'confirm') {
+            return (
+              <Form.Item
+                key={keyProp}
+                label={label}
+                name={name}
+                rules={rules}
+              >
+                {name === 'password' ? <Input.Password /> : <Input /> }
+              </Form.Item>
+            );
+          }
+
+          return (
+            <Form.Item
+              key={keyProp}
+              label={label}
+              name={name}
+              dependencies={[...dependencies]}
+              rules={rules}
+              hasFeedback
+            >
+              <Input.Password />
+            </Form.Item>
+          );
+        })}
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type={BUTTON_TYPE} htmlType={BUTTON_HTML_TYPE}>
             Sign Up
           </Button>
         </Form.Item>

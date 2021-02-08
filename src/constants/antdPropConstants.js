@@ -48,6 +48,35 @@ const antdPropConstants = {
     },
   },
 
+  ACCOUNT_COMPONENT: {
+    MENU: {
+      MODE: 'inline',
+      THEME: 'light',
+    },
+
+    PROFILE_INFO: {
+      TITLE: 'User info',
+      COLUMN: 1,
+    },
+  },
+
+  AUTHENTIFICATION: {
+    ERROR_MODAL: {
+      TITLE: 'Authentification failed!',
+    },
+
+    SIGN_IN_COMPONENT: {
+      FORM_NAME: 'basic',
+      BUTTON_TYPE: 'primary',
+      BUTTON_HTML_TYPE: 'submit',
+    },
+
+    SIGN_UP_COMPONENT: {
+      FORM_NAME: 'basic',
+      BUTTON_TYPE: 'primary',
+      BUTTON_HTML_TYPE: 'submit',
+    },
+  },
 };
 
 export default antdPropConstants;

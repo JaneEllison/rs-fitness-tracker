@@ -4,6 +4,33 @@ import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 import signUpComponentLayout from '../../../config/signUpComponentLayout';
 import SignInWithGoogleComponent from './SignInWithGoogleComponent';
+import { PATHS } from '../../../constants/routeConstants';
+import authFormsConfig from '../../../config/authFormsConfig';
+import authentificationConstants from '../../../constants/authentificationConstants';
+import antdPropConstants from '../../../constants/antdPropConstants';
+
+const { USER_INFO_ROUTE } = PATHS;
+
+const {
+  EMAIL,
+  PASSWORD,
+} = authFormsConfig;
+
+const {
+  AUTHENTIFICATION: {
+    SIGN_IN_COMPONENT: {
+      FORM_NAME,
+      BUTTON_TYPE,
+      BUTTON_HTML_TYPE,
+    },
+  },
+} = antdPropConstants;
+
+const {
+  SIGN_IN: {
+    NO_USER_MESSAGE,
+  },
+} = authentificationConstants;
 
 const SignInComponent = () => {
   const { layout, tailLayout } = signUpComponentLayout;
@@ -17,9 +44,9 @@ const SignInComponent = () => {
         email, password,
       },
     ).then(
-      history.push('/account'),
+      history.push(USER_INFO_ROUTE),
     ).catch(() => {
-      alert('There is no user with such credentials');
+      alert(NO_USER_MESSAGE);
     });
   };
 
@@ -27,42 +54,31 @@ const SignInComponent = () => {
     <div>
       <Form
         {...layout}
-        name="basic"
+        name={FORM_NAME}
         initialValues={{
           remember: true,
         }}
         onFinish={authenticateUser}
       >
-        <Form.Item
-          label="E-mail"
-          name="email"
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
+        {[EMAIL, PASSWORD].map(({
+          label,
+          name,
+          rules,
+        }, index) => {
+          const keyProp = `signUpForm-${index}`;
+          return (
+            <Form.Item
+              key={keyProp}
+              label={label}
+              name={name}
+              rules={rules}
+            >
+              {name === 'password' ? <Input.Password /> : <Input /> }
+            </Form.Item>
+          );
+        })}
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type={BUTTON_TYPE} htmlType={BUTTON_HTML_TYPE}>
             Sign In
           </Button>
         </Form.Item>
