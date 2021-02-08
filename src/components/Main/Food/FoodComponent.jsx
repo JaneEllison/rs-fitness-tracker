@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Row, Col } from 'antd';
+import { Row, Col, Result } from 'antd';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { NavLink } from 'react-router-dom';
 import foodSelector from '../../../store/Selectors/foodSelector';
@@ -46,9 +46,10 @@ const FoodComponent = () => {
         {
             isEmpty(profile)
             && (
-            <NavLink to="/signin">
-              You have to register or log in to manage your food table
-            </NavLink>
+              <Result
+                status="403"
+                extra={<NavLink to="/signin">You have to register or log in to manage your food table</NavLink>}
+              />
             )
           }
         {

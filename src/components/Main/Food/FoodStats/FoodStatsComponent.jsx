@@ -10,8 +10,11 @@ import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 import FoodStatCardComponent from './FoodStatCard/FoodStatCardComponent';
 import { foodPhotoSelector } from '../../../../store/Selectors/foodSelector';
 import FoodToReachGoalComponent from '../FoodToReachGoal/FoodToReachGoalComponent';
+import authSelector from '../../../../store/Selectors/authSelector';
 
 const FoodStatsComponent = ({ foodData, intakeWeight }) => {
+  const auth = useSelector(authSelector);
+  const { isLoaded, isEmpty } = auth;
   const photo = useSelector(foodPhotoSelector);
   const {
     foodStatsTypes: {
@@ -81,11 +84,17 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
           lg={{ span: 8 }}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <FoodToReachGoalComponent
-            intakeCalories={1400}
-            foodData={dataForIntake}
-            foodName={food_name}
-          />
+          {
+            isLoaded && !isEmpty
+              ? (
+                <FoodToReachGoalComponent
+                  intakeCalories={1400}
+                  foodData={dataForIntake}
+                  foodName={food_name}
+                />
+              )
+              : null
+          }
         </Col>
       </Row>
     )
