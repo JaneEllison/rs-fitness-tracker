@@ -5,19 +5,21 @@ import { useHistory } from 'react-router-dom';
 import signUpComponentLayout from '../../../config/signUpComponentLayout';
 import SignInWithGoogleComponent from './SignInWithGoogleComponent';
 import { PATHS } from '../../../constants/routeConstants';
+import authFormsConfig from '../../../config/authFormsConfig';
 import authentificationConstants from '../../../constants/authentificationConstants';
 import antdPropConstants from '../../../constants/antdPropConstants';
 
 const { USER_INFO_ROUTE } = PATHS;
 
 const {
+  EMAIL,
+  PASSWORD,
+} = authFormsConfig;
+
+const {
   AUTHENTIFICATION: {
     SIGN_IN_COMPONENT: {
       FORM_NAME,
-      FORM_ITEM_EMAIL_LABEL,
-      FORM_ITEM_EMAIL_NAME,
-      FORM_ITEM_PASSWORD_LABEL,
-      FORM_ITEM_PASSWORD_NAME,
       BUTTON_TYPE,
       BUTTON_HTML_TYPE,
     },
@@ -58,34 +60,23 @@ const SignInComponent = () => {
         }}
         onFinish={authenticateUser}
       >
-        <Form.Item
-          label={FORM_ITEM_EMAIL_LABEL}
-          name={FORM_ITEM_EMAIL_NAME}
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label={FORM_ITEM_PASSWORD_LABEL}
-          name={FORM_ITEM_PASSWORD_NAME}
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
+        {[EMAIL, PASSWORD].map(({
+          label,
+          name,
+          rules,
+        }, index) => {
+          const keyProp = `signUpForm-${index}`;
+          return (
+            <Form.Item
+              key={keyProp}
+              label={label}
+              name={name}
+              rules={rules}
+            >
+              {name === 'password' ? <Input.Password /> : <Input /> }
+            </Form.Item>
+          );
+        })}
         <Form.Item {...tailLayout}>
           <Button type={BUTTON_TYPE} htmlType={BUTTON_HTML_TYPE}>
             Sign In
