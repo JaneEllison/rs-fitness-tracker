@@ -61,7 +61,6 @@ export default {
     MIN_HEIGHT: 100,
     DATE_OF_BIRTH_LABEL: 'Date of birth:',
     GENDER_LABEL: 'Gender:',
-
     BUTTON_TEXT: 'Update stats',
   },
 };
