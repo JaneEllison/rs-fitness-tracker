@@ -77,6 +77,19 @@ const antdPropConstants = {
       BUTTON_HTML_TYPE: 'submit',
     },
   },
+
+  GOAL: {
+    USER_GOAL: {
+      BUTTON_TYPE: 'primary',
+      SELECT_OPTION_FILTER_PROP: 'children',
+      DESCRIPTION_JUSTIFY: 'end',
+    },
+
+    USER_PHYSICS: {
+      RADIO_STYLE: 'button',
+      BUTTON_TYPE: 'primary',
+    },
+  },
 };
 
 export default antdPropConstants;

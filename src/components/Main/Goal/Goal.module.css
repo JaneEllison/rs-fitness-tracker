@@ -1,0 +1,33 @@
+.goalInputField {
+  width: 100%;
+}
+
+.userGoalHeading {
+  margin: 0 0 3px;
+}
+
+.userPhysicsField {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.userGoalField {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.userNewGoalCaloriesField {
+  margin: 40px 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.userGoalButton {
+  margin: 10px 0 0;
+}
+
+.modalGoalError {
+  color: red;
+}
