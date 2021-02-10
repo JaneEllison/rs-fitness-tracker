@@ -6,9 +6,11 @@ import {
   Radio,
   Select,
   Button,
+  Divider,
 } from 'antd';
 import { useFirebase } from 'react-redux-firebase';
 import showGoalModal from './showGoalModal';
+import showRemoveGoalModal from './showRemoveGoalModal';
 import { getGoalCalories } from '../../../../utils/getGoalCalories';
 import {
   ACTIVITIES,
@@ -28,8 +30,11 @@ const {
   GOAL: {
     GOAL_HEADING,
     CURRENT_CALORIES_LABEL,
+    WEIGHT_PLAN_LABEL,
     INTENSITY_LABEL,
     ACTIVITY_LABEL,
+    NEW_GOAL_HEADING,
+    BUTTON_TEXT,
   },
 } = goalComponentConstants;
 
@@ -37,6 +42,8 @@ const {
   GOAL: {
     USER_GOAL: {
       BUTTON_TYPE,
+      SELECT_OPTION_FILTER_PROP,
+      DESCRIPTION_JUSTIFY,
     },
   },
 } = antdPropConstants;
@@ -90,27 +97,45 @@ function UserGoalComponent({
         <h3>{GOAL_HEADING}</h3>
       </Row>
       <Row className={style.userGoalField}>
-        <Col span={12}>
+        <Col span={8}>
           {CURRENT_CALORIES_LABEL}
         </Col>
-        <Col>
+        <Col span={16}>
           {SHOW_CALORIES(userGoals.goalCalories)}
         </Col>
       </Row>
-      <Row className={style.userGoalField}>
-        <Radio.Group
-          className={style.goalRadioButtons}
-          options={GOALS}
-          value={weightPlan}
-          onChange={(event) => { setWeightPlan(event.target.value); }}
-        />
+      <Row>
+        <Button
+          danger
+          disabled={!userGoals.goalCalories}
+          onClick={() => { showRemoveGoalModal({ firebase }); }}
+        >
+          Clear current goal
+        </Button>
       </Row>
+      <Divider />
       <Row className={style.userGoalField}>
-        <Col span={12}>
+        <Col span={8}>
+          {WEIGHT_PLAN_LABEL}
+        </Col>
+        <Col span={16}>
+          <Radio.Group
+            className={style.goalRadioButtons}
+            options={GOALS}
+            value={weightPlan}
+            onChange={(event) => { setWeightPlan(event.target.value); }}
+          />
+        </Col>
+      </Row>
+      <Divider />
+      <Row className={style.userGoalField}>
+        <Col span={8}>
           {INTENSITY_LABEL}
         </Col>
-        <Col span={12}>
+        <Col span={16}>
           <Select
+            showSearch
+            optionFilterProp={SELECT_OPTION_FILTER_PROP}
             disabled={weightPlan === GOALS[0].value}
             value={intensityLevel}
             onChange={(value) => {
@@ -130,13 +155,16 @@ function UserGoalComponent({
           </Select>
         </Col>
       </Row>
-      <Row>{intensityDescription}</Row>
+      <Row justify={DESCRIPTION_JUSTIFY}>{intensityDescription}</Row>
+      <Divider />
       <Row className={style.userGoalField}>
-        <Col span={12}>
+        <Col span={8}>
           {ACTIVITY_LABEL}
         </Col>
-        <Col span={12}>
+        <Col span={16}>
           <Select
+            showSearch
+            optionFilterProp={SELECT_OPTION_FILTER_PROP}
             value={activityLevel}
             onChange={(value) => {
               setActivityLevel(value);
@@ -155,14 +183,13 @@ function UserGoalComponent({
           </Select>
         </Col>
       </Row>
-      <Row>
-        {activityDescription}
-      </Row>
+      <Row justify={DESCRIPTION_JUSTIFY}>{activityDescription}</Row>
+      <Divider />
       <Row className={style.userNewGoalCaloriesField}>
-        <Col span={12}>
-          <h3>New goal calories:</h3>
+        <Col span={8}>
+          <h3 className={style.userGoalHeading}>{NEW_GOAL_HEADING}</h3>
         </Col>
-        <Col>
+        <Col span={16}>
           {SHOW_CALORIES(goalCalories)}
         </Col>
       </Row>
@@ -180,8 +207,9 @@ function UserGoalComponent({
             });
           }}
           disabled={!goalCalories}
+          className={style.userGoalButton}
         >
-          Set new goal
+          {BUTTON_TEXT}
         </Button>
       </Row>
     </Col>

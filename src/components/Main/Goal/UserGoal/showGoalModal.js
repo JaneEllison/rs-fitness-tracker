@@ -5,6 +5,7 @@ import { isLessThanSafe } from '../../../../utils/getGoalCalories';
 import { MINIMUM_CALORIES } from '../../../../constants/weightChangeConstants';
 import goalComponentConstants from '../../../../constants/goalComponentConstants';
 import style from '../Goal.module.css';
+import '../Goal.antd.css';
 
 const {
   GOAL: {

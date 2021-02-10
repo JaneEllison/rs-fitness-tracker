@@ -26,11 +26,42 @@ export default {
 
       CONFIRM_TITLE: 'Confirm new goal calories',
       CONFIRM_CONSTRUCTOR: getConfirmString,
+
+      REMOVE_TITLE: 'Clear current goal?',
+      REMOVE_TEXT: 'Are you sure you want to remove the current caloric goal?',
     },
 
     GOAL_HEADING: 'Goal settings',
-    CURRENT_CALORIES_LABEL: 'Current goal calories:',
-    INTENSITY_LABEL: 'How intensely:',
+    CURRENT_CALORIES_LABEL: 'Current goal calories: ',
+    WEIGHT_PLAN_LABEL: 'I want to: ',
+    INTENSITY_LABEL: 'How intensely: ',
     ACTIVITY_LABEL: 'My activity level:',
+    NEW_GOAL_HEADING: 'New goal calories: ',
+    BUTTON_TEXT: 'Set new goal',
+  },
+
+  PHYSICS: {
+    MODAL: {
+      TITLE: 'Confirm new user parameters',
+      WEIGHT_LABEL: 'Weight: ',
+      GET_WEIGHT_STRING: (weight) => `${weight} kg`,
+      HEIGHT_LABEL: 'Height: ',
+      GET_HEIGHT_STRING: (height) => `${height} cm`,
+      DATE_OF_BIRTH_LABEL: 'Date of birth: ',
+      DATE_OF_BIRTH_LOCALE: 'MMMM Do YYYY',
+      AGE_LABEL: 'Age: ',
+      GET_AGE_STRING: (age) => `${age} y.o.`,
+      GENDER_LABEL: 'Gender: ',
+    },
+
+    PHYSICS_HEADING: 'Your physical parameters:',
+    WEIGHT_LABEL: 'Weight, kg:',
+    MIN_WEIGHT: 25,
+    HEIGHT_LABEL: 'Height, cm:',
+    MIN_HEIGHT: 100,
+    DATE_OF_BIRTH_LABEL: 'Date of birth:',
+    GENDER_LABEL: 'Gender:',
+
+    BUTTON_TEXT: 'Update stats',
   },
 };
