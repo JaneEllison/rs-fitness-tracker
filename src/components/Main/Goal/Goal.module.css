@@ -14,6 +14,17 @@
   align-items: center;
 }
 
+.userNewGoalCaloriesField {
+  margin: 40px 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+
+.modalGoalError {
+  color: red;
+}
+
 .goalRadioButtons .ant-radio-wrapper {
   display: block;
 }

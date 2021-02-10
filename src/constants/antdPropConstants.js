@@ -77,6 +77,12 @@ const antdPropConstants = {
       BUTTON_HTML_TYPE: 'submit',
     },
   },
+
+  GOAL: {
+    USER_GOAL: {
+      BUTTON_TYPE: 'primary',
+    },
+  },
 };
 
 export default antdPropConstants;

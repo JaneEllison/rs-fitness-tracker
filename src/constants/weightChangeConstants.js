@@ -13,10 +13,16 @@ const SAFE_BMI = {
   MAX: 24.9,
 };
 
+const MINIMUM_CALORIES = {
+  male: 1500,
+  female: 1200,
+};
+
 const CALORIES_IN_LB = 3500;
 
 export {
   ACTIVITY_FACTORS,
   SAFE_BMI,
   CALORIES_IN_LB,
+  MINIMUM_CALORIES,
 };

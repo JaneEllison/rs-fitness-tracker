@@ -11,7 +11,7 @@ import {
 } from 'antd';
 import moment from 'moment';
 import { useFirebase } from 'react-redux-firebase';
-import style from '../GoalComponent.module.css';
+import style from '../Goal.module.css';
 import getAgeFromDateString from '../../../../utils/getAgeFromDateString';
 import { updateAllPhysicsData, updateUserHistoryData } from '../../Account/updateProfileData';
 
