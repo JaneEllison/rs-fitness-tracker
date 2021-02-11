@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Input, Button } from 'antd';
+import exerciseComponentConstants from '../../../../../constants/exerciseComponentConstants';
 import style from '../ExerciseSchedule.module.css';
+
+const {
+  EXERCISE_UPDATE_COMPONENT: {
+    SUBMIT_ID_MULTIPLIER,
+    INPUT_TYPE,
+    INPUT_NAME,
+    INPUT_PLACEHOLDER,
+    BUTTON_TYPE,
+    BUTTON_TEXT,
+  },
+} = exerciseComponentConstants;
 
 const ExerciseUpdateComponent = ({ edit, onSubmit }) => {
   const [input, setInput] = useState(edit.value);
@@ -15,7 +27,7 @@ const ExerciseUpdateComponent = ({ edit, onSubmit }) => {
     if (input.trim() === '') return;
 
     onSubmit({
-      id: Math.floor(Math.random() * 10000),
+      id: Math.floor(Math.random() * SUBMIT_ID_MULTIPLIER),
       text: input,
       isComplete: false,
     });
@@ -32,18 +44,18 @@ const ExerciseUpdateComponent = ({ edit, onSubmit }) => {
       <Input
         className={style.input_update}
         ref={myRef}
-        type="text"
-        placeholder="Update your exercise"
+        type={INPUT_TYPE}
+        placeholder={INPUT_PLACEHOLDER}
         value={input}
-        name="text"
+        name={INPUT_NAME}
         onChange={handleChange}
       />
       <Button
         onClick={submitExerciseUpdate}
-        type="primary"
+        type={BUTTON_TYPE}
         block
       >
-        UPDATE
+        {BUTTON_TEXT}
       </Button>
     </form>
   );

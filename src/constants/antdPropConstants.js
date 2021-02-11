@@ -90,6 +90,49 @@ const antdPropConstants = {
       BUTTON_TYPE: 'primary',
     },
   },
+
+  TIME: {
+    STOPWATCH: {
+      ROW_ALIGN: 'bottom',
+      ROW_JUSTIFY: 'center',
+      BUTTONS_ALIGN: 'center',
+
+      BUTTONS_COMPONENT: {
+        ROW_JUSTIFY: 'center',
+        AUDIO_ID: 'audioPlayerStopwatch',
+        AUDIO_PRELOAD: 'metadata',
+        AUDIO_TYPE: 'audio/ogg',
+
+        PAUSE_TOOLTIP_TITLE: 'Pause',
+        START_TOOLTIP_TITLE: 'Start',
+        STOP_TOOLTIP_TITLE: 'Stop',
+        SOUND_ON_TOOLTIP_TITLE: 'Sound on',
+        SOUND_OFF_TOOLTIP_TITLE: 'Sound off',
+        BUTTON_TYPE: 'primary',
+        BUTTON_SHAPE: 'circle',
+      },
+
+      COUNT_COMPONENT: {
+        DIV_CLASS_NAME: 'wrapper',
+        ROW_JUSTIFY: 'center',
+        ROW_ALIGN: 'middle',
+        SVG_CLASS_NAME: 'spinerIcon',
+        SVG_VIEWBOX: '0 0 500 500',
+        CIRCLE_CX: '250',
+        CIRCLE_CY: '250',
+        CIRCLE_R: '100',
+        CIRCLE_CLASS_NAME: 'spinner-track',
+        CIRCLE_CLASS_NAME_RUNNING: 'spinner',
+      },
+
+      LIST_COMPONENT: {
+        ROW_JUSTIFY: 'center',
+        SPACE_DIRECTION: 'vertical',
+        CARD_TITLE: 'Time',
+        CARD_SIZE: 'small',
+      },
+    },
+  },
 };
 
 export default antdPropConstants;

@@ -28,7 +28,6 @@ const makeQueryToSearchFood = async (query = '') => {
     .then((obj) => obj.data)
     .catch((err) => {
       console.log(err);
-      return {};
     });
 };
 

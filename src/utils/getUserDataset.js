@@ -13,6 +13,10 @@ const {
   CALORIES_WITH_GOAL,
 } = VALUES;
 
+const setBoundary = (arr, opt) => (opt === 'min'
+  ? Math.round(Math.min(...arr) * 0.9)
+  : Math.round(Math.max(...arr) * 1.1));
+
 const userDatasetCreator = {
   [WEIGHT]: (dates, weight) => ({
     data: {
@@ -35,6 +39,10 @@ const userDatasetCreator = {
         yAxes: [
           {
             ...AXES.KILOGRAMS,
+            ticks: {
+              min: setBoundary(weight, 'min'),
+              max: setBoundary(weight, 'max'),
+            },
           },
         ],
       },
@@ -67,10 +75,18 @@ const userDatasetCreator = {
           {
             ...AXES.KILOGRAMS,
             position: POSITIONS.LEFT,
+            ticks: {
+              min: setBoundary(weight, 'min'),
+              max: setBoundary(weight, 'max'),
+            },
           },
           {
             ...AXES.CALORIES,
             position: POSITIONS.RIGHT,
+            ticks: {
+              min: setBoundary(calories, 'min'),
+              max: setBoundary(calories, 'max'),
+            },
           },
         ],
       },
@@ -98,6 +114,10 @@ const userDatasetCreator = {
         yAxes: [
           {
             ...AXES.CALORIES,
+            ticks: {
+              min: setBoundary(calories, 'min'),
+              max: setBoundary(calories, 'max'),
+            },
           },
         ],
       },
@@ -129,6 +149,10 @@ const userDatasetCreator = {
         yAxes: [
           {
             ...AXES.CALORIES,
+            ticks: {
+              min: setBoundary(calories, 'min'),
+              max: setBoundary(calories, 'max'),
+            },
           },
         ],
       },

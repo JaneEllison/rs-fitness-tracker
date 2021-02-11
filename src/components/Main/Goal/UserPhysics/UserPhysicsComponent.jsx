@@ -79,7 +79,6 @@ function UserPhysicsComponent({
       <Row className={style.userPhysicsField}>
         <Col span={8}>
           {HEIGHT_LABEL}
-          :
         </Col>
         <Col span={16}>
           <InputNumber
@@ -104,10 +103,10 @@ function UserPhysicsComponent({
         </Col>
       </Row>
       <Row className={style.userPhysicsField}>
-        <Col span={12}>
+        <Col span={8}>
           {GENDER_LABEL}
         </Col>
-        <Col span={12}>
+        <Col span={16}>
           <Radio.Group
             defaultValue={userSex}
             onChange={(event) => setUserSex(event.target.value)}

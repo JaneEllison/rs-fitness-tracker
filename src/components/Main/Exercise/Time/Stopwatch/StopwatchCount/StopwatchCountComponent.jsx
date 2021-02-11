@@ -3,6 +3,26 @@ import PropTypes from 'prop-types';
 import { Row, Typography } from 'antd';
 import './CountSpiner.css';
 import style from '../../Time.module.css';
+import antdPropConstants from '../../../../../../constants/antdPropConstants';
+
+const {
+  TIME: {
+    STOPWATCH: {
+      COUNT_COMPONENT: {
+        DIV_CLASS_NAME,
+        ROW_JUSTIFY,
+        ROW_ALIGN,
+        SVG_CLASS_NAME,
+        SVG_VIEWBOX,
+        CIRCLE_CX,
+        CIRCLE_CY,
+        CIRCLE_R,
+        CIRCLE_CLASS_NAME,
+        CIRCLE_CLASS_NAME_RUNNING,
+      },
+    },
+  },
+} = antdPropConstants;
 
 const { Title } = Typography;
 const formatTime = (time) => `${(time < 10 ? '0' : '')}${time}`;
@@ -26,12 +46,30 @@ const StopwatchCountComponent = ({
   const seconds = Math.floor(stopwatchSeconds % 60);
 
   return (
-    <div className="wrapper">
-      <Row justify="center" align="middle" className={style.stopwatchCount}>
-        <svg className="spinerIcon" viewBox="0 0 500 500">
-          <circle cx="250" cy="250" r="100" className="spinner-track" />
+    <div className={DIV_CLASS_NAME}>
+      <Row
+        justify={ROW_JUSTIFY}
+        align={ROW_ALIGN}
+        className={style.stopwatchCount}
+      >
+        <svg className={SVG_CLASS_NAME} viewBox={SVG_VIEWBOX}>
+          <circle
+            cx={CIRCLE_CX}
+            cy={CIRCLE_CY}
+            r={CIRCLE_R}
+            className={CIRCLE_CLASS_NAME}
+          />
           {
-            (isRunningStopwatch) ? <circle cx="250" cy="250" r="100" className="spinner" /> : ''
+            (isRunningStopwatch)
+              ? (
+                <circle
+                  cx={CIRCLE_CX}
+                  cy={CIRCLE_CY}
+                  r={CIRCLE_R}
+                  className={CIRCLE_CLASS_NAME_RUNNING}
+                />
+              )
+              : ''
           }
         </svg>
         <Row>

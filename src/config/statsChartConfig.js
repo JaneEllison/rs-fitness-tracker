@@ -16,11 +16,6 @@ const AXES = {
       display: true,
       labelString: 'Kilograms',
     },
-    ticks: {
-      min: 0,
-      suggestedMax: 45,
-      padding: 10,
-    },
   },
 
   CALORIES: {
@@ -29,11 +24,6 @@ const AXES = {
     scaleLabel: {
       display: true,
       labelString: 'Calories',
-    },
-    ticks: {
-      min: 0,
-      suggestedMax: 1200,
-      padding: 10,
     },
   },
 

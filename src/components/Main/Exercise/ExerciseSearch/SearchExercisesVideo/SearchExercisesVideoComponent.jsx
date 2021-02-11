@@ -3,6 +3,20 @@ import PropTypes from 'prop-types';
 import { List, Drawer, Button } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import style from '../ExerciseSearch.module.css';
+import exerciseComponentConstants from '../../../../../constants/exerciseComponentConstants';
+
+const {
+  SEARCH_EXERCISES_VIDEO_COMPONENT: {
+    BUTTON_CLASS_NAME,
+    BUTTON_TYPE,
+    BUTTON_TEXT,
+    DRAWER_PLACEMENT,
+    LIST_ITEM_LAYOUT,
+    LIST_SIZE,
+    IMG_ALT,
+    IMG_WIDTH,
+  },
+} = exerciseComponentConstants;
 
 const selectVideo = (obj, cb) => {
   cb(obj.videoId);
@@ -21,19 +35,23 @@ const SearchExercisesVideo = ({ data, onVideoSelected }) => {
 
   const constructVideo = (videosData, callback) => (
     <div>
-      <Button className="search-btn_list" type="primary" onClick={showDrawer}>
-        VIDEO LIST
+      <Button
+        className={BUTTON_CLASS_NAME}
+        type={BUTTON_TYPE}
+        onClick={showDrawer}
+      >
+        {BUTTON_TEXT}
       </Button>
       <Drawer
         closeIcon={<CloseCircleOutlined />}
-        placement="right"
+        placement={DRAWER_PLACEMENT}
         onClose={onClose}
         visible={visible}
       >
         <List
           className={style.video_list}
-          itemLayout="horizontal"
-          size="small"
+          itemLayout={LIST_ITEM_LAYOUT}
+          size={LIST_SIZE}
           onClick={onClose}
           dataSource={videosData}
           renderItem={({ snippet, id }, index) => (
@@ -42,8 +60,8 @@ const SearchExercisesVideo = ({ data, onVideoSelected }) => {
               key={index}
               extra={(
                 <img
-                  width={155}
-                  alt="logo"
+                  width={IMG_WIDTH}
+                  alt={IMG_ALT}
                   src={snippet.thumbnails.default.url}
                 />
                 )}
@@ -61,7 +79,6 @@ const SearchExercisesVideo = ({ data, onVideoSelected }) => {
 };
 
 SearchExercisesVideo.propTypes = {
-  /* eslint-disable react/forbid-prop-types */
   data: PropTypes.array.isRequired,
   onVideoSelected: PropTypes.func.isRequired,
 };

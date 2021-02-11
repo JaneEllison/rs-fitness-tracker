@@ -2,6 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import style from '../ExerciseSearch.module.css';
+import exerciseComponentConstants from '../../../../../constants/exerciseComponentConstants';
+
+const {
+  SEARCH_EXERCISES_INPUT_COMPONENT: {
+    SEARCH_TYPE,
+    SEARCH_PLACEHOLDER,
+    SEARCH_ENTER_BUTTON,
+  },
+} = exerciseComponentConstants;
 
 const SearchExercisesInput = ({ onSearch }) => {
   const [input, setInput] = useState('');
@@ -21,11 +30,11 @@ const SearchExercisesInput = ({ onSearch }) => {
   return (
     <div className={style.input}>
       <Search
-        type="text"
+        type={SEARCH_TYPE}
         value={input}
-        placeholder="Search exercise"
+        placeholder={SEARCH_PLACEHOLDER}
         onChange={handleChange}
-        enterButton="SEARCH"
+        enterButton={SEARCH_ENTER_BUTTON}
         onSearch={handleSubmitKeyword}
       />
     </div>
