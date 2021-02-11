@@ -10,6 +10,7 @@
  - [JaneEllison](https://github.com/JaneEllison)
  
 [Доска в Trello](https://trello.com/b/2A5Wm9jc/fitness-tracker)
+
 [RACI-матрица](https://docs.google.com/spreadsheets/d/1w4iYdxD2160E_al-QMV02Rw21-J-xGtEg45CTWei4WM/edit?usp=sharing)
  
 ## Использованные технологии
