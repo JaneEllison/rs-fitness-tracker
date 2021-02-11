@@ -4,6 +4,18 @@ import { Row, Col } from 'antd';
 import StopwatchCountComponent from './StopwatchCount/StopwatchCountComponent';
 import StopwatchButtonsComponent from './StopwatchButtons/StopwatchButtonsComponent';
 import StopwatchListComponent from './StopwatchList/StopwatchListComponent';
+import antdPropConstants from '../../../../../constants/antdPropConstants';
+import style from '../Time.module.css';
+
+const {
+  TIME: {
+    STOPWATCH: {
+      ROW_ALIGN,
+      ROW_JUSTIFY,
+      BUTTONS_ALIGN,
+    },
+  },
+} = antdPropConstants;
 
 const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) => {
   const [isRunningStopwatch, setIsRunningStopwatch] = useState(false);
@@ -30,7 +42,12 @@ const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) =
   };
 
   return (
-    <Row gutter={[0, 10]} align="bottom" justify="center" style={{ width: '80%' }}>
+    <Row
+      gutter={[0, 10]}
+      align={ROW_ALIGN}
+      justify={ROW_JUSTIFY}
+      className={style.stopwatchRow}
+    >
       <Col sm={{ span: 12 }} xs={{ span: 24 }}>
         <StopwatchListComponent
           memoryOfValues={memoryOfValues}
@@ -42,7 +59,7 @@ const StopwatchComponent = ({ currentTrack, setCurrentTrack, getRandomAudio }) =
           changeSeconds={changeSeconds}
           stopwatchSeconds={stopwatchSeconds}
         />
-        <Row align="center">
+        <Row align={BUTTONS_ALIGN}>
           <StopwatchButtonsComponent
             stopwatchSeconds={stopwatchSeconds}
             isRunningStopwatch={isRunningStopwatch}

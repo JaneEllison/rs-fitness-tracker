@@ -21,9 +21,18 @@
   padding-top: 10px;
 }
 
+.stopwatchCard {
+  width: 155px;
+  height: 160px;
+}
+
 .stopwatchValue {
   font-size: 12px;
   text-align: center;
+}
+
+.stopwatchRow {
+  width: 80%;
 }
 
 .stopwatchValue:last-child {

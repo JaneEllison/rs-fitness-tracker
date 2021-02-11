@@ -7,7 +7,17 @@ import { DeleteOutlined, FormOutlined, CheckCircleOutlined } from '@ant-design/i
 import dispatchChangeExerciseName from '../ExerciseActions/dispatchChangeExerciseName';
 import profileSelector from '../../../../../store/Selectors/profileSelector';
 import ExerciseUpdateComponent from './ExerciseUpdateComponent';
+import exerciseComponentConstants from '../../../../../constants/exerciseComponentConstants';
 import style from '../ExerciseSchedule.module.css';
+
+const {
+  EXERCISE_ACTION_COMPONENT: {
+    CARD_SIZE,
+    DELETE_ICON_CLASS_NAME,
+    COMPLETE_ICON_CLASS_NAME,
+    EDIT_ICON_CLASS_NAME,
+  },
+} = exerciseComponentConstants;
 
 function ExerciseActionComponent({
   exercises,
@@ -39,38 +49,36 @@ function ExerciseActionComponent({
     return <div />;
   }
 
-  return exercises.map((exercise, index) => {
+  return exercises.map(({ isComplete, id, title }, index) => {
     const keyProp = `exercise-${index}`;
     return (
       <div
-        className={exercise.isComplete ? style.complete : 'exercise-row'}
+        className={isComplete ? style.complete : null}
         key={keyProp}
       >
         <Card
-          size="small"
-          style={{
-            fontSize: 12,
-          }}
+          size={CARD_SIZE}
+          className={style.exerciseCard}
           actions={[
             <DeleteOutlined
-              onClick={() => removeExercise(exercise.id)}
-              className="delete-icon"
+              onClick={() => removeExercise(id)}
+              className={DELETE_ICON_CLASS_NAME}
             />,
             <CheckCircleOutlined
-              onClick={() => completeExercise(exercise.id)}
-              className="complete-icon"
+              onClick={() => completeExercise(id)}
+              className={COMPLETE_ICON_CLASS_NAME}
             />,
             <FormOutlined
-              onClick={() => setEdit({ id: exercise.id, value: exercise.title })}
-              className="edit-icon"
+              onClick={() => setEdit({ id, value: title })}
+              className={EDIT_ICON_CLASS_NAME}
             />,
           ]}
         >
           <span
             className={style.text}
-            onClick={() => completeExercise(exercise.id)}
+            onClick={() => completeExercise(id)}
           >
-            {exercise.title}
+            {title}
           </span>
         </Card>
       </div>

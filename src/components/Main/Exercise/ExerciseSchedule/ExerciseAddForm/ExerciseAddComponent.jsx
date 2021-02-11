@@ -11,26 +11,38 @@ import { useFirebase, isEmpty, isLoaded } from 'react-redux-firebase';
 import style from '../ExerciseSchedule.module.css';
 import profileSelector from '../../../../../store/Selectors/profileSelector';
 import addExercise from '../ExerciseActions/addExercise';
-import daysList from '../../../../../constants/daysList';
+import exerciseComponentConstants from '../../../../../constants/exerciseComponentConstants';
+
+const { Option } = Select;
+const { Search } = Input;
+
+const {
+  DAYS_LIST,
+  EXERCISE_ADD_COMPONENT: {
+    SEARCH_PLACEHOLDER,
+    SEARCH_BUTTON_TEXT,
+    SEARCH_TYPE,
+    SEARCH_NAME,
+  },
+} = exerciseComponentConstants;
 
 const ExerciseAddComponent = ({ selectedDay, setSelectedDay }) => {
   const firebase = useFirebase();
   const [input, setInput] = useState('');
   const profile = useSelector(profileSelector);
 
-  const currentSelectDay = selectedDay || daysList;
+  const currentSelectDay = selectedDay || DAYS_LIST;
 
   const myRef = React.createRef();
-
-  const { Option } = Select;
-  const { Search } = Input;
 
   const handleChange = (event) => {
     setInput(event.target.value);
   };
 
   const handleSubmitExercise = () => {
-    if (input.trim() === '') return;
+    if (input.trim() === '') {
+      return;
+    }
 
     addExercise({
       title: input.trim(),
@@ -57,7 +69,7 @@ const ExerciseAddComponent = ({ selectedDay, setSelectedDay }) => {
         value={currentSelectDay}
         onChange={currentDropdownDay}
       >
-        {daysList.map((day) => (
+        {DAYS_LIST.map((day) => (
           <Option value={day.name} key={day.id}>
             {day.name}
           </Option>
@@ -67,12 +79,12 @@ const ExerciseAddComponent = ({ selectedDay, setSelectedDay }) => {
         <Col className={style.add_form_content}>
           <Search
             ref={myRef}
-            type="text"
+            type={SEARCH_TYPE}
             value={input}
-            placeholder="Add exercise"
-            name="text"
+            placeholder={SEARCH_PLACEHOLDER}
+            name={SEARCH_NAME}
             onChange={handleChange}
-            enterButton="ADD"
+            enterButton={SEARCH_BUTTON_TEXT}
             onSearch={handleSubmitExercise}
           />
         </Col>
