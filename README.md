@@ -1,7 +1,5 @@
 # RS-fitness-tracker
 
-## О проекте
-
 Приложение для учёта потреблённых калорий, составления программы тренировок и отслеживания их продолжительности, а расчёта необходимого количества потребляемых калорий в зависимости от активности пользователя.
 
 ## Команда 
@@ -10,6 +8,9 @@
  - [Noch4nce](https://github.com/Noch4nce) 
  - [va-z](https://github.com/va-z)
  - [JaneEllison](https://github.com/JaneEllison)
+ 
+[Доска в Trello](https://trello.com/b/2A5Wm9jc/fitness-tracker)
+[RACI-матрица](https://docs.google.com/spreadsheets/d/1w4iYdxD2160E_al-QMV02Rw21-J-xGtEg45CTWei4WM/edit?usp=sharing)
  
 ## Использованные технологии
 
