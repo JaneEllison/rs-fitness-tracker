@@ -1,6 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import statsComponentConstants from '../../../../constants/statsComponentConstants';
 import style from '../StatsComponent.module.css';
+
+const {
+  GET_STRING,
+  AGE_HEADING,
+  AGE_UNIT,
+  GENDER_HEADING,
+  GENDER_UNIT,
+  HEIGHT_HEADING,
+  HEIGHT_UNIT,
+  WEIGHT_HEADING,
+  WEIGHT_UNIT,
+  GOAL_HEADING,
+  GOAL_UNIT,
+} = statsComponentConstants;
 
 function UserSummaryComponent({
   summary: {
@@ -14,30 +29,24 @@ function UserSummaryComponent({
   return (
     <ul className={style.statsUserSummaryComponent}>
       <li key="userSummaryAge">
-        <h3>Age:</h3>
-        <h3>
-          { age ? `${age} years` : 'not set' }
-        </h3>
+        <h3>{AGE_HEADING}</h3>
+        <h3>{GET_STRING(age, AGE_UNIT)}</h3>
       </li>
       <li key="userSummarySex">
-        <h3>Gender:</h3>
-        <h3>{ gender ? `${gender}` : 'not set' }</h3>
+        <h3>{GENDER_HEADING}</h3>
+        <h3>{GET_STRING(gender, GENDER_UNIT)}</h3>
       </li>
       <li key="userSummaryHeight">
-        <h3>Height:</h3>
-        <h3>
-          { height ? `${height} cm` : 'not set' }
-        </h3>
+        <h3>{HEIGHT_HEADING}</h3>
+        <h3>{GET_STRING(height, HEIGHT_UNIT)}</h3>
       </li>
       <li key="userSummaryWeight">
-        <h3>Weight:</h3>
-        <h3>
-          { weight ? `${weight} kg` : 'not set' }
-        </h3>
+        <h3>{WEIGHT_HEADING}</h3>
+        <h3>{GET_STRING(weight, WEIGHT_UNIT)}</h3>
       </li>
       <li key="userSummaryGoalCalories">
-        <h3>Goal calories:</h3>
-        <h3>{ goal ? `${goal} / day` : 'not set' }</h3>
+        <h3>{GOAL_HEADING}</h3>
+        <h3>{GET_STRING(goal, GOAL_UNIT)}</h3>
       </li>
     </ul>
   );
