@@ -89,7 +89,6 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
               ? (
                 <FoodToReachGoalComponent
                   intakeCalories={1400}
-                  foodData={dataForIntake}
                   foodName={food_name}
                 />
               )

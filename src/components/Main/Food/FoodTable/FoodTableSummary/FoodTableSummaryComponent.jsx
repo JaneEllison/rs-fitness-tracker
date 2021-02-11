@@ -10,13 +10,6 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
   const totalNutrients = useSelector(totalNutrientsSelector);
   const dispatch = useDispatch();
   const { classesLeft, classesRight } = getAdaptiveClassNames();
-
-  useEffect(() => {
-    if (foodMenu.length > 0) {
-      dispatch(calculateTotalNutrientsAC(foodMenu));
-    }
-  }, [foodMenu]);
-
   const {
     nf_calories: nfCalories,
     nf_protein: nfProtein,
@@ -25,7 +18,16 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
     weight,
   } = totalNutrients;
 
-  const summaryRow = [weight, nfCalories, nfProtein, nfTotalCarbohydrate, nfTotalFat];
+  let summaryRow = [weight, nfCalories, nfProtein, nfTotalCarbohydrate, nfTotalFat];
+  useEffect(() => {
+    if (foodMenu.length > 0) {
+      dispatch(calculateTotalNutrientsAC(foodMenu));
+    }
+    if (foodMenu.length === 0) {
+      summaryRow = [0, 0, 0, 0, 0];
+    }
+  }, [foodMenu]);
+
   return (
     <>
       <Table.Summary.Row>

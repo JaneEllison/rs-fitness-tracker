@@ -6,18 +6,30 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import style from './FoodToReachGoal.module.css';
 import profileSelector from '../../../../store/Selectors/profileSelector';
-import checkIfTodayCaloriesExceedingGoal from '../../../../utils/checkIfTodayCaloriesExceedingGoal';
+import checkIfTodayCaloriesExceedingGoal, { checkIfTodayCaloriesReachingGoal } from '../../../../utils/checkIfTodayCaloriesExceedingGoal';
 
-const FoodToReachGoalComponent = ({ foodName, foodData }) => {
+const FoodToReachGoalComponent = ({ foodName }) => {
   const profile = useSelector(profileSelector);
   const { Meta } = Card;
   const { goalCalories } = profile.userGoals;
   const totalCaloriesForToday = profile.userHistory[profile.userHistory.length - 1]
     .caloriesConsumed;
+  const isReachedGoal = checkIfTodayCaloriesReachingGoal(totalCaloriesForToday, goalCalories);
   const isExceedingGoal = checkIfTodayCaloriesExceedingGoal(totalCaloriesForToday, goalCalories);
-  const searchedFoodPercentage = Math.round(foodData.nf_calories / (goalCalories / 100));
+  let tooltipMessage = '';
   const currentPercentage = Math.round(totalCaloriesForToday / (goalCalories / 100));
-  const totalPercentage = searchedFoodPercentage + currentPercentage;
+
+  if (!isReachedGoal) {
+    tooltipMessage = `Consumed ${totalCaloriesForToday} of ${goalCalories} kCal. \n
+             Need to get ${(goalCalories - totalCaloriesForToday).toFixed(2)} kCal more`;
+  }
+  if (isReachedGoal && !isExceedingGoal) {
+    tooltipMessage = `Consumed ${totalCaloriesForToday} of ${goalCalories} kCal.`;
+  }
+  if (isExceedingGoal) {
+    tooltipMessage = `You are consuming too much calories! \n
+               ${totalCaloriesForToday} of ${goalCalories} kCal`;
+  }
 
   return (
     <Card
@@ -28,10 +40,7 @@ const FoodToReachGoalComponent = ({ foodName, foodData }) => {
       />
 
       <Tooltip
-        title={isExceedingGoal ? `You are consuming too much calories! \n
-               ${totalCaloriesForToday} of ${goalCalories} kCal`
-          : `Consumed ${totalCaloriesForToday} of ${goalCalories} kCal. \n
-             Need to get ${(goalCalories - totalCaloriesForToday).toFixed(2)} kCal more`}
+        title={tooltipMessage}
       >
         <Row
           className={style.circleBar}
@@ -43,7 +52,6 @@ const FoodToReachGoalComponent = ({ foodName, foodData }) => {
                 <Progress
                   type="dashboard"
                   percent={currentPercentage}
-                  success={{ percent: 1, strokeColor: 'white' }}
                   status="exception"
                   color="red"
                 />
@@ -51,12 +59,10 @@ const FoodToReachGoalComponent = ({ foodName, foodData }) => {
                 : (
                   <Progress
                     type="dashboard"
-                    success={{ percent: currentPercentage }}
-                    percent={totalPercentage}
+                    percent={currentPercentage}
                   />
                 )
             }
-
           </Col>
         </Row>
       </Tooltip>
@@ -66,9 +72,6 @@ const FoodToReachGoalComponent = ({ foodName, foodData }) => {
 
 FoodToReachGoalComponent.propTypes = {
   foodName: PropTypes.string.isRequired,
-  foodData: PropTypes.shape({
-    nf_calories: PropTypes.number.isRequired,
-  }).isRequired,
 };
 
 export default FoodToReachGoalComponent;
