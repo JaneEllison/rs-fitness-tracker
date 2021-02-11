@@ -12,6 +12,8 @@
 [Доска в Trello](https://trello.com/b/2A5Wm9jc/fitness-tracker)
 
 [RACI-матрица](https://docs.google.com/spreadsheets/d/1w4iYdxD2160E_al-QMV02Rw21-J-xGtEg45CTWei4WM/edit?usp=sharing)
+
+[Черновик в Figma](https://www.figma.com/file/HJ5G6t7GbGNYO3npXv0amk/Design?node-id=0%3A1)
  
 ## Использованные технологии
 
@@ -23,6 +25,7 @@
 - __Jest__ - библиотека для написания тестов.
 - __Eslint__ - линтер, применялся для контроля качества кода. Настройки: __eslint-airbnb-base__.
 - __Уarn__ - удобный менеджер пакетов, отличная альтернатива __npm__.
+- __Figma__ - графический редактор, в котором был создан черновой вариант UI.
 
 ## Консольные команды
 
