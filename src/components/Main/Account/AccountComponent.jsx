@@ -17,7 +17,7 @@ const AccountComponent = () => {
   const { avatarUrl } = profile;
 
   return isLoaded(profile) && !isEmpty(profile) ? (
-    <Row>
+    <Row gutter={[40, 0]}>
       <Col className={style.profile} span={16}>
         <ProfileInfoComponent />
         <UserPhysicsComponent

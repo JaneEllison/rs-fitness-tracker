@@ -1,50 +1,75 @@
 import React from 'react';
-import { Descriptions } from 'antd';
+import {
+  Col,
+  Form,
+  Input,
+  Button,
+} from 'antd';
 import { useSelector } from 'react-redux';
-import AccountInfoItemComponent from '../AccountInfoItem/AccountInfoItemComponent';
-import updateProfileData from '../updateProfileData';
+import { useFirebase } from 'react-redux-firebase';
+import showProfileInfoModal from './showProfileInfoModal';
 import profileFieldsLabels from '../../../../config/profileFieldsLabels';
 import profileSelector from '../../../../store/Selectors/profileSelector';
+import accountComponentConstants from '../../../../constants/accountComponentConstants';
 import antdPropConstants from '../../../../constants/antdPropConstants';
 import style from '../AccountComponent.module.css';
 
 const {
   ACCOUNT_COMPONENT: {
     PROFILE_INFO: {
-      TITLE,
-      COLUMN,
+      INPUT_LABEL_ALIGN,
+      BUTTON_TYPE,
+      BUTTON_HTML_TYPE,
     },
   },
 } = antdPropConstants;
 
+const {
+  PROFILE_INFO: {
+    BUTTON_TEXT,
+  },
+} = accountComponentConstants;
+
 const ProfileInfoComponent = () => {
-  const { authData } = profileFieldsLabels;
+  const firebase = useFirebase();
   const profile = useSelector(profileSelector);
+  const { authData } = profileFieldsLabels;
 
   return (
-    <Descriptions
-      title={TITLE}
-      column={COLUMN}
-      bordered
-      className={style.descriptions}
-    >
-      {
-        authData.map((item) => {
-          const { label, paramName } = item;
-          const info = profile[paramName];
+    <Col className={style.profileInfoWrapper}>
+      <Form
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={
+          authData.reduce((acc, { paramName }) => {
+            acc[paramName] = profile[paramName];
+            return acc;
+          }, {})
+        }
+        onFinish={(obj) => { showProfileInfoModal(obj, firebase); }}
+      >
+        {authData.map(({ label, paramName }, index) => {
+          const keyProp = `form${index}`;
           return (
-            <Descriptions.Item key={paramName} label={label}>
-              <AccountInfoItemComponent
-                label={label}
-                info={info}
-                paramName={paramName}
-                updateCallBack={updateProfileData}
-              />
-            </Descriptions.Item>
+            <Form.Item
+              key={keyProp}
+              label={`${label}: `}
+              name={paramName}
+              labelAlign={INPUT_LABEL_ALIGN}
+              className={style.accountInputField}
+            >
+              <Input />
+            </Form.Item>
           );
-        })
-      }
-    </Descriptions>
+        })}
+        <Button
+          type={BUTTON_TYPE}
+          htmlType={BUTTON_HTML_TYPE}
+        >
+          {BUTTON_TEXT}
+        </Button>
+      </Form>
+    </Col>
   );
 };
 

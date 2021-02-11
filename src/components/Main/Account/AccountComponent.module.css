@@ -1,3 +1,11 @@
+.accountInputField {
+  margin: 10px 0;
+}
+
+.profileInfoWrapper {
+  margin-bottom: 40px;
+}
+
 .descriptions {
   margin-bottom: 2rem;
   width: 26rem;
