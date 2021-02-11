@@ -31,14 +31,14 @@ const SecondTitleComponent = () => (
           className={[style.defaultPageText, style.defaultPageTextRight]}
         >
           Our app is an all-in-one solution for both fitness and dieting. It has a variety of
-          tracking tools for both your nutrition, weigth and whatever kind of exercise you
+          tracking tools for both your nutrition, weight and whatever kind of exercise you
           enjoy.
         </Title>
         <Button
           type="primary"
           size="large"
         >
-          <a target="_blank" rel="noreferrer" href="https://www.youtube.com/embed/MO10KOoQx5E">Watch wideo</a>
+          <a target="_blank" rel="noreferrer" href="https://www.youtube.com/embed/MO10KOoQx5E">Watch video</a>
         </Button>
       </Row>
     </Col>

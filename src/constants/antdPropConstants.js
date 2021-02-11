@@ -55,8 +55,9 @@ const antdPropConstants = {
     },
 
     PROFILE_INFO: {
-      TITLE: 'User info',
-      COLUMN: 1,
+      INPUT_LABEL_ALIGN: 'left',
+      BUTTON_TYPE: 'primary',
+      BUTTON_HTML_TYPE: 'submit',
     },
   },
 

@@ -2,6 +2,10 @@ const updateProfileData = (paramName, newValue, firebase) => {
   firebase.updateProfile({ [paramName]: newValue });
 };
 
+export const updateAuthData = (data, firebase) => {
+  firebase.updateProfile({ ...data });
+};
+
 export const updateUserPhysicsData = (paramName, newValue, firebase) => {
   firebase.updateProfile({ userPhysics: { [paramName]: newValue } });
 };

@@ -16,7 +16,7 @@ const FirstTitleComponent = () => (
     <Col md={{ span: 10, order: 0 }} xs={{ span: 17, order: 1 }}>
       <Row className={style.defaultPageButton}>
         <Title level={5} className={style.defaultPageText}>
-          Our application is a basic fitness tracker in wich you can compose your diet for the
+          Our application is a basic fitness tracker in which you can compose your diet for the
           whole day, set goals for weight loss, create a workout schedule for the week and keep
           statistics of your progress.
         </Title>
