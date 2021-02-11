@@ -18,13 +18,10 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
     weight,
   } = totalNutrients;
 
-  let summaryRow = [weight, nfCalories, nfProtein, nfTotalCarbohydrate, nfTotalFat];
+  const summaryRow = [weight, nfCalories, nfProtein, nfTotalCarbohydrate, nfTotalFat];
   useEffect(() => {
     if (foodMenu.length > 0) {
       dispatch(calculateTotalNutrientsAC(foodMenu));
-    }
-    if (foodMenu.length === 0) {
-      summaryRow = [0, 0, 0, 0, 0];
     }
   }, [foodMenu]);
 

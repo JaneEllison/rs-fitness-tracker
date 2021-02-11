@@ -28,7 +28,7 @@ export const rrfConfig = {
         height: '',
         weight: '',
       },
-      userMenus: {},
+      userMenus: [],
       usersExercises: {},
       userHistory: [],
       userGoals: {
