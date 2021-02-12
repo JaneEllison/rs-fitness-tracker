@@ -3,6 +3,7 @@ import RemoveFoodConfirmComponent from './RemoveFoodConfirmComponent';
 import checkOffsetWidth from '../../../../../utils/checkOffsetWidth';
 import adaptiveBreakPoints from '../../../../../constants/adaptiveBreakPoints';
 import foodComponentsConfig from '../../../../../config/foodComponentsConfig';
+import getHoursMinsFromTimeStr from '../../../../../utils/getHoursMinsFromTimeStr';
 
 const getFoodMenuTableColumns = () => {
   const { BREAKPOINT_MD } = adaptiveBreakPoints;
@@ -25,6 +26,7 @@ const getFoodMenuTableColumns = () => {
       width: FOOD_TABLE_STANDARD_CELL_WIDTH,
       dataIndex: 'time',
       key: 'time',
+      sorter: (a, b) => getHoursMinsFromTimeStr(a.time) - getHoursMinsFromTimeStr(b.time),
     },
     {
       title: 'Weight',
