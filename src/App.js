@@ -6,6 +6,7 @@ import MainComponent from './components/Main/MainComponent';
 import HeaderComponent from './components/Header/HeaderComponent';
 import FooterComponent from './components/Footer/FooterComponent';
 import designConstants from './constants/antdPropConstants';
+import AuthIsLoaded from './components/commonComponents/AuthIsLoaded';
 
 function App() {
   const {
@@ -17,17 +18,19 @@ function App() {
   const { Header, Footer, Content } = Layout;
 
   return (
-    <Layout className={style.appLayout}>
-      <Space
-        className={style.appLayoutSpace}
-        direction={SPACING_DIRECTION}
-        size={SPACING_SIZE}
-      >
-        <Header><HeaderComponent /></Header>
-        <Content className={style.appContent}><MainComponent /></Content>
-        <Footer className={style.appFooter}><FooterComponent /></Footer>
-      </Space>
-    </Layout>
+    <AuthIsLoaded>
+      <Layout className={style.appLayout}>
+        <Space
+          className={style.appLayoutSpace}
+          direction={SPACING_DIRECTION}
+          size={SPACING_SIZE}
+        >
+          <Header><HeaderComponent /></Header>
+          <Content className={style.appContent}><MainComponent /></Content>
+          <Footer className={style.appFooter}><FooterComponent /></Footer>
+        </Space>
+      </Layout>
+    </AuthIsLoaded>
   );
 }
 

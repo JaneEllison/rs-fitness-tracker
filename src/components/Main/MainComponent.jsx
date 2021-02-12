@@ -1,5 +1,9 @@
-import { Route, Switch } from 'react-router-dom';
-import { Row, Col } from 'antd';
+import {
+  NavLink, Route, Switch,
+} from 'react-router-dom';
+import {
+  Row, Col, Result,
+} from 'antd';
 import React from 'react';
 import style from './Main.module.css';
 import DefaultPageComponent from './DefaultPage/DefaultPageComponent';
@@ -40,6 +44,17 @@ const MainComponent = () => (
           <PrivateRoute path="/logout">
             <SignOut />
           </PrivateRoute>
+          <Route
+            path="*"
+            render={() => (
+              <Result
+                status="404"
+                title="404"
+                subTitle="Sorry, the page you visited does not exist."
+                extra={<NavLink to="/" type="primary">Back Home</NavLink>}
+              />
+            )}
+          />
         </Switch>
       </Col>
     </Row>

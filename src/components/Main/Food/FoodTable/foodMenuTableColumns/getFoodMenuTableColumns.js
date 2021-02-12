@@ -3,6 +3,7 @@ import RemoveFoodConfirmComponent from './RemoveFoodConfirmComponent';
 import checkOffsetWidth from '../../../../../utils/checkOffsetWidth';
 import adaptiveBreakPoints from '../../../../../constants/adaptiveBreakPoints';
 import foodComponentsConfig from '../../../../../config/foodComponentsConfig';
+import getHoursMinsFromTimeStr from '../../../../../utils/getHoursMinsFromTimeStr';
 
 const getFoodMenuTableColumns = () => {
   const { BREAKPOINT_MD } = adaptiveBreakPoints;
@@ -19,42 +20,49 @@ const getFoodMenuTableColumns = () => {
       dataIndex: 'foodName',
       key: 'food_name',
       fixed: 'left',
+      sorter: (a, b) => a.food_name - b.food_name,
     },
     {
       title: 'Eating time',
       width: FOOD_TABLE_STANDARD_CELL_WIDTH,
       dataIndex: 'time',
       key: 'time',
+      sorter: (a, b) => getHoursMinsFromTimeStr(a.time) - getHoursMinsFromTimeStr(b.time),
     },
     {
       title: 'Weight',
       width: FOOD_TABLE_STANDARD_CELL_WIDTH,
       dataIndex: 'weight',
       key: 'weight',
+      sorter: (a, b) => a.weight - b.weight,
     },
     {
       title: 'kCal',
       width: FOOD_TABLE_STANDARD_CELL_WIDTH,
       dataIndex: 'nf_calories',
       key: 'nf_calories',
+      sorter: (a, b) => a.nf_calories - b.nf_calories,
     },
     {
       title: 'Fats',
       width: FOOD_TABLE_STANDARD_CELL_WIDTH,
       dataIndex: 'nf_total_fat',
       key: 'nf_total_fat',
+      sorter: (a, b) => a.nf_total_fat - b.nf_total_fat,
     },
     {
       title: 'Carbs',
       width: FOOD_TABLE_STANDARD_CELL_WIDTH,
       dataIndex: 'nf_total_carbohydrate',
       key: 'nf_total_carbohydrate',
+      sorter: (a, b) => a.nf_total_carbohydrate - b.nf_total_carbohydrate,
     },
     {
       title: 'Proteins',
       width: FOOD_TABLE_STANDARD_CELL_WIDTH,
       dataIndex: 'nf_protein',
       key: 'nf_protein',
+      sorter: (a, b) => a.nf_protein - b.nf_protein,
     },
     {
       title: '',

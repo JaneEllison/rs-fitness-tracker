@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
+import { Spin } from 'antd';
 import { PATHS } from '../../../constants/routeConstants';
 
 const { MAIN_ROUTE } = PATHS;
@@ -13,7 +14,7 @@ const SignOut = () => {
   }, []);
 
   return (
-    <div />
+    <Spin tip="Loading..." />
   );
 };
 

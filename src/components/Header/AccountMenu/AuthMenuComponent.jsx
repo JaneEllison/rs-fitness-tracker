@@ -29,11 +29,9 @@ const AuthMenuComponent = () => {
   const { isEmpty, isLoaded } = auth;
 
   useEffect(() => {
-    if (isLoaded) {
-      setRoutesList([
-        ...authRoutes.filter((item) => item.type === (isEmpty ? NON_AUTHENTICATED : AUTHENTICATED)),
-      ]);
-    }
+    setRoutesList([
+      ...authRoutes.filter((item) => item.type === (isEmpty ? NON_AUTHENTICATED : AUTHENTICATED)),
+    ]);
   }, [isEmpty, isLoaded]);
 
   return (

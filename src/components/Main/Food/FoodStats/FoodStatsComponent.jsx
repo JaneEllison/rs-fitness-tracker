@@ -3,6 +3,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import { useSelector } from 'react-redux';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import foodComponentConstants from '../../../../constants/foodComponentConstants';
 import { calculateNutrientsByWeight } from '../../../../utils/calculateNutrientsByWeight';
 import checkArrayForNullUndefNaN from '../../../../utils/checkArrayForNullUndefNaN';
@@ -10,8 +11,12 @@ import foodComponentsConfig from '../../../../config/foodComponentsConfig';
 import FoodStatCardComponent from './FoodStatCard/FoodStatCardComponent';
 import { foodPhotoSelector } from '../../../../store/Selectors/foodSelector';
 import FoodToReachGoalComponent from '../FoodToReachGoal/FoodToReachGoalComponent';
+import authSelector from '../../../../store/Selectors/authSelector';
+import profileSelector from '../../../../store/Selectors/profileSelector';
 
 const FoodStatsComponent = ({ foodData, intakeWeight }) => {
+  const auth = useSelector(authSelector);
+  const profile = useSelector(profileSelector);
   const photo = useSelector(foodPhotoSelector);
   const {
     foodStatsTypes: {
@@ -81,11 +86,18 @@ const FoodStatsComponent = ({ foodData, intakeWeight }) => {
           lg={{ span: 8 }}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <FoodToReachGoalComponent
-            intakeCalories={1400}
-            foodData={dataForIntake}
-            foodName={food_name}
-          />
+          {
+            isLoaded(auth) && !isEmpty(auth)
+            && isLoaded(profile) && !isEmpty(profile) && profile.userHistory.length > 0
+              && profile.userGoals.goalCalories
+              ? (
+                <FoodToReachGoalComponent
+                  intakeCalories={1400}
+                  foodName={food_name}
+                />
+              )
+              : null
+          }
         </Col>
       </Row>
     )

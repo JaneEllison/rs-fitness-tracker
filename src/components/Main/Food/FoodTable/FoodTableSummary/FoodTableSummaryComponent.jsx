@@ -10,13 +10,6 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
   const totalNutrients = useSelector(totalNutrientsSelector);
   const dispatch = useDispatch();
   const { classesLeft, classesRight } = getAdaptiveClassNames();
-
-  useEffect(() => {
-    if (foodMenu.length > 0) {
-      dispatch(calculateTotalNutrientsAC(foodMenu));
-    }
-  }, [foodMenu]);
-
   const {
     nf_calories: nfCalories,
     nf_protein: nfProtein,
@@ -26,6 +19,12 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
   } = totalNutrients;
 
   const summaryRow = [weight, nfCalories, nfProtein, nfTotalCarbohydrate, nfTotalFat];
+  useEffect(() => {
+    if (foodMenu.length > 0) {
+      dispatch(calculateTotalNutrientsAC(foodMenu));
+    }
+  }, [foodMenu]);
+
   return (
     <>
       <Table.Summary.Row>
@@ -37,13 +36,21 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
         </Table.Summary.Cell>
         <Table.Summary.Cell />
         {
-          summaryRow.map((item, index) => (
-            <Table.Summary.Cell
-              key={`${index * 2}`}
-            >
-              {item}
-            </Table.Summary.Cell>
-          ))
+          foodMenu.length !== 0
+            ? summaryRow.map((item, index) => (
+              <Table.Summary.Cell
+                key={`${index * 2}`}
+              >
+                {item}
+              </Table.Summary.Cell>
+            ))
+            : [0, 0, 0, 0, 0].map((item, index) => (
+              <Table.Summary.Cell
+                key={`${index * 2}`}
+              >
+                {item}
+              </Table.Summary.Cell>
+            ))
         }
         <Table.Summary.Cell
           className={classesRight}
