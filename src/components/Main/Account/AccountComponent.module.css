@@ -1,6 +1,18 @@
+.accountInputField {
+  margin: 10px 0;
+}
+
+.profileInfoWrapper {
+  margin-bottom: 40px;
+}
+
 .descriptions {
   margin-bottom: 2rem;
   width: 26rem;
+}
+
+.profileImage {
+  width: 200px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -8,7 +20,8 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .profile_image {
+
+  .profileImageWrapper {
     display: none;
   }
 

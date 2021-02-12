@@ -24,6 +24,11 @@ const {
 const routes = {
   menuRoutes: [
     {
+      path: MAIN_ROUTE,
+      value: 'Main',
+      type: NON_AUTHENTICATED,
+    },
+    {
       path: SEARCH_FOOD_ROUTE,
       value: 'Search food',
       type: NON_AUTHENTICATED,
@@ -32,11 +37,6 @@ const routes = {
       path: EXERCISE_ROUTE,
       value: 'Exercise',
       type: AUTHENTICATED,
-    },
-    {
-      path: MAIN_ROUTE,
-      value: 'Main',
-      type: NON_AUTHENTICATED,
     },
   ],
   authRoutes: [

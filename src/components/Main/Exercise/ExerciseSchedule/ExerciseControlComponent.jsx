@@ -7,11 +7,21 @@ import ExerciseActionComponent from './ExerciseCards/ExerciseActionComponent';
 import dispatchDeleteExercise from './ExerciseActions/dispatchDeleteExercise';
 import profileSelector from '../../../../store/Selectors/profileSelector';
 import dispatchCompleteExercise from './ExerciseActions/dispatchCompleteExercise';
+import exerciseComponentConstants from '../../../../constants/exerciseComponentConstants';
 import style from './ExerciseSchedule.module.css';
 import './ExerciseAnt.css';
 
+const {
+  EXERCISE_CONTROL_COMPONENT: {
+    CARD_SIZE,
+  },
+} = exerciseComponentConstants;
+
 const ExerciseControlComponent = ({
-  day, exercises, selectedDay, setSelectedDay,
+  day,
+  exercises,
+  selectedDay,
+  setSelectedDay,
 }) => {
   const profile = useSelector(profileSelector);
   const firebase = useFirebase();
@@ -34,8 +44,9 @@ const ExerciseControlComponent = ({
         className={
           day === selectedDay ? [style.content, style.selected] : style.content
         }
-        size="small"
+        size={CARD_SIZE}
         title={day}
+        hoverable
       >
         {
           exercises

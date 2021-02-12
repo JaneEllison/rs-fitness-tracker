@@ -7,17 +7,21 @@ import ExerciseFormComponent from './ExerciseSchedule/ExerciseAddForm/ExerciseFo
 import SearchExercisesComponent from './ExerciseSearch/SearchExercisesComponent';
 import TimeComponent from './Time/TimeComponent';
 import style from './ExerciseComponent.module.css';
-import daysList from '../../../constants/daysList';
+import exerciseComponentConstants from '../../../constants/exerciseComponentConstants';
 import profileSelector from '../../../store/Selectors/profileSelector';
 import getExercisesForDay from './ExerciseSearch/getExercisesForDay';
 
+const {
+  DAYS_LIST,
+} = exerciseComponentConstants;
+
 const ExerciseComponent = () => {
   const profile = useSelector(profileSelector);
-  const [selectedDay, setSelectedDay] = useState(daysList[new Date(Date.now()).getDay()].name);
-  const [daysExercises, setDaysExercises] = useState(daysList);
+  const [selectedDay, setSelectedDay] = useState(DAYS_LIST[new Date(Date.now()).getDay()].name);
+  const [daysExercises, setDaysExercises] = useState(DAYS_LIST);
 
   useEffect(() => {
-    setDaysExercises(getExercisesForDay(daysList, profile.usersExercises));
+    setDaysExercises(getExercisesForDay(DAYS_LIST, profile.usersExercises));
   }, [profile.usersExercises]);
 
   const components = daysExercises.map((day) => (

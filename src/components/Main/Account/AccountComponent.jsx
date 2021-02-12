@@ -17,7 +17,7 @@ const AccountComponent = () => {
   const { avatarUrl } = profile;
 
   return isLoaded(profile) && !isEmpty(profile) ? (
-    <Row>
+    <Row gutter={[40, 0]}>
       <Col className={style.profile} span={16}>
         <ProfileInfoComponent />
         <UserPhysicsComponent
@@ -26,8 +26,8 @@ const AccountComponent = () => {
           dailyCalories={calculateTotalCaloriesForDay(userMenus[currentDate])}
         />
       </Col>
-      <Col className={style.profile_image} span={8}>
-        <Image width={200} src={avatarUrl} fallback={placeholderPicture} />
+      <Col className={style.profileImageWrapper} span={8}>
+        <Image className={style.profileImage} src={avatarUrl} fallback={placeholderPicture} />
       </Col>
     </Row>
   )

@@ -7,13 +7,36 @@ import {
   Radio,
   DatePicker,
   Button,
-  Modal,
 } from 'antd';
 import moment from 'moment';
 import { useFirebase } from 'react-redux-firebase';
-import style from '../GoalComponent.module.css';
-import getAgeFromDateString from '../../../../utils/getAgeFromDateString';
-import { updateAllPhysicsData, updateUserHistoryData } from '../../Account/updateProfileData';
+import showPhysicsModal from './showPhysicsModal';
+import genders from '../../../../config/genders';
+import goalComponentConstants from '../../../../constants/goalComponentConstants';
+import antdPropConstants from '../../../../constants/antdPropConstants';
+import style from '../Goal.module.css';
+
+const {
+  GOAL: {
+    USER_PHYSICS: {
+      BUTTON_TYPE,
+      RADIO_STYLE,
+    },
+  },
+} = antdPropConstants;
+
+const {
+  PHYSICS: {
+    PHYSICS_HEADING,
+    WEIGHT_LABEL,
+    MIN_WEIGHT,
+    HEIGHT_LABEL,
+    MIN_HEIGHT,
+    DATE_OF_BIRTH_LABEL,
+    GENDER_LABEL,
+    BUTTON_TEXT,
+  },
+} = goalComponentConstants;
 
 function UserPhysicsComponent({
   summary: {
@@ -33,126 +56,92 @@ function UserPhysicsComponent({
     birthDay ? moment(birthDay) : moment(moment.now()),
   );
 
-  const showModal = () => {
-    Modal.confirm({
-      title: 'Confirm new user parameters',
-      content: (
-        <div>
-          <div>
-            Weight:
-            {' '}
-            {userWeight}
-            {' '}
-            kg
-          </div>
-          <div>
-            Height:
-            {' '}
-            {userHeight}
-            {' '}
-            cm
-          </div>
-          <div>
-            Date of birth:
-            {' '}
-            {userBirthday.format('MMMM Do YYYY')}
-          </div>
-          <div>
-            Age:
-            {' '}
-            {getAgeFromDateString(userBirthday.toString())}
-            {' '}
-            years
-          </div>
-          <div>
-            Gender:
-            {' '}
-            {userSex}
-          </div>
-        </div>
-      ),
-      onOk: () => {
-        updateAllPhysicsData({
-          weight: userWeight,
-          height: userHeight,
-          birthDay: userBirthday.format('MM.DD.YYYY'),
-          gender: userSex,
-        }, firebase);
-        updateUserHistoryData({
-          weight: userWeight,
-          caloriesConsumed: dailyCalories,
-          date: moment(moment.now()).format('MM.DD.YYYY'),
-        }, firebase, userHistory);
-      },
-    });
-  };
+  const LATEST_DATE = moment().subtract(10, 'years');
 
   return (
     <Col>
       <Row>
-        <h3>Your physical parameters:</h3>
+        <h3>{PHYSICS_HEADING}</h3>
       </Row>
       <Row className={style.userPhysicsField}>
-        <Col span={12}>
-          Weight, kg:
+        <Col span={8}>
+          {WEIGHT_LABEL}
         </Col>
-        <Col span={12}>
+        <Col span={16}>
           <InputNumber
             defaultValue={userWeight}
             onChange={setUserWeight}
-            min={25}
+            min={MIN_WEIGHT}
             className={style.goalInputField}
           />
         </Col>
       </Row>
       <Row className={style.userPhysicsField}>
-        <Col span={12}>
-          Height, cm:
+        <Col span={8}>
+          {HEIGHT_LABEL}
         </Col>
-        <Col span={12}>
+        <Col span={16}>
           <InputNumber
             defaultValue={userHeight}
             onChange={setUserHeight}
-            min={100}
+            min={MIN_HEIGHT}
             className={style.goalInputField}
           />
         </Col>
       </Row>
       <Row className={style.userPhysicsField}>
-        <Col span={12}>
-          Date of birth:
+        <Col span={8}>
+          {DATE_OF_BIRTH_LABEL}
         </Col>
-        <Col span={12}>
+        <Col span={16}>
           <DatePicker
-            defaultValue={birthDay ? userBirthday : moment().subtract(3, 'years')}
+            defaultValue={birthDay ? userBirthday : LATEST_DATE}
             onChange={setUserBirthday}
             className={style.goalInputField}
-            disabledDate={(current) => current >= moment().subtract(3, 'years')}
+            disabledDate={(current) => current >= LATEST_DATE}
           />
         </Col>
       </Row>
       <Row className={style.userPhysicsField}>
-        <Col span={12}>
-          Gender:
+        <Col span={8}>
+          {GENDER_LABEL}
         </Col>
-        <Col span={12}>
+        <Col span={16}>
           <Radio.Group
             defaultValue={userSex}
             onChange={(event) => setUserSex(event.target.value)}
-            buttonStyle="button"
+            buttonStyle={RADIO_STYLE}
           >
-            <Radio.Button value="female">Female</Radio.Button>
-            <Radio.Button value="male">Male</Radio.Button>
+            {
+              genders.map(({ value, label }, index) => {
+                const keyProp = `gender-${index}`;
+                return (
+                  <Radio.Button key={keyProp} value={value}>
+                    {label}
+                  </Radio.Button>
+                );
+              })
+            }
           </Radio.Group>
         </Col>
       </Row>
       <Row className={style.userPhysicsField}>
         <Button
           disabled={!userBirthday}
-          type="primary"
-          onClick={showModal}
+          type={BUTTON_TYPE}
+          onClick={() => {
+            showPhysicsModal({
+              userWeight,
+              userHeight,
+              userBirthday,
+              userSex,
+              dailyCalories,
+              userHistory,
+              firebase,
+            });
+          }}
         >
-          Update stats
+          {BUTTON_TEXT}
         </Button>
       </Row>
     </Col>

@@ -3,7 +3,39 @@ import PropTypes from 'prop-types';
 import { Row, Tooltip, Button } from 'antd';
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import { IoIosSquare, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
+import antdPropConstants from '../../../../../../constants/antdPropConstants';
+import exerciseComponentConstants from '../../../../../../constants/exerciseComponentConstants';
 import style from '../../Time.module.css';
+
+const {
+  TIME: {
+    STOPWATCH: {
+      BUTTONS_COMPONENT: {
+        DONE_TRACK_SRC,
+      },
+    },
+  },
+} = exerciseComponentConstants;
+
+const {
+  TIME: {
+    STOPWATCH: {
+      BUTTONS_COMPONENT: {
+        ROW_JUSTIFY,
+        AUDIO_ID,
+        AUDIO_PRELOAD,
+        AUDIO_TYPE,
+        PAUSE_TOOLTIP_TITLE,
+        START_TOOLTIP_TITLE,
+        STOP_TOOLTIP_TITLE,
+        SOUND_ON_TOOLTIP_TITLE,
+        SOUND_OFF_TOOLTIP_TITLE,
+        BUTTON_TYPE,
+        BUTTON_SHAPE,
+      },
+    },
+  },
+} = antdPropConstants;
 
 const StopwatchButtonsComponent = ({
   stopwatchSeconds,
@@ -21,7 +53,7 @@ const StopwatchButtonsComponent = ({
   const [isSoundOn, setIsSoundOn] = useState(true);
 
   const initPlayer = () => {
-    audioPlayer = document.getElementById('audioPlayerStopwatch');
+    audioPlayer = document.getElementById(AUDIO_ID);
   };
 
   const handlePlayAudio = () => {
@@ -58,7 +90,7 @@ const StopwatchButtonsComponent = ({
     addValuesOfSeconds();
     setIsRunningStopwatch(false);
     changeSeconds(0);
-    setCurrentTrack('./music/done.mp3');
+    setCurrentTrack(DONE_TRACK_SRC);
     initPlayer();
     setTimeout(() => {
       audioPlayer.play();
@@ -71,40 +103,40 @@ const StopwatchButtonsComponent = ({
   };
 
   return (
-    <Row justify="center">
+    <Row justify={ROW_JUSTIFY}>
       <audio
-        id="audioPlayerStopwatch"
-        preload="metadata"
+        id={AUDIO_ID}
+        preload={AUDIO_PRELOAD}
         src={currentTrack}
-        type="audio/ogg"
+        type={AUDIO_TYPE}
       />
       {
         (isRunningStopwatch)
           ? (
-            <Tooltip title="Pause">
+            <Tooltip title={PAUSE_TOOLTIP_TITLE}>
               <Button
-                type="primary"
-                shape="circle"
+                type={BUTTON_TYPE}
+                shape={BUTTON_SHAPE}
                 icon={<PauseOutlined />}
                 onClick={pauseStopwatch}
               />
             </Tooltip>
           )
           : (
-            <Tooltip title="Start">
+            <Tooltip title={START_TOOLTIP_TITLE}>
               <Button
-                type="primary"
-                shape="circle"
+                type={BUTTON_TYPE}
+                shape={BUTTON_SHAPE}
                 icon={<CaretRightOutlined />}
                 onClick={startStopwatch}
               />
             </Tooltip>
           )
       }
-      <Tooltip title="Stop" className={style.timeBtn}>
+      <Tooltip title={STOP_TOOLTIP_TITLE} className={style.timeBtn}>
         <Button
-          type="primary"
-          shape="circle"
+          type={BUTTON_TYPE}
+          shape={BUTTON_SHAPE}
           icon={<IoIosSquare />}
           onClick={stopStopwatch}
           disabled={!stopwatchSeconds}
@@ -113,20 +145,20 @@ const StopwatchButtonsComponent = ({
       {
         (isSoundOn)
           ? (
-            <Tooltip title="Sound on" className={style.timeBtn}>
+            <Tooltip title={SOUND_ON_TOOLTIP_TITLE} className={style.timeBtn}>
               <Button
-                type="primary"
-                shape="circle"
+                type={BUTTON_TYPE}
+                shape={BUTTON_SHAPE}
                 icon={<IoMdVolumeHigh />}
                 onClick={mutedSound}
               />
             </Tooltip>
           )
           : (
-            <Tooltip title="Sound off" className={style.timeBtn}>
+            <Tooltip title={SOUND_OFF_TOOLTIP_TITLE} className={style.timeBtn}>
               <Button
-                type="primary"
-                shape="circle"
+                type={BUTTON_TYPE}
+                shape={BUTTON_SHAPE}
                 icon={<IoMdVolumeOff />}
                 onClick={mutedSound}
               />

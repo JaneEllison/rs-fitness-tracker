@@ -8,6 +8,7 @@ const AccountInfoItemComponent = ({ info, paramName, updateCallBack }) => {
   const [newData, changeNewData] = useState(info);
   const [inputOpen, toggleInputOpen] = useState(false);
   const firebase = useFirebase();
+
   const changeData = (event) => {
     updateCallBack(paramName, event.target.value, firebase);
     toggleInputOpen(!inputOpen);

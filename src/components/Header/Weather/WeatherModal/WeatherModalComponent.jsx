@@ -96,8 +96,7 @@ const WeatherModalComponent = ({
             </p>
           </Row>
           <Row justify={FEELS_LIKE_ROW_JUSTIFY}>
-            <p>{FEELS_LIKE_TEXT}</p>
-            <p>{`${temperatureFeelsLike} ${TEMP_UNIT}`}</p>
+            <p>{`${FEELS_LIKE_TEXT} ${temperatureFeelsLike} ${TEMP_UNIT}`}</p>
           </Row>
           <Row justify={WIND_ROW_JUSTIFY}>
             <p>{WIND_TEXT}</p>

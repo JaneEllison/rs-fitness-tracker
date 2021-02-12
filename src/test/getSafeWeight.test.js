@@ -15,11 +15,11 @@ describe('Get safe weight function:', () => {
   });
 
   it('should be getting max weight', () => {
-    expect(getMaxSafeWeight(height)).toBe(13);
+    expect(getMaxSafeWeight(height)).toBe(11);
   });
 
   it('should be getting min weight', () => {
-    expect(getMinSafeWeight(height)).toBe(6);
+    expect(getMinSafeWeight(height)).toBe(8);
   });
 
   it('should be return number', () => {

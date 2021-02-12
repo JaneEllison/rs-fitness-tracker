@@ -5,6 +5,13 @@ import { getSearchDataYoutubeAPI, selectVideoAction } from '../../../../store/ex
 import SearchExercisesInput from './SearchExercisesInput/SearchExercisesInputComponent';
 import SearchExercisesList from './SearchExercisesVideo/SearchExercisesListComponent';
 import SearchExercisesPlayer from './SearchExercisesVideo/SearchExercisesPlayerComponent';
+import exerciseComponentConstants from '../../../../constants/exerciseComponentConstants';
+
+const {
+  SEARCH_EXERCISES_COMPONENT: {
+    ROW_JUSTIFY,
+  },
+} = exerciseComponentConstants;
 
 const SearchExercisesComponent = () => {
   const dispatch = useDispatch();
@@ -21,7 +28,7 @@ const SearchExercisesComponent = () => {
   return (
     <div>
       <SearchExercisesInput onSearch={onSearch} />
-      <Row justify="space-between">
+      <Row justify={ROW_JUSTIFY}>
         <SearchExercisesPlayer videoId={youtubeData.selectedVideoId} />
         <SearchExercisesList
           onVideoSelected={onVideoSelected}

@@ -11,7 +11,7 @@ import {
 const {
   CREATED_BY,
   AND,
-  IN_2001,
+  IN_2021,
 } = GENERIC_TEXT;
 
 const {
@@ -39,7 +39,7 @@ const FooterComponent = () => (
             </span>
           );
       })}
-      {IN_2001}
+      {IN_2021}
     </div>
     <a
       className={style.footerLogoLink}

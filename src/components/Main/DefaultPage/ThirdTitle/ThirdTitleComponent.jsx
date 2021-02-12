@@ -17,8 +17,10 @@ const ThirdTitleComponent = () => (
       <Row className={style.defaultPageButton}>
         <Title level={5} className={style.defaultPageText}>
           App includes some unique tools like a calorie calculator, timer, stopwatch,
-          also you can seach and watch exersise from YouTube. Version without sign-in
-          doesnt come with some features. Sign in and get all function of app.
+          also you can search and watch exercise from YouTube. Version without sign-in
+          doesn
+          {'\''}
+          t come with some features. Sign in and get all function of app.
         </Title>
         <Button
           type="primary"

@@ -9,6 +9,10 @@
   height: 15rem;
 }
 
+.exerciseCard {
+  font-size: 12px;
+}
+
 @media only screen and (max-width: 805px) {
   .content {
     width: 18rem;
@@ -39,7 +43,7 @@
 
 .selected {
   margin: 0 auto;
-  border: 1.5px solid darkblue;
+  border: 1.5px solid darkblue !important;
 }
 
 @media only screen and (max-width: 805px) {

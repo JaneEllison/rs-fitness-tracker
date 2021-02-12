@@ -25,7 +25,7 @@ const DEVELOPERS_LINK_ATTRIBUTES = {
 const GENERIC_TEXT = {
   CREATED_BY: 'Created by ',
   AND: 'and',
-  IN_2001: ' in 2001.',
+  IN_2021: ' in 2021.',
 };
 
 const RSS_LOGO = {

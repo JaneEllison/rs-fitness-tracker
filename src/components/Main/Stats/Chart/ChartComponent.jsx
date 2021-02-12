@@ -27,7 +27,7 @@ function ChartComponent({
 
 ChartComponent.propTypes = {
   selectedFields: PropTypes.string.isRequired,
-  dataset: PropTypes.arrayOf({}).isRequired,
+  dataset: PropTypes.object.isRequired,
 };
 
 export default ChartComponent;

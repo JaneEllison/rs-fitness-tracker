@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import {
   Row,
   Col,
+  Spin,
 } from 'antd';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import moment from 'moment';
@@ -16,22 +17,25 @@ function GoalComponent() {
   const profile = useSelector(profileSelector);
 
   if (!isLoaded(profile)) {
-    return <div>Loading...</div>;
+    return <Spin />;
   }
+
   if (isEmpty(profile)) {
     return <div>You have to sign up</div>;
   }
+
   if (isLoaded(profile) && !isEmpty(profile)) {
     const currentDate = moment(moment.now()).format('DD.MM.YYYY');
     const {
       userPhysics, userGoals, userMenus, userHistory,
     } = profile;
     const userGoalsSummary = {
-      ...userPhysics, age: getAgeFromDateString(userPhysics.birthDay),
+      ...userPhysics,
+      age: getAgeFromDateString(userPhysics.birthDay),
     };
 
     return (
-      <Row gutter={8}>
+      <Row gutter={16}>
         <Col span={24} md={12}>
           <UserPhysicsComponent
             summary={userPhysics}
