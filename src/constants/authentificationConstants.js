@@ -7,7 +7,7 @@ export default {
     PROVIDER: 'google',
     TYPE: 'popup',
     FIRESTORE_CONNECT: ['physicsChars'],
-    HEADING_TEXT: 'Sign in with google',
-    BUTTON_TEXT: 'Sign in with google',
+    HEADING_TEXT: 'Sign in with Google',
+    BUTTON_TEXT: 'Sign in with Google',
   },
 };
