@@ -36,13 +36,21 @@ const FoodTableSummaryComponent = ({ foodMenu }) => {
         </Table.Summary.Cell>
         <Table.Summary.Cell />
         {
-          summaryRow.map((item, index) => (
-            <Table.Summary.Cell
-              key={`${index * 2}`}
-            >
-              {item}
-            </Table.Summary.Cell>
-          ))
+          foodMenu.length !== 0
+            ? summaryRow.map((item, index) => (
+              <Table.Summary.Cell
+                key={`${index * 2}`}
+              >
+                {item}
+              </Table.Summary.Cell>
+            ))
+            : [0, 0, 0, 0, 0].map((item, index) => (
+              <Table.Summary.Cell
+                key={`${index * 2}`}
+              >
+                {item}
+              </Table.Summary.Cell>
+            ))
         }
         <Table.Summary.Cell
           className={classesRight}
