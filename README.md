@@ -3,3 +3,5 @@ App for calories tracking, workout planning and fitness goals setting. In this p
 
 ## Technologies and libraries:
 React, Redux, Firebase, Chart.js, Ant Design.
+
+## [Deploy](https://rs-fitness-tracker-prod.web.app/)
